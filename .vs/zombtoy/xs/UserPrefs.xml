@@ -1,0 +1,32 @@
+﻿<Properties StartupConfiguration="{FBB2BD08-419F-E2AF-0C9B-DBB26B8D32A6}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Player/PlayerMovement.cs">
+    <Files>
+      <File FileName="Assets/Scripts/RocketLauncher.cs" />
+      <File FileName="Assets/Scripts/Rocket.cs" />
+      <File FileName="Assets/Scripts/Tornado.cs" Line="58" Column="37" />
+      <File FileName="Assets/Scripts/Player/PlayerMovement.cs" Line="18" Column="48" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="zombtoy" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="Scripts" expanded="True">
+                <Node name="Enemy" expanded="True" />
+                <Node name="Player" expanded="True" />
+                <Node name="Ammo.cs" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="99936520-f08d-4899-a5c1-bbffa5091960" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
