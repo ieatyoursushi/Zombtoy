@@ -30,6 +30,7 @@
 -define:UNITY_2022_2_OR_NEWER
 -define:UNITY_2022_3_OR_NEWER
 -define:UNITY_INCLUDE_TESTS
+-define:UNITY_ANALYTICS
 -define:ENABLE_AUDIO
 -define:ENABLE_CLOTH
 -define:ENABLE_MULTIPLE_DISPLAYS
@@ -404,6 +405,7 @@
 "Assets/Scripts/Rocket.cs"
 "Assets/Scripts/RocketLauncher.cs"
 "Assets/Scripts/SelfDestruct.cs"
+"Assets/Scripts/Server/Leaderboard.cs"
 "Assets/Scripts/SFXManager.cs"
 "Assets/Scripts/SpawnClown.cs"
 "Assets/Scripts/Tornado.cs"
