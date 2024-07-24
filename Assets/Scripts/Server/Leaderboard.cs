@@ -2,7 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
-public class RequestPacket
+using System.Net.Http;
+using System.Threading.Tasks;
+
+public class RequestPacket : MonoBehaviour
 {
     private string url;
     private string data;
@@ -28,6 +31,33 @@ public class RequestPacket
     public string getUrl() { return url; }
     public string getData() { return data; }
     public string getContentType() { return contentType; }
+    //SSL connection error, branch out to this later because https is too encrypted
+    public async Task<string> getRequest(string url)
+    {
+        using (HttpClient client = new HttpClient())
+        {
+            try
+            {
+                Debug.Log(url);
+                HttpResponseMessage response = await client.GetAsync(url);
+                response.EnsureSuccessStatusCode();
+                string responseBody = await response.Content.ReadAsStringAsync();
+                string[] pages = url.Split('/');
+                int page = pages.Length - 1;
+
+                Debug.Log(pages[page] + ":\nReceived: " + responseBody);
+                return responseBody;
+            }
+            catch (HttpRequestException e)
+            {
+                string[] pages = url.Split('/');
+                int page = pages.Length - 1;
+
+                Debug.LogError(pages[page] + ": Error: " + e.Message);
+                return null;
+            }
+        }
+    }
 
 }
 //up for modi
@@ -39,12 +69,25 @@ public class Highscore
 public class Leaderboard : MonoBehaviour
 {
     RequestPacket apiTest = new RequestPacket("https://12d0099a-1529-4de2-9468-c224649003b1-00-187mkm0yvrntp.janeway.replit.dev:3000/amountOfUsers");
-    void Start()
+    RequestPacket serverGetTest = new RequestPacket("http://localhost:3000/getAllScores");
+    async void Start()
     {
-        StartCoroutine(GetRequest(apiTest.getUrl()));
-
+        //StartCoroutine(getRequest(apiTest.getUrl()));
+        //StartCoroutine(getRequest(serverGetTest.getUrl()));
+        await serverGetTest.getRequest(serverGetTest.getUrl());
+        
     }
-    IEnumerator GetRequest(string url)
+    //branch out to later
+    async Task<int> getResult()
+    {
+        Debug.Log(await serverGetTest.getRequest(serverGetTest.getUrl()));
+            return 0;
+    }
+
+
+
+    //backup code, using asynchrnous instead of coruotinges.
+    IEnumerator getRequest(string url)
     {
         using (UnityWebRequest webRequest = UnityWebRequest.Get(url))
         {
@@ -68,6 +111,7 @@ public class Leaderboard : MonoBehaviour
 
                 case UnityWebRequest.Result.Success:
                     Debug.Log(pages[page] + ":\nReceived: " + webRequest.downloadHandler.text);
+                    yield return webRequest.downloadHandler.text;
                     break;
             }
         }

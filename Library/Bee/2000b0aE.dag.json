@@ -641,7 +641,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 107,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some ",
+      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some-",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/2000b0aE.dag/UnityEngine.TestRunner.UnityAdditionalFile.txt"
@@ -653,7 +653,7 @@
       "DisplayName": "Writing UnityEngine.TestRunner.rsp",
       "ActionType": "WriteFile",
       "PayloadOffset": 264,
-      "PayloadLength": 45075,
+      "PayloadLength": 45156,
       "PayloadDebugContentSnippet": "-target:library\n-out:\"Library/",
       "Inputs": [],
       "Outputs": [
@@ -665,7 +665,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEngine.TestRunner.rsp2",
       "DisplayName": "Writing UnityEngine.TestRunner.rsp2",
       "ActionType": "WriteFile",
-      "PayloadOffset": 45433,
+      "PayloadOffset": 45514,
       "PayloadLength": 77,
       "PayloadDebugContentSnippet": "/pathmap:\"/Users/gabewkung/Des",
       "Inputs": [],
@@ -1005,6 +1005,7 @@
         "Library/PackageCache/com.unity.test-framework@1.1.33/UnityEngine.TestRunner/Utils/Vector4EqualityComparer.cs",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll",
+        "Assets/Imported/JMO Assets/Editor/JMOAssets_CartoonFXFreeWelcome.dll",
         "Library/Bee/artifacts/2000b0aE.dag/UnityEngine.TestRunner.rsp"
       ],
       "Outputs": [
@@ -2637,7 +2638,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEngine.TestRunner.dll.mvfrm.rsp",
       "DisplayName": "Writing UnityEngine.TestRunner.dll.mvfrm.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 45613,
+      "PayloadOffset": 45694,
       "PayloadLength": 7535,
       "PayloadDebugContentSnippet": "Library/Bee/artifacts/mvdfrm/U",
       "Inputs": [],
@@ -2844,9 +2845,9 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEngine.UI.UnityAdditionalFile.txt",
       "DisplayName": "Writing UnityEngine.UI.UnityAdditionalFile.txt",
       "ActionType": "WriteFile",
-      "PayloadOffset": 53253,
+      "PayloadOffset": 53334,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some ",
+      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some-",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/2000b0aE.dag/UnityEngine.UI.UnityAdditionalFile.txt"
@@ -2857,8 +2858,8 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEngine.UI.rsp",
       "DisplayName": "Writing UnityEngine.UI.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 53402,
-      "PayloadLength": 39343,
+      "PayloadOffset": 53483,
+      "PayloadLength": 39424,
       "PayloadDebugContentSnippet": "-target:library\n-out:\"Library/",
       "Inputs": [],
       "Outputs": [
@@ -2870,7 +2871,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEngine.UI.rsp2",
       "DisplayName": "Writing UnityEngine.UI.rsp2",
       "ActionType": "WriteFile",
-      "PayloadOffset": 92831,
+      "PayloadOffset": 92993,
       "PayloadLength": 77,
       "PayloadDebugContentSnippet": "/pathmap:\"/Users/gabewkung/Des",
       "Inputs": [],
@@ -3190,6 +3191,7 @@
         "Library/PackageCache/com.unity.ugui@1.0.0/Runtime/UI/Core/VertexModifiers/Shadow.cs",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll",
+        "Assets/Imported/JMO Assets/Editor/JMOAssets_CartoonFXFreeWelcome.dll",
         "Library/Bee/artifacts/2000b0aE.dag/UnityEngine.UI.rsp"
       ],
       "Outputs": [
@@ -3299,7 +3301,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEngine.UI.dll.mvfrm.rsp",
       "DisplayName": "Writing UnityEngine.UI.dll.mvfrm.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 93003,
+      "PayloadOffset": 93165,
       "PayloadLength": 7952,
       "PayloadDebugContentSnippet": "Library/Bee/artifacts/mvdfrm/U",
       "Inputs": [],
@@ -3516,9 +3518,9 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEditor.TestRunner.UnityAdditionalFile.txt",
       "DisplayName": "Writing UnityEditor.TestRunner.UnityAdditionalFile.txt",
       "ActionType": "WriteFile",
-      "PayloadOffset": 101068,
+      "PayloadOffset": 101230,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some ",
+      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some-",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/2000b0aE.dag/UnityEditor.TestRunner.UnityAdditionalFile.txt"
@@ -3529,8 +3531,8 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEditor.TestRunner.rsp",
       "DisplayName": "Writing UnityEditor.TestRunner.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 101225,
-      "PayloadLength": 51636,
+      "PayloadOffset": 101387,
+      "PayloadLength": 51717,
       "PayloadDebugContentSnippet": "-target:library\n-out:\"Library/",
       "Inputs": [],
       "Outputs": [
@@ -3542,7 +3544,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEditor.TestRunner.rsp2",
       "DisplayName": "Writing UnityEditor.TestRunner.rsp2",
       "ActionType": "WriteFile",
-      "PayloadOffset": 152955,
+      "PayloadOffset": 153198,
       "PayloadLength": 77,
       "PayloadDebugContentSnippet": "/pathmap:\"/Users/gabewkung/Des",
       "Inputs": [],
@@ -3941,6 +3943,7 @@
         "Library/PackageCache/com.unity.test-framework@1.1.33/UnityEditor.TestRunner/UnityTestProtocol/UtpMessageReporter.cs",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll",
+        "Assets/Imported/JMO Assets/Editor/JMOAssets_CartoonFXFreeWelcome.dll",
         "Library/Bee/artifacts/2000b0aE.dag/UnityEditor.TestRunner.rsp"
       ],
       "Outputs": [
@@ -4069,7 +4072,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEditor.TestRunner.dll.mvfrm.rsp",
       "DisplayName": "Writing UnityEditor.TestRunner.dll.mvfrm.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 153135,
+      "PayloadOffset": 153378,
       "PayloadLength": 8044,
       "PayloadDebugContentSnippet": "Library/Bee/artifacts/mvdfrm/U",
       "Inputs": [],
@@ -4288,9 +4291,9 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEditor.UI.UnityAdditionalFile.txt",
       "DisplayName": "Writing UnityEditor.UI.UnityAdditionalFile.txt",
       "ActionType": "WriteFile",
-      "PayloadOffset": 161284,
+      "PayloadOffset": 161527,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some ",
+      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some-",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/2000b0aE.dag/UnityEditor.UI.UnityAdditionalFile.txt"
@@ -4301,8 +4304,8 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEditor.UI.rsp",
       "DisplayName": "Writing UnityEditor.UI.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 161433,
-      "PayloadLength": 36986,
+      "PayloadOffset": 161676,
+      "PayloadLength": 37067,
       "PayloadDebugContentSnippet": "-target:library\n-out:\"Library/",
       "Inputs": [],
       "Outputs": [
@@ -4314,7 +4317,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEditor.UI.rsp2",
       "DisplayName": "Writing UnityEditor.UI.rsp2",
       "ActionType": "WriteFile",
-      "PayloadOffset": 198505,
+      "PayloadOffset": 198829,
       "PayloadLength": 77,
       "PayloadDebugContentSnippet": "/pathmap:\"/Users/gabewkung/Des",
       "Inputs": [],
@@ -4598,6 +4601,7 @@
         "Library/PackageCache/com.unity.ugui@1.0.0/Editor/UI/ToggleEditor.cs",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll",
+        "Assets/Imported/JMO Assets/Editor/JMOAssets_CartoonFXFreeWelcome.dll",
         "Library/Bee/artifacts/2000b0aE.dag/UnityEditor.UI.rsp"
       ],
       "Outputs": [
@@ -4671,7 +4675,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEditor.UI.dll.mvfrm.rsp",
       "DisplayName": "Writing UnityEditor.UI.dll.mvfrm.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 198677,
+      "PayloadOffset": 199001,
       "PayloadLength": 8619,
       "PayloadDebugContentSnippet": "Library/Bee/artifacts/mvdfrm/U",
       "Inputs": [],
@@ -4904,9 +4908,9 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Analytics.UnityAdditionalFile.txt",
       "DisplayName": "Writing Analytics.UnityAdditionalFile.txt",
       "ActionType": "WriteFile",
-      "PayloadOffset": 207396,
+      "PayloadOffset": 207720,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some ",
+      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some-",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/2000b0aE.dag/Analytics.UnityAdditionalFile.txt"
@@ -4917,8 +4921,8 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Analytics.rsp",
       "DisplayName": "Writing Analytics.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 207540,
-      "PayloadLength": 34109,
+      "PayloadOffset": 207864,
+      "PayloadLength": 34190,
       "PayloadDebugContentSnippet": "-target:library\n-out:\"Library/",
       "Inputs": [],
       "Outputs": [
@@ -4930,7 +4934,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Analytics.rsp2",
       "DisplayName": "Writing Analytics.rsp2",
       "ActionType": "WriteFile",
-      "PayloadOffset": 241730,
+      "PayloadOffset": 242135,
       "PayloadLength": 77,
       "PayloadDebugContentSnippet": "/pathmap:\"/Users/gabewkung/Des",
       "Inputs": [],
@@ -5179,6 +5183,7 @@
         "Library/PackageCache/com.unity.analytics@3.8.1/Editor/AnalyticsEditorCallbacks.cs",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll",
+        "Assets/Imported/JMO Assets/Editor/JMOAssets_CartoonFXFreeWelcome.dll",
         "Library/Bee/artifacts/2000b0aE.dag/Analytics.rsp"
       ],
       "Outputs": [
@@ -5235,7 +5240,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Analytics.dll.mvfrm.rsp",
       "DisplayName": "Writing Analytics.dll.mvfrm.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 241897,
+      "PayloadOffset": 242302,
       "PayloadLength": 8694,
       "PayloadDebugContentSnippet": "Library/Bee/artifacts/mvdfrm/U",
       "Inputs": [],
@@ -5470,9 +5475,9 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.2D.Sprite.Editor.UnityAdditionalFile.txt",
       "DisplayName": "Writing Unity.2D.Sprite.Editor.UnityAdditionalFile.txt",
       "ActionType": "WriteFile",
-      "PayloadOffset": 250704,
+      "PayloadOffset": 251109,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some ",
+      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some-",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/2000b0aE.dag/Unity.2D.Sprite.Editor.UnityAdditionalFile.txt"
@@ -5483,8 +5488,8 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.2D.Sprite.Editor.rsp",
       "DisplayName": "Writing Unity.2D.Sprite.Editor.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 250861,
-      "PayloadLength": 37463,
+      "PayloadOffset": 251266,
+      "PayloadLength": 37544,
       "PayloadDebugContentSnippet": "-target:library\n-out:\"Library/",
       "Inputs": [],
       "Outputs": [
@@ -5496,7 +5501,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.2D.Sprite.Editor.rsp2",
       "DisplayName": "Writing Unity.2D.Sprite.Editor.rsp2",
       "ActionType": "WriteFile",
-      "PayloadOffset": 288418,
+      "PayloadOffset": 288904,
       "PayloadLength": 77,
       "PayloadDebugContentSnippet": "/pathmap:\"/Users/gabewkung/Des",
       "Inputs": [],
@@ -5779,6 +5784,7 @@
         "Library/PackageCache/com.unity.2d.sprite@1.0.0/Editor/SpriteEditorModule/TextureImporterDataProviderImplementation.cs",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll",
+        "Assets/Imported/JMO Assets/Editor/JMOAssets_CartoonFXFreeWelcome.dll",
         "Library/Bee/artifacts/2000b0aE.dag/Unity.2D.Sprite.Editor.rsp"
       ],
       "Outputs": [
@@ -5817,7 +5823,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.2D.Sprite.Editor.dll.mvfrm.rsp",
       "DisplayName": "Writing Unity.2D.Sprite.Editor.dll.mvfrm.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 288598,
+      "PayloadOffset": 289084,
       "PayloadLength": 8694,
       "PayloadDebugContentSnippet": "Library/Bee/artifacts/mvdfrm/U",
       "Inputs": [],
@@ -6052,9 +6058,9 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.2D.Tilemap.Editor.UnityAdditionalFile.txt",
       "DisplayName": "Writing Unity.2D.Tilemap.Editor.UnityAdditionalFile.txt",
       "ActionType": "WriteFile",
-      "PayloadOffset": 297406,
+      "PayloadOffset": 297892,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some ",
+      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some-",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/2000b0aE.dag/Unity.2D.Tilemap.Editor.UnityAdditionalFile.txt"
@@ -6065,8 +6071,8 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.2D.Tilemap.Editor.rsp",
       "DisplayName": "Writing Unity.2D.Tilemap.Editor.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 297564,
-      "PayloadLength": 41559,
+      "PayloadOffset": 298050,
+      "PayloadLength": 41640,
       "PayloadDebugContentSnippet": "-target:library\n-out:\"Library/",
       "Inputs": [],
       "Outputs": [
@@ -6078,7 +6084,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.2D.Tilemap.Editor.rsp2",
       "DisplayName": "Writing Unity.2D.Tilemap.Editor.rsp2",
       "ActionType": "WriteFile",
-      "PayloadOffset": 339218,
+      "PayloadOffset": 339785,
       "PayloadLength": 77,
       "PayloadDebugContentSnippet": "/pathmap:\"/Users/gabewkung/Des",
       "Inputs": [],
@@ -6411,6 +6417,7 @@
         "Library/PackageCache/com.unity.2d.tilemap@1.0.0/Editor/UI/TilePaletteOverlayUtility.cs",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll",
+        "Assets/Imported/JMO Assets/Editor/JMOAssets_CartoonFXFreeWelcome.dll",
         "Library/Bee/artifacts/2000b0aE.dag/Unity.2D.Tilemap.Editor.rsp"
       ],
       "Outputs": [
@@ -6449,7 +6456,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.2D.Tilemap.Editor.dll.mvfrm.rsp",
       "DisplayName": "Writing Unity.2D.Tilemap.Editor.dll.mvfrm.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 339399,
+      "PayloadOffset": 339966,
       "PayloadLength": 8694,
       "PayloadDebugContentSnippet": "Library/Bee/artifacts/mvdfrm/U",
       "Inputs": [],
@@ -6684,9 +6691,9 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.AI.Navigation.Editor.ConversionSystem.UnityAdditionalFile.txt",
       "DisplayName": "Writing Unity.AI.Navigation.Editor.ConversionSystem.UnityAdditionalFile.txt",
       "ActionType": "WriteFile",
-      "PayloadOffset": 348227,
+      "PayloadOffset": 348794,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some ",
+      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some-",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/2000b0aE.dag/Unity.AI.Navigation.Editor.ConversionSystem.UnityAdditionalFile.txt"
@@ -6697,8 +6704,8 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.AI.Navigation.Editor.ConversionSystem.rsp",
       "DisplayName": "Writing Unity.AI.Navigation.Editor.ConversionSystem.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 348405,
-      "PayloadLength": 35021,
+      "PayloadOffset": 348972,
+      "PayloadLength": 35102,
       "PayloadDebugContentSnippet": "-target:library\n-out:\"Library/",
       "Inputs": [],
       "Outputs": [
@@ -6710,7 +6717,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.AI.Navigation.Editor.ConversionSystem.rsp2",
       "DisplayName": "Writing Unity.AI.Navigation.Editor.ConversionSystem.rsp2",
       "ActionType": "WriteFile",
-      "PayloadOffset": 383541,
+      "PayloadOffset": 384189,
       "PayloadLength": 77,
       "PayloadDebugContentSnippet": "/pathmap:\"/Users/gabewkung/Des",
       "Inputs": [],
@@ -6967,6 +6974,7 @@
         "Library/PackageCache/com.unity.ai.navigation@1.1.5/Editor/ConversionSystem/SystemConvertersEditor.cs",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll",
+        "Assets/Imported/JMO Assets/Editor/JMOAssets_CartoonFXFreeWelcome.dll",
         "Library/Bee/artifacts/2000b0aE.dag/Unity.AI.Navigation.Editor.ConversionSystem.rsp"
       ],
       "Outputs": [
@@ -7005,7 +7013,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.AI.Navigation.Editor.ConversionSystem.dll.mvfrm.rsp",
       "DisplayName": "Writing Unity.AI.Navigation.Editor.ConversionSystem.dll.mvfrm.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 383742,
+      "PayloadOffset": 384390,
       "PayloadLength": 8694,
       "PayloadDebugContentSnippet": "Library/Bee/artifacts/mvdfrm/U",
       "Inputs": [],
@@ -7240,9 +7248,9 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.AI.Navigation.UnityAdditionalFile.txt",
       "DisplayName": "Writing Unity.AI.Navigation.UnityAdditionalFile.txt",
       "ActionType": "WriteFile",
-      "PayloadOffset": 392546,
+      "PayloadOffset": 393194,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some ",
+      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some-",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/2000b0aE.dag/Unity.AI.Navigation.UnityAdditionalFile.txt"
@@ -7253,8 +7261,8 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.AI.Navigation.rsp",
       "DisplayName": "Writing Unity.AI.Navigation.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 392700,
-      "PayloadLength": 32714,
+      "PayloadOffset": 393348,
+      "PayloadLength": 32795,
       "PayloadDebugContentSnippet": "-target:library\n-out:\"Library/",
       "Inputs": [],
       "Outputs": [
@@ -7266,7 +7274,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.AI.Navigation.rsp2",
       "DisplayName": "Writing Unity.AI.Navigation.rsp2",
       "ActionType": "WriteFile",
-      "PayloadOffset": 425505,
+      "PayloadOffset": 426234,
       "PayloadLength": 77,
       "PayloadDebugContentSnippet": "/pathmap:\"/Users/gabewkung/Des",
       "Inputs": [],
@@ -7508,6 +7516,7 @@
         "Library/PackageCache/com.unity.ai.navigation@1.1.5/Runtime/NavMeshSurface.cs",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll",
+        "Assets/Imported/JMO Assets/Editor/JMOAssets_CartoonFXFreeWelcome.dll",
         "Library/Bee/artifacts/2000b0aE.dag/Unity.AI.Navigation.rsp"
       ],
       "Outputs": [
@@ -7544,7 +7553,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.AI.Navigation.dll.mvfrm.rsp",
       "DisplayName": "Writing Unity.AI.Navigation.dll.mvfrm.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 425682,
+      "PayloadOffset": 426411,
       "PayloadLength": 8102,
       "PayloadDebugContentSnippet": "Library/Bee/artifacts/mvdfrm/U",
       "Inputs": [],
@@ -7765,9 +7774,9 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Analytics.DataPrivacy.UnityAdditionalFile.txt",
       "DisplayName": "Writing Unity.Analytics.DataPrivacy.UnityAdditionalFile.txt",
       "ActionType": "WriteFile",
-      "PayloadOffset": 433902,
+      "PayloadOffset": 434631,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some ",
+      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some-",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/2000b0aE.dag/Unity.Analytics.DataPrivacy.UnityAdditionalFile.txt"
@@ -7778,8 +7787,8 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Analytics.DataPrivacy.rsp",
       "DisplayName": "Writing Unity.Analytics.DataPrivacy.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 434064,
-      "PayloadLength": 32548,
+      "PayloadOffset": 434793,
+      "PayloadLength": 32629,
       "PayloadDebugContentSnippet": "-target:library\n-out:\"Library/",
       "Inputs": [],
       "Outputs": [
@@ -7791,7 +7800,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Analytics.DataPrivacy.rsp2",
       "DisplayName": "Writing Unity.Analytics.DataPrivacy.rsp2",
       "ActionType": "WriteFile",
-      "PayloadOffset": 466711,
+      "PayloadOffset": 467521,
       "PayloadLength": 77,
       "PayloadDebugContentSnippet": "/pathmap:\"/Users/gabewkung/Des",
       "Inputs": [],
@@ -8031,6 +8040,7 @@
         "Library/PackageCache/com.unity.analytics@3.8.1/DataPrivacy/DataPrivacyButton.cs",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll",
+        "Assets/Imported/JMO Assets/Editor/JMOAssets_CartoonFXFreeWelcome.dll",
         "Library/Bee/artifacts/2000b0aE.dag/Unity.Analytics.DataPrivacy.rsp"
       ],
       "Outputs": [
@@ -8067,7 +8077,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Analytics.DataPrivacy.dll.mvfrm.rsp",
       "DisplayName": "Writing Unity.Analytics.DataPrivacy.dll.mvfrm.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 466896,
+      "PayloadOffset": 467706,
       "PayloadLength": 8102,
       "PayloadDebugContentSnippet": "Library/Bee/artifacts/mvdfrm/U",
       "Inputs": [],
@@ -8288,9 +8298,9 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.PlasticSCM.Editor.UnityAdditionalFile.txt",
       "DisplayName": "Writing Unity.PlasticSCM.Editor.UnityAdditionalFile.txt",
       "ActionType": "WriteFile",
-      "PayloadOffset": 475112,
+      "PayloadOffset": 475922,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some ",
+      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some-",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/2000b0aE.dag/Unity.PlasticSCM.Editor.UnityAdditionalFile.txt"
@@ -8301,8 +8311,8 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.PlasticSCM.Editor.rsp",
       "DisplayName": "Writing Unity.PlasticSCM.Editor.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 475270,
-      "PayloadLength": 65834,
+      "PayloadOffset": 476080,
+      "PayloadLength": 65915,
       "PayloadDebugContentSnippet": "-target:library\n-out:\"Library/",
       "Inputs": [],
       "Outputs": [
@@ -8314,7 +8324,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.PlasticSCM.Editor.rsp2",
       "DisplayName": "Writing Unity.PlasticSCM.Editor.rsp2",
       "ActionType": "WriteFile",
-      "PayloadOffset": 541199,
+      "PayloadOffset": 542090,
       "PayloadLength": 77,
       "PayloadDebugContentSnippet": "/pathmap:\"/Users/gabewkung/Des",
       "Inputs": [],
@@ -8861,6 +8871,7 @@
         "Library/PackageCache/com.unity.collab-proxy@2.4.3/Editor/PlasticSCM/WorkspaceWindow.cs",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll",
+        "Assets/Imported/JMO Assets/Editor/JMOAssets_CartoonFXFreeWelcome.dll",
         "Library/Bee/artifacts/2000b0aE.dag/Unity.PlasticSCM.Editor.rsp"
       ],
       "Outputs": [
@@ -8899,7 +8910,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.PlasticSCM.Editor.dll.mvfrm.rsp",
       "DisplayName": "Writing Unity.PlasticSCM.Editor.dll.mvfrm.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 541380,
+      "PayloadOffset": 542271,
       "PayloadLength": 8363,
       "PayloadDebugContentSnippet": "Library/Bee/artifacts/mvdfrm/U",
       "Inputs": [],
@@ -9126,9 +9137,9 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Rider.Editor.UnityAdditionalFile.txt",
       "DisplayName": "Writing Unity.Rider.Editor.UnityAdditionalFile.txt",
       "ActionType": "WriteFile",
-      "PayloadOffset": 549852,
+      "PayloadOffset": 550743,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some ",
+      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some-",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/2000b0aE.dag/Unity.Rider.Editor.UnityAdditionalFile.txt"
@@ -9139,8 +9150,8 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Rider.Editor.rsp",
       "DisplayName": "Writing Unity.Rider.Editor.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 550005,
-      "PayloadLength": 37062,
+      "PayloadOffset": 550896,
+      "PayloadLength": 37143,
       "PayloadDebugContentSnippet": "-target:library\n-out:\"Library/",
       "Inputs": [],
       "Outputs": [
@@ -9152,7 +9163,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Rider.Editor.rsp2",
       "DisplayName": "Writing Unity.Rider.Editor.rsp2",
       "ActionType": "WriteFile",
-      "PayloadOffset": 587157,
+      "PayloadOffset": 588129,
       "PayloadLength": 77,
       "PayloadDebugContentSnippet": "/pathmap:\"/Users/gabewkung/Des",
       "Inputs": [],
@@ -9432,6 +9443,7 @@
         "Library/PackageCache/com.unity.ide.rider@3.0.28/Rider/Editor/Util/StringUtils.cs",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll",
+        "Assets/Imported/JMO Assets/Editor/JMOAssets_CartoonFXFreeWelcome.dll",
         "Library/Bee/artifacts/2000b0aE.dag/Unity.Rider.Editor.rsp"
       ],
       "Outputs": [
@@ -9470,7 +9482,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Rider.Editor.dll.mvfrm.rsp",
       "DisplayName": "Writing Unity.Rider.Editor.dll.mvfrm.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 587333,
+      "PayloadOffset": 588305,
       "PayloadLength": 8277,
       "PayloadDebugContentSnippet": "Library/Bee/artifacts/mvdfrm/U",
       "Inputs": [],
@@ -9695,9 +9707,9 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.UnityAdditionalFile.txt",
       "DisplayName": "Writing Unity.Services.Core.UnityAdditionalFile.txt",
       "ActionType": "WriteFile",
-      "PayloadOffset": 595720,
+      "PayloadOffset": 596692,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some ",
+      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some-",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.UnityAdditionalFile.txt"
@@ -9708,8 +9720,8 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.rsp",
       "DisplayName": "Writing Unity.Services.Core.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 595874,
-      "PayloadLength": 33840,
+      "PayloadOffset": 596846,
+      "PayloadLength": 33921,
       "PayloadDebugContentSnippet": "-target:library\n-out:\"Library/",
       "Inputs": [],
       "Outputs": [
@@ -9721,7 +9733,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.rsp2",
       "DisplayName": "Writing Unity.Services.Core.rsp2",
       "ActionType": "WriteFile",
-      "PayloadOffset": 629805,
+      "PayloadOffset": 630858,
       "PayloadLength": 77,
       "PayloadDebugContentSnippet": "/pathmap:\"/Users/gabewkung/Des",
       "Inputs": [],
@@ -9974,6 +9986,7 @@
         "Library/PackageCache/com.unity.services.core@1.12.5/Runtime/Core/Utils/UnityThreadUtils.cs",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll",
+        "Assets/Imported/JMO Assets/Editor/JMOAssets_CartoonFXFreeWelcome.dll",
         "Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.rsp"
       ],
       "Outputs": [
@@ -10010,7 +10023,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.dll.mvfrm.rsp",
       "DisplayName": "Writing Unity.Services.Core.dll.mvfrm.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 629982,
+      "PayloadOffset": 631035,
       "PayloadLength": 8102,
       "PayloadDebugContentSnippet": "Library/Bee/artifacts/mvdfrm/U",
       "Inputs": [],
@@ -10231,9 +10244,9 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.TextMeshPro.UnityAdditionalFile.txt",
       "DisplayName": "Writing Unity.TextMeshPro.UnityAdditionalFile.txt",
       "ActionType": "WriteFile",
-      "PayloadOffset": 638192,
+      "PayloadOffset": 639245,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some ",
+      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some-",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/2000b0aE.dag/Unity.TextMeshPro.UnityAdditionalFile.txt"
@@ -10244,8 +10257,8 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.TextMeshPro.rsp",
       "DisplayName": "Writing Unity.TextMeshPro.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 638344,
-      "PayloadLength": 37460,
+      "PayloadOffset": 639397,
+      "PayloadLength": 37541,
       "PayloadDebugContentSnippet": "-target:library\n-out:\"Library/",
       "Inputs": [],
       "Outputs": [
@@ -10257,7 +10270,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.TextMeshPro.rsp2",
       "DisplayName": "Writing Unity.TextMeshPro.rsp2",
       "ActionType": "WriteFile",
-      "PayloadOffset": 675893,
+      "PayloadOffset": 677027,
       "PayloadLength": 77,
       "PayloadDebugContentSnippet": "/pathmap:\"/Users/gabewkung/Des",
       "Inputs": [],
@@ -10553,6 +10566,7 @@
         "Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMP_UpdateRegistery.cs",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll",
+        "Assets/Imported/JMO Assets/Editor/JMOAssets_CartoonFXFreeWelcome.dll",
         "Library/Bee/artifacts/2000b0aE.dag/Unity.TextMeshPro.rsp"
       ],
       "Outputs": [
@@ -10589,7 +10603,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.TextMeshPro.dll.mvfrm.rsp",
       "DisplayName": "Writing Unity.TextMeshPro.dll.mvfrm.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 676068,
+      "PayloadOffset": 677202,
       "PayloadLength": 8102,
       "PayloadDebugContentSnippet": "Library/Bee/artifacts/mvdfrm/U",
       "Inputs": [],
@@ -10810,9 +10824,9 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Timeline.UnityAdditionalFile.txt",
       "DisplayName": "Writing Unity.Timeline.UnityAdditionalFile.txt",
       "ActionType": "WriteFile",
-      "PayloadOffset": 684275,
+      "PayloadOffset": 685409,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some ",
+      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some-",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/2000b0aE.dag/Unity.Timeline.UnityAdditionalFile.txt"
@@ -10823,8 +10837,8 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Timeline.rsp",
       "DisplayName": "Writing Unity.Timeline.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 684424,
-      "PayloadLength": 38529,
+      "PayloadOffset": 685558,
+      "PayloadLength": 38610,
       "PayloadDebugContentSnippet": "-target:library\n-out:\"Library/",
       "Inputs": [],
       "Outputs": [
@@ -10836,7 +10850,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Timeline.rsp2",
       "DisplayName": "Writing Unity.Timeline.rsp2",
       "ActionType": "WriteFile",
-      "PayloadOffset": 723039,
+      "PayloadOffset": 724254,
       "PayloadLength": 77,
       "PayloadDebugContentSnippet": "/pathmap:\"/Users/gabewkung/Des",
       "Inputs": [],
@@ -11146,6 +11160,7 @@
         "Library/PackageCache/com.unity.timeline@1.7.6/Runtime/Utilities/WeightUtility.cs",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll",
+        "Assets/Imported/JMO Assets/Editor/JMOAssets_CartoonFXFreeWelcome.dll",
         "Library/Bee/artifacts/2000b0aE.dag/Unity.Timeline.rsp"
       ],
       "Outputs": [
@@ -11182,7 +11197,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Timeline.dll.mvfrm.rsp",
       "DisplayName": "Writing Unity.Timeline.dll.mvfrm.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 723211,
+      "PayloadOffset": 724426,
       "PayloadLength": 8102,
       "PayloadDebugContentSnippet": "Library/Bee/artifacts/mvdfrm/U",
       "Inputs": [],
@@ -11403,9 +11418,9 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.VSCode.Editor.UnityAdditionalFile.txt",
       "DisplayName": "Writing Unity.VSCode.Editor.UnityAdditionalFile.txt",
       "ActionType": "WriteFile",
-      "PayloadOffset": 731423,
+      "PayloadOffset": 732638,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some ",
+      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some-",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/2000b0aE.dag/Unity.VSCode.Editor.UnityAdditionalFile.txt"
@@ -11416,8 +11431,8 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.VSCode.Editor.rsp",
       "DisplayName": "Writing Unity.VSCode.Editor.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 731577,
-      "PayloadLength": 34800,
+      "PayloadOffset": 732792,
+      "PayloadLength": 34881,
       "PayloadDebugContentSnippet": "-target:library\n-out:\"Library/",
       "Inputs": [],
       "Outputs": [
@@ -11429,7 +11444,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.VSCode.Editor.rsp2",
       "DisplayName": "Writing Unity.VSCode.Editor.rsp2",
       "ActionType": "WriteFile",
-      "PayloadOffset": 766468,
+      "PayloadOffset": 767764,
       "PayloadLength": 77,
       "PayloadDebugContentSnippet": "/pathmap:\"/Users/gabewkung/Des",
       "Inputs": [],
@@ -11685,6 +11700,7 @@
         "Library/PackageCache/com.unity.ide.vscode@1.2.5/Editor/VSCodeScriptEditor.cs",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll",
+        "Assets/Imported/JMO Assets/Editor/JMOAssets_CartoonFXFreeWelcome.dll",
         "Library/Bee/artifacts/2000b0aE.dag/Unity.VSCode.Editor.rsp"
       ],
       "Outputs": [
@@ -11723,7 +11739,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.VSCode.Editor.dll.mvfrm.rsp",
       "DisplayName": "Writing Unity.VSCode.Editor.dll.mvfrm.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 766645,
+      "PayloadOffset": 767941,
       "PayloadLength": 8694,
       "PayloadDebugContentSnippet": "Library/Bee/artifacts/mvdfrm/U",
       "Inputs": [],
@@ -11958,9 +11974,9 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.VisualStudio.Editor.UnityAdditionalFile.txt",
       "DisplayName": "Writing Unity.VisualStudio.Editor.UnityAdditionalFile.txt",
       "ActionType": "WriteFile",
-      "PayloadOffset": 775455,
+      "PayloadOffset": 776751,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some ",
+      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some-",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/2000b0aE.dag/Unity.VisualStudio.Editor.UnityAdditionalFile.txt"
@@ -11971,8 +11987,8 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.VisualStudio.Editor.rsp",
       "DisplayName": "Writing Unity.VisualStudio.Editor.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 775615,
-      "PayloadLength": 37437,
+      "PayloadOffset": 776911,
+      "PayloadLength": 37518,
       "PayloadDebugContentSnippet": "-target:library\n-out:\"Library/",
       "Inputs": [],
       "Outputs": [
@@ -11984,7 +12000,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.VisualStudio.Editor.rsp2",
       "DisplayName": "Writing Unity.VisualStudio.Editor.rsp2",
       "ActionType": "WriteFile",
-      "PayloadOffset": 813149,
+      "PayloadOffset": 814526,
       "PayloadLength": 77,
       "PayloadDebugContentSnippet": "/pathmap:\"/Users/gabewkung/Des",
       "Inputs": [],
@@ -12270,6 +12286,7 @@
         "Library/PackageCache/com.unity.ide.visualstudio@2.0.22/Editor/VisualStudioIntegration.cs",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll",
+        "Assets/Imported/JMO Assets/Editor/JMOAssets_CartoonFXFreeWelcome.dll",
         "Library/Bee/artifacts/2000b0aE.dag/Unity.VisualStudio.Editor.rsp"
       ],
       "Outputs": [
@@ -12308,7 +12325,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.VisualStudio.Editor.dll.mvfrm.rsp",
       "DisplayName": "Writing Unity.VisualStudio.Editor.dll.mvfrm.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 813332,
+      "PayloadOffset": 814709,
       "PayloadLength": 8277,
       "PayloadDebugContentSnippet": "Library/Bee/artifacts/mvdfrm/U",
       "Inputs": [],
@@ -12533,9 +12550,9 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Advertisements.Editor.UnityAdditionalFile.txt",
       "DisplayName": "Writing UnityEngine.Advertisements.Editor.UnityAdditionalFile.txt",
       "ActionType": "WriteFile",
-      "PayloadOffset": 821733,
+      "PayloadOffset": 823110,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some ",
+      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some-",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Advertisements.Editor.UnityAdditionalFile.txt"
@@ -12546,8 +12563,8 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Advertisements.Editor.rsp",
       "DisplayName": "Writing UnityEngine.Advertisements.Editor.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 821901,
-      "PayloadLength": 35143,
+      "PayloadOffset": 823278,
+      "PayloadLength": 35224,
       "PayloadDebugContentSnippet": "-target:library\n-out:\"Library/",
       "Inputs": [],
       "Outputs": [
@@ -12559,7 +12576,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Advertisements.Editor.rsp2",
       "DisplayName": "Writing UnityEngine.Advertisements.Editor.rsp2",
       "ActionType": "WriteFile",
-      "PayloadOffset": 857149,
+      "PayloadOffset": 858607,
       "PayloadLength": 77,
       "PayloadDebugContentSnippet": "/pathmap:\"/Users/gabewkung/Des",
       "Inputs": [],
@@ -12820,6 +12837,7 @@
         "Library/PackageCache/com.unity.ads@4.4.2/Editor/XCodeSwiftSupportPostProcess.cs",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll",
+        "Assets/Imported/JMO Assets/Editor/JMOAssets_CartoonFXFreeWelcome.dll",
         "Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Advertisements.Editor.rsp"
       ],
       "Outputs": [
@@ -12858,7 +12876,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Advertisements.Editor.dll.mvfrm.rsp",
       "DisplayName": "Writing UnityEngine.Advertisements.Editor.dll.mvfrm.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 857340,
+      "PayloadOffset": 858798,
       "PayloadLength": 8694,
       "PayloadDebugContentSnippet": "Library/Bee/artifacts/mvdfrm/U",
       "Inputs": [],
@@ -13093,9 +13111,9 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Advertisements.UnityAdditionalFile.txt",
       "DisplayName": "Writing UnityEngine.Advertisements.UnityAdditionalFile.txt",
       "ActionType": "WriteFile",
-      "PayloadOffset": 866151,
+      "PayloadOffset": 867609,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some ",
+      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some-",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Advertisements.UnityAdditionalFile.txt"
@@ -13106,8 +13124,8 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Advertisements.rsp",
       "DisplayName": "Writing UnityEngine.Advertisements.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 866312,
-      "PayloadLength": 37448,
+      "PayloadOffset": 867770,
+      "PayloadLength": 37529,
       "PayloadDebugContentSnippet": "-target:library\n-out:\"Library/",
       "Inputs": [],
       "Outputs": [
@@ -13119,7 +13137,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Advertisements.rsp2",
       "DisplayName": "Writing UnityEngine.Advertisements.rsp2",
       "ActionType": "WriteFile",
-      "PayloadOffset": 903858,
+      "PayloadOffset": 905397,
       "PayloadLength": 77,
       "PayloadDebugContentSnippet": "/pathmap:\"/Users/gabewkung/Des",
       "Inputs": [],
@@ -13410,6 +13428,7 @@
         "Library/PackageCache/com.unity.ads@4.4.2/Runtime/Advertisement/Utilities/UnityLifecycleManager.cs",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll",
+        "Assets/Imported/JMO Assets/Editor/JMOAssets_CartoonFXFreeWelcome.dll",
         "Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Advertisements.rsp"
       ],
       "Outputs": [
@@ -13446,7 +13465,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Advertisements.dll.mvfrm.rsp",
       "DisplayName": "Writing UnityEngine.Advertisements.dll.mvfrm.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 904042,
+      "PayloadOffset": 905581,
       "PayloadLength": 8102,
       "PayloadDebugContentSnippet": "Library/Bee/artifacts/mvdfrm/U",
       "Inputs": [],
@@ -13667,9 +13686,9 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Purchasing.SecurityCore.UnityAdditionalFile.txt",
       "DisplayName": "Writing UnityEngine.Purchasing.SecurityCore.UnityAdditionalFile.txt",
       "ActionType": "WriteFile",
-      "PayloadOffset": 912270,
+      "PayloadOffset": 913809,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some ",
+      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some-",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Purchasing.SecurityCore.UnityAdditionalFile.txt"
@@ -13680,8 +13699,8 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Purchasing.SecurityCore.rsp",
       "DisplayName": "Writing UnityEngine.Purchasing.SecurityCore.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 912440,
-      "PayloadLength": 32701,
+      "PayloadOffset": 913979,
+      "PayloadLength": 32782,
       "PayloadDebugContentSnippet": "-target:library\n-out:\"Library/",
       "Inputs": [],
       "Outputs": [
@@ -13693,7 +13712,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Purchasing.SecurityCore.rsp2",
       "DisplayName": "Writing UnityEngine.Purchasing.SecurityCore.rsp2",
       "ActionType": "WriteFile",
-      "PayloadOffset": 945248,
+      "PayloadOffset": 946868,
       "PayloadLength": 77,
       "PayloadDebugContentSnippet": "/pathmap:\"/Users/gabewkung/Des",
       "Inputs": [],
@@ -13934,6 +13953,7 @@
         "Library/PackageCache/com.unity.purchasing@4.11.0/Runtime/SecurityCore/IPurchaseReceipt.cs",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll",
+        "Assets/Imported/JMO Assets/Editor/JMOAssets_CartoonFXFreeWelcome.dll",
         "Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Purchasing.SecurityCore.rsp"
       ],
       "Outputs": [
@@ -13970,7 +13990,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Purchasing.SecurityCore.dll.mvfrm.rsp",
       "DisplayName": "Writing UnityEngine.Purchasing.SecurityCore.dll.mvfrm.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 945441,
+      "PayloadOffset": 947061,
       "PayloadLength": 8102,
       "PayloadDebugContentSnippet": "Library/Bee/artifacts/mvdfrm/U",
       "Inputs": [],
@@ -14191,9 +14211,9 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Purchasing.WinRTCore.UnityAdditionalFile.txt",
       "DisplayName": "Writing UnityEngine.Purchasing.WinRTCore.UnityAdditionalFile.txt",
       "ActionType": "WriteFile",
-      "PayloadOffset": 953666,
+      "PayloadOffset": 955286,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some ",
+      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some-",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Purchasing.WinRTCore.UnityAdditionalFile.txt"
@@ -14204,8 +14224,8 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Purchasing.WinRTCore.rsp",
       "DisplayName": "Writing UnityEngine.Purchasing.WinRTCore.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 953833,
-      "PayloadLength": 32589,
+      "PayloadOffset": 955453,
+      "PayloadLength": 32670,
       "PayloadDebugContentSnippet": "-target:library\n-out:\"Library/",
       "Inputs": [],
       "Outputs": [
@@ -14217,7 +14237,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Purchasing.WinRTCore.rsp2",
       "DisplayName": "Writing UnityEngine.Purchasing.WinRTCore.rsp2",
       "ActionType": "WriteFile",
-      "PayloadOffset": 986526,
+      "PayloadOffset": 988227,
       "PayloadLength": 77,
       "PayloadDebugContentSnippet": "/pathmap:\"/Users/gabewkung/Des",
       "Inputs": [],
@@ -14457,6 +14477,7 @@
         "Library/PackageCache/com.unity.purchasing@4.11.0/Runtime/WinRTCore/WinProductDescription.cs",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll",
+        "Assets/Imported/JMO Assets/Editor/JMOAssets_CartoonFXFreeWelcome.dll",
         "Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Purchasing.WinRTCore.rsp"
       ],
       "Outputs": [
@@ -14493,7 +14514,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Purchasing.WinRTCore.dll.mvfrm.rsp",
       "DisplayName": "Writing UnityEngine.Purchasing.WinRTCore.dll.mvfrm.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 986716,
+      "PayloadOffset": 988417,
       "PayloadLength": 8102,
       "PayloadDebugContentSnippet": "Library/Bee/artifacts/mvdfrm/U",
       "Inputs": [],
@@ -14714,9 +14735,9 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEngine.SpatialTracking.UnityAdditionalFile.txt",
       "DisplayName": "Writing UnityEngine.SpatialTracking.UnityAdditionalFile.txt",
       "ActionType": "WriteFile",
-      "PayloadOffset": 994936,
+      "PayloadOffset": 996637,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some ",
+      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some-",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/2000b0aE.dag/UnityEngine.SpatialTracking.UnityAdditionalFile.txt"
@@ -14727,8 +14748,8 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEngine.SpatialTracking.rsp",
       "DisplayName": "Writing UnityEngine.SpatialTracking.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 995098,
-      "PayloadLength": 32634,
+      "PayloadOffset": 996799,
+      "PayloadLength": 32715,
       "PayloadDebugContentSnippet": "-target:library\n-out:\"Library/",
       "Inputs": [],
       "Outputs": [
@@ -14740,7 +14761,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEngine.SpatialTracking.rsp2",
       "DisplayName": "Writing UnityEngine.SpatialTracking.rsp2",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1027831,
+      "PayloadOffset": 1029613,
       "PayloadLength": 77,
       "PayloadDebugContentSnippet": "/pathmap:\"/Users/gabewkung/Des",
       "Inputs": [],
@@ -14980,6 +15001,7 @@
         "Library/PackageCache/com.unity.xr.legacyinputhelpers@2.1.10/Runtime/TrackedPoseDriver/TrackedPoseDriver.cs",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll",
+        "Assets/Imported/JMO Assets/Editor/JMOAssets_CartoonFXFreeWelcome.dll",
         "Library/Bee/artifacts/2000b0aE.dag/UnityEngine.SpatialTracking.rsp"
       ],
       "Outputs": [
@@ -15016,7 +15038,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEngine.SpatialTracking.dll.mvfrm.rsp",
       "DisplayName": "Writing UnityEngine.SpatialTracking.dll.mvfrm.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1028016,
+      "PayloadOffset": 1029798,
       "PayloadLength": 8102,
       "PayloadDebugContentSnippet": "Library/Bee/artifacts/mvdfrm/U",
       "Inputs": [],
@@ -15237,9 +15259,9 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.AI.Navigation.Editor.UnityAdditionalFile.txt",
       "DisplayName": "Writing Unity.AI.Navigation.Editor.UnityAdditionalFile.txt",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1036235,
+      "PayloadOffset": 1038017,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some ",
+      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some-",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/2000b0aE.dag/Unity.AI.Navigation.Editor.UnityAdditionalFile.txt"
@@ -15250,8 +15272,8 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.AI.Navigation.Editor.rsp",
       "DisplayName": "Writing Unity.AI.Navigation.Editor.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1036396,
-      "PayloadLength": 35094,
+      "PayloadOffset": 1038178,
+      "PayloadLength": 35175,
       "PayloadDebugContentSnippet": "-target:library\n-out:\"Library/",
       "Inputs": [],
       "Outputs": [
@@ -15263,7 +15285,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.AI.Navigation.Editor.rsp2",
       "DisplayName": "Writing Unity.AI.Navigation.Editor.rsp2",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1071588,
+      "PayloadOffset": 1073451,
       "PayloadLength": 77,
       "PayloadDebugContentSnippet": "/pathmap:\"/Users/gabewkung/Des",
       "Inputs": [],
@@ -15523,6 +15545,7 @@
         "Library/PackageCache/com.unity.ai.navigation@1.1.5/Editor/ObsoleteNavigationWindowMenuEntry.cs",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll",
+        "Assets/Imported/JMO Assets/Editor/JMOAssets_CartoonFXFreeWelcome.dll",
         "Library/Bee/artifacts/2000b0aE.dag/Unity.AI.Navigation.Editor.rsp"
       ],
       "Outputs": [
@@ -15599,7 +15622,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.AI.Navigation.Editor.dll.mvfrm.rsp",
       "DisplayName": "Writing Unity.AI.Navigation.Editor.dll.mvfrm.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1071772,
+      "PayloadOffset": 1073635,
       "PayloadLength": 8878,
       "PayloadDebugContentSnippet": "Library/Bee/artifacts/mvdfrm/U",
       "Inputs": [],
@@ -15838,9 +15861,9 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.CollabProxy.Editor.UnityAdditionalFile.txt",
       "DisplayName": "Writing Unity.CollabProxy.Editor.UnityAdditionalFile.txt",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1080765,
+      "PayloadOffset": 1082628,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some ",
+      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some-",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/2000b0aE.dag/Unity.CollabProxy.Editor.UnityAdditionalFile.txt"
@@ -15851,8 +15874,8 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.CollabProxy.Editor.rsp",
       "DisplayName": "Writing Unity.CollabProxy.Editor.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1080924,
-      "PayloadLength": 34237,
+      "PayloadOffset": 1082787,
+      "PayloadLength": 34318,
       "PayloadDebugContentSnippet": "-target:library\n-out:\"Library/",
       "Inputs": [],
       "Outputs": [
@@ -15864,7 +15887,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.CollabProxy.Editor.rsp2",
       "DisplayName": "Writing Unity.CollabProxy.Editor.rsp2",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1115257,
+      "PayloadOffset": 1117201,
       "PayloadLength": 77,
       "PayloadDebugContentSnippet": "/pathmap:\"/Users/gabewkung/Des",
       "Inputs": [],
@@ -16114,6 +16137,7 @@
         "Library/PackageCache/com.unity.collab-proxy@2.4.3/Editor/PlasticSCM/Toolbar/ToolbarButton.cs",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll",
+        "Assets/Imported/JMO Assets/Editor/JMOAssets_CartoonFXFreeWelcome.dll",
         "Library/Bee/artifacts/2000b0aE.dag/Unity.CollabProxy.Editor.rsp"
       ],
       "Outputs": [
@@ -16171,7 +16195,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.CollabProxy.Editor.dll.mvfrm.rsp",
       "DisplayName": "Writing Unity.CollabProxy.Editor.dll.mvfrm.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1115439,
+      "PayloadOffset": 1117383,
       "PayloadLength": 8778,
       "PayloadDebugContentSnippet": "Library/Bee/artifacts/mvdfrm/U",
       "Inputs": [],
@@ -16408,9 +16432,9 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Analytics.UnityAdditionalFile.txt",
       "DisplayName": "Writing Unity.Services.Core.Analytics.UnityAdditionalFile.txt",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1124337,
+      "PayloadOffset": 1126281,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some ",
+      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some-",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Analytics.UnityAdditionalFile.txt"
@@ -16421,8 +16445,8 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Analytics.rsp",
       "DisplayName": "Writing Unity.Services.Core.Analytics.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1124501,
-      "PayloadLength": 32577,
+      "PayloadOffset": 1126445,
+      "PayloadLength": 32658,
       "PayloadDebugContentSnippet": "-target:library\n-out:\"Library/",
       "Inputs": [],
       "Outputs": [
@@ -16434,7 +16458,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Analytics.rsp2",
       "DisplayName": "Writing Unity.Services.Core.Analytics.rsp2",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1157179,
+      "PayloadOffset": 1159204,
       "PayloadLength": 77,
       "PayloadDebugContentSnippet": "/pathmap:\"/Users/gabewkung/Des",
       "Inputs": [],
@@ -16674,6 +16698,7 @@
         "Library/PackageCache/com.unity.services.core@1.12.5/Runtime/Analytics/AssemblyInfo.cs",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll",
+        "Assets/Imported/JMO Assets/Editor/JMOAssets_CartoonFXFreeWelcome.dll",
         "Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Analytics.rsp"
       ],
       "Outputs": [
@@ -16729,7 +16754,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Analytics.dll.mvfrm.rsp",
       "DisplayName": "Writing Unity.Services.Core.Analytics.dll.mvfrm.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1157366,
+      "PayloadOffset": 1159391,
       "PayloadLength": 8182,
       "PayloadDebugContentSnippet": "Library/Bee/artifacts/mvdfrm/U",
       "Inputs": [],
@@ -16952,9 +16977,9 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Internal.UnityAdditionalFile.txt",
       "DisplayName": "Writing Unity.Services.Core.Internal.UnityAdditionalFile.txt",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1165667,
+      "PayloadOffset": 1167692,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some ",
+      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some-",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Internal.UnityAdditionalFile.txt"
@@ -16965,8 +16990,8 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Internal.rsp",
       "DisplayName": "Writing Unity.Services.Core.Internal.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1165830,
-      "PayloadLength": 41293,
+      "PayloadOffset": 1167855,
+      "PayloadLength": 41374,
       "PayloadDebugContentSnippet": "-target:library\n-out:\"Library/",
       "Inputs": [],
       "Outputs": [
@@ -16978,7 +17003,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Internal.rsp2",
       "DisplayName": "Writing Unity.Services.Core.Internal.rsp2",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1207223,
+      "PayloadOffset": 1209329,
       "PayloadLength": 77,
       "PayloadDebugContentSnippet": "/pathmap:\"/Users/gabewkung/Des",
       "Inputs": [],
@@ -17294,6 +17319,7 @@
         "Library/PackageCache/com.unity.services.core@1.12.5/Runtime/Core.Internal/Utils/UnityWebRequestUtils.cs",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll",
+        "Assets/Imported/JMO Assets/Editor/JMOAssets_CartoonFXFreeWelcome.dll",
         "Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Internal.rsp"
       ],
       "Outputs": [
@@ -17331,7 +17357,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Internal.dll.mvfrm.rsp",
       "DisplayName": "Writing Unity.Services.Core.Internal.dll.mvfrm.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1207409,
+      "PayloadOffset": 1209515,
       "PayloadLength": 8182,
       "PayloadDebugContentSnippet": "Library/Bee/artifacts/mvdfrm/U",
       "Inputs": [],
@@ -17554,9 +17580,9 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.TextMeshPro.Editor.UnityAdditionalFile.txt",
       "DisplayName": "Writing Unity.TextMeshPro.Editor.UnityAdditionalFile.txt",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1215706,
+      "PayloadOffset": 1217812,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some ",
+      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some-",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/2000b0aE.dag/Unity.TextMeshPro.Editor.UnityAdditionalFile.txt"
@@ -17567,8 +17593,8 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.TextMeshPro.Editor.rsp",
       "DisplayName": "Writing Unity.TextMeshPro.Editor.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1215865,
-      "PayloadLength": 38554,
+      "PayloadOffset": 1217971,
+      "PayloadLength": 38635,
       "PayloadDebugContentSnippet": "-target:library\n-out:\"Library/",
       "Inputs": [],
       "Outputs": [
@@ -17580,7 +17606,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.TextMeshPro.Editor.rsp2",
       "DisplayName": "Writing Unity.TextMeshPro.Editor.rsp2",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1254515,
+      "PayloadOffset": 1256702,
       "PayloadLength": 77,
       "PayloadDebugContentSnippet": "/pathmap:\"/Users/gabewkung/Des",
       "Inputs": [],
@@ -17877,6 +17903,7 @@
         "Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Editor/TMP_UIStyleManager.cs",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll",
+        "Assets/Imported/JMO Assets/Editor/JMOAssets_CartoonFXFreeWelcome.dll",
         "Library/Bee/artifacts/2000b0aE.dag/Unity.TextMeshPro.Editor.rsp"
       ],
       "Outputs": [
@@ -17934,7 +17961,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.TextMeshPro.Editor.dll.mvfrm.rsp",
       "DisplayName": "Writing Unity.TextMeshPro.Editor.dll.mvfrm.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1254697,
+      "PayloadOffset": 1256884,
       "PayloadLength": 8772,
       "PayloadDebugContentSnippet": "Library/Bee/artifacts/mvdfrm/U",
       "Inputs": [],
@@ -18171,9 +18198,9 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Timeline.Editor.UnityAdditionalFile.txt",
       "DisplayName": "Writing Unity.Timeline.Editor.UnityAdditionalFile.txt",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1263581,
+      "PayloadOffset": 1265768,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some ",
+      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some-",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/2000b0aE.dag/Unity.Timeline.Editor.UnityAdditionalFile.txt"
@@ -18184,8 +18211,8 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Timeline.Editor.rsp",
       "DisplayName": "Writing Unity.Timeline.Editor.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1263737,
-      "PayloadLength": 58169,
+      "PayloadOffset": 1265924,
+      "PayloadLength": 58250,
       "PayloadDebugContentSnippet": "-target:library\n-out:\"Library/",
       "Inputs": [],
       "Outputs": [
@@ -18197,7 +18224,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Timeline.Editor.rsp2",
       "DisplayName": "Writing Unity.Timeline.Editor.rsp2",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1321999,
+      "PayloadOffset": 1324267,
       "PayloadLength": 77,
       "PayloadDebugContentSnippet": "/pathmap:\"/Users/gabewkung/Des",
       "Inputs": [],
@@ -18718,6 +18745,7 @@
         "Library/PackageCache/com.unity.timeline@1.7.6/Editor/Window/WindowConstants.cs",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll",
+        "Assets/Imported/JMO Assets/Editor/JMOAssets_CartoonFXFreeWelcome.dll",
         "Library/Bee/artifacts/2000b0aE.dag/Unity.Timeline.Editor.rsp"
       ],
       "Outputs": [
@@ -18775,7 +18803,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Timeline.Editor.dll.mvfrm.rsp",
       "DisplayName": "Writing Unity.Timeline.Editor.dll.mvfrm.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1322178,
+      "PayloadOffset": 1324446,
       "PayloadLength": 8769,
       "PayloadDebugContentSnippet": "Library/Bee/artifacts/mvdfrm/U",
       "Inputs": [],
@@ -19012,9 +19040,9 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEditor.SpatialTracking.UnityAdditionalFile.txt",
       "DisplayName": "Writing UnityEditor.SpatialTracking.UnityAdditionalFile.txt",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1331065,
+      "PayloadOffset": 1333333,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some ",
+      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some-",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/2000b0aE.dag/UnityEditor.SpatialTracking.UnityAdditionalFile.txt"
@@ -19025,8 +19053,8 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEditor.SpatialTracking.rsp",
       "DisplayName": "Writing UnityEditor.SpatialTracking.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1331227,
-      "PayloadLength": 34384,
+      "PayloadOffset": 1333495,
+      "PayloadLength": 34465,
       "PayloadDebugContentSnippet": "-target:library\n-out:\"Library/",
       "Inputs": [],
       "Outputs": [
@@ -19038,7 +19066,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEditor.SpatialTracking.rsp2",
       "DisplayName": "Writing UnityEditor.SpatialTracking.rsp2",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1365710,
+      "PayloadOffset": 1368059,
       "PayloadLength": 77,
       "PayloadDebugContentSnippet": "/pathmap:\"/Users/gabewkung/Des",
       "Inputs": [],
@@ -19289,6 +19317,7 @@
         "Library/PackageCache/com.unity.xr.legacyinputhelpers@2.1.10/Editor/TrackedPoseDriver/TrackedPoseDriverEditor.cs",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll",
+        "Assets/Imported/JMO Assets/Editor/JMOAssets_CartoonFXFreeWelcome.dll",
         "Library/Bee/artifacts/2000b0aE.dag/UnityEditor.SpatialTracking.rsp"
       ],
       "Outputs": [
@@ -19346,7 +19375,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEditor.SpatialTracking.dll.mvfrm.rsp",
       "DisplayName": "Writing UnityEditor.SpatialTracking.dll.mvfrm.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1365895,
+      "PayloadOffset": 1368244,
       "PayloadLength": 8782,
       "PayloadDebugContentSnippet": "Library/Bee/artifacts/mvdfrm/U",
       "Inputs": [],
@@ -19583,9 +19612,9 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Purchasing.SecurityStub.UnityAdditionalFile.txt",
       "DisplayName": "Writing UnityEngine.Purchasing.SecurityStub.UnityAdditionalFile.txt",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1374803,
+      "PayloadOffset": 1377152,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some ",
+      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some-",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Purchasing.SecurityStub.UnityAdditionalFile.txt"
@@ -19596,8 +19625,8 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Purchasing.SecurityStub.rsp",
       "DisplayName": "Writing UnityEngine.Purchasing.SecurityStub.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1374973,
-      "PayloadLength": 32876,
+      "PayloadOffset": 1377322,
+      "PayloadLength": 32957,
       "PayloadDebugContentSnippet": "-target:library\n-out:\"Library/",
       "Inputs": [],
       "Outputs": [
@@ -19609,7 +19638,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Purchasing.SecurityStub.rsp2",
       "DisplayName": "Writing UnityEngine.Purchasing.SecurityStub.rsp2",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1407956,
+      "PayloadOffset": 1410386,
       "PayloadLength": 77,
       "PayloadDebugContentSnippet": "/pathmap:\"/Users/gabewkung/Des",
       "Inputs": [],
@@ -19852,6 +19881,7 @@
         "Library/PackageCache/com.unity.purchasing@4.11.0/Runtime/SecurityStub/Obfuscator.cs",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll",
+        "Assets/Imported/JMO Assets/Editor/JMOAssets_CartoonFXFreeWelcome.dll",
         "Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Purchasing.SecurityStub.rsp"
       ],
       "Outputs": [
@@ -19907,7 +19937,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Purchasing.SecurityStub.dll.mvfrm.rsp",
       "DisplayName": "Writing UnityEngine.Purchasing.SecurityStub.dll.mvfrm.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1408149,
+      "PayloadOffset": 1410579,
       "PayloadLength": 8198,
       "PayloadDebugContentSnippet": "Library/Bee/artifacts/mvdfrm/U",
       "Inputs": [],
@@ -20130,9 +20160,9 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Purchasing.WinRTStub.UnityAdditionalFile.txt",
       "DisplayName": "Writing UnityEngine.Purchasing.WinRTStub.UnityAdditionalFile.txt",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1416470,
+      "PayloadOffset": 1418900,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some ",
+      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some-",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Purchasing.WinRTStub.UnityAdditionalFile.txt"
@@ -20143,8 +20173,8 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Purchasing.WinRTStub.rsp",
       "DisplayName": "Writing UnityEngine.Purchasing.WinRTStub.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1416637,
-      "PayloadLength": 32574,
+      "PayloadOffset": 1419067,
+      "PayloadLength": 32655,
       "PayloadDebugContentSnippet": "-target:library\n-out:\"Library/",
       "Inputs": [],
       "Outputs": [
@@ -20156,7 +20186,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Purchasing.WinRTStub.rsp2",
       "DisplayName": "Writing UnityEngine.Purchasing.WinRTStub.rsp2",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1449315,
+      "PayloadOffset": 1451826,
       "PayloadLength": 77,
       "PayloadDebugContentSnippet": "/pathmap:\"/Users/gabewkung/Des",
       "Inputs": [],
@@ -20396,6 +20426,7 @@
         "Library/PackageCache/com.unity.purchasing@4.11.0/Runtime/WinRTStub/Factory.cs",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll",
+        "Assets/Imported/JMO Assets/Editor/JMOAssets_CartoonFXFreeWelcome.dll",
         "Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Purchasing.WinRTStub.rsp"
       ],
       "Outputs": [
@@ -20451,7 +20482,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Purchasing.WinRTStub.dll.mvfrm.rsp",
       "DisplayName": "Writing UnityEngine.Purchasing.WinRTStub.dll.mvfrm.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1449505,
+      "PayloadOffset": 1452016,
       "PayloadLength": 8195,
       "PayloadDebugContentSnippet": "Library/Bee/artifacts/mvdfrm/U",
       "Inputs": [],
@@ -20674,9 +20705,9 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEngine.XR.LegacyInputHelpers.UnityAdditionalFile.txt",
       "DisplayName": "Writing UnityEngine.XR.LegacyInputHelpers.UnityAdditionalFile.txt",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1457824,
+      "PayloadOffset": 1460335,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some ",
+      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some-",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/2000b0aE.dag/UnityEngine.XR.LegacyInputHelpers.UnityAdditionalFile.txt"
@@ -20687,8 +20718,8 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEngine.XR.LegacyInputHelpers.rsp",
       "DisplayName": "Writing UnityEngine.XR.LegacyInputHelpers.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1457992,
-      "PayloadLength": 32784,
+      "PayloadOffset": 1460503,
+      "PayloadLength": 32865,
       "PayloadDebugContentSnippet": "-target:library\n-out:\"Library/",
       "Inputs": [],
       "Outputs": [
@@ -20700,7 +20731,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEngine.XR.LegacyInputHelpers.rsp2",
       "DisplayName": "Writing UnityEngine.XR.LegacyInputHelpers.rsp2",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1490881,
+      "PayloadOffset": 1493473,
       "PayloadLength": 77,
       "PayloadDebugContentSnippet": "/pathmap:\"/Users/gabewkung/Des",
       "Inputs": [],
@@ -20942,6 +20973,7 @@
         "Library/PackageCache/com.unity.xr.legacyinputhelpers@2.1.10/Runtime/CameraOffset.cs",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll",
+        "Assets/Imported/JMO Assets/Editor/JMOAssets_CartoonFXFreeWelcome.dll",
         "Library/Bee/artifacts/2000b0aE.dag/UnityEngine.XR.LegacyInputHelpers.rsp"
       ],
       "Outputs": [
@@ -20979,7 +21011,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEngine.XR.LegacyInputHelpers.dll.mvfrm.rsp",
       "DisplayName": "Writing UnityEngine.XR.LegacyInputHelpers.dll.mvfrm.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1491072,
+      "PayloadOffset": 1493664,
       "PayloadLength": 8190,
       "PayloadDebugContentSnippet": "Library/Bee/artifacts/mvdfrm/U",
       "Inputs": [],
@@ -21202,9 +21234,9 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Purchasing.Common.UnityAdditionalFile.txt",
       "DisplayName": "Writing Purchasing.Common.UnityAdditionalFile.txt",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1499370,
+      "PayloadOffset": 1501962,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some ",
+      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some-",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/2000b0aE.dag/Purchasing.Common.UnityAdditionalFile.txt"
@@ -21215,8 +21247,8 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Purchasing.Common.rsp",
       "DisplayName": "Writing Purchasing.Common.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1499522,
-      "PayloadLength": 32752,
+      "PayloadOffset": 1502114,
+      "PayloadLength": 32833,
       "PayloadDebugContentSnippet": "-target:library\n-out:\"Library/",
       "Inputs": [],
       "Outputs": [
@@ -21228,7 +21260,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Purchasing.Common.rsp2",
       "DisplayName": "Writing Purchasing.Common.rsp2",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1532363,
+      "PayloadOffset": 1535036,
       "PayloadLength": 77,
       "PayloadDebugContentSnippet": "/pathmap:\"/Users/gabewkung/Des",
       "Inputs": [],
@@ -21471,6 +21503,7 @@
         "Library/PackageCache/com.unity.purchasing@4.11.0/Runtime/Common/VersionCheck.cs",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll",
+        "Assets/Imported/JMO Assets/Editor/JMOAssets_CartoonFXFreeWelcome.dll",
         "Library/Bee/artifacts/2000b0aE.dag/Purchasing.Common.rsp"
       ],
       "Outputs": [
@@ -21527,7 +21560,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Purchasing.Common.dll.mvfrm.rsp",
       "DisplayName": "Writing Purchasing.Common.dll.mvfrm.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1532538,
+      "PayloadOffset": 1535211,
       "PayloadLength": 8271,
       "PayloadDebugContentSnippet": "Library/Bee/artifacts/mvdfrm/U",
       "Inputs": [],
@@ -21752,9 +21785,9 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.AI.Navigation.Updater.UnityAdditionalFile.txt",
       "DisplayName": "Writing Unity.AI.Navigation.Updater.UnityAdditionalFile.txt",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1540927,
+      "PayloadOffset": 1543600,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some ",
+      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some-",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/2000b0aE.dag/Unity.AI.Navigation.Updater.UnityAdditionalFile.txt"
@@ -21765,8 +21798,8 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.AI.Navigation.Updater.rsp",
       "DisplayName": "Writing Unity.AI.Navigation.Updater.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1541089,
-      "PayloadLength": 34789,
+      "PayloadOffset": 1543762,
+      "PayloadLength": 34870,
       "PayloadDebugContentSnippet": "-target:library\n-out:\"Library/",
       "Inputs": [],
       "Outputs": [
@@ -21778,7 +21811,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.AI.Navigation.Updater.rsp2",
       "DisplayName": "Writing Unity.AI.Navigation.Updater.rsp2",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1575977,
+      "PayloadOffset": 1578731,
       "PayloadLength": 77,
       "PayloadDebugContentSnippet": "/pathmap:\"/Users/gabewkung/Des",
       "Inputs": [],
@@ -22034,6 +22067,7 @@
         "Library/PackageCache/com.unity.ai.navigation@1.1.5/Editor/Updater/NavMeshUpdaterUtility.cs",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll",
+        "Assets/Imported/JMO Assets/Editor/JMOAssets_CartoonFXFreeWelcome.dll",
         "Library/Bee/artifacts/2000b0aE.dag/Unity.AI.Navigation.Updater.rsp"
       ],
       "Outputs": [
@@ -22093,7 +22127,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.AI.Navigation.Updater.dll.mvfrm.rsp",
       "DisplayName": "Writing Unity.AI.Navigation.Updater.dll.mvfrm.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1576162,
+      "PayloadOffset": 1578916,
       "PayloadLength": 8965,
       "PayloadDebugContentSnippet": "Library/Bee/artifacts/mvdfrm/U",
       "Inputs": [],
@@ -22334,9 +22368,9 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Analytics.UnityAdditionalFile.txt",
       "DisplayName": "Writing Unity.Services.Analytics.UnityAdditionalFile.txt",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1585242,
+      "PayloadOffset": 1587996,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some ",
+      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some-",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Analytics.UnityAdditionalFile.txt"
@@ -22347,8 +22381,8 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Analytics.rsp",
       "DisplayName": "Writing Unity.Services.Analytics.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1585401,
-      "PayloadLength": 36873,
+      "PayloadOffset": 1588155,
+      "PayloadLength": 36954,
       "PayloadDebugContentSnippet": "-target:library\n-out:\"Library/",
       "Inputs": [],
       "Outputs": [
@@ -22360,7 +22394,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Analytics.rsp2",
       "DisplayName": "Writing Unity.Services.Analytics.rsp2",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1622370,
+      "PayloadOffset": 1625205,
       "PayloadLength": 77,
       "PayloadDebugContentSnippet": "/pathmap:\"/Users/gabewkung/Des",
       "Inputs": [],
@@ -22643,6 +22677,7 @@
         "Library/PackageCache/com.unity.services.analytics@5.0.0/Runtime/StandardEventServiceComponent.cs",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll",
+        "Assets/Imported/JMO Assets/Editor/JMOAssets_CartoonFXFreeWelcome.dll",
         "Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Analytics.rsp"
       ],
       "Outputs": [
@@ -22681,7 +22716,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Analytics.dll.mvfrm.rsp",
       "DisplayName": "Writing Unity.Services.Analytics.dll.mvfrm.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1622552,
+      "PayloadOffset": 1625387,
       "PayloadLength": 7854,
       "PayloadDebugContentSnippet": "Library/Bee/artifacts/mvdfrm/U",
       "Inputs": [],
@@ -22896,9 +22931,9 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Configuration.UnityAdditionalFile.txt",
       "DisplayName": "Writing Unity.Services.Core.Configuration.UnityAdditionalFile.txt",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1630530,
+      "PayloadOffset": 1633365,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some ",
+      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some-",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Configuration.UnityAdditionalFile.txt"
@@ -22909,8 +22944,8 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Configuration.rsp",
       "DisplayName": "Writing Unity.Services.Core.Configuration.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1630698,
-      "PayloadLength": 33698,
+      "PayloadOffset": 1633533,
+      "PayloadLength": 33779,
       "PayloadDebugContentSnippet": "-target:library\n-out:\"Library/",
       "Inputs": [],
       "Outputs": [
@@ -22922,7 +22957,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Configuration.rsp2",
       "DisplayName": "Writing Unity.Services.Core.Configuration.rsp2",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1664501,
+      "PayloadOffset": 1667417,
       "PayloadLength": 77,
       "PayloadDebugContentSnippet": "/pathmap:\"/Users/gabewkung/Des",
       "Inputs": [],
@@ -23173,6 +23208,7 @@
         "Library/PackageCache/com.unity.services.core@1.12.5/Runtime/Configuration/Utils/StreamingAssetsUtils.cs",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll",
+        "Assets/Imported/JMO Assets/Editor/JMOAssets_CartoonFXFreeWelcome.dll",
         "Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Configuration.rsp"
       ],
       "Outputs": [
@@ -23211,7 +23247,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Configuration.dll.mvfrm.rsp",
       "DisplayName": "Writing Unity.Services.Core.Configuration.dll.mvfrm.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1664692,
+      "PayloadOffset": 1667608,
       "PayloadLength": 8271,
       "PayloadDebugContentSnippet": "Library/Bee/artifacts/mvdfrm/U",
       "Inputs": [],
@@ -23436,9 +23472,9 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Device.UnityAdditionalFile.txt",
       "DisplayName": "Writing Unity.Services.Core.Device.UnityAdditionalFile.txt",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1673080,
+      "PayloadOffset": 1675996,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some ",
+      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some-",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Device.UnityAdditionalFile.txt"
@@ -23449,8 +23485,8 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Device.rsp",
       "DisplayName": "Writing Unity.Services.Core.Device.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1673241,
-      "PayloadLength": 33095,
+      "PayloadOffset": 1676157,
+      "PayloadLength": 33176,
       "PayloadDebugContentSnippet": "-target:library\n-out:\"Library/",
       "Inputs": [],
       "Outputs": [
@@ -23462,7 +23498,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Device.rsp2",
       "DisplayName": "Writing Unity.Services.Core.Device.rsp2",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1706434,
+      "PayloadOffset": 1709431,
       "PayloadLength": 77,
       "PayloadDebugContentSnippet": "/pathmap:\"/Users/gabewkung/Des",
       "Inputs": [],
@@ -23707,6 +23743,7 @@
         "Library/PackageCache/com.unity.services.core@1.12.5/Runtime/Device/UserIdProviders/UnityAnalyticsIdentifier.cs",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll",
+        "Assets/Imported/JMO Assets/Editor/JMOAssets_CartoonFXFreeWelcome.dll",
         "Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Device.rsp"
       ],
       "Outputs": [
@@ -23744,7 +23781,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Device.dll.mvfrm.rsp",
       "DisplayName": "Writing Unity.Services.Core.Device.dll.mvfrm.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1706618,
+      "PayloadOffset": 1709615,
       "PayloadLength": 8191,
       "PayloadDebugContentSnippet": "Library/Bee/artifacts/mvdfrm/U",
       "Inputs": [],
@@ -23967,9 +24004,9 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Environments.Internal.UnityAdditionalFile.txt",
       "DisplayName": "Writing Unity.Services.Core.Environments.Internal.UnityAdditionalFile.txt",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1714941,
+      "PayloadOffset": 1717938,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some ",
+      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some-",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Environments.Internal.UnityAdditionalFile.txt"
@@ -23980,8 +24017,8 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Environments.Internal.rsp",
       "DisplayName": "Writing Unity.Services.Core.Environments.Internal.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1715117,
-      "PayloadLength": 32632,
+      "PayloadOffset": 1718114,
+      "PayloadLength": 32713,
       "PayloadDebugContentSnippet": "-target:library\n-out:\"Library/",
       "Inputs": [],
       "Outputs": [
@@ -23993,7 +24030,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Environments.Internal.rsp2",
       "DisplayName": "Writing Unity.Services.Core.Environments.Internal.rsp2",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1747862,
+      "PayloadOffset": 1750940,
       "PayloadLength": 77,
       "PayloadDebugContentSnippet": "/pathmap:\"/Users/gabewkung/Des",
       "Inputs": [],
@@ -24233,6 +24270,7 @@
         "Library/PackageCache/com.unity.services.core@1.12.5/Runtime/Environments/Internal/Environments.cs",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll",
+        "Assets/Imported/JMO Assets/Editor/JMOAssets_CartoonFXFreeWelcome.dll",
         "Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Environments.Internal.rsp"
       ],
       "Outputs": [
@@ -24270,7 +24308,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Environments.Internal.dll.mvfrm.rsp",
       "DisplayName": "Writing Unity.Services.Core.Environments.Internal.dll.mvfrm.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1748061,
+      "PayloadOffset": 1751139,
       "PayloadLength": 8191,
       "PayloadDebugContentSnippet": "Library/Bee/artifacts/mvdfrm/U",
       "Inputs": [],
@@ -24493,9 +24531,9 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Environments.UnityAdditionalFile.txt",
       "DisplayName": "Writing Unity.Services.Core.Environments.UnityAdditionalFile.txt",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1756375,
+      "PayloadOffset": 1759453,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some ",
+      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some-",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Environments.UnityAdditionalFile.txt"
@@ -24506,8 +24544,8 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Environments.rsp",
       "DisplayName": "Writing Unity.Services.Core.Environments.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1756542,
-      "PayloadLength": 32672,
+      "PayloadOffset": 1759620,
+      "PayloadLength": 32753,
       "PayloadDebugContentSnippet": "-target:library\n-out:\"Library/",
       "Inputs": [],
       "Outputs": [
@@ -24519,7 +24557,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Environments.rsp2",
       "DisplayName": "Writing Unity.Services.Core.Environments.rsp2",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1789318,
+      "PayloadOffset": 1792477,
       "PayloadLength": 77,
       "PayloadDebugContentSnippet": "/pathmap:\"/Users/gabewkung/Des",
       "Inputs": [],
@@ -24760,6 +24798,7 @@
         "Library/PackageCache/com.unity.services.core@1.12.5/Runtime/Environments/EnvironmentsOptionsExtensions.cs",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll",
+        "Assets/Imported/JMO Assets/Editor/JMOAssets_CartoonFXFreeWelcome.dll",
         "Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Environments.rsp"
       ],
       "Outputs": [
@@ -24798,7 +24837,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Environments.dll.mvfrm.rsp",
       "DisplayName": "Writing Unity.Services.Core.Environments.dll.mvfrm.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1789508,
+      "PayloadOffset": 1792667,
       "PayloadLength": 8271,
       "PayloadDebugContentSnippet": "Library/Bee/artifacts/mvdfrm/U",
       "Inputs": [],
@@ -25023,9 +25062,9 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Networking.UnityAdditionalFile.txt",
       "DisplayName": "Writing Unity.Services.Core.Networking.UnityAdditionalFile.txt",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1797900,
+      "PayloadOffset": 1801059,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some ",
+      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some-",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Networking.UnityAdditionalFile.txt"
@@ -25036,8 +25075,8 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Networking.rsp",
       "DisplayName": "Writing Unity.Services.Core.Networking.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1798065,
-      "PayloadLength": 32748,
+      "PayloadOffset": 1801224,
+      "PayloadLength": 32829,
       "PayloadDebugContentSnippet": "-target:library\n-out:\"Library/",
       "Inputs": [],
       "Outputs": [
@@ -25049,7 +25088,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Networking.rsp2",
       "DisplayName": "Writing Unity.Services.Core.Networking.rsp2",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1830915,
+      "PayloadOffset": 1834155,
       "PayloadLength": 77,
       "PayloadDebugContentSnippet": "/pathmap:\"/Users/gabewkung/Des",
       "Inputs": [],
@@ -25291,6 +25330,7 @@
         "Library/PackageCache/com.unity.services.core@1.12.5/Runtime/Networking/UnityWebRequestClient.cs",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll",
+        "Assets/Imported/JMO Assets/Editor/JMOAssets_CartoonFXFreeWelcome.dll",
         "Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Networking.rsp"
       ],
       "Outputs": [
@@ -25329,7 +25369,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Networking.dll.mvfrm.rsp",
       "DisplayName": "Writing Unity.Services.Core.Networking.dll.mvfrm.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1831103,
+      "PayloadOffset": 1834343,
       "PayloadLength": 8271,
       "PayloadDebugContentSnippet": "Library/Bee/artifacts/mvdfrm/U",
       "Inputs": [],
@@ -25554,9 +25594,9 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Scheduler.UnityAdditionalFile.txt",
       "DisplayName": "Writing Unity.Services.Core.Scheduler.UnityAdditionalFile.txt",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1839494,
+      "PayloadOffset": 1842734,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some ",
+      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some-",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Scheduler.UnityAdditionalFile.txt"
@@ -25567,8 +25607,8 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Scheduler.rsp",
       "DisplayName": "Writing Unity.Services.Core.Scheduler.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1839658,
-      "PayloadLength": 33140,
+      "PayloadOffset": 1842898,
+      "PayloadLength": 33221,
       "PayloadDebugContentSnippet": "-target:library\n-out:\"Library/",
       "Inputs": [],
       "Outputs": [
@@ -25580,7 +25620,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Scheduler.rsp2",
       "DisplayName": "Writing Unity.Services.Core.Scheduler.rsp2",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1872899,
+      "PayloadOffset": 1876220,
       "PayloadLength": 77,
       "PayloadDebugContentSnippet": "/pathmap:\"/Users/gabewkung/Des",
       "Inputs": [],
@@ -25826,6 +25866,7 @@
         "Library/PackageCache/com.unity.services.core@1.12.5/Runtime/Scheduler/TimeProvider/UtcTimeProvider.cs",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll",
+        "Assets/Imported/JMO Assets/Editor/JMOAssets_CartoonFXFreeWelcome.dll",
         "Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Scheduler.rsp"
       ],
       "Outputs": [
@@ -25864,7 +25905,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Scheduler.dll.mvfrm.rsp",
       "DisplayName": "Writing Unity.Services.Core.Scheduler.dll.mvfrm.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1873086,
+      "PayloadOffset": 1876407,
       "PayloadLength": 8271,
       "PayloadDebugContentSnippet": "Library/Bee/artifacts/mvdfrm/U",
       "Inputs": [],
@@ -26089,9 +26130,9 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Telemetry.UnityAdditionalFile.txt",
       "DisplayName": "Writing Unity.Services.Core.Telemetry.UnityAdditionalFile.txt",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1881477,
+      "PayloadOffset": 1884798,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some ",
+      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some-",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Telemetry.UnityAdditionalFile.txt"
@@ -26102,8 +26143,8 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Telemetry.rsp",
       "DisplayName": "Writing Unity.Services.Core.Telemetry.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1881641,
-      "PayloadLength": 33376,
+      "PayloadOffset": 1884962,
+      "PayloadLength": 33457,
       "PayloadDebugContentSnippet": "-target:library\n-out:\"Library/",
       "Inputs": [],
       "Outputs": [
@@ -26115,7 +26156,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Telemetry.rsp2",
       "DisplayName": "Writing Unity.Services.Core.Telemetry.rsp2",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1915118,
+      "PayloadOffset": 1918520,
       "PayloadLength": 77,
       "PayloadDebugContentSnippet": "/pathmap:\"/Users/gabewkung/Des",
       "Inputs": [],
@@ -26363,6 +26404,7 @@
         "Library/PackageCache/com.unity.services.core@1.12.5/Runtime/Telemetry/Metrics/MetricsFactory.cs",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll",
+        "Assets/Imported/JMO Assets/Editor/JMOAssets_CartoonFXFreeWelcome.dll",
         "Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Telemetry.rsp"
       ],
       "Outputs": [
@@ -26401,7 +26443,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Telemetry.dll.mvfrm.rsp",
       "DisplayName": "Writing Unity.Services.Core.Telemetry.dll.mvfrm.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1915305,
+      "PayloadOffset": 1918707,
       "PayloadLength": 8271,
       "PayloadDebugContentSnippet": "Library/Bee/artifacts/mvdfrm/U",
       "Inputs": [],
@@ -26626,9 +26668,9 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Threading.UnityAdditionalFile.txt",
       "DisplayName": "Writing Unity.Services.Core.Threading.UnityAdditionalFile.txt",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1923696,
+      "PayloadOffset": 1927098,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some ",
+      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some-",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Threading.UnityAdditionalFile.txt"
@@ -26639,8 +26681,8 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Threading.rsp",
       "DisplayName": "Writing Unity.Services.Core.Threading.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1923860,
-      "PayloadLength": 32652,
+      "PayloadOffset": 1927262,
+      "PayloadLength": 32733,
       "PayloadDebugContentSnippet": "-target:library\n-out:\"Library/",
       "Inputs": [],
       "Outputs": [
@@ -26652,7 +26694,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Threading.rsp2",
       "DisplayName": "Writing Unity.Services.Core.Threading.rsp2",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1956613,
+      "PayloadOffset": 1960096,
       "PayloadLength": 77,
       "PayloadDebugContentSnippet": "/pathmap:\"/Users/gabewkung/Des",
       "Inputs": [],
@@ -26893,6 +26935,7 @@
         "Library/PackageCache/com.unity.services.core@1.12.5/Runtime/Threading/UnityThreadUtilsInternal.cs",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll",
+        "Assets/Imported/JMO Assets/Editor/JMOAssets_CartoonFXFreeWelcome.dll",
         "Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Threading.rsp"
       ],
       "Outputs": [
@@ -26931,7 +26974,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Threading.dll.mvfrm.rsp",
       "DisplayName": "Writing Unity.Services.Core.Threading.dll.mvfrm.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1956800,
+      "PayloadOffset": 1960283,
       "PayloadLength": 8271,
       "PayloadDebugContentSnippet": "Library/Bee/artifacts/mvdfrm/U",
       "Inputs": [],
@@ -27156,9 +27199,9 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEditor.XR.LegacyInputHelpers.UnityAdditionalFile.txt",
       "DisplayName": "Writing UnityEditor.XR.LegacyInputHelpers.UnityAdditionalFile.txt",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1965195,
+      "PayloadOffset": 1968678,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some ",
+      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some-",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/2000b0aE.dag/UnityEditor.XR.LegacyInputHelpers.UnityAdditionalFile.txt"
@@ -27169,8 +27212,8 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEditor.XR.LegacyInputHelpers.rsp",
       "DisplayName": "Writing UnityEditor.XR.LegacyInputHelpers.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1965363,
-      "PayloadLength": 34846,
+      "PayloadOffset": 1968846,
+      "PayloadLength": 34927,
       "PayloadDebugContentSnippet": "-target:library\n-out:\"Library/",
       "Inputs": [],
       "Outputs": [
@@ -27182,7 +27225,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEditor.XR.LegacyInputHelpers.rsp2",
       "DisplayName": "Writing UnityEditor.XR.LegacyInputHelpers.rsp2",
       "ActionType": "WriteFile",
-      "PayloadOffset": 2000314,
+      "PayloadOffset": 2003878,
       "PayloadLength": 77,
       "PayloadDebugContentSnippet": "/pathmap:\"/Users/gabewkung/Des",
       "Inputs": [],
@@ -27438,6 +27481,7 @@
         "Library/PackageCache/com.unity.xr.legacyinputhelpers@2.1.10/Editor/SeedXRInputBindings/SeedXRInputBindings.cs",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll",
+        "Assets/Imported/JMO Assets/Editor/JMOAssets_CartoonFXFreeWelcome.dll",
         "Library/Bee/artifacts/2000b0aE.dag/UnityEditor.XR.LegacyInputHelpers.rsp"
       ],
       "Outputs": [
@@ -27496,7 +27540,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEditor.XR.LegacyInputHelpers.dll.mvfrm.rsp",
       "DisplayName": "Writing UnityEditor.XR.LegacyInputHelpers.dll.mvfrm.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 2000505,
+      "PayloadOffset": 2004069,
       "PayloadLength": 8876,
       "PayloadDebugContentSnippet": "Library/Bee/artifacts/mvdfrm/U",
       "Inputs": [],
@@ -27735,9 +27779,9 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Configuration.Editor.UnityAdditionalFile.txt",
       "DisplayName": "Writing Unity.Services.Core.Configuration.Editor.UnityAdditionalFile.txt",
       "ActionType": "WriteFile",
-      "PayloadOffset": 2009512,
+      "PayloadOffset": 2013076,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some ",
+      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some-",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Configuration.Editor.UnityAdditionalFile.txt"
@@ -27748,8 +27792,8 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Configuration.Editor.rsp",
       "DisplayName": "Writing Unity.Services.Core.Configuration.Editor.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 2009687,
-      "PayloadLength": 35339,
+      "PayloadOffset": 2013251,
+      "PayloadLength": 35420,
       "PayloadDebugContentSnippet": "-target:library\n-out:\"Library/",
       "Inputs": [],
       "Outputs": [
@@ -27761,7 +27805,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Configuration.Editor.rsp2",
       "DisplayName": "Writing Unity.Services.Core.Configuration.Editor.rsp2",
       "ActionType": "WriteFile",
-      "PayloadOffset": 2045138,
+      "PayloadOffset": 2048783,
       "PayloadLength": 77,
       "PayloadDebugContentSnippet": "/pathmap:\"/Users/gabewkung/Des",
       "Inputs": [],
@@ -28021,6 +28065,7 @@
         "Library/PackageCache/com.unity.services.core@1.12.5/Editor/Core/Configuration/Utils/IoUtils.cs",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll",
+        "Assets/Imported/JMO Assets/Editor/JMOAssets_CartoonFXFreeWelcome.dll",
         "Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Configuration.Editor.rsp"
       ],
       "Outputs": [
@@ -28080,7 +28125,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Configuration.Editor.dll.mvfrm.rsp",
       "DisplayName": "Writing Unity.Services.Core.Configuration.Editor.dll.mvfrm.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 2045336,
+      "PayloadOffset": 2048981,
       "PayloadLength": 8957,
       "PayloadDebugContentSnippet": "Library/Bee/artifacts/mvdfrm/U",
       "Inputs": [],
@@ -28321,9 +28366,9 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Registration.UnityAdditionalFile.txt",
       "DisplayName": "Writing Unity.Services.Core.Registration.UnityAdditionalFile.txt",
       "ActionType": "WriteFile",
-      "PayloadOffset": 2054416,
+      "PayloadOffset": 2058061,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some ",
+      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some-",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Registration.UnityAdditionalFile.txt"
@@ -28334,8 +28379,8 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Registration.rsp",
       "DisplayName": "Writing Unity.Services.Core.Registration.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 2054583,
-      "PayloadLength": 33227,
+      "PayloadOffset": 2058228,
+      "PayloadLength": 33308,
       "PayloadDebugContentSnippet": "-target:library\n-out:\"Library/",
       "Inputs": [],
       "Outputs": [
@@ -28347,7 +28392,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Registration.rsp2",
       "DisplayName": "Writing Unity.Services.Core.Registration.rsp2",
       "ActionType": "WriteFile",
-      "PayloadOffset": 2087914,
+      "PayloadOffset": 2091640,
       "PayloadLength": 77,
       "PayloadDebugContentSnippet": "/pathmap:\"/Users/gabewkung/Des",
       "Inputs": [],
@@ -28595,6 +28640,7 @@
         "Library/PackageCache/com.unity.services.core@1.12.5/Runtime/Registration/CorePackageInitializer.cs",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll",
+        "Assets/Imported/JMO Assets/Editor/JMOAssets_CartoonFXFreeWelcome.dll",
         "Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Registration.rsp"
       ],
       "Outputs": [
@@ -28748,7 +28794,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Registration.dll.mvfrm.rsp",
       "DisplayName": "Writing Unity.Services.Core.Registration.dll.mvfrm.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 2088104,
+      "PayloadOffset": 2091830,
       "PayloadLength": 8917,
       "PayloadDebugContentSnippet": "Library/Bee/artifacts/mvdfrm/U",
       "Inputs": [],
@@ -28987,9 +29033,9 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Purchasing.AppleCore.UnityAdditionalFile.txt",
       "DisplayName": "Writing UnityEngine.Purchasing.AppleCore.UnityAdditionalFile.txt",
       "ActionType": "WriteFile",
-      "PayloadOffset": 2097144,
+      "PayloadOffset": 2100870,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some ",
+      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some-",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Purchasing.AppleCore.UnityAdditionalFile.txt"
@@ -29000,8 +29046,8 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Purchasing.AppleCore.rsp",
       "DisplayName": "Writing UnityEngine.Purchasing.AppleCore.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 2097311,
-      "PayloadLength": 32569,
+      "PayloadOffset": 2101037,
+      "PayloadLength": 32650,
       "PayloadDebugContentSnippet": "-target:library\n-out:\"Library/",
       "Inputs": [],
       "Outputs": [
@@ -29013,7 +29059,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Purchasing.AppleCore.rsp2",
       "DisplayName": "Writing UnityEngine.Purchasing.AppleCore.rsp2",
       "ActionType": "WriteFile",
-      "PayloadOffset": 2129984,
+      "PayloadOffset": 2133791,
       "PayloadLength": 77,
       "PayloadDebugContentSnippet": "/pathmap:\"/Users/gabewkung/Des",
       "Inputs": [],
@@ -29253,6 +29299,7 @@
         "Library/PackageCache/com.unity.purchasing@4.11.0/Runtime/AppleCore/INativeAppleStore.cs",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll",
+        "Assets/Imported/JMO Assets/Editor/JMOAssets_CartoonFXFreeWelcome.dll",
         "Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Purchasing.AppleCore.rsp"
       ],
       "Outputs": [
@@ -29290,7 +29337,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Purchasing.AppleCore.dll.mvfrm.rsp",
       "DisplayName": "Writing UnityEngine.Purchasing.AppleCore.dll.mvfrm.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 2130174,
+      "PayloadOffset": 2133981,
       "PayloadLength": 8102,
       "PayloadDebugContentSnippet": "Library/Bee/artifacts/mvdfrm/U",
       "Inputs": [],
@@ -29511,9 +29558,9 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Purchasing.UnityAdditionalFile.txt",
       "DisplayName": "Writing UnityEngine.Purchasing.UnityAdditionalFile.txt",
       "ActionType": "WriteFile",
-      "PayloadOffset": 2138389,
+      "PayloadOffset": 2142196,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some ",
+      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some-",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Purchasing.UnityAdditionalFile.txt"
@@ -29524,8 +29571,8 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Purchasing.rsp",
       "DisplayName": "Writing UnityEngine.Purchasing.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 2138546,
-      "PayloadLength": 40746,
+      "PayloadOffset": 2142353,
+      "PayloadLength": 40827,
       "PayloadDebugContentSnippet": "-target:library\n-out:\"Library/",
       "Inputs": [],
       "Outputs": [
@@ -29537,7 +29584,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Purchasing.rsp2",
       "DisplayName": "Writing UnityEngine.Purchasing.rsp2",
       "ActionType": "WriteFile",
-      "PayloadOffset": 2179386,
+      "PayloadOffset": 2183274,
       "PayloadLength": 77,
       "PayloadDebugContentSnippet": "/pathmap:\"/Users/gabewkung/Des",
       "Inputs": [],
@@ -29855,6 +29902,7 @@
         "Library/PackageCache/com.unity.purchasing@4.11.0/Runtime/Purchasing/Utilites/UnifiedReceiptFormatter.cs",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll",
+        "Assets/Imported/JMO Assets/Editor/JMOAssets_CartoonFXFreeWelcome.dll",
         "Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Purchasing.rsp"
       ],
       "Outputs": [
@@ -29914,7 +29962,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Purchasing.dll.mvfrm.rsp",
       "DisplayName": "Writing UnityEngine.Purchasing.dll.mvfrm.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 2179566,
+      "PayloadOffset": 2183454,
       "PayloadLength": 8449,
       "PayloadDebugContentSnippet": "Library/Bee/artifacts/mvdfrm/U",
       "Inputs": [],
@@ -30143,9 +30191,9 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Editor.UnityAdditionalFile.txt",
       "DisplayName": "Writing Unity.Services.Core.Editor.UnityAdditionalFile.txt",
       "ActionType": "WriteFile",
-      "PayloadOffset": 2188132,
+      "PayloadOffset": 2192020,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some ",
+      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some-",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Editor.UnityAdditionalFile.txt"
@@ -30156,8 +30204,8 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Editor.rsp",
       "DisplayName": "Writing Unity.Services.Core.Editor.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 2188293,
-      "PayloadLength": 47798,
+      "PayloadOffset": 2192181,
+      "PayloadLength": 47879,
       "PayloadDebugContentSnippet": "-target:library\n-out:\"Library/",
       "Inputs": [],
       "Outputs": [
@@ -30169,7 +30217,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Editor.rsp2",
       "DisplayName": "Writing Unity.Services.Core.Editor.rsp2",
       "ActionType": "WriteFile",
-      "PayloadOffset": 2236189,
+      "PayloadOffset": 2240158,
       "PayloadLength": 77,
       "PayloadDebugContentSnippet": "/pathmap:\"/Users/gabewkung/Des",
       "Inputs": [],
@@ -30545,6 +30593,7 @@
         "Library/PackageCache/com.unity.services.core@1.12.5/Editor/Core/Utils/PackageInfoNameComparer.cs",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll",
+        "Assets/Imported/JMO Assets/Editor/JMOAssets_CartoonFXFreeWelcome.dll",
         "Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Editor.rsp"
       ],
       "Outputs": [
@@ -30646,7 +30695,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Editor.dll.mvfrm.rsp",
       "DisplayName": "Writing Unity.Services.Core.Editor.dll.mvfrm.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 2236373,
+      "PayloadOffset": 2240342,
       "PayloadLength": 9515,
       "PayloadDebugContentSnippet": "Library/Bee/artifacts/mvdfrm/U",
       "Inputs": [],
@@ -30899,9 +30948,9 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Purchasing.AppleMacosStub.UnityAdditionalFile.txt",
       "DisplayName": "Writing UnityEngine.Purchasing.AppleMacosStub.UnityAdditionalFile.txt",
       "ActionType": "WriteFile",
-      "PayloadOffset": 2246016,
+      "PayloadOffset": 2249985,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some ",
+      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some-",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Purchasing.AppleMacosStub.UnityAdditionalFile.txt"
@@ -30912,8 +30961,8 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Purchasing.AppleMacosStub.rsp",
       "DisplayName": "Writing UnityEngine.Purchasing.AppleMacosStub.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 2246188,
-      "PayloadLength": 32674,
+      "PayloadOffset": 2250157,
+      "PayloadLength": 32755,
       "PayloadDebugContentSnippet": "-target:library\n-out:\"Library/",
       "Inputs": [],
       "Outputs": [
@@ -30925,7 +30974,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Purchasing.AppleMacosStub.rsp2",
       "DisplayName": "Writing UnityEngine.Purchasing.AppleMacosStub.rsp2",
       "ActionType": "WriteFile",
-      "PayloadOffset": 2278971,
+      "PayloadOffset": 2283021,
       "PayloadLength": 77,
       "PayloadDebugContentSnippet": "/pathmap:\"/Users/gabewkung/Des",
       "Inputs": [],
@@ -31166,6 +31215,7 @@
         "Library/PackageCache/com.unity.purchasing@4.11.0/Runtime/AppleMacosStub/OSXStoreBindings.cs",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll",
+        "Assets/Imported/JMO Assets/Editor/JMOAssets_CartoonFXFreeWelcome.dll",
         "Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Purchasing.AppleMacosStub.rsp"
       ],
       "Outputs": [
@@ -31222,7 +31272,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Purchasing.AppleMacosStub.dll.mvfrm.rsp",
       "DisplayName": "Writing UnityEngine.Purchasing.AppleMacosStub.dll.mvfrm.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 2279166,
+      "PayloadOffset": 2283216,
       "PayloadLength": 8195,
       "PayloadDebugContentSnippet": "Library/Bee/artifacts/mvdfrm/U",
       "Inputs": [],
@@ -31445,9 +31495,9 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Purchasing.AppleStub.UnityAdditionalFile.txt",
       "DisplayName": "Writing UnityEngine.Purchasing.AppleStub.UnityAdditionalFile.txt",
       "ActionType": "WriteFile",
-      "PayloadOffset": 2287484,
+      "PayloadOffset": 2291534,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some ",
+      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some-",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Purchasing.AppleStub.UnityAdditionalFile.txt"
@@ -31458,8 +31508,8 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Purchasing.AppleStub.rsp",
       "DisplayName": "Writing UnityEngine.Purchasing.AppleStub.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 2287651,
-      "PayloadLength": 32649,
+      "PayloadOffset": 2291701,
+      "PayloadLength": 32730,
       "PayloadDebugContentSnippet": "-target:library\n-out:\"Library/",
       "Inputs": [],
       "Outputs": [
@@ -31471,7 +31521,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Purchasing.AppleStub.rsp2",
       "DisplayName": "Writing UnityEngine.Purchasing.AppleStub.rsp2",
       "ActionType": "WriteFile",
-      "PayloadOffset": 2320404,
+      "PayloadOffset": 2324535,
       "PayloadLength": 77,
       "PayloadDebugContentSnippet": "/pathmap:\"/Users/gabewkung/Des",
       "Inputs": [],
@@ -31712,6 +31762,7 @@
         "Library/PackageCache/com.unity.purchasing@4.11.0/Runtime/AppleStub/iOSStoreBindings.cs",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll",
+        "Assets/Imported/JMO Assets/Editor/JMOAssets_CartoonFXFreeWelcome.dll",
         "Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Purchasing.AppleStub.rsp"
       ],
       "Outputs": [
@@ -31750,7 +31801,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Purchasing.AppleStub.dll.mvfrm.rsp",
       "DisplayName": "Writing UnityEngine.Purchasing.AppleStub.dll.mvfrm.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 2320594,
+      "PayloadOffset": 2324725,
       "PayloadLength": 8195,
       "PayloadDebugContentSnippet": "Library/Bee/artifacts/mvdfrm/U",
       "Inputs": [],
@@ -31973,9 +32024,9 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Analytics.Editor.UnityAdditionalFile.txt",
       "DisplayName": "Writing Unity.Services.Analytics.Editor.UnityAdditionalFile.txt",
       "ActionType": "WriteFile",
-      "PayloadOffset": 2328911,
+      "PayloadOffset": 2333042,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some ",
+      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some-",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Analytics.Editor.UnityAdditionalFile.txt"
@@ -31986,8 +32037,8 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Analytics.Editor.rsp",
       "DisplayName": "Writing Unity.Services.Analytics.Editor.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 2329077,
-      "PayloadLength": 34680,
+      "PayloadOffset": 2333208,
+      "PayloadLength": 34761,
       "PayloadDebugContentSnippet": "-target:library\n-out:\"Library/",
       "Inputs": [],
       "Outputs": [
@@ -31999,7 +32050,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Analytics.Editor.rsp2",
       "DisplayName": "Writing Unity.Services.Analytics.Editor.rsp2",
       "ActionType": "WriteFile",
-      "PayloadOffset": 2363860,
+      "PayloadOffset": 2368072,
       "PayloadLength": 77,
       "PayloadDebugContentSnippet": "/pathmap:\"/Users/gabewkung/Des",
       "Inputs": [],
@@ -32254,6 +32305,7 @@
         "Library/PackageCache/com.unity.services.analytics@5.0.0/Editor/Settings/AnalyticsSettingsProvider.cs",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll",
+        "Assets/Imported/JMO Assets/Editor/JMOAssets_CartoonFXFreeWelcome.dll",
         "Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Analytics.Editor.rsp"
       ],
       "Outputs": [
@@ -32314,7 +32366,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Analytics.Editor.dll.mvfrm.rsp",
       "DisplayName": "Writing Unity.Services.Analytics.Editor.dll.mvfrm.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 2364049,
+      "PayloadOffset": 2368261,
       "PayloadLength": 9035,
       "PayloadDebugContentSnippet": "Library/Bee/artifacts/mvdfrm/U",
       "Inputs": [],
@@ -32557,9 +32609,9 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Environments.Editor.UnityAdditionalFile.txt",
       "DisplayName": "Writing Unity.Services.Core.Environments.Editor.UnityAdditionalFile.txt",
       "ActionType": "WriteFile",
-      "PayloadOffset": 2373214,
+      "PayloadOffset": 2377426,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some ",
+      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some-",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Environments.Editor.UnityAdditionalFile.txt"
@@ -32570,8 +32622,8 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Environments.Editor.rsp",
       "DisplayName": "Writing Unity.Services.Core.Environments.Editor.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 2373388,
-      "PayloadLength": 44153,
+      "PayloadOffset": 2377600,
+      "PayloadLength": 44234,
       "PayloadDebugContentSnippet": "-target:library\n-out:\"Library/",
       "Inputs": [],
       "Outputs": [
@@ -32583,7 +32635,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Environments.Editor.rsp2",
       "DisplayName": "Writing Unity.Services.Core.Environments.Editor.rsp2",
       "ActionType": "WriteFile",
-      "PayloadOffset": 2417652,
+      "PayloadOffset": 2421945,
       "PayloadLength": 77,
       "PayloadDebugContentSnippet": "/pathmap:\"/Users/gabewkung/Des",
       "Inputs": [],
@@ -32921,6 +32973,7 @@
         "Library/PackageCache/com.unity.services.core@1.12.5/Editor/Core/Environments/ValidationResult.cs",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll",
+        "Assets/Imported/JMO Assets/Editor/JMOAssets_CartoonFXFreeWelcome.dll",
         "Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Environments.Editor.rsp"
       ],
       "Outputs": [
@@ -32964,7 +33017,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Environments.Editor.dll.mvfrm.rsp",
       "DisplayName": "Writing Unity.Services.Core.Environments.Editor.dll.mvfrm.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 2417849,
+      "PayloadOffset": 2422142,
       "PayloadLength": 9144,
       "PayloadDebugContentSnippet": "Library/Bee/artifacts/mvdfrm/U",
       "Inputs": [],
@@ -33209,9 +33262,9 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Advertisements.DevX.Editor.UnityAdditionalFile.txt",
       "DisplayName": "Writing UnityEngine.Advertisements.DevX.Editor.UnityAdditionalFile.txt",
       "ActionType": "WriteFile",
-      "PayloadOffset": 2427122,
+      "PayloadOffset": 2431415,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some ",
+      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some-",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Advertisements.DevX.Editor.UnityAdditionalFile.txt"
@@ -33222,8 +33275,8 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Advertisements.DevX.Editor.rsp",
       "DisplayName": "Writing UnityEngine.Advertisements.DevX.Editor.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 2427295,
-      "PayloadLength": 34650,
+      "PayloadOffset": 2431588,
+      "PayloadLength": 34731,
       "PayloadDebugContentSnippet": "-target:library\n-out:\"Library/",
       "Inputs": [],
       "Outputs": [
@@ -33235,7 +33288,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Advertisements.DevX.Editor.rsp2",
       "DisplayName": "Writing UnityEngine.Advertisements.DevX.Editor.rsp2",
       "ActionType": "WriteFile",
-      "PayloadOffset": 2462055,
+      "PayloadOffset": 2466429,
       "PayloadLength": 77,
       "PayloadDebugContentSnippet": "/pathmap:\"/Users/gabewkung/Des",
       "Inputs": [],
@@ -33490,6 +33543,7 @@
         "Library/PackageCache/com.unity.ads@4.4.2/Editor/DevX/Utils/EditorTimer.cs",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll",
+        "Assets/Imported/JMO Assets/Editor/JMOAssets_CartoonFXFreeWelcome.dll",
         "Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Advertisements.DevX.Editor.rsp"
       ],
       "Outputs": [
@@ -33530,7 +33584,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Advertisements.DevX.Editor.dll.mvfrm.rsp",
       "DisplayName": "Writing UnityEngine.Advertisements.DevX.Editor.dll.mvfrm.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 2462251,
+      "PayloadOffset": 2466625,
       "PayloadLength": 8444,
       "PayloadDebugContentSnippet": "Library/Bee/artifacts/mvdfrm/U",
       "Inputs": [],
@@ -33759,9 +33813,9 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Purchasing.Stores.UnityAdditionalFile.txt",
       "DisplayName": "Writing UnityEngine.Purchasing.Stores.UnityAdditionalFile.txt",
       "ActionType": "WriteFile",
-      "PayloadOffset": 2470815,
+      "PayloadOffset": 2475189,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some ",
+      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some-",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Purchasing.Stores.UnityAdditionalFile.txt"
@@ -33772,8 +33826,8 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Purchasing.Stores.rsp",
       "DisplayName": "Writing UnityEngine.Purchasing.Stores.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 2470979,
-      "PayloadLength": 48966,
+      "PayloadOffset": 2475353,
+      "PayloadLength": 49047,
       "PayloadDebugContentSnippet": "-target:library\n-out:\"Library/",
       "Inputs": [],
       "Outputs": [
@@ -33785,7 +33839,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Purchasing.Stores.rsp2",
       "DisplayName": "Writing UnityEngine.Purchasing.Stores.rsp2",
       "ActionType": "WriteFile",
-      "PayloadOffset": 2520046,
+      "PayloadOffset": 2524501,
       "PayloadLength": 77,
       "PayloadDebugContentSnippet": "/pathmap:\"/Users/gabewkung/Des",
       "Inputs": [],
@@ -34172,6 +34226,7 @@
         "Library/PackageCache/com.unity.purchasing@4.11.0/Runtime/Stores/WindowsStore/WinRTStore.cs",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll",
+        "Assets/Imported/JMO Assets/Editor/JMOAssets_CartoonFXFreeWelcome.dll",
         "Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Purchasing.Stores.rsp"
       ],
       "Outputs": [
@@ -34309,7 +34364,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Purchasing.Stores.dll.mvfrm.rsp",
       "DisplayName": "Writing UnityEngine.Purchasing.Stores.dll.mvfrm.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 2520233,
+      "PayloadOffset": 2524688,
       "PayloadLength": 8599,
       "PayloadDebugContentSnippet": "Library/Bee/artifacts/mvdfrm/U",
       "Inputs": [],
@@ -34540,9 +34595,9 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Purchasing.Codeless.UnityAdditionalFile.txt",
       "DisplayName": "Writing UnityEngine.Purchasing.Codeless.UnityAdditionalFile.txt",
       "ActionType": "WriteFile",
-      "PayloadOffset": 2528954,
+      "PayloadOffset": 2533409,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some ",
+      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some-",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Purchasing.Codeless.UnityAdditionalFile.txt"
@@ -34553,8 +34608,8 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Purchasing.Codeless.rsp",
       "DisplayName": "Writing UnityEngine.Purchasing.Codeless.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 2529120,
-      "PayloadLength": 33324,
+      "PayloadOffset": 2533575,
+      "PayloadLength": 33405,
       "PayloadDebugContentSnippet": "-target:library\n-out:\"Library/",
       "Inputs": [],
       "Outputs": [
@@ -34566,7 +34621,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Purchasing.Codeless.rsp2",
       "DisplayName": "Writing UnityEngine.Purchasing.Codeless.rsp2",
       "ActionType": "WriteFile",
-      "PayloadOffset": 2562547,
+      "PayloadOffset": 2567083,
       "PayloadLength": 77,
       "PayloadDebugContentSnippet": "/pathmap:\"/Users/gabewkung/Des",
       "Inputs": [],
@@ -34815,6 +34870,7 @@
         "Library/PackageCache/com.unity.purchasing@4.11.0/Runtime/Codeless/IAPListener.cs",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll",
+        "Assets/Imported/JMO Assets/Editor/JMOAssets_CartoonFXFreeWelcome.dll",
         "Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Purchasing.Codeless.rsp"
       ],
       "Outputs": [
@@ -34872,7 +34928,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEngine.Purchasing.Codeless.dll.mvfrm.rsp",
       "DisplayName": "Writing UnityEngine.Purchasing.Codeless.dll.mvfrm.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 2562736,
+      "PayloadOffset": 2567272,
       "PayloadLength": 8355,
       "PayloadDebugContentSnippet": "Library/Bee/artifacts/mvdfrm/U",
       "Inputs": [],
@@ -35099,9 +35155,9 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEditor.Purchasing.UnityAdditionalFile.txt",
       "DisplayName": "Writing UnityEditor.Purchasing.UnityAdditionalFile.txt",
       "ActionType": "WriteFile",
-      "PayloadOffset": 2571204,
+      "PayloadOffset": 2575740,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some ",
+      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some-",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/2000b0aE.dag/UnityEditor.Purchasing.UnityAdditionalFile.txt"
@@ -35112,8 +35168,8 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEditor.Purchasing.rsp",
       "DisplayName": "Writing UnityEditor.Purchasing.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 2571361,
-      "PayloadLength": 43876,
+      "PayloadOffset": 2575897,
+      "PayloadLength": 43957,
       "PayloadDebugContentSnippet": "-target:library\n-out:\"Library/",
       "Inputs": [],
       "Outputs": [
@@ -35125,7 +35181,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEditor.Purchasing.rsp2",
       "DisplayName": "Writing UnityEditor.Purchasing.rsp2",
       "ActionType": "WriteFile",
-      "PayloadOffset": 2615331,
+      "PayloadOffset": 2619948,
       "PayloadLength": 77,
       "PayloadDebugContentSnippet": "/pathmap:\"/Users/gabewkung/Des",
       "Inputs": [],
@@ -35466,6 +35522,7 @@
         "Library/PackageCache/com.unity.purchasing@4.11.0/Editor/WinRTPatcher.cs",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll",
+        "Assets/Imported/JMO Assets/Editor/JMOAssets_CartoonFXFreeWelcome.dll",
         "Library/Bee/artifacts/2000b0aE.dag/UnityEditor.Purchasing.rsp"
       ],
       "Outputs": [
@@ -35529,7 +35586,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/UnityEditor.Purchasing.dll.mvfrm.rsp",
       "DisplayName": "Writing UnityEditor.Purchasing.dll.mvfrm.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 2615511,
+      "PayloadOffset": 2620128,
       "PayloadLength": 8821,
       "PayloadDebugContentSnippet": "Library/Bee/artifacts/mvdfrm/U",
       "Inputs": [],
@@ -35766,9 +35823,9 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Assembly-CSharp.UnityAdditionalFile.txt",
       "DisplayName": "Writing Assembly-CSharp.UnityAdditionalFile.txt",
       "ActionType": "WriteFile",
-      "PayloadOffset": 2624438,
+      "PayloadOffset": 2629055,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some ",
+      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some-",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/2000b0aE.dag/Assembly-CSharp.UnityAdditionalFile.txt"
@@ -35779,8 +35836,8 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Assembly-CSharp.rsp",
       "DisplayName": "Writing Assembly-CSharp.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 2624588,
-      "PayloadLength": 36540,
+      "PayloadOffset": 2629205,
+      "PayloadLength": 36621,
       "PayloadDebugContentSnippet": "-target:library\n-out:\"Library/",
       "Inputs": [],
       "Outputs": [
@@ -35792,7 +35849,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Assembly-CSharp.rsp2",
       "DisplayName": "Writing Assembly-CSharp.rsp2",
       "ActionType": "WriteFile",
-      "PayloadOffset": 2661215,
+      "PayloadOffset": 2665913,
       "PayloadLength": 0,
       "PayloadDebugContentSnippet": "",
       "Inputs": [],
@@ -36119,6 +36176,7 @@
         "Assets/Scripts/zombieCount.cs",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll",
+        "Assets/Imported/JMO Assets/Editor/JMOAssets_CartoonFXFreeWelcome.dll",
         "Library/Bee/artifacts/2000b0aE.dag/Assembly-CSharp.rsp"
       ],
       "Outputs": [
@@ -36476,7 +36534,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Assembly-CSharp.dll.mvfrm.rsp",
       "DisplayName": "Writing Assembly-CSharp.dll.mvfrm.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 2661311,
+      "PayloadOffset": 2666009,
       "PayloadLength": 10286,
       "PayloadDebugContentSnippet": "Library/Bee/artifacts/mvdfrm/U",
       "Inputs": [],
@@ -36747,9 +36805,9 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Assembly-CSharp-Editor.UnityAdditionalFile.txt",
       "DisplayName": "Writing Assembly-CSharp-Editor.UnityAdditionalFile.txt",
       "ActionType": "WriteFile",
-      "PayloadOffset": 2671710,
+      "PayloadOffset": 2676408,
       "PayloadLength": 64,
-      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some ",
+      "PayloadDebugContentSnippet": "/Users/gabewkung/Desktop/some-",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/2000b0aE.dag/Assembly-CSharp-Editor.UnityAdditionalFile.txt"
@@ -36760,8 +36818,8 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Assembly-CSharp-Editor.rsp",
       "DisplayName": "Writing Assembly-CSharp-Editor.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 2671867,
-      "PayloadLength": 36828,
+      "PayloadOffset": 2676565,
+      "PayloadLength": 36909,
       "PayloadDebugContentSnippet": "-target:library\n-out:\"Library/",
       "Inputs": [],
       "Outputs": [
@@ -36773,7 +36831,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Assembly-CSharp-Editor.rsp2",
       "DisplayName": "Writing Assembly-CSharp-Editor.rsp2",
       "ActionType": "WriteFile",
-      "PayloadOffset": 2708789,
+      "PayloadOffset": 2713568,
       "PayloadLength": 0,
       "PayloadDebugContentSnippet": "",
       "Inputs": [],
@@ -37059,6 +37117,7 @@
         "Assets/JMO Assets/WarFX/Editor/CFX_SpawnSystemEditor.cs",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll",
+        "Assets/Imported/JMO Assets/Editor/JMOAssets_CartoonFXFreeWelcome.dll",
         "Library/Bee/artifacts/2000b0aE.dag/Assembly-CSharp-Editor.rsp"
       ],
       "Outputs": [
@@ -37131,7 +37190,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/2000b0aE.dag/Assembly-CSharp-Editor.dll.mvfrm.rsp",
       "DisplayName": "Writing Assembly-CSharp-Editor.dll.mvfrm.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 2708892,
+      "PayloadOffset": 2713671,
       "PayloadLength": 11482,
       "PayloadDebugContentSnippet": "Library/Bee/artifacts/mvdfrm/U",
       "Inputs": [],
@@ -39199,7 +39258,7 @@
     {
       "Annotation": "BuildPlayerDataGenerator Library/BuildPlayerData/Editor/TypeDb-All.json",
       "DisplayName": "BuildPlayerDataGenerator TypeDb-All",
-      "Action": "\"/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/netcorerun/netcorerun\" \"/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/BuildPlayerDataGenerator/BuildPlayerDataGenerator.exe\" -a=\"/Users/gabewkung/Desktop/some migration stuff/Unity Proj/Zombtoy/Library/ScriptAssemblies/Assembly-CSharp.dll\" -a=\"/Users/gabewkung/Desktop/some migration stuff/Unity Proj/Zombtoy/Library/ScriptAssemblies/Purchasing.Common.dll\" -a=\"/Users/gabewkung/Desktop/some migration stuff/Unity Proj/Zombtoy/Library/ScriptAssemblies/Unity.AI.Navigation.dll\" -a=\"/Users/gabewkung/Desktop/some migration stuff/Unity Proj/Zombtoy/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll\" -a=\"/Users/gabewkung/Desktop/some migration stuff/Unity Proj/Zombtoy/Library/ScriptAssemblies/Unity.Services.Analytics.dll\" -a=\"/Users/gabewkung/Desktop/some migration stuff/Unity Proj/Zombtoy/Library/ScriptAssemblies/Unity.Services.Core.Analytics.dll\" -a=\"/Users/gabewkung/Desktop/some migration stuff/Unity Proj/Zombtoy/Library/ScriptAssemblies/Unity.Services.Core.Configuration.dll\" -a=\"/Users/gabewkung/Desktop/some migration stuff/Unity Proj/Zombtoy/Library/ScriptAssemblies/Unity.Services.Core.Device.dll\" -a=\"/Users/gabewkung/Desktop/some migration stuff/Unity Proj/Zombtoy/Library/ScriptAssemblies/Unity.Services.Core.dll\" -a=\"/Users/gabewkung/Desktop/some migration stuff/Unity Proj/Zombtoy/Library/ScriptAssemblies/Unity.Services.Core.Environments.dll\" -a=\"/Users/gabewkung/Desktop/some migration stuff/Unity Proj/Zombtoy/Library/ScriptAssemblies/Unity.Services.Core.Environments.Internal.dll\" -a=\"/Users/gabewkung/Desktop/some migration stuff/Unity Proj/Zombtoy/Library/ScriptAssemblies/Unity.Services.Core.Internal.dll\" -a=\"/Users/gabewkung/Desktop/some migration stuff/Unity Proj/Zombtoy/Library/ScriptAssemblies/Unity.Services.Core.Networking.dll\" -a=\"/Users/gabewkung/Desktop/some migration stuff/Unity Proj/Zombtoy/Library/ScriptAssemblies/Unity.Services.Core.Registration.dll\" -a=\"/Users/gabewkung/Desktop/some migration stuff/Unity Proj/Zombtoy/Library/ScriptAssemblies/Unity.Services.Core.Scheduler.dll\" -a=\"/Users/gabewkung/Desktop/some migration stuff/Unity Proj/Zombtoy/Library/ScriptAssemblies/Unity.Services.Core.Telemetry.dll\" -a=\"/Users/gabewkung/Desktop/some migration stuff/Unity Proj/Zombtoy/Library/ScriptAssemblies/Unity.Services.Core.Threading.dll\" -a=\"/Users/gabewkung/Desktop/some migration stuff/Unity Proj/Zombtoy/Library/ScriptAssemblies/Unity.TextMeshPro.dll\" -a=\"/Users/gabewkung/Desktop/some migration stuff/Unity Proj/Zombtoy/Library/ScriptAssemblies/Unity.Timeline.dll\" -a=\"/Users/gabewkung/Desktop/some migration stuff/Unity Proj/Zombtoy/Library/ScriptAssemblies/UnityEngine.Advertisements.dll\" -a=\"/Users/gabewkung/Desktop/some migration stuff/Unity Proj/Zombtoy/Library/ScriptAssemblies/UnityEngine.Purchasing.AppleCore.dll\" -a=\"/Users/gabewkung/Desktop/some migration stuff/Unity Proj/Zombtoy/Library/ScriptAssemblies/UnityEngine.Purchasing.AppleMacosStub.dll\" -a=\"/Users/gabewkung/Desktop/some migration stuff/Unity Proj/Zombtoy/Library/ScriptAssemblies/UnityEngine.Purchasing.AppleStub.dll\" -a=\"/Users/gabewkung/Desktop/some migration stuff/Unity Proj/Zombtoy/Library/ScriptAssemblies/UnityEngine.Purchasing.Codeless.dll\" -a=\"/Users/gabewkung/Desktop/some migration stuff/Unity Proj/Zombtoy/Library/ScriptAssemblies/UnityEngine.Purchasing.dll\" -a=\"/Users/gabewkung/Desktop/some migration stuff/Unity Proj/Zombtoy/Library/ScriptAssemblies/UnityEngine.Purchasing.SecurityCore.dll\" -a=\"/Users/gabewkung/Desktop/some migration stuff/Unity Proj/Zombtoy/Library/ScriptAssemblies/UnityEngine.Purchasing.SecurityStub.dll\" -a=\"/Users/gabewkung/Desktop/some migration stuff/Unity Proj/Zombtoy/Library/ScriptAssemblies/UnityEngine.Purchasing.Stores.dll\" -a=\"/Users/gabewkung/Desktop/some migration stuff/Unity Proj/Zombtoy/Library/ScriptAssemblies/UnityEngine.Purchasing.WinRTCore.dll\" -a=\"/Users/gabewkung/Desktop/some migration stuff/Unity Proj/Zombtoy/Library/ScriptAssemblies/UnityEngine.Purchasing.WinRTStub.dll\" -a=\"/Users/gabewkung/Desktop/some migration stuff/Unity Proj/Zombtoy/Library/ScriptAssemblies/UnityEngine.SpatialTracking.dll\" -a=\"/Users/gabewkung/Desktop/some migration stuff/Unity Proj/Zombtoy/Library/ScriptAssemblies/UnityEngine.TestRunner.dll\" -a=\"/Users/gabewkung/Desktop/some migration stuff/Unity Proj/Zombtoy/Library/ScriptAssemblies/UnityEngine.UI.dll\" -a=\"/Users/gabewkung/Desktop/some migration stuff/Unity Proj/Zombtoy/Library/ScriptAssemblies/UnityEngine.XR.LegacyInputHelpers.dll\" -a=\"/Users/gabewkung/Desktop/some migration stuff/Unity Proj/Zombtoy/Library/PackageCache/com.unity.analytics@3.8.1/AnalyticsStandardEvents/Unity.Analytics.StandardEvents.dll\" -a=\"/Users/gabewkung/Desktop/some migration stuff/Unity Proj/Zombtoy/Library/PackageCache/com.unity.analytics@3.8.1/Unity.Analytics.Editor.dll\" -a=\"/Users/gabewkung/Desktop/some migration stuff/Unity Proj/Zombtoy/Library/PackageCache/com.unity.analytics@3.8.1/Unity.Analytics.Tracker.dll\" -a=\"/Users/gabewkung/Desktop/some migration stuff/Unity Proj/Zombtoy/Library/PackageCache/com.unity.ext.nunit@1.0.6/net35/unity-custom/nunit.framework.dll\" -a=\"/Users/gabewkung/Desktop/some migration stuff/Unity Proj/Zombtoy/Library/PackageCache/com.unity.nuget.newtonsoft-json@3.2.1/Runtime/Newtonsoft.Json.dll\" -s=\"/Applications/Unity/Hub/Editor/2022.3.37f1/PlaybackEngines/WebGLSupport/Managed\" -s=\"/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Managed/UnityEngine\" -s=\"/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netfx\" -s=\"/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard\" -s=\"/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/NetStandard/Extensions/2.0.0\" -s=\"/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/NetStandard/ref/2.1.0\" -s=\"/Users/gabewkung/Desktop/some migration stuff/Unity Proj/Zombtoy/Library/ScriptAssemblies\" -s=\"/Users/gabewkung/Desktop/some migration stuff/Unity Proj/Zombtoy/Library/PackageCache/com.unity.analytics@3.8.1\" -s=\"/Users/gabewkung/Desktop/some migration stuff/Unity Proj/Zombtoy/Library/PackageCache/com.unity.analytics@3.8.1/AnalyticsStandardEvents\" -s=\"/Users/gabewkung/Desktop/some migration stuff/Unity Proj/Zombtoy/Library/PackageCache/com.unity.ext.nunit@1.0.6/net35/unity-custom\" -s=\"/Users/gabewkung/Desktop/some migration stuff/Unity Proj/Zombtoy/Library/PackageCache/com.unity.nuget.newtonsoft-json@3.2.1/Runtime\" -o=\"Library/BuildPlayerData/Editor\" -rn=\"\" -tn=\"TypeDb-All.json\"",
+      "Action": "\"/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/netcorerun/netcorerun\" \"/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/BuildPlayerDataGenerator/BuildPlayerDataGenerator.exe\" -a=\"/Users/gabewkung/Desktop/some-migration-stuff/Unity-Proj/Zombtoy/Library/ScriptAssemblies/Assembly-CSharp.dll\" -a=\"/Users/gabewkung/Desktop/some-migration-stuff/Unity-Proj/Zombtoy/Library/ScriptAssemblies/Purchasing.Common.dll\" -a=\"/Users/gabewkung/Desktop/some-migration-stuff/Unity-Proj/Zombtoy/Library/ScriptAssemblies/Unity.AI.Navigation.dll\" -a=\"/Users/gabewkung/Desktop/some-migration-stuff/Unity-Proj/Zombtoy/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll\" -a=\"/Users/gabewkung/Desktop/some-migration-stuff/Unity-Proj/Zombtoy/Library/ScriptAssemblies/Unity.Services.Analytics.dll\" -a=\"/Users/gabewkung/Desktop/some-migration-stuff/Unity-Proj/Zombtoy/Library/ScriptAssemblies/Unity.Services.Core.Analytics.dll\" -a=\"/Users/gabewkung/Desktop/some-migration-stuff/Unity-Proj/Zombtoy/Library/ScriptAssemblies/Unity.Services.Core.Configuration.dll\" -a=\"/Users/gabewkung/Desktop/some-migration-stuff/Unity-Proj/Zombtoy/Library/ScriptAssemblies/Unity.Services.Core.Device.dll\" -a=\"/Users/gabewkung/Desktop/some-migration-stuff/Unity-Proj/Zombtoy/Library/ScriptAssemblies/Unity.Services.Core.dll\" -a=\"/Users/gabewkung/Desktop/some-migration-stuff/Unity-Proj/Zombtoy/Library/ScriptAssemblies/Unity.Services.Core.Environments.dll\" -a=\"/Users/gabewkung/Desktop/some-migration-stuff/Unity-Proj/Zombtoy/Library/ScriptAssemblies/Unity.Services.Core.Environments.Internal.dll\" -a=\"/Users/gabewkung/Desktop/some-migration-stuff/Unity-Proj/Zombtoy/Library/ScriptAssemblies/Unity.Services.Core.Internal.dll\" -a=\"/Users/gabewkung/Desktop/some-migration-stuff/Unity-Proj/Zombtoy/Library/ScriptAssemblies/Unity.Services.Core.Networking.dll\" -a=\"/Users/gabewkung/Desktop/some-migration-stuff/Unity-Proj/Zombtoy/Library/ScriptAssemblies/Unity.Services.Core.Registration.dll\" -a=\"/Users/gabewkung/Desktop/some-migration-stuff/Unity-Proj/Zombtoy/Library/ScriptAssemblies/Unity.Services.Core.Scheduler.dll\" -a=\"/Users/gabewkung/Desktop/some-migration-stuff/Unity-Proj/Zombtoy/Library/ScriptAssemblies/Unity.Services.Core.Telemetry.dll\" -a=\"/Users/gabewkung/Desktop/some-migration-stuff/Unity-Proj/Zombtoy/Library/ScriptAssemblies/Unity.Services.Core.Threading.dll\" -a=\"/Users/gabewkung/Desktop/some-migration-stuff/Unity-Proj/Zombtoy/Library/ScriptAssemblies/Unity.TextMeshPro.dll\" -a=\"/Users/gabewkung/Desktop/some-migration-stuff/Unity-Proj/Zombtoy/Library/ScriptAssemblies/Unity.Timeline.dll\" -a=\"/Users/gabewkung/Desktop/some-migration-stuff/Unity-Proj/Zombtoy/Library/ScriptAssemblies/UnityEngine.Advertisements.dll\" -a=\"/Users/gabewkung/Desktop/some-migration-stuff/Unity-Proj/Zombtoy/Library/ScriptAssemblies/UnityEngine.Purchasing.AppleCore.dll\" -a=\"/Users/gabewkung/Desktop/some-migration-stuff/Unity-Proj/Zombtoy/Library/ScriptAssemblies/UnityEngine.Purchasing.AppleMacosStub.dll\" -a=\"/Users/gabewkung/Desktop/some-migration-stuff/Unity-Proj/Zombtoy/Library/ScriptAssemblies/UnityEngine.Purchasing.AppleStub.dll\" -a=\"/Users/gabewkung/Desktop/some-migration-stuff/Unity-Proj/Zombtoy/Library/ScriptAssemblies/UnityEngine.Purchasing.Codeless.dll\" -a=\"/Users/gabewkung/Desktop/some-migration-stuff/Unity-Proj/Zombtoy/Library/ScriptAssemblies/UnityEngine.Purchasing.dll\" -a=\"/Users/gabewkung/Desktop/some-migration-stuff/Unity-Proj/Zombtoy/Library/ScriptAssemblies/UnityEngine.Purchasing.SecurityCore.dll\" -a=\"/Users/gabewkung/Desktop/some-migration-stuff/Unity-Proj/Zombtoy/Library/ScriptAssemblies/UnityEngine.Purchasing.SecurityStub.dll\" -a=\"/Users/gabewkung/Desktop/some-migration-stuff/Unity-Proj/Zombtoy/Library/ScriptAssemblies/UnityEngine.Purchasing.Stores.dll\" -a=\"/Users/gabewkung/Desktop/some-migration-stuff/Unity-Proj/Zombtoy/Library/ScriptAssemblies/UnityEngine.Purchasing.WinRTCore.dll\" -a=\"/Users/gabewkung/Desktop/some-migration-stuff/Unity-Proj/Zombtoy/Library/ScriptAssemblies/UnityEngine.Purchasing.WinRTStub.dll\" -a=\"/Users/gabewkung/Desktop/some-migration-stuff/Unity-Proj/Zombtoy/Library/ScriptAssemblies/UnityEngine.SpatialTracking.dll\" -a=\"/Users/gabewkung/Desktop/some-migration-stuff/Unity-Proj/Zombtoy/Library/ScriptAssemblies/UnityEngine.TestRunner.dll\" -a=\"/Users/gabewkung/Desktop/some-migration-stuff/Unity-Proj/Zombtoy/Library/ScriptAssemblies/UnityEngine.UI.dll\" -a=\"/Users/gabewkung/Desktop/some-migration-stuff/Unity-Proj/Zombtoy/Library/ScriptAssemblies/UnityEngine.XR.LegacyInputHelpers.dll\" -a=\"/Users/gabewkung/Desktop/some-migration-stuff/Unity-Proj/Zombtoy/Library/PackageCache/com.unity.analytics@3.8.1/AnalyticsStandardEvents/Unity.Analytics.StandardEvents.dll\" -a=\"/Users/gabewkung/Desktop/some-migration-stuff/Unity-Proj/Zombtoy/Library/PackageCache/com.unity.analytics@3.8.1/Unity.Analytics.Editor.dll\" -a=\"/Users/gabewkung/Desktop/some-migration-stuff/Unity-Proj/Zombtoy/Library/PackageCache/com.unity.analytics@3.8.1/Unity.Analytics.Tracker.dll\" -a=\"/Users/gabewkung/Desktop/some-migration-stuff/Unity-Proj/Zombtoy/Library/PackageCache/com.unity.ext.nunit@1.0.6/net35/unity-custom/nunit.framework.dll\" -a=\"/Users/gabewkung/Desktop/some-migration-stuff/Unity-Proj/Zombtoy/Library/PackageCache/com.unity.nuget.newtonsoft-json@3.2.1/Runtime/Newtonsoft.Json.dll\" -s=\"/Applications/Unity/Hub/Editor/2022.3.37f1/PlaybackEngines/WebGLSupport/Managed\" -s=\"/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Managed/UnityEngine\" -s=\"/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netfx\" -s=\"/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netstandard\" -s=\"/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/NetStandard/Extensions/2.0.0\" -s=\"/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/NetStandard/ref/2.1.0\" -s=\"/Users/gabewkung/Desktop/some-migration-stuff/Unity-Proj/Zombtoy/Library/ScriptAssemblies\" -s=\"/Users/gabewkung/Desktop/some-migration-stuff/Unity-Proj/Zombtoy/Library/PackageCache/com.unity.analytics@3.8.1\" -s=\"/Users/gabewkung/Desktop/some-migration-stuff/Unity-Proj/Zombtoy/Library/PackageCache/com.unity.analytics@3.8.1/AnalyticsStandardEvents\" -s=\"/Users/gabewkung/Desktop/some-migration-stuff/Unity-Proj/Zombtoy/Library/PackageCache/com.unity.ext.nunit@1.0.6/net35/unity-custom\" -s=\"/Users/gabewkung/Desktop/some-migration-stuff/Unity-Proj/Zombtoy/Library/PackageCache/com.unity.nuget.newtonsoft-json@3.2.1/Runtime\" -o=\"Library/BuildPlayerData/Editor\" -rn=\"\" -tn=\"TypeDb-All.json\"",
       "Inputs": [
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/netcorerun/netcorerun",
         "/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/BuildPlayerDataGenerator/BuildPlayerDataGenerator.exe",
@@ -39405,7 +39464,7 @@
   ],
   "StatSignatures": [
     {
-      "File": "/Users/gabewkung/Desktop/some migration stuff/Unity Proj/Zombtoy/getconf"
+      "File": "/Users/gabewkung/Desktop/some-migration-stuff/Unity-Proj/Zombtoy/getconf"
     },
     {
       "File": "Assets/csc.rsp"
@@ -39635,6 +39694,6 @@
   "SharedResources": [],
   "Scanners": [],
   "Identifier": "Library/Bee/2000b0aE.dag.json",
-  "PayloadsFile": "/Users/gabewkung/Desktop/some migration stuff/Unity Proj/Zombtoy/Library/Bee/2000b0aE.dag.payloads",
+  "PayloadsFile": "/Users/gabewkung/Desktop/some-migration-stuff/Unity-Proj/Zombtoy/Library/Bee/2000b0aE.dag.payloads",
   "RelativePathToRoot": "../.."
 }

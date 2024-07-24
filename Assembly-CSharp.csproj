@@ -56,6 +56,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Analyzer Include="/Applications/Visual Studio.app/Contents/Resources/lib/monodevelop/AddIns/MonoDevelop.Unity/Analyzers/Microsoft.Unity.Analyzers.dll" />
+    <Analyzer Include="/Users/gabewkung/Desktop/some-migration-stuff/Unity-Proj/Zombtoy/Assets/Imported/JMO Assets/Editor/JMOAssets_CartoonFXFreeWelcome.dll" />
     <Analyzer Include="/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll" />
     <Analyzer Include="/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
@@ -144,12 +145,14 @@
     <None Include="Assets/JMO Assets/WarFX/Shaders/WFX_S Particle Multiply A8.shader" />
     <None Include="Assets/ProjectSettings/ProjectVersion.txt" />
     <None Include="Assets/JMO Assets/WarFX/Shaders/WFX_S AlphaBlend Scroll.shader" />
+    <None Include="Assets/Scripts/Server/zombtoy-backend/node_modules/typescript/LICENSE.txt" />
     <None Include="Assets/Imported/JMO Assets/Cartoon FX/Shaders/CFXM_MobileParticleAdd_Alpha8.shader" />
     <None Include="Assets/JMO Assets/WarFX/Shaders/WFX_S Particle AddSoft A8.shader" />
     <None Include="Assets/JMO Assets/WarFX/!WarFX Readme.txt" />
     <None Include="Assets/JMO Assets/WarFX/Shaders/WFX_S Alpha-Diffuse TintColor.shader" />
     <None Include="Assets/vesmir/Sci-Fi Styled Modular Pack/Readme.txt" />
     <None Include="Assets/JMO Assets/WarFX/Shaders/WFX_S AlphaBlend NoSoftParticles.shader" />
+    <None Include="Assets/Scripts/Server/zombtoy-backend/node_modules/typescript/ThirdPartyNoticeText.txt" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
