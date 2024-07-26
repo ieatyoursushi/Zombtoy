@@ -4,8 +4,9 @@ using UnityEngine;
 using UnityEngine.Networking;
 using System.Net.Http;
 using System.Threading.Tasks;
+using UnityEngine.UI;
 
-public class RequestPacket : MonoBehaviour
+public class RequestPacket  
 {
     private string url;
     private string data;
@@ -43,19 +44,44 @@ public class RequestPacket : MonoBehaviour
                 response.EnsureSuccessStatusCode();
                 string responseBody = await response.Content.ReadAsStringAsync();
                 string[] pages = url.Split('/');
-                int page = pages.Length - 1;
 
-                Debug.Log(pages[page] + ":\nReceived: " + responseBody);
+                Debug.Log(pages[pages.Length - 1] + ":\nReceived: " + responseBody);
                 return responseBody;
             }
             catch (HttpRequestException e)
             {
                 string[] pages = url.Split('/');
-                int page = pages.Length - 1;
 
-                Debug.LogError(pages[page] + ": Error: " + e.Message);
+                Debug.LogError(pages[pages.Length - 1] + ": Error: " + e.Message);
                 return null;
             }
+        }
+    }
+    public async Task<string> postRequest(string url, string data)
+    {
+        try
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                Debug.Log(url);
+                //Application of polymorphism
+                HttpContent content = new StringContent(data);
+                HttpResponseMessage response = await client.PostAsync(url, content);
+                response.EnsureSuccessStatusCode();
+                string responseBody = await response.Content.ReadAsStringAsync();
+                string[] pages = url.Split('/');
+
+                Debug.Log(pages[pages.Length - 1] + ":\nReceived: " + responseBody);
+                return responseBody; 
+
+        
+            }
+
+        } catch (HttpRequestException e)
+        {
+            string[] pages = url.Split('/');
+            Debug.LogError(pages[pages.Length - 1] + ": Error: " + e.Message);
+            return null;
         }
     }
 
@@ -68,21 +94,49 @@ public class Highscore
 }
 public class Leaderboard : MonoBehaviour
 {
-    RequestPacket apiTest = new RequestPacket("https://12d0099a-1529-4de2-9468-c224649003b1-00-187mkm0yvrntp.janeway.replit.dev:3000/amountOfUsers");
-    RequestPacket serverGetTest = new RequestPacket("http://localhost:3000/getAllScores");
-    async void Start()
+    private RequestPacket apiTest = new RequestPacket("https://12d0099a-1529-4de2-9468-c224649003b1-00-187mkm0yvrntp.janeway.replit.dev:3000/amountOfUsers");
+    private RequestPacket scoreStorage = new RequestPacket("http://localhost:3000/");
+    public string[] scoresArray;
+    //leaderboard ui section
+    public GameObject scrollPanel;
+    public float scrollPanelHeight;
+    public GameObject placeholder;
+    private async void Start() 
     {
+ 
+        string scoreData = await scoreStorage.getRequest(scoreStorage.getUrl() + "getAllScores");
+        scoresArray = formatScores(scoreData);
+        RectTransform ScrollPanelRT = scrollPanel.GetComponent<RectTransform>();
+        scrollPanelHeight = ScrollPanelRT.sizeDelta.y;
+        createScoreBoard(ScrollPanelRT);
+        await scoreStorage.postRequest(scoreStorage.getUrl() + "addScore", 10000.ToString());
+
         //StartCoroutine(getRequest(apiTest.getUrl()));
         //StartCoroutine(getRequest(serverGetTest.getUrl()));
-        await serverGetTest.getRequest(serverGetTest.getUrl());
-        
+    }
+    private void createScoreBoard(RectTransform ScrollPanelRT)
+    {
+        //crate method that sorts scores from greatest to least.
+
+        for(int i = 0; i < scoresArray.Length; i++)
+        {
+            GameObject scoreText = Instantiate(placeholder, scrollPanel.transform);
+            scoreText.transform.GetChild(0).GetComponent<Text>().text = "Score " + (i + 1).ToString() + ":";
+            scoreText.transform.GetChild(1).GetComponent<Text>().text = string.Format("{0:n0}", int.Parse(scoresArray[i]));
+        }
     }
     //branch out to later
-    async Task<int> getResult()
+    string[] formatScores(string scoreData)
     {
-        Debug.Log(await serverGetTest.getRequest(serverGetTest.getUrl()));
-            return 0;
+        return scoreData.Split(',');
     }
+    private void Update()
+    {
+        
+    }
+
+
+
 
 
 
@@ -132,9 +186,5 @@ public class Leaderboard : MonoBehaviour
             }
         }
     }
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+ 
 }

@@ -4,8 +4,10 @@
   "description": "highscore database",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "ts-auto" : "tsc index.ts --outFile index.js -w"
   },
+   
   "author": "",
   "license": "ISC",
   "dependencies": {

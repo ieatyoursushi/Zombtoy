@@ -5,7 +5,7 @@
       <File FileName="Assets/Scripts/Rocket.cs" />
       <File FileName="Assets/Scripts/Tornado.cs" />
       <File FileName="Assets/Scripts/Player/PlayerMovement.cs" />
-      <File FileName="Assets/Scripts/Server/Leaderboard.cs" Line="90" Column="6" />
+      <File FileName="Assets/Scripts/Server/Leaderboard.cs" Line="42" Column="75" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
