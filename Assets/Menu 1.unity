@@ -1363,7 +1363,6 @@ GameObject:
   - component: {fileID: 1572426641}
   - component: {fileID: 1572426648}
   - component: {fileID: 1572426647}
-  - component: {fileID: 1572426649}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1518,18 +1517,6 @@ MonoBehaviour:
   highscoreText: {fileID: 1381620769}
   MonstersKilled: {fileID: 2026000993}
   score: {fileID: 1875725575}
---- !u!114 &1572426649
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1572426640}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a23eb842e483435e9dfeaf4413a8e70, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1732073503
 GameObject:
   m_ObjectHideFlags: 0

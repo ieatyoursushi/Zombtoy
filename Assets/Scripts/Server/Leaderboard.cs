@@ -5,7 +5,8 @@ using UnityEngine.Networking;
 using System.Net.Http;
 using System.Threading.Tasks;
 using UnityEngine.UI;
-
+using System;
+using System.Linq;
 public class RequestPacket  
 {
     private string url;
@@ -73,8 +74,6 @@ public class RequestPacket
 
                 Debug.Log(pages[pages.Length - 1] + ":\nReceived: " + responseBody);
                 return responseBody; 
-
-        
             }
 
         } catch (HttpRequestException e)
@@ -84,7 +83,6 @@ public class RequestPacket
             return null;
         }
     }
-
 }
 //up for modi
 public class Highscore
@@ -95,24 +93,38 @@ public class Highscore
 public class Leaderboard : MonoBehaviour
 {
     private RequestPacket apiTest = new RequestPacket("https://12d0099a-1529-4de2-9468-c224649003b1-00-187mkm0yvrntp.janeway.replit.dev:3000/amountOfUsers");
-    private RequestPacket scoreStorage = new RequestPacket("http://localhost:3000/");
+    public RequestPacket scoreStorage = new RequestPacket("http://localhost:3000/");
     public string[] scoresArray;
+    int[] scoresArrayComp;
     //leaderboard ui section
     public GameObject scrollPanel;
     public float scrollPanelHeight;
     public GameObject placeholder;
+    public GameObject[] placeholders;
     private async void Start() 
     {
- 
         string scoreData = await scoreStorage.getRequest(scoreStorage.getUrl() + "getAllScores");
         scoresArray = formatScores(scoreData);
         RectTransform ScrollPanelRT = scrollPanel.GetComponent<RectTransform>();
         scrollPanelHeight = ScrollPanelRT.sizeDelta.y;
+        scoresArray = sortScoreArray();
         createScoreBoard(ScrollPanelRT);
-        await scoreStorage.postRequest(scoreStorage.getUrl() + "addScore", 10000.ToString());
-
+        adjustScrollHeight(ScrollPanelRT);
         //StartCoroutine(getRequest(apiTest.getUrl()));
         //StartCoroutine(getRequest(serverGetTest.getUrl()));
+    }
+    private string[] sortScoreArray()
+    {
+        scoresArrayComp = new int[scoresArray.Length];
+        string[] sortedArray = new string[scoresArray.Length];
+        for(int i = 0; i < scoresArray.Length; i++)
+        {
+            scoresArrayComp[i] = int.Parse(scoresArray[i]);
+        }
+        Array.Sort(scoresArrayComp);
+        Array.Reverse(scoresArrayComp);
+        sortedArray = Array.ConvertAll(scoresArrayComp, i => i.ToString());
+        return sortedArray;
     }
     private void createScoreBoard(RectTransform ScrollPanelRT)
     {
@@ -125,6 +137,16 @@ public class Leaderboard : MonoBehaviour
             scoreText.transform.GetChild(1).GetComponent<Text>().text = string.Format("{0:n0}", int.Parse(scoresArray[i]));
         }
     }
+    private void adjustScrollHeight(RectTransform ScrollPanelRT)
+    {
+        float placeholderHeight = placeholder.GetComponent<RectTransform>().sizeDelta.y  + scrollPanel.GetComponent<VerticalLayoutGroup>().spacing;
+        float totalPlaceholderHeight = placeholderHeight * (scoresArray.Length + 1);
+        if(totalPlaceholderHeight > scrollPanelHeight)
+        {
+            scrollPanelHeight = totalPlaceholderHeight;
+            ScrollPanelRT.sizeDelta = new Vector2(ScrollPanelRT.sizeDelta.x, totalPlaceholderHeight);
+        }
+    }
     //branch out to later
     string[] formatScores(string scoreData)
     {
@@ -132,13 +154,8 @@ public class Leaderboard : MonoBehaviour
     }
     private void Update()
     {
-        
+        //await scoreStorage.postRequest(scoreStorage.getUrl() + "addScore", 10000.ToString());
     }
-
-
-
-
-
 
     //backup code, using asynchrnous instead of coruotinges.
     IEnumerator getRequest(string url)

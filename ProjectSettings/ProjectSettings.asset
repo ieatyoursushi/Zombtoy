@@ -846,7 +846,9 @@ PlayerSettings:
   vrEditorSettings: {}
   cloudServicesEnabled:
     Collab: 0
+    Purchasing: 0
     UNet: 1
+    Unity Ads: 0
   luminIcon:
     m_Name: 
     m_ModelFolderPath: 
