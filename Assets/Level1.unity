@@ -754,7 +754,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Tornado: {fileID: 1265294356284698, guid: 8446c159e204c1c45a0ab6d2820df6c6, type: 3}
-  coolDown: 18.5
+  coolDown: 151
+  timer: 0
   Slider: {fileID: 589508504}
 --- !u!1 &121333185
 GameObject:
@@ -14268,6 +14269,16 @@ PrefabInstance:
       propertyPath: playerHealth
       value: 
       objectReference: {fileID: 1559539635}
+    - target: {fileID: 8478087653147996736, guid: f3d05f7d03db7422fbfbbf3bb45832d6,
+        type: 3}
+      propertyPath: ammo
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8478087653147996736, guid: f3d05f7d03db7422fbfbbf3bb45832d6,
+        type: 3}
+      propertyPath: Capacity
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 8478087653147996736, guid: f3d05f7d03db7422fbfbbf3bb45832d6,
         type: 3}
       propertyPath: ammoText

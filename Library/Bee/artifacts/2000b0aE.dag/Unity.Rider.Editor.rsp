@@ -30,7 +30,6 @@
 -define:UNITY_2022_2_OR_NEWER
 -define:UNITY_2022_3_OR_NEWER
 -define:UNITY_INCLUDE_TESTS
--define:UNITY_ANALYTICS
 -define:ENABLE_AUDIO
 -define:ENABLE_CLOTH
 -define:ENABLE_MULTIPLE_DISPLAYS
@@ -330,7 +329,6 @@
 -r:"Library/Bee/artifacts/2000b0aE.dag/UnityEngine.UI.ref.dll"
 -analyzer:"/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll"
 -analyzer:"/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
--analyzer:"Assets/Imported/JMO Assets/Editor/JMOAssets_CartoonFXFreeWelcome.dll"
 "Library/PackageCache/com.unity.ide.rider@3.0.28/Rider/Editor/Discovery.cs"
 "Library/PackageCache/com.unity.ide.rider@3.0.28/Rider/Editor/EditorPluginInterop.cs"
 "Library/PackageCache/com.unity.ide.rider@3.0.28/Rider/Editor/LoggingLevel.cs"

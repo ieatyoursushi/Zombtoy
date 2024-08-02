@@ -798,7 +798,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Tornado: {fileID: 1265294356284698, guid: 8446c159e204c1c45a0ab6d2820df6c6, type: 3}
-  coolDown: 18
+  coolDown: 151
+  timer: 0
   Slider: {fileID: 589508504}
 --- !u!1 &121333185
 GameObject:
@@ -12868,7 +12869,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 544f2064df03e95419b4a5147c506b08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHealth: 200
+  startingHealth: 400
   currentHealth: 0
   healthSlider: {fileID: 1322577664}
   damageImage: {fileID: 1423343247}

@@ -460,6 +460,8 @@ MonoBehaviour:
   NavAgent_Speed: 0
   HPSlider: {fileID: 1337776348532666}
   ZombieCount: {fileID: 0}
+  TornadoLaunch: {fileID: 0}
+  coolDownReducer: 3
 --- !u!195 &195548822331220600
 NavMeshAgent:
   m_ObjectHideFlags: 0

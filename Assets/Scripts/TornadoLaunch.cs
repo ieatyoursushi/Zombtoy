@@ -5,13 +5,19 @@ using UnityEngine.UI;
 public class TornadoLaunch : MonoBehaviour {
     public GameObject Tornado;
     public float coolDown;
-    float timer;
+    public float timer;
     public GameObject Slider;
     PlayerHealth playerHealth;
     // Use this for initialization
+ 
     private void Awake()
     {
         playerHealth = GameObject.Find("Player").GetComponent<PlayerHealth>(); 
+    }
+    public void SetCoolDown(float coolDownReducer)
+    {
+        this.timer = coolDownReducer;
+        
     }
     void Start () {
         Slider.GetComponent<Slider>().maxValue = coolDown;

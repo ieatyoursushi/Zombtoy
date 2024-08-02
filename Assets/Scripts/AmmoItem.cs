@@ -42,7 +42,7 @@ public class AmmoItem : MonoBehaviour {
             }
             if (rocketLauncherAmmo != null)
             {
-                rocketLauncherAmmo.Capacity += rocketLauncherAmmo.maxAmmo * 2;
+                rocketLauncherAmmo.Capacity += rocketLauncherAmmo.maxAmmo * 1;
             }
 
             ammoPickup.Play();

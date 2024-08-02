@@ -31,6 +31,8 @@ public class EnemyHealth : MonoBehaviour
     public GameObject HPSlider;
     bool hpslider;
     public zombieCount ZombieCount;
+    public TornadoLaunch TornadoLaunch;
+    public float coolDownReducer; 
     void Awake ()
     {
         anim = GetComponent <Animator> ();
@@ -40,6 +42,7 @@ public class EnemyHealth : MonoBehaviour
         navMeshAgent = gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>();
         currentHealth = startingHealth;
         ZombieCount = GameObject.Find("ZombieCount").GetComponent<zombieCount>();
+        TornadoLaunch = GameObject.Find("TornadoLauncher").GetComponent<TornadoLaunch>();
     }
     public float SlowEffect_Duration (float effectDuration)
     {
@@ -127,7 +130,7 @@ public class EnemyHealth : MonoBehaviour
         isDead = true;
         this.HPSlider.SetActive(false);
         capsuleCollider.isTrigger = true;
-
+        TornadoLaunch.SetCoolDown(TornadoLaunch.timer + coolDownReducer);
         anim.SetTrigger ("Dead");
 
         enemyAudio.clip = deathClip;

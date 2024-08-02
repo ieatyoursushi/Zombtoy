@@ -5258,7 +5258,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9b9d14572410594cb85d40eedfb150c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHealth: 270
+  startingHealth: 330
   currentHealth: 0
   sinkSpeed: 5
   scoreValue: 150
@@ -5274,6 +5274,8 @@ MonoBehaviour:
   NavAgent_Speed: 0
   HPSlider: {fileID: 1907094923040078}
   ZombieCount: {fileID: 0}
+  TornadoLaunch: {fileID: 0}
+  coolDownReducer: 18
 --- !u!114 &114409463046387250
 MonoBehaviour:
   m_ObjectHideFlags: 0

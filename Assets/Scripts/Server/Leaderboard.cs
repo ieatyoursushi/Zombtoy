@@ -51,10 +51,11 @@ public class RequestPacket
             }
             catch (HttpRequestException e)
             {
+                
                 string[] pages = url.Split('/');
 
-                Debug.LogError(pages[pages.Length - 1] + ": Error: " + e.Message);
-                return null;
+                Debug.Log(pages[pages.Length - 1] + ": Error: " + e.Message);
+                return "Error 404: Unable to retrieve: " + e.Message;
             }
         }
     }
@@ -115,16 +116,23 @@ public class Leaderboard : MonoBehaviour
     }
     private string[] sortScoreArray()
     {
-        scoresArrayComp = new int[scoresArray.Length];
-        string[] sortedArray = new string[scoresArray.Length];
-        for(int i = 0; i < scoresArray.Length; i++)
+        try
         {
-            scoresArrayComp[i] = int.Parse(scoresArray[i]);
+            scoresArrayComp = new int[scoresArray.Length];
+            string[] sortedArray = new string[scoresArray.Length];
+            for (int i = 0; i < scoresArray.Length; i++)
+            {
+                scoresArrayComp[i] = int.Parse(scoresArray[i]);
+            }
+            Array.Sort(scoresArrayComp);
+            Array.Reverse(scoresArrayComp);
+            sortedArray = Array.ConvertAll(scoresArrayComp, i => i.ToString());
+            return sortedArray;
+        } catch (Exception e)
+        {
+            string[] errorMsg = { e.Message };
+            return errorMsg;
         }
-        Array.Sort(scoresArrayComp);
-        Array.Reverse(scoresArrayComp);
-        sortedArray = Array.ConvertAll(scoresArrayComp, i => i.ToString());
-        return sortedArray;
     }
     private void createScoreBoard(RectTransform ScrollPanelRT)
     {
@@ -133,8 +141,18 @@ public class Leaderboard : MonoBehaviour
         for(int i = 0; i < scoresArray.Length; i++)
         {
             GameObject scoreText = Instantiate(placeholder, scrollPanel.transform);
-            scoreText.transform.GetChild(0).GetComponent<Text>().text = "Score " + (i + 1).ToString() + ":";
-            scoreText.transform.GetChild(1).GetComponent<Text>().text = string.Format("{0:n0}", int.Parse(scoresArray[i]));
+            try
+            {
+                scoreText.transform.GetChild(0).GetComponent<Text>().text = "Score " + (i + 1).ToString() + ":";
+                scoreText.transform.GetChild(1).GetComponent<Text>().text = string.Format("{0:n0}", int.Parse(scoresArray[i]));
+            } catch (Exception e)
+            {
+                scoreText.transform.GetChild(0).GetComponent<Text>().fontSize = 36;
+                scoreText.transform.GetChild(1).GetComponent<Text>().fontSize = 24;
+                scoreText.transform.GetChild(0).GetComponent<Text>().color = new Color(255, 0, 0);
+                scoreText.transform.GetChild(0).GetComponent<Text>().text = "404: Connection failed:";
+                scoreText.transform.GetChild(1).GetComponent<Text>().text = string.Format("{0:n0}", scoresArray[i]);
+            }
         }
     }
     private void adjustScrollHeight(RectTransform ScrollPanelRT)
