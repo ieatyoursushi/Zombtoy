@@ -4,11 +4,14 @@
 #
 /[Ll]ibrary/
 /[Tt]emp/
-/[Oo]bj/
 /[Bb]uild/
 /[Bb]uilds/
 /[Ll]ogs/
 /[Mm]emoryCaptures/
+
+# Ignore build artifacts anywhere (Unity, .NET)
+**/[Oo]bj/
+**/[Bb]in/
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
@@ -31,6 +34,9 @@ ExportedObj/
 *.csproj
 *.unityproj
 *.sln
+
+# Allow backend .csproj files to be committed
+!/Backend/**/*.csproj
 *.suo
 *.tmp
 *.user
@@ -88,3 +94,16 @@ UserSettings/
 
 # Additional Unity-specific ignores
 /[Aa]ssets/AssetStoreTools*
+
+# Backend local artifacts
+/Backend/**/zombtoy.db
+/Backend/**/scores.csv
+
+# IDE/editor
+/.idea/
+/.vscode/
+
+# Legacy Node backend (removed)
+/Assets/Scripts/Server/zombtoy-backend/
+# Node
+node_modules/

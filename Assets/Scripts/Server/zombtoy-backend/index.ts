@@ -1,5 +1,5 @@
-const express = require("express");
-const fs = require("fs");
+import express from "express";
+import * as fs from "fs";
 const server = express();
 const port: number = 3000;
 //let thisnum: number = 30;

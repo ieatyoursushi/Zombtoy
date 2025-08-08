@@ -86,7 +86,7 @@ public class RequestPacket
     }
 }
 //up for modi
-public class Highscore
+public struct Highscore
 {
     public string score;
     public string date; //[sep date class with timezone included];
@@ -150,7 +150,7 @@ public class Leaderboard : MonoBehaviour
                 scoreText.transform.GetChild(0).GetComponent<Text>().fontSize = 36;
                 scoreText.transform.GetChild(1).GetComponent<Text>().fontSize = 24;
                 scoreText.transform.GetChild(0).GetComponent<Text>().color = new Color(255, 0, 0);
-                scoreText.transform.GetChild(0).GetComponent<Text>().text = "404: Connection failed:";
+                scoreText.transform.GetChild(0).GetComponent<Text>().text = $"404: Connection failed: {e.Message}";
                 scoreText.transform.GetChild(1).GetComponent<Text>().text = string.Format("{0:n0}", scoresArray[i]);
             }
         }
