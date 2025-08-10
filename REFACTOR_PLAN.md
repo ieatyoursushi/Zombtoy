@@ -20,9 +20,7 @@ Successfully transformed the Zombtoy codebase from a legacy monolithic structure
 - ✅ 100% backward compatibility maintained
 
 **Technical Metrics:**
-- 69 files changed
-- 8,325 lines added (new architecture)  
-- 31,746 lines removed (legacy code)
+- 69 files changed / added
 - Zero breaking changes to gameplay
 
 ---
