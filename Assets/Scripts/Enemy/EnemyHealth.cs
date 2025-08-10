@@ -1,6 +1,11 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
+
+/// <summary>
+/// Enemy health system with event integration
+/// Now properly integrated with the centralized systems
+/// </summary>
 public class EnemyHealth : MonoBehaviour
 {
     public int startingHealth = 100;
@@ -41,8 +46,18 @@ public class EnemyHealth : MonoBehaviour
         capsuleCollider = GetComponent <CapsuleCollider> ();
         navMeshAgent = gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>();
         currentHealth = startingHealth;
-        ZombieCount = GameObject.Find("ZombieCount").GetComponent<zombieCount>();
-        TornadoLaunch = GameObject.Find("TornadoLauncher").GetComponent<TornadoLaunch>();
+        
+        // Use safer lookups with null checks
+        var zombieCountGO = GameObject.Find("ZombieCount");
+        if (zombieCountGO != null)
+            ZombieCount = zombieCountGO.GetComponent<zombieCount>();
+            
+        var tornadoGO = GameObject.Find("TornadoLauncher");
+        if (tornadoGO != null)
+            TornadoLaunch = tornadoGO.GetComponent<TornadoLaunch>();
+            
+        // Register with EnemyManager
+        GameEvents.EnemySpawned(gameObject);
     }
     public float SlowEffect_Duration (float effectDuration)
     {
@@ -135,12 +150,12 @@ public class EnemyHealth : MonoBehaviour
 
         enemyAudio.clip = deathClip;
         enemyAudio.Play ();
-        ScoreManager.MonsterKills += 1;
+        // Monster kill will be handled by GameEvents when StartSinking is called
         if (DeathParticle != null)
         {
             Invoke("deathparticles" , 0.2f);
         }
-        ZombieCount.entityCount--;
+    // Counter updates are handled centrally via GameEvents and EnemyManager
     }
     void deathparticles()
     {
@@ -150,11 +165,19 @@ public class EnemyHealth : MonoBehaviour
 
     public void StartSinking ()
     {
-        ScoreManager.score += scoreValue;
+        // Fire death event for score and kill count
+        GameEvents.EnemyKilled(scoreValue, transform.position);
+        
         GetComponent <UnityEngine.AI.NavMeshAgent> ().enabled = false;
         GetComponent <Rigidbody> ().isKinematic = true;
         isSinking = true;
-        //ScoreManager.score += scoreValue;
+        
         Destroy (gameObject, 2f);
+    }
+    
+    void OnDestroy()
+    {
+        // Ensure cleanup when destroyed
+        GameEvents.EnemyDestroyed(gameObject);
     }
 }

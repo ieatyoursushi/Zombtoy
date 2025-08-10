@@ -5,22 +5,33 @@ public class EnemyAttack : MonoBehaviour
 {
     public float timeBetweenAttacks = 0.5f;
     public int attackDamage = 10;
-    EnemyHealth enemyHealth;
+    [SerializeField] private EnemyHealth enemyHealth;
 
     Animator anim;
-    GameObject player;
-    PlayerHealth playerHealth;
+    [SerializeField] private GameObject player;
+    [SerializeField] private PlayerHealth playerHealth;
     //EnemyHealth enemyHealth;
     bool playerInRange;
     float timer;
 
     void Awake ()
     {
-        player = GameObject.FindGameObjectWithTag ("Player");
-        playerHealth = player.GetComponent <PlayerHealth> ();
-        //enemyHealth = GetComponent<EnemyHealth>();
-        anim = GetComponent <Animator> ();
-        enemyHealth = GetComponent<EnemyHealth>();
+        if (player == null)
+        {
+            player = GameObject.FindGameObjectWithTag("Player") ?? GameObject.Find("Player");
+        }
+        if (playerHealth == null && player != null)
+        {
+            playerHealth = player.GetComponent<PlayerHealth>();
+        }
+        if (anim == null)
+        {
+            anim = GetComponent<Animator>();
+        }
+        if (enemyHealth == null)
+        {
+            enemyHealth = GetComponent<EnemyHealth>();
+        }
     }
 
     private void Start()
@@ -56,12 +67,12 @@ public class EnemyAttack : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        if(timer >= timeBetweenAttacks && playerInRange && enemyHealth.currentHealth > 0)
+    if(timer >= timeBetweenAttacks && playerInRange && enemyHealth != null && enemyHealth.currentHealth > 0)
         {
             Attack ();
         }
 
-        if(playerHealth.currentHealth <= 0)
+    if(playerHealth != null && playerHealth.currentHealth <= 0)
         {
             anim.SetTrigger ("PlayerDead");
         }
@@ -72,7 +83,7 @@ public class EnemyAttack : MonoBehaviour
     {
         timer = 0f;
 
-        if(playerHealth.currentHealth > 0)
+    if(playerHealth != null && playerHealth.currentHealth > 0)
         {
             playerHealth.TakeDamage (attackDamage);
         }

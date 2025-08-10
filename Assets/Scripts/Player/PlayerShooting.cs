@@ -16,11 +16,11 @@ public class PlayerShooting : MonoBehaviour
     float effectsDisplayTime = 0.2f;
     public Ammo ammoScript;
     public float reloadTimer;
-    public PlayerHealth playerHealth;
+    [SerializeField] public PlayerHealth playerHealth;
     RaycastHit aim;
-    GameObject aimCross;
+    [SerializeField] GameObject aimCross;
     bool inRange;
-    Pause pause;
+    [SerializeField] private Pause pause;
     void Awake ()
     {
         shootableMask = LayerMask.GetMask ("Shootable");
@@ -28,9 +28,20 @@ public class PlayerShooting : MonoBehaviour
         gunLine = GetComponent <LineRenderer> ();
         gunAudio = GetComponent<AudioSource> ();
         gunLight = GetComponent<Light> ();
-        playerHealth = GameObject.Find("Player").GetComponent<PlayerHealth>();
-        aimCross = GameObject.Find("Cross");
-        pause = GameObject.Find("HUDCanvasd").GetComponent<Pause>();
+        if (playerHealth == null)
+        {
+            var playerGo = GameObject.FindWithTag("Player") ?? GameObject.Find("Player");
+            if (playerGo != null) playerHealth = playerGo.GetComponent<PlayerHealth>();
+        }
+        if (aimCross == null)
+        {
+            aimCross = GameObject.Find("Cross");
+        }
+        if (pause == null)
+        {
+            var hud = GameObject.Find("HUDCanvasd");
+            if (hud != null) pause = hud.GetComponent<Pause>();
+        }
     }
 
 
@@ -63,7 +74,7 @@ public class PlayerShooting : MonoBehaviour
                     inRange = false;
                 }
             }
-            if (pause.isPaused)
+            if (pause != null && pause.isPaused)
             {
                 aimCross.SetActive(false);
             }
@@ -83,7 +94,7 @@ public class PlayerShooting : MonoBehaviour
 
     void Shoot ()
     {
-        if (ammoScript.ammo > 0 && ammoScript.ammoText != null && !ammoScript.ReloadCheck.reload && !playerHealth.isDead)
+    if (ammoScript != null && ammoScript.ammo > 0 && ammoScript.ammoText != null && ammoScript.ReloadCheck != null && !ammoScript.ReloadCheck.reload && playerHealth != null && !playerHealth.isDead)
         {
             ammoScript.ammo--;
 

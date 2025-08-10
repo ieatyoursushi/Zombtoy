@@ -15,9 +15,34 @@ public class AmmoItem : MonoBehaviour {
     public Transform gameObjectSpawnPoint;
     // Use this for initialization
     void Start () {
-        playerHealth = GameObject.Find("Player").GetComponent<PlayerHealth>();
-        itemManager = GameObject.Find("ItemManager (1)").GetComponent<ItemManager>();
-        ammoPickup = GameObject.Find("AmmoSound").GetComponent<AudioSource>();
+        var playerGO = GameObject.Find("Player");
+        if (playerGO != null)
+        {
+            playerHealth = playerGO.GetComponent<PlayerHealth>();
+            if (playerHealth == null)
+            {
+                var phr = playerGO.GetComponent<PlayerHealthRefactored>();
+                if (phr != null)
+                {
+                    var proxyType = System.Type.GetType("PlayerHealthProxy");
+                    if (proxyType != null)
+                    {
+                        var mb = playerGO.AddComponent(proxyType) as MonoBehaviour;
+                        var proxy = mb as PlayerHealth;
+                        if (proxy != null)
+                        {
+                            playerGO.SendMessage("Bind", phr, SendMessageOptions.DontRequireReceiver);
+                            playerHealth = proxy;
+                        }
+                    }
+                }
+            }
+        }
+
+        var im1 = GameObject.Find("ItemManager (1)");
+        if (im1 != null) itemManager = im1.GetComponent<ItemManager>();
+        var ammoSnd = GameObject.Find("AmmoSound");
+        if (ammoSnd != null) ammoPickup = ammoSnd.GetComponent<AudioSource>();
 	}
     private void OnTriggerEnter(Collider col)
     {
@@ -45,19 +70,21 @@ public class AmmoItem : MonoBehaviour {
                 rocketLauncherAmmo.Capacity += rocketLauncherAmmo.maxAmmo * 1;
             }
 
-            ammoPickup.Play();
+            if (ammoPickup != null) ammoPickup.Play();
  
-            ScoreManager.score++;
-            this.itemManager.ItemAmount--;
+            ScoreManager.Instance.AddScore(1);
+            if (this.itemManager != null) this.itemManager.ItemAmount--;
             StartCoroutine(DestroyAndAddSpawnPoint());
-            gameObject.GetComponent<Collider>().enabled = false;
+            var col2 = gameObject.GetComponent<Collider>();
+            if (col2 != null) col2.enabled = false;
              
         }
     }
     IEnumerator DestroyAndAddSpawnPoint()
     {
         yield return new WaitForSeconds(0f);
-        for(int i = 0; i < itemManager.spawnPoints.Length; i++)
+    if (itemManager == null || itemManager.spawnPoints == null) { Destroy(gameObject); yield break; }
+    for(int i = 0; i < itemManager.spawnPoints.Length; i++)
         {
             if(itemManager.spawnPoints[i] == gameObjectSpawnPoint)
             {

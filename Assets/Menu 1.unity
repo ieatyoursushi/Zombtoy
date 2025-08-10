@@ -506,6 +506,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 547521675}
   m_CullTransparentMesh: 1
+--- !u!1 &559281475
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 559281477}
+  - component: {fileID: 559281476}
+  m_Layer: 0
+  m_Name: ScoreManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &559281476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 559281475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec57250cf57754145a99895133f8cdf9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  logOnStart: 1
+  logOnUpdate: 0
+--- !u!4 &559281477
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 559281475}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.4726505, y: 11.276306, z: -2.9509072}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &579332885
 GameObject:
   m_ObjectHideFlags: 0
@@ -1363,6 +1409,7 @@ GameObject:
   - component: {fileID: 1572426641}
   - component: {fileID: 1572426648}
   - component: {fileID: 1572426647}
+  - component: {fileID: 1572426649}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1509,9 +1556,24 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1572426640}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d032af4b28ca61441b2d854e5654dde3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highscoreText: {fileID: 1381620769}
+  MonstersKilled: {fileID: 2026000993}
+  score: {fileID: 1875725575}
+--- !u!114 &1572426649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1572426640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17f05647432b14f729c1638b7cedca42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   highscoreText: {fileID: 1381620769}
@@ -2019,3 +2081,4 @@ SceneRoots:
   - {fileID: 439387996}
   - {fileID: 1572426646}
   - {fileID: 56837665}
+  - {fileID: 559281477}

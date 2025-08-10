@@ -16,12 +16,12 @@ public class MuteButton : MonoBehaviour {
         {
             image.SetActive(true);
             muted = true;
-            MusicManager.MusicOn = true;
+            MusicManager.Instance.SetMuted(false); // Inverted logic: muted=true means sound ON
         } else if (muted)
         {
             image.SetActive(false);
             muted = false;
-            MusicManager.MusicOn = false;
+            MusicManager.Instance.SetMuted(true); // Inverted logic: muted=false means sound OFF
         }
         Debug.Log(muted);
 

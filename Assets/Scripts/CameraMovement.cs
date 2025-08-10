@@ -12,14 +12,22 @@ public class CameraMovement : MonoBehaviour {
     Rigidbody rb;
     Vector3 velocity;
     bool walking;
-    Pause pause;
-    Sensitivity sensitivity;
+    [SerializeField] private Pause pause;
+    [SerializeField] private Sensitivity sensitivity;
     // Use this for initialization
     private void Awake()
     {
         anim = GetComponent<Animator>();
-        pause = GameObject.Find("HUDCanvasd").GetComponent<Pause>();
-        sensitivity = GameObject.Find("Sensitivity").GetComponent<Sensitivity>();
+        if (pause == null)
+        {
+            var hud = GameObject.Find("HUDCanvasd");
+            if (hud != null) pause = hud.GetComponent<Pause>();
+        }
+        if (sensitivity == null)
+        {
+            var sens = GameObject.Find("Sensitivity");
+            if (sens != null) sensitivity = sens.GetComponent<Sensitivity>();
+        }
     }
     void Start () {
         Cursor.lockState = CursorLockMode.Locked;
@@ -30,18 +38,18 @@ public class CameraMovement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         MouseLook();
-        if(Input.GetButtonDown("Fire1") && !pause.isPaused)
+    if(Input.GetButtonDown("Fire1") && pause != null && !pause.isPaused)
         {
             Cursor.lockState = CursorLockMode.Locked;
         }
-        if (pause.isPaused)
+    if (pause != null && pause.isPaused)
         {
             mouseSensitivity = Sensitivity.sensitivityValue / 100;
         }
     }
     void MouseLook()
     {
-        if (!pause.isPaused)
+    if (pause == null || !pause.isPaused)
         {
             Vector2 mouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y")); // x rotates y direction, y rotates x direction
             camerPitch -= mouseDelta.y * mouseSensitivity;
