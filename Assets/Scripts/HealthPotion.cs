@@ -9,10 +9,47 @@ public class HealthPotion : MonoBehaviour {
     public Transform gameObjectSpawnPoint;
     // Use this for initialization
     void Start () {
-        // will find the components that are required
-        playerHealth = GameObject.Find("Player").GetComponent<PlayerHealth>();
-        healing = GameObject.Find("HealthAudio").GetComponent<AudioSource>();
-        itemManager = GameObject.Find("ItemManager").GetComponent<ItemManager>();
+        // will find the components that are required (null-safe)
+        if (playerHealth == null)
+        {
+            var playerGO = GameObject.Find("Player");
+            if (playerGO != null)
+            {
+                playerHealth = playerGO.GetComponent<PlayerHealth>();
+                if (playerHealth == null)
+                {
+                    var phr = playerGO.GetComponent<PlayerHealthRefactored>();
+                    if (phr != null)
+                    {
+                        var proxyType = System.Type.GetType("PlayerHealthProxy");
+                        PlayerHealth proxy = null;
+                        if (proxyType != null)
+                        {
+                            var mb = playerGO.AddComponent(proxyType) as MonoBehaviour;
+                            proxy = mb as PlayerHealth;
+                        }
+                        if (proxy != null)
+                        {
+                            // Try to bind via SendMessage to avoid direct type ref
+                            playerGO.SendMessage("Bind", phr, SendMessageOptions.DontRequireReceiver);
+                            playerHealth = proxy;
+                        }
+                    }
+                }
+            }
+        }
+
+        if (healing == null)
+        {
+            var ha = GameObject.Find("HealthAudio");
+            if (ha != null) healing = ha.GetComponent<AudioSource>();
+        }
+
+        if (itemManager == null)
+        {
+            var im = GameObject.Find("ItemManager");
+            if (im != null) itemManager = im.GetComponent<ItemManager>();
+        }
 
 	}
 	
@@ -25,18 +62,23 @@ public class HealthPotion : MonoBehaviour {
     {
         if(col.gameObject.tag == "Player")
         {
-            playerHealth.Heal(heal);
-            healing.Play();
-            this.itemManager.ItemAmount--;
-            ScoreManager.score += 3;
+            if (playerHealth != null)
+            {
+                playerHealth.Heal(heal);
+            }
+            if (healing != null) healing.Play();
+            if (itemManager != null) this.itemManager.ItemAmount--;
+            ScoreManager.Instance?.AddScore(3);
             StartCoroutine(DestroyAndAddSpawnPoint());
-            gameObject.GetComponent<Collider>().enabled = false;
+            var col2 = gameObject.GetComponent<Collider>();
+            if (col2 != null) col2.enabled = false;
         }
     }
     IEnumerator DestroyAndAddSpawnPoint()
     {
         yield return new WaitForSeconds(0f);
-        for (int i = 0; i < itemManager.spawnPoints.Length; i++)
+    if (itemManager == null || itemManager.spawnPoints == null) { Destroy(gameObject); yield break; }
+    for (int i = 0; i < itemManager.spawnPoints.Length; i++)
         {
             if (itemManager.spawnPoints[i] == gameObjectSpawnPoint)
             {

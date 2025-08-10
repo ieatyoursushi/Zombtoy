@@ -2,31 +2,49 @@
 using System.Collections;
 public class EnemyMovement : MonoBehaviour
 {
-    Transform player;
-    PlayerHealth playerHealth;
-    EnemyHealth enemyHealth;
-    UnityEngine.AI.NavMeshAgent nav;
+    [SerializeField] private Transform player;
+    [SerializeField] private PlayerHealth playerHealth;
+    [SerializeField] private EnemyHealth enemyHealth;
+    [SerializeField] private UnityEngine.AI.NavMeshAgent nav;
 
     void Awake ()
     {
-        player = GameObject.FindGameObjectWithTag ("Player").transform;
-        playerHealth = player.GetComponent <PlayerHealth> ();
-        enemyHealth = GetComponent <EnemyHealth> ();
-        nav = GetComponent <UnityEngine.AI.NavMeshAgent> ();
+        if (player == null)
+        {
+            var pGo = GameObject.FindGameObjectWithTag("Player");
+            if (pGo != null) player = pGo.transform;
+        }
+        if (playerHealth == null && player != null)
+        {
+            playerHealth = player.GetComponent<PlayerHealth>();
+        }
+        if (enemyHealth == null)
+        {
+            enemyHealth = GetComponent<EnemyHealth>();
+        }
+        if (nav == null)
+        {
+            nav = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        }
     }
 
 
     void Update ()
     {
-        if(enemyHealth.currentHealth > 0 && playerHealth.currentHealth > 0)
+        if (enemyHealth != null && playerHealth != null && nav != null && player != null)
         {
-            nav.SetDestination (player.position);
-             
+            if (enemyHealth.currentHealth > 0 && playerHealth.currentHealth > 0)
+            {
+                nav.SetDestination(player.position);
+            }
+            else
+            {
+                nav.enabled = false;
+            }
         }
-        else
+        else if (nav != null)
         {
             nav.enabled = false;
-           
         }
     }
 }

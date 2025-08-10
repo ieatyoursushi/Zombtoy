@@ -15,6 +15,7 @@ TagManager:
   - Enemy
   - Anti_Rocket
   - GIANT
+  - SpawnPoint
   layers:
   - Default
   - TransparentFX
