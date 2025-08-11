@@ -46,7 +46,9 @@ def emit_puml(classes, interfaces, extends, implements):
         out.append(f'class {c}')
     for child, bases in extends.items():
         for b in bases:
-            out.append(f'{b} <|-- {child}')
+            # Clean up generic syntax for PlantUML compatibility
+            clean_base = b.split('<')[0] if '<' in b else b
+            out.append(f'{clean_base} <|-- {child}')
     for cls, ifaces in implements.items():
         for i in ifaces:
             out.append(f'{i} <|.. {cls}')
