@@ -14,24 +14,59 @@ Generated output:
 - `out/*.puml` – PlantUML sources.
 - `out/*.png` or `out/*.svg` – Rendered diagrams (if PlantUML + Graphviz available).
 
+## Status
+
+✅ **Tested and Working** (as of latest commit)
+- All scripts execute successfully
+- Generated `.puml`, `.png`, and `.svg` outputs
+- Event flow diagram shows 16+ events with publishers/subscribers
+- Class dependency diagram shows inheritance chains (MonoBehaviour, Singleton<T>, etc.)
+- Call graph shows inter-class relationships
+
 ## Quick Start
 
-1. Ensure Python 3.9+ is installed.
-2. (Optional) Install PlantUML + Graphviz for automatic rendering.
+1. **Python Environment**: A Python virtual environment is already configured in the project root (`.venv/`).
 
+2. **Install PlantUML + Graphviz** (for automatic rendering):
 ```bash
-# (fish shell) create a venv (optional)
-python3 -m venv .diagram-venv
-source .diagram-venv/bin/activate
-pip install plantuml graphviz
+# Install via Homebrew (macOS)
+brew install plantuml graphviz
 ```
 
-3. Run all generators:
+3. **Run all generators**:
 ```bash
-python Diagrams/generate_all.py
+# Use the configured Python environment
+/Users/gabewkung/Desktop/Zombtoy-Project/.venv/bin/python Diagrams/generate_all.py
+
+# Or from project root:
+.venv/bin/python Diagrams/generate_all.py
 ```
 
-4. View diagrams in `Diagrams/out`.
+4. **View diagrams** in `Diagrams/out/`:
+   - `.puml` files (PlantUML source)
+   - `.png` files (rendered images)  
+   - `.svg` files (vector graphics)
+
+## Testing
+
+Run the automated test suite to verify diagram generation:
+
+```bash
+# Run comprehensive test suite (unit + functional tests)
+/Users/gabewkung/Desktop/Zombtoy-Project/.venv/bin/python Diagrams/run_tests.py
+
+# Or run just unit tests
+/Users/gabewkung/Desktop/Zombtoy-Project/.venv/bin/python Diagrams/test_diagrams.py
+```
+
+**Test Coverage:**
+- ✅ Code stripping (comments, string literals)
+- ✅ Event detection (declarations, producers, consumers)
+- ✅ Class relationship parsing (inheritance, interfaces)
+- ✅ Generic base class handling (PlantUML compatibility)
+- ✅ Call graph generation
+- ✅ PlantUML output format validation
+- ✅ End-to-end workflow testing
 
 ## Rendering Without Local PlantUML
 If PlantUML is not installed, you can paste the contents of any `.puml` file into https://www.plantuml.com/plantuml.
@@ -60,7 +95,7 @@ ScoreManager --> GameEvents : invokes ScoreChanged
 ```
 
 ## Regeneration
-Re-run `python Diagrams/generate_all.py` after code changes.
+Re-run `/Users/gabewkung/Desktop/Zombtoy-Project/.venv/bin/python Diagrams/generate_all.py` after code changes.
 
 ## Future Ideas
 - Per-method call subgraphs.
