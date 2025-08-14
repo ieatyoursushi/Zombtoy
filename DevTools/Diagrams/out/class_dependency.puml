@@ -1,0 +1,141 @@
+@startuml
+title Class Inheritance & Interface Implementation
+skinparam classAttributeIconSize 0
+interface IProjectile
+interface IWeapon
+class Ammo
+class AmmoItem
+class BaseWeapon
+class CamerFollow
+class CamerPOV
+class CameraMovement
+class ComponentCache
+class EnemyAttack
+class EnemyHealth
+class EnemyManager
+class EnemyMovement
+class EnemyProjectile
+class EnemyRegen
+class EnemyShooting
+class EnemySpawnData
+class FirstPersonMovement
+class GameEvents
+class GameOverManager
+class GameStarter
+class GameStateManager
+class GlobalComponentCache
+class HealthPotion
+class HighScores
+class IceBullet
+class Index3Scene
+class Inventory
+class ItemManager
+class KeybindText
+class Keybinds
+class Leaderboard
+class MiniClown
+class MusicManager
+class MuteButton
+class Pause
+class Pistol
+class PlayerHealth
+class PlayerHealthProxy
+class PlayerHealthRefactored
+class PlayerInputManager
+class PlayerMovement
+class PlayerMovementRefactored
+class PlayerShooting
+class ProjectileWeapon
+class RaycastWeapon
+class RequestPacket
+class Result
+class ResultStandalone
+class ResultsButton
+class Rocket
+class RocketLauncher
+class SFXManager
+class Scene
+class ScoreDebugger
+class ScoreManager
+class ScoreManagerDebugger
+class ScoreTextBinder
+class SelfDestruct
+class SpawnClown
+class Tornado
+class TornadoLaunch
+class Vornado
+class WeaponData
+class WeaponManager
+class ZombieCountBinder
+class flashlight
+class range
+class reloadCheck
+class vectorTest
+class zombieCount
+MonoBehaviour <|-- HealthPotion
+MonoBehaviour <|-- range
+MonoBehaviour <|-- Keybinds
+MonoBehaviour <|-- FirstPersonMovement
+MonoBehaviour <|-- AmmoItem
+MonoBehaviour <|-- CamerPOV
+MonoBehaviour <|-- SelfDestruct
+MonoBehaviour <|-- KeybindText
+MonoBehaviour <|-- CamerFollow
+MonoBehaviour <|-- CameraMovement
+MonoBehaviour <|-- HighScores
+MonoBehaviour <|-- EnemyProjectile
+MonoBehaviour <|-- Ammo
+MonoBehaviour <|-- SpawnClown
+MonoBehaviour <|-- flashlight
+MonoBehaviour <|-- MiniClown
+MonoBehaviour <|-- EnemyShooting
+MonoBehaviour <|-- Pistol
+MonoBehaviour <|-- vectorTest
+MonoBehaviour <|-- EnemyRegen
+MonoBehaviour <|-- Rocket
+MonoBehaviour <|-- RocketLauncher
+MonoBehaviour <|-- Inventory
+MonoBehaviour <|-- SFXManager
+MonoBehaviour <|-- IceBullet
+MonoBehaviour <|-- reloadCheck
+MonoBehaviour <|-- zombieCount
+MonoBehaviour <|-- Tornado
+MonoBehaviour <|-- Vornado
+MonoBehaviour <|-- Pause
+MonoBehaviour <|-- TornadoLaunch
+MonoBehaviour <|-- Index3Scene
+MonoBehaviour <|-- MuteButton
+MonoBehaviour <|-- Scene
+Singleton <|-- MusicManager
+MonoBehaviour <|-- ScoreTextBinder
+MonoBehaviour <|-- ResultsButton
+MonoBehaviour <|-- Result
+MonoBehaviour <|-- ZombieCountBinder
+MonoBehaviour <|-- ResultStandalone
+MonoBehaviour <|-- ComponentCache
+Singleton <|-- GameStateManager
+MonoBehaviour <|-- GameStarter
+Singleton <|-- EnemyManager
+MonoBehaviour <|-- GameOverManager
+Singleton <|-- ScoreManager
+MonoBehaviour <|-- ItemManager
+BaseWeapon <|-- ProjectileWeapon
+BaseWeapon <|-- RaycastWeapon
+ScriptableObject <|-- WeaponData
+MonoBehaviour <|-- BaseWeapon
+MonoBehaviour <|-- WeaponManager
+MonoBehaviour <|-- Leaderboard
+MonoBehaviour <|-- EnemyMovement
+MonoBehaviour <|-- EnemyAttack
+MonoBehaviour <|-- EnemyHealth
+MonoBehaviour <|-- ScoreDebugger
+MonoBehaviour <|-- ScoreManagerDebugger
+MonoBehaviour <|-- PlayerShooting
+MonoBehaviour <|-- PlayerHealthRefactored
+MonoBehaviour <|-- PlayerInputManager
+MonoBehaviour <|-- PlayerMovementRefactored
+PlayerHealth <|-- PlayerHealthProxy
+MonoBehaviour <|-- PlayerHealth
+MonoBehaviour <|-- PlayerMovement
+IWeapon <|.. BaseWeapon
+@enduml
