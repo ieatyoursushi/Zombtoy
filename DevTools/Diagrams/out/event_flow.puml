@@ -1,0 +1,42 @@
+@startuml
+title Game Event Flow
+skinparam linetype ortho
+class OnAmmoPickup << (E,#FFCC00) Event >>
+class OnEnemyCountChanged << (E,#FFCC00) Event >>
+class OnEnemyDestroyed << (E,#FFCC00) Event >>
+class OnEnemySpawned << (E,#FFCC00) Event >>
+class OnGameOver << (E,#FFCC00) Event >>
+class OnGamePaused << (E,#FFCC00) Event >>
+class OnGameResumed << (E,#FFCC00) Event >>
+class OnGameStarted << (E,#FFCC00) Event >>
+class OnHealthPickup << (E,#FFCC00) Event >>
+class OnHighScoreChanged << (E,#FFCC00) Event >>
+class OnLevelComplete << (E,#FFCC00) Event >>
+class OnPlayerDeath << (E,#FFCC00) Event >>
+class OnPlayerHealthChanged << (E,#FFCC00) Event >>
+class OnPlayerRevive << (E,#FFCC00) Event >>
+class OnPlayerStaminaChanged << (E,#FFCC00) Event >>
+class OnScoreChanged << (E,#FFCC00) Event >>
+OnGamePaused --> PlayerHealthRefactored : notifies
+OnGamePaused --> EnemyManager : notifies
+OnGamePaused --> GameStateManager : notifies
+OnGamePaused --> WeaponManager : notifies
+OnGamePaused --> MusicManager : notifies
+OnGameResumed --> GameStateManager : notifies
+OnGameResumed --> EnemyManager : notifies
+OnGameResumed --> PlayerHealthRefactored : notifies
+OnGameResumed --> MusicManager : notifies
+OnScoreChanged --> ScoreTextBinder : notifies
+OnEnemyCountChanged --> ZombieCountBinder : notifies
+OnPlayerDeath --> GameStateManager : notifies
+OnPlayerDeath --> GameOverManager : notifies
+OnPlayerDeath --> WeaponManager : notifies
+OnPlayerDeath --> EnemyManager : notifies
+OnEnemySpawned --> EnemyManager : notifies
+OnEnemyDestroyed --> EnemyManager : notifies
+OnGameStarted --> EnemyManager : notifies
+OnPlayerRevive --> EnemyManager : notifies
+OnGameOver --> GameOverManager : notifies
+OnGameOver --> ScoreManager : notifies
+OnEnemyKilled --> ScoreManager : notifies
+@enduml
