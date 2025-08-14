@@ -4769,8 +4769,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 3
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Radius: 7
+  m_Center: {x: 0, y: 3, z: 0}
 --- !u!114 &114738658196694592
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4783,11 +4783,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 825576d25e4fb1245ac7434eb1b26979, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pullEnemies: 1
   coll: {fileID: 0}
-  lifespan: 4.5
+  lifespan: 4.7
   speed: 4
   inZone: 0
   damageDrain: 1
+  pullStrength: 100
 --- !u!54 &54399850517968686
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4796,7 +4798,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1265294356284698}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 100
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}

@@ -10147,6 +10147,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94f6618a0da65fa45b24d5105d5d8422, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  playerHealth: {fileID: 0}
+  enemyHealth: {fileID: 0}
+  nav: {fileID: 0}
 --- !u!54 &54524813473608812
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -10326,6 +10330,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9b9d14572410594cb85d40eedfb150c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyTypes:
+  - keyAttribute: isBoss
+    isActive: 1
   startingHealth: 4000
   currentHealth: 0
   sinkSpeed: 2
@@ -10380,6 +10387,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeBetweenAttacks: 0.4
   attackDamage: 90
+  enemyHealth: {fileID: 0}
+  player: {fileID: 0}
+  playerHealth: {fileID: 0}
 --- !u!108 &108209321137449148
 Light:
   m_ObjectHideFlags: 0

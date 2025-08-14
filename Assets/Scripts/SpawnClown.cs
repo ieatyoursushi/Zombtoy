@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Video;
 
 public class SpawnClown : MonoBehaviour {
     public EnemyHealth enemyHealth;
@@ -9,6 +10,7 @@ public class SpawnClown : MonoBehaviour {
     public bool spawned;
     public AudioSource SpawnSound;
     public zombieCount ZombieCount;
+    [SerializeField]
     private int clownsSpawned = 1;
     private float spawnProbabillity;
     public AnimationCurve animationCurve;
@@ -28,8 +30,9 @@ public class SpawnClown : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-        if(enemyHealth.isDead)
+    void Update () {
+        ClownSpawnPoint.position = new Vector3(ClownSpawnPoint.position.x, 0, ClownSpawnPoint.position.z);
+        if (enemyHealth.isDead)
         {
             Invoke("Spawn", 1f);
         }
