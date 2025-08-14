@@ -7,7 +7,7 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private EnemyHealth enemyHealth;
     [SerializeField] private UnityEngine.AI.NavMeshAgent nav;
 
-    void Awake ()
+    void Awake()
     {
         if (player == null)
         {
@@ -35,7 +35,11 @@ public class EnemyMovement : MonoBehaviour
         {
             if (enemyHealth.currentHealth > 0 && playerHealth.currentHealth > 0)
             {
-                nav.SetDestination(player.position);
+                // Only set destination if NavMeshAgent is enabled and on NavMesh
+                if (nav.enabled && nav.isOnNavMesh)
+                {
+                    nav.SetDestination(player.position);
+                }
             }
             else
             {

@@ -1,13 +1,26 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
-
+using System.Collections.Generic;
 /// <summary>
 /// Enemy health system with event integration
 /// Now properly integrated with the centralized systems
 /// </summary>
 public class EnemyHealth : MonoBehaviour
 {
+    // General primitive dictionary for string-bool pairs
+    [System.Serializable]
+    //limit modularity to enemy health / bassic interactions like immunities, player debuffs, boosts.
+    public struct EnemyAttributeEntry
+    {
+        public string keyAttribute;
+        public bool isActive;
+    }
+    [SerializeField]
+    private List<EnemyAttributeEntry> enemyAttributes = new List<EnemyAttributeEntry>() {
+        new EnemyAttributeEntry { keyAttribute = "blast_immunity", isActive = false }
+    };
+
     public int startingHealth = 100;
     public int currentHealth;
     public float sinkSpeed = 2.5f;
@@ -37,29 +50,30 @@ public class EnemyHealth : MonoBehaviour
     bool hpslider;
     public zombieCount ZombieCount;
     public TornadoLaunch TornadoLaunch;
-    public float coolDownReducer; 
-    void Awake ()
+    public float coolDownReducer;
+
+    void Awake()
     {
-        anim = GetComponent <Animator> ();
-        enemyAudio = GetComponent <AudioSource> ();
-        hitParticles = GetComponentInChildren <ParticleSystem> ();
-        capsuleCollider = GetComponent <CapsuleCollider> ();
+        anim = GetComponent<Animator>();
+        enemyAudio = GetComponent<AudioSource>();
+        hitParticles = GetComponentInChildren<ParticleSystem>();
+        capsuleCollider = GetComponent<CapsuleCollider>();
         navMeshAgent = gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>();
         currentHealth = startingHealth;
-        
+
         // Use safer lookups with null checks
         var zombieCountGO = GameObject.Find("ZombieCount");
         if (zombieCountGO != null)
             ZombieCount = zombieCountGO.GetComponent<zombieCount>();
-            
+
         var tornadoGO = GameObject.Find("TornadoLauncher");
         if (tornadoGO != null)
             TornadoLaunch = tornadoGO.GetComponent<TornadoLaunch>();
-            
+
         // Register with EnemyManager
         GameEvents.EnemySpawned(gameObject);
     }
-    public float SlowEffect_Duration (float effectDuration)
+    public float SlowEffect_Duration(float effectDuration)
     {
         effects_Duration = effectDuration;
         return effectDuration;
@@ -76,34 +90,42 @@ public class EnemyHealth : MonoBehaviour
         {
             EnemyBar.maxValue = currentHealth;
         }
-        NavAgent_Speed = gameObject.GetComponent<NavMeshAgent>().speed;
-        navSpeed = NavAgent_Speed;
+        UnityEngine.AI.NavMeshAgent navAgent = gameObject.GetComponent<NavMeshAgent>();
+        if (navAgent != null && navAgent.enabled)
+        {
+            NavAgent_Speed = navAgent.speed;
+            navSpeed = NavAgent_Speed;
+        }
         timer = effects_Duration;
-        this.HPSlider.SetActive(false); 
-        if(gameObject.tag == "Anti_Rocket")
+        this.HPSlider.SetActive(false);
+        if (gameObject.tag == "Anti_Rocket")
         {
             Rocket_Resistant = true;
         }
     }
 
-    void Update ()
+    void Update()
     {
-        if(isSinking)
+        if (isSinking)
         {
-            transform.Translate (-Vector3.up * sinkSpeed * Time.deltaTime);
+            transform.Translate(-Vector3.up * sinkSpeed * Time.deltaTime);
         }
-        if(EnemyBar != null)
+        if (EnemyBar != null)
         {
             Vector3 FacingDirection = Camera.transform.eulerAngles;
-            EnemyBar.transform.rotation = Quaternion.Euler (FacingDirection);
+            EnemyBar.transform.rotation = Quaternion.Euler(FacingDirection);
         }
-        if(effected)
+        if (effected)
         {
             effects_Duration -= Time.deltaTime;
         }
         if (effects_Duration <= 0 && gameObject != null)
         {
-            gameObject.GetComponent<NavMeshAgent>().speed = navSpeed;
+            UnityEngine.AI.NavMeshAgent navAgent = gameObject.GetComponent<NavMeshAgent>();
+            if (navAgent != null && navAgent.enabled)
+            {
+                navAgent.speed = navSpeed;
+            }
             effects_Duration = timer;
             effected = true;
         }
@@ -114,21 +136,21 @@ public class EnemyHealth : MonoBehaviour
     }
 
 
-    public void TakeDamage (int amount, Vector3 hitPoint)
+    public void TakeDamage(int amount, Vector3 hitPoint)
     {
-        if(isDead)
+        if (isDead)
             return;
 
-        enemyAudio.Play ();
+        enemyAudio.Play();
         this.HPSlider.SetActive(true);
         currentHealth -= amount;
         hitParticles.transform.position = hitPoint;
         hitParticles.Play();
- 
+
 
         if (currentHealth <= 0)
         {
-            Death ();
+            Death();
             this.HealthImage.GetComponentInChildren<Image>().color = new Color(1, 1, 1, 0.10f);
             gameObject.layer = LayerMask.GetMask("Default");
         }
@@ -136,26 +158,29 @@ public class EnemyHealth : MonoBehaviour
     public void SlowEffect(float amplifier)
     {
         effected = true; // starts the countdown
-        gameObject.GetComponent<NavMeshAgent>().speed = navSpeed * amplifier;
- 
+        UnityEngine.AI.NavMeshAgent navAgent = gameObject.GetComponent<NavMeshAgent>();
+        if (navAgent != null && navAgent.enabled)
+        {
+            navAgent.speed = navSpeed * amplifier;
+        }
         effects_Duration = timer;
     }
-    void Death ()
+    void Death()
     {
         isDead = true;
         this.HPSlider.SetActive(false);
         capsuleCollider.isTrigger = true;
         TornadoLaunch.SetCoolDown(TornadoLaunch.timer + coolDownReducer);
-        anim.SetTrigger ("Dead");
+        anim.SetTrigger("Dead");
 
         enemyAudio.clip = deathClip;
-        enemyAudio.Play ();
+        enemyAudio.Play();
         // Monster kill will be handled by GameEvents when StartSinking is called
         if (DeathParticle != null)
         {
-            Invoke("deathparticles" , 0.2f);
+            Invoke("deathparticles", 0.2f);
         }
-    // Counter updates are handled centrally via GameEvents and EnemyManager
+        // Counter updates are handled centrally via GameEvents and EnemyManager
     }
     void deathparticles()
     {
@@ -163,21 +188,42 @@ public class EnemyHealth : MonoBehaviour
         DeathParticle.Play();
     }
 
-    public void StartSinking ()
+    public void StartSinking()
     {
         // Fire death event for score and kill count
         GameEvents.EnemyKilled(scoreValue, transform.position);
-        
-        GetComponent <UnityEngine.AI.NavMeshAgent> ().enabled = false;
-        GetComponent <Rigidbody> ().isKinematic = true;
+
+        UnityEngine.AI.NavMeshAgent navAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        if (navAgent != null)
+        {
+            navAgent.enabled = false;
+        }
+        GetComponent<Rigidbody>().isKinematic = true;
         isSinking = true;
-        
-        Destroy (gameObject, 2f);
+
+        Destroy(gameObject, 2f);
     }
-    
+
     void OnDestroy()
     {
         // Ensure cleanup when destroyed
         GameEvents.EnemyDestroyed(gameObject);
     }
+    //getters and setters
+    public List<EnemyAttributeEntry> GetEnemyAttributes()
+    {
+        return enemyAttributes;
+    }
+    //HasAttribute(blastImmunity)
+    public bool HasAttribute(string key)
+    {
+        foreach (var entry in enemyAttributes)
+        {
+            if (entry.keyAttribute == key)
+            {
+                return entry.isActive;
+            }
+        }
+        return false;
+    }   
 }

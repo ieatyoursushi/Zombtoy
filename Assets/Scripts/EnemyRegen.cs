@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyRegen : MonoBehaviour {
-    public float cooldown = 1;
-    public EnemyHealth enemyHealth;
+    [SerializeField]
+    private float cooldown = 1;
+    [SerializeField]
+    private int regenAmount = 1;
+    private EnemyHealth enemyHealth;
 	// Use this for initialization
 	void Start () {
         enemyHealth = gameObject.GetComponent<EnemyHealth>();
@@ -14,7 +17,7 @@ public class EnemyRegen : MonoBehaviour {
 	void Regenerate()
     {
         if(enemyHealth.currentHealth < enemyHealth.startingHealth && !enemyHealth.isDead) {
-            enemyHealth.currentHealth += 1;
+            enemyHealth.currentHealth += regenAmount;
         }
     }
 	// Update is called once per frame

@@ -47,7 +47,10 @@ public class EnemyShooting : MonoBehaviour {
     void Update () {
         if(!Range.inRange)
         {
-            navMeshAgent.speed = 4f;
+            if (navMeshAgent != null && navMeshAgent.enabled)
+            {
+                navMeshAgent.speed = 4f;
+            }
         }
         else if(Range.inRange)
         {
@@ -74,7 +77,10 @@ public class EnemyShooting : MonoBehaviour {
         if (!playerHealth.isDead && Range.inRange && !enemyHealth.isDead)
         {
             Instantiate(Projectile, shootPoint.position, shootPoint.rotation);
-            navMeshAgent.speed = 2f;
+            if (navMeshAgent != null && navMeshAgent.enabled)
+            {
+                navMeshAgent.speed = 2f;
+            }
             FireballSound.Play();
             FireballSound2.Play();
             Dialogue();
