@@ -4,6 +4,10 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 using UnityEngine.Animations;
 
+/// <summary>
+/// Player Health System - Now integrated with event system
+/// Maintains backwards compatibility while adding new features
+/// </summary>
 public class PlayerHealth : MonoBehaviour
 {
     public int startingHealth = 100;
@@ -40,6 +44,12 @@ public class PlayerHealth : MonoBehaviour
         StaminaSliderWhole = GameObject.Find("StaminaSlider");
         flashSpeed = 0.5f;
     }
+    // Events
+    public System.Action<int> OnDamageTaken;
+    public System.Action<int> OnHealed;
+    public System.Action OnPlayerDeath;
+    public System.Action OnPlayerRevive;
+    
     private void Start()
     {
         if (playerMovement == null)
@@ -149,26 +159,38 @@ public class PlayerHealth : MonoBehaviour
 
     public void Heal(int amount)
     {
+        if (isDead || amount <= 0 || currentHealth >= startingHealth)
+            return;
+            
         healing = true;
-
-        healthSlider.value = currentHealth;
-        
         currentHealth += amount;
-
+        
         if(currentHealth >= startingHealth)
         {
             currentHealth = startingHealth;
         }
+        
+        healthSlider.value = currentHealth;
+        
+        // Fire events
+        OnHealed?.Invoke(amount);
+        GameEvents.PlayerHealthChanged(currentHealth);
     }
-    public void TakeDamage (int amount)
+    public void TakeDamage (int amount, GameObject damageSource = null)
     {
+        if (isDead || amount <= 0)
+            return;
+            
         damaged = true;
-
         currentHealth -= amount;
+        currentHealth = Mathf.Max(0, currentHealth);
 
         healthSlider.value = currentHealth;
-
         playerAudio.Play ();
+
+        // Fire events
+        OnDamageTaken?.Invoke(amount);
+        GameEvents.PlayerHealthChanged(currentHealth);
 
         if(currentHealth <= 0 && !isDead)
         {
@@ -181,12 +203,15 @@ public class PlayerHealth : MonoBehaviour
     {
         isDead = true;
 
+        // Fire events first
+        OnPlayerDeath?.Invoke();
+        GameEvents.PlayerDeath();
+
         playerShooting.DisableEffects ();
-
         anim.SetTrigger ("Die");
-
         playerAudio.clip = deathClip;
         playerAudio.Play ();
+        
         if (playerMovement != null)
         {
             playerMovement.enabled = false;
@@ -194,6 +219,7 @@ public class PlayerHealth : MonoBehaviour
         {
             GetComponent<CameraMovement>().enabled = false;
         }
+        
         playerShooting.enabled = false;
         GameObject.Find("Fill").GetComponent<Image>().color = Color.white;
         //Destroy(Shotgun); 

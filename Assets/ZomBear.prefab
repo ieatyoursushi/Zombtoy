@@ -24905,8 +24905,8 @@ Rigidbody:
   m_GameObject: {fileID: 1989902018351608}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: Infinity
-  m_AngularDrag: Infinity
+  m_Drag: 0.5
+  m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -25097,6 +25097,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94f6618a0da65fa45b24d5105d5d8422, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  playerHealth: {fileID: 0}
+  enemyHealth: {fileID: 0}
+  nav: {fileID: 0}
 --- !u!114 &114747250022340792
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25141,6 +25145,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeBetweenAttacks: 0.25
   attackDamage: 6
+  enemyHealth: {fileID: 0}
+  player: {fileID: 0}
+  playerHealth: {fileID: 0}
 --- !u!108 &108078323370521710
 Light:
   m_ObjectHideFlags: 0
@@ -25216,7 +25223,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldown: 0.1
-  enemyHealth: {fileID: 0}
+  regenAmount: 1
 --- !u!1 &1997587810286472
 GameObject:
   m_ObjectHideFlags: 0

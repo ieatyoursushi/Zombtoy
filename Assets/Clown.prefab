@@ -19895,6 +19895,7 @@ MonoBehaviour:
   spawned: 0
   SpawnSound: {fileID: 0}
   ZombieCount: {fileID: 0}
+  clownsSpawned: 1
   animationCurve:
     serializedVersion: 2
     m_Curve: []
@@ -19951,6 +19952,7 @@ MonoBehaviour:
   spawned: 0
   SpawnSound: {fileID: 0}
   ZombieCount: {fileID: 0}
+  clownsSpawned: 1
   animationCurve:
     serializedVersion: 2
     m_Curve: []
@@ -50301,7 +50303,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -13.91, y: -0.0099984845, z: 3.0205956}
-  m_LocalScale: {x: 1.15, y: 1.15, z: 1.1}
+  m_LocalScale: {x: 1.15, y: 1.15, z: 1.15}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4343519220650074}
@@ -50328,6 +50330,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94f6618a0da65fa45b24d5105d5d8422, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  playerHealth: {fileID: 0}
+  enemyHealth: {fileID: 0}
+  nav: {fileID: 0}
 --- !u!54 &54337910627482366
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -50336,9 +50342,9 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1820812333587096}
   serializedVersion: 4
-  m_Mass: 1
-  m_Drag: Infinity
-  m_AngularDrag: Infinity
+  m_Mass: 25
+  m_Drag: 0.6
+  m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -50507,6 +50513,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9b9d14572410594cb85d40eedfb150c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyTypes: []
   startingHealth: 151
   currentHealth: 5
   sinkSpeed: 2.5
@@ -50561,6 +50568,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeBetweenAttacks: 1.1
   attackDamage: 12
+  enemyHealth: {fileID: 0}
+  player: {fileID: 0}
+  playerHealth: {fileID: 0}
 --- !u!108 &108615734625785988
 Light:
   m_ObjectHideFlags: 0
