@@ -176,7 +176,7 @@ public class PlayerHealth : MonoBehaviour
         OnHealed?.Invoke(amount);
         GameEvents.PlayerHealthChanged(currentHealth);
     }
-    public void TakeDamage (int amount)
+    public void TakeDamage (int amount, GameObject damageSource = null)
     {
         if (isDead || amount <= 0)
             return;

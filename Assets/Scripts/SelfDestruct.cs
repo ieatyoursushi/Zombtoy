@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
-public class SelfDestruct : MonoBehaviour {
+public class SelfDestruct : MonoBehaviour, IBlast {
     public ParticleSystem explodeParticles;
     public GameObject explosionParticles;
     public EnemyHealth enemyHealth;
@@ -33,7 +33,7 @@ public class SelfDestruct : MonoBehaviour {
         }
  
 	}
-    void Explode()
+    public void Explode()
     {
         LayerMask mask = LayerMask.GetMask("Shootable");
         
@@ -44,24 +44,24 @@ public class SelfDestruct : MonoBehaviour {
         foreach (Collider col in ExplodeRadius)
         {
             EnemyHealth eenemyHealth = col.GetComponent<EnemyHealth>();
-            if(playerHealth != null && !enemyHealth.isDead && !enemyHealth.Rocket_Resistant)
+            if(playerHealth != null && !enemyHealth.isDead && !enemyHealth.GetAttribute("blast_immunity"))
             {
                 explosionParticles.SetActive(true);
-                playerHealth.TakeDamage(BlaseDamage);
+                playerHealth.TakeDamage(BlaseDamage, gameObject);
                  
                 explodeParticles.Play();
                 BlastAudio.Play();
-                enemyHealth.TakeDamage(10000, transform.position);
+                enemyHealth.TakeDamage(10000, transform.position, this);
             }else if (eenemyHealth != null)
             {
-                if(eenemyHealth.Rocket_Resistant)
+                if(eenemyHealth.GetAttribute("blast_immunity"))
                 {
                     block.Play();
                 }
             }
-            if (eenemyHealth != null && !eenemyHealth.Rocket_Resistant)
+            if (eenemyHealth != null && !eenemyHealth.GetAttribute("blast_immunity"))
             {
-                eenemyHealth.TakeDamage(BlaseDamage / 4, transform.position);
+                eenemyHealth.TakeDamage(BlaseDamage / 4, transform.position, this);
             }
         }
         /*
