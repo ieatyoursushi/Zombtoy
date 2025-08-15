@@ -56,7 +56,7 @@ public class RaycastWeapon : BaseWeapon
             EnemyHealth enemyHealth = hit.collider.GetComponent<EnemyHealth>();
             if (enemyHealth != null)
             {
-                enemyHealth.TakeDamage(Damage, hit.point);
+                enemyHealth.TakeDamage(Damage, hit.point, this);
                 GameEvents.EnemyDamaged(enemyHealth.gameObject, Damage, hit.point);
             }
             

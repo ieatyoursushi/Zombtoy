@@ -57,7 +57,7 @@ public class IceBullet : MonoBehaviour {
             EnemyHealth enemyHealth = shot.collider.GetComponent<EnemyHealth>();
             if (enemyHealth != null)
             {
-                enemyHealth.TakeDamage(DamagePerShot, shot.point);
+                enemyHealth.TakeDamage(DamagePerShot, shot.point, this);
                 if (target != null)
                 {
                     if (!effected)

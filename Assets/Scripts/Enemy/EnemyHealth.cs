@@ -2,6 +2,8 @@
 using UnityEngine.UI;
 using UnityEngine.AI;
 using System.Collections.Generic;
+using System.Linq;
+using JetBrains.Annotations;
 /// <summary>
 /// Enemy health system with event integration
 /// Now properly integrated with the centralized systems
@@ -35,7 +37,6 @@ public class EnemyHealth : MonoBehaviour
     public bool isDead;
     bool effected = false;
     bool isSinking;
-    public bool Rocket_Resistant;
     public GameObject Camera;
     public ParticleSystem DeathParticle;
     public GameObject snowParticle;
@@ -47,7 +48,6 @@ public class EnemyHealth : MonoBehaviour
     float navSpeed;
     float size;
     public GameObject HPSlider;
-    bool hpslider;
     public zombieCount ZombieCount;
     public TornadoLaunch TornadoLaunch;
     public float coolDownReducer;
@@ -98,10 +98,7 @@ public class EnemyHealth : MonoBehaviour
         }
         timer = effects_Duration;
         this.HPSlider.SetActive(false);
-        if (gameObject.tag == "Anti_Rocket")
-        {
-            Rocket_Resistant = true;
-        }
+ 
     }
 
     void Update()
@@ -135,11 +132,26 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
-
-    public void TakeDamage(int amount, Vector3 hitPoint)
+//new parameter, weapon type, weapon type third parameter should be in an overload method
+    public void TakeDamage(int amount, Vector3 hitPoint, object damageSource = null)
     {
-        if (isDead)
+        if (isDead || damageSource == null || amount <= 0)
             return;
+        System.Type type = damageSource.GetType();
+        System.Type[] interfaces = type.GetInterfaces();
+        if (interfaces.Length > 0)
+        {
+            Debug.Log($"Damage source implements interface(s) of {type.Name}: " + string.Join(", ", interfaces.Select(i => i.Name)));
+        }
+        else
+        {
+            Debug.Log("Damage source type: " + type.Name + " (no interfaces implemented)");
+        }
+        if (damageSource is IBlast && GetAttribute("blast_immunity") == true)
+        {
+            return;
+        }
+
 
         enemyAudio.Play();
         this.HPSlider.SetActive(true);
@@ -210,12 +222,12 @@ public class EnemyHealth : MonoBehaviour
         GameEvents.EnemyDestroyed(gameObject);
     }
     //getters and setters
-    public List<EnemyAttributeEntry> GetEnemyAttributes()
+    public List<EnemyAttributeEntry> GetEnemyAttributesList()
     {
         return enemyAttributes;
     }
     //HasAttribute(blastImmunity)
-    public bool HasAttribute(string key)
+    public bool GetAttribute(string key)
     {
         foreach (var entry in enemyAttributes)
         {

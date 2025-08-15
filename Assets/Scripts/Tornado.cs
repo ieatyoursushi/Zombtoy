@@ -113,7 +113,7 @@ public class Tornado : MonoBehaviour {
             if (enemyHealth != null)
             {
                 // Always deal damage to all enemies
-                enemyHealth.TakeDamage(damageDrain, col.transform.position);
+                enemyHealth.TakeDamage(damageDrain, col.transform.position, this);
                 enemyHealth.SlowEffect_Duration(0.3f);
                 enemyHealth.SlowEffect(0.2f);
             }
@@ -137,7 +137,7 @@ public class Tornado : MonoBehaviour {
             EnemyHealth enemyHealth = col.GetComponent<EnemyHealth>();
             if (enemyHealth != null)
             {
-                enemyHealth.TakeDamage(2, col.transform.position);
+                enemyHealth.TakeDamage(2, col.transform.position, this);
             }
         }
     }

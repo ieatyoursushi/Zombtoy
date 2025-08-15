@@ -448,7 +448,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9b9d14572410594cb85d40eedfb150c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyTypes: []
+  enemyAttributes:
+  - keyAttribute: blast_immunity
+    isActive: 1
   startingHealth: 60
   currentHealth: 0
   sinkSpeed: 2.5
@@ -457,7 +459,6 @@ MonoBehaviour:
   deathParticle: {fileID: 1916209207674768}
   EnemyBar: {fileID: 114821871885500886}
   isDead: 0
-  Rocket_Resistant: 0
   Camera: {fileID: 0}
   DeathParticle: {fileID: 198501574174892434}
   snowParticle: {fileID: 0}

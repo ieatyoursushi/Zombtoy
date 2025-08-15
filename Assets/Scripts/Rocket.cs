@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Rocket : MonoBehaviour {
+public class Rocket : MonoBehaviour, IBlast {
     Vector3 rocketMovement;
     Vector3 ExplosionPosition;
     public float speed;
@@ -60,7 +60,7 @@ public class Rocket : MonoBehaviour {
  
             if (!exploded)
             {
-                explode();
+                Explode();
                 exploded = true;
             }
  
@@ -113,13 +113,13 @@ public class Rocket : MonoBehaviour {
             EnemyHealth enemyHealth = shootHit.collider.GetComponent<EnemyHealth>();
 
             //checks if there is an enemyhealth script
-            if (enemyHealth != null && !enemyHealth.Rocket_Resistant)
+            if (enemyHealth != null && !enemyHealth.GetAttribute("blast_immunity"))
             {
-                enemyHealth.TakeDamage(DamagePerShot, shootHit.point);
+                enemyHealth.TakeDamage(DamagePerShot, shootHit.point, this);
             }
             else if (enemyHealth != null)
             {
-                if (enemyHealth.Rocket_Resistant)
+                if (enemyHealth.GetAttribute("blast_immunity"))
                 {
                     ExplosionSound.Stop();
                     absorbed = true;
@@ -135,7 +135,7 @@ public class Rocket : MonoBehaviour {
         }
     }
  
-    void explode()
+    public void Explode()
     {
         LayerMask mask = LayerMask.GetMask("Shootable");
         PlayerHealth playerHealth = GameObject.Find("Player").GetComponent<PlayerHealth>();
@@ -147,12 +147,12 @@ public class Rocket : MonoBehaviour {
             if (absorbed)
                 return;
             EnemyHealth enemyHealth = col.GetComponent<EnemyHealth>();
-            if (enemyHealth != null && ExplosiveHit == false && !enemyHealth.Rocket_Resistant)
+            if (enemyHealth != null && ExplosiveHit == false && !enemyHealth.GetAttribute("blast_immunity"))
             {
-                enemyHealth.TakeDamage(ExplosionDamage, ExplosionPosition);
+                enemyHealth.TakeDamage(ExplosionDamage, ExplosionPosition, this);
             } else if(enemyHealth != null)
             {
-                if (enemyHealth.Rocket_Resistant)
+                if (enemyHealth.GetAttribute("blast_immunity"))
                 {
                     block.Play();
                 }
