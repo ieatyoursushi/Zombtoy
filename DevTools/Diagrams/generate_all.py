@@ -11,8 +11,10 @@ OUT.mkdir(exist_ok=True)
 
 SCRIPTS = [
     'generate_event_flow.py',
-    'generate_class_dependency.py',
+    'generate_class_dependency.py', 
     'generate_call_graph.py',
+    'generate_gameevents_debug.py',
+    'generate_core_architecture.py',
 ]
 
 def run_generators():

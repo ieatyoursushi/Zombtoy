@@ -233,7 +233,7 @@ public class EnemyManager : Singleton<EnemyManager>
     {
         GameEvents.OnEnemySpawned += RegisterEnemy;
         GameEvents.OnEnemyDestroyed += UnregisterEnemy;
-        GameEvents.OnGameStarted += HandleGameStarted;
+        GameEvents.OnGameStarted += HandleGameStarted; 
         GameEvents.OnPlayerDeath += StopSpawning;
         GameEvents.OnPlayerRevive += HandlePlayerRevive;
         GameEvents.OnGamePaused += StopSpawning;

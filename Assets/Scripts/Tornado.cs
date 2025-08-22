@@ -3,6 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Tornado : MonoBehaviour {
+    // Helper: returns true if the transform or any ancestor is named "Environment"
+    private bool IsUnderEnvironment(Transform t)
+    {
+        while (t != null)
+        {
+            if (t.name == "Environment") return true;
+            t = t.parent;
+        }
+        return false;
+    }
     bool inTornado = false;
     // Toggle for new pull effect (set to false to disable)
     public bool pullEnemies = true;
@@ -37,6 +47,9 @@ public class Tornado : MonoBehaviour {
 	}
     private void OnTriggerEnter(Collider col)
     {
+        // ignore any environmental colliders (designer parent object named "Environment")
+        if (IsUnderEnvironment(col.transform)) return;
+
         EnemyProjectile enemyProjectile = col.GetComponent<EnemyProjectile>();
         fireBall = col.gameObject;
         if (enemyProjectile != null) {
@@ -71,13 +84,16 @@ public class Tornado : MonoBehaviour {
     }
     private void OnTriggerExit(Collider col)
     {
+        // ignore environment colliders
+        if (IsUnderEnvironment(col.transform)) return;
+
         EnemyProjectile enemyProjectile = col.GetComponent<EnemyProjectile>();
         if (enemyProjectile != null)
         {
             enemyProjectile.speed = 3.8f;
             inZone = false;
         }
-        
+
         // Handle enemy leaving tornado pull range
         if (pullEnemies)
         {
@@ -109,6 +125,9 @@ public class Tornado : MonoBehaviour {
         Collider[] enemies = Physics.OverlapSphere(transform.position, 4f, mask);
         foreach(Collider col in enemies)
         {
+            // skip environment objects
+            if (IsUnderEnvironment(col.transform)) continue;
+
             EnemyHealth enemyHealth = col.GetComponent<EnemyHealth>();
             if (enemyHealth != null)
             {
@@ -126,6 +145,8 @@ public class Tornado : MonoBehaviour {
             {
                 if (enemy != null)
                 {
+                    // do not affect environment objects
+                    if (IsUnderEnvironment(enemy.transform)) continue;
                     ApplyPullForce(enemy, pullStrength);
                 }
             }
@@ -134,6 +155,8 @@ public class Tornado : MonoBehaviour {
         Collider[] ndSphere = Physics.OverlapSphere(transform.position, 10f, mask);
         foreach(Collider col in ndSphere)
         {
+            if (IsUnderEnvironment(col.transform)) continue;
+
             EnemyHealth enemyHealth = col.GetComponent<EnemyHealth>();
             if (enemyHealth != null)
             {

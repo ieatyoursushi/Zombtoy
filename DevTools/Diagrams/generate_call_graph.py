@@ -5,7 +5,7 @@ import re
 from collections import defaultdict
 from common import read_cs_files, load_and_strip
 
-ROOT = Path(__file__).resolve().parents[1] / 'Assets' / 'Scripts'
+ROOT = Path(__file__).resolve().parents[2] / 'Assets' / 'Scripts'
 OUT_DIR = Path(__file__).resolve().parent / 'out'
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -43,6 +43,7 @@ def emit_puml(classes, edges):
 
 def main():
     classes, edges = collect()
+    print(f'DEBUG: found {len(classes)} classes and {len(edges)} inter-class edges')
     puml = emit_puml(classes, edges)
     p = OUT_DIR / 'call_graph.puml'
     p.write_text(puml, encoding='utf-8')
