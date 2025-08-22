@@ -1,0 +1,34 @@
+@startuml
+title GameEvents Health Check
+skinparam backgroundColor #FAFAFA
+
+rectangle "OnPlayerHealthChanged\n6→0" as OnPlayerHealthChanged #FFB6C1
+rectangle "OnPlayerDeath\n2→3" as OnPlayerDeath #90EE90
+rectangle "OnPlayerRevive\n1→1" as OnPlayerRevive #90EE90
+rectangle "OnPlayerStaminaChanged\n0→0" as OnPlayerStaminaChanged #FFB6C1
+rectangle "OnEnemyKilled\n1→1" as OnEnemyKilled #90EE90
+rectangle "OnEnemyDamaged\n1→0" as OnEnemyDamaged #FFB6C1
+rectangle "OnWeaponFired\n1→0" as OnWeaponFired #FFB6C1
+rectangle "OnScoreChanged\n2→0" as OnScoreChanged #FFB6C1
+rectangle "OnHighScoreChanged\n1→0" as OnHighScoreChanged #FFB6C1
+rectangle "OnGameStarted\n1→1" as OnGameStarted #90EE90
+rectangle "OnGamePaused\n0→3" as OnGamePaused #FFE4B5
+rectangle "OnGameResumed\n0→2" as OnGameResumed #FFE4B5
+rectangle "OnGameOver\n0→3" as OnGameOver #FFE4B5
+rectangle "OnLevelComplete\n0→0" as OnLevelComplete #FFB6C1
+rectangle "OnEnemySpawned\n3→1" as OnEnemySpawned #90EE90
+rectangle "OnEnemyDestroyed\n1→1" as OnEnemyDestroyed #90EE90
+rectangle "OnEnemyCountChanged\n4→0" as OnEnemyCountChanged #FFB6C1
+rectangle "OnAmmoPickup\n0→0" as OnAmmoPickup #FFB6C1
+rectangle "OnHealthPickup\n0→0" as OnHealthPickup #FFB6C1
+rectangle "OnNetworkEvent\n0→0" as OnNetworkEvent #FFB6C1
+
+note top
+Legend:
+Green = Healthy (has publishers & subscribers)
+Red = Dead (no subscribers)
+Orange = Unused (never fired)
+Blue = Potential bottleneck (1 subscriber, many publishers)
+end note
+
+@enduml

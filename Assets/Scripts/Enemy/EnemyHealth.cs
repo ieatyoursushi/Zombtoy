@@ -21,6 +21,7 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField]
     private List<EnemyAttributeEntry> enemyAttributes = new List<EnemyAttributeEntry>() {
         new EnemyAttributeEntry { keyAttribute = "blast_immunity", isActive = false }
+
     };
 
     public int startingHealth = 100;
@@ -28,20 +29,30 @@ public class EnemyHealth : MonoBehaviour
     public float sinkSpeed = 2.5f;
     public int scoreValue = 10;
     public AudioClip deathClip;
-    public GameObject deathParticle;
     public Slider EnemyBar;
     Animator anim;
     AudioSource enemyAudio;
-    ParticleSystem hitParticles;
     CapsuleCollider capsuleCollider;
     public bool isDead;
     bool effected = false;
     bool isSinking;
     public GameObject Camera;
-    public ParticleSystem DeathParticle;
-    public GameObject snowParticle;
+    public ParticleSystem hitParticles;
+    [System.Serializable]
+    public struct EnemyParticle
+    {
+        public string name;
+        public string tag;
+        public ParticleSystem particleEffect;
+    }
+    [SerializeField]
+    private List<EnemyParticle> enemyParticles = new List<EnemyParticle>()
+    {
+        new EnemyParticle { name = "Ghost", tag = "onDeath", particleEffect = new ParticleSystem() },
+        new EnemyParticle { name = "MainHitParticle", tag = "onHit", particleEffect = new ParticleSystem() }
+    };
     public GameObject HealthImage;
-    NavMeshAgent navMeshAgent;
+    private NavMeshAgent navMeshAgent;
     public float NavAgent_Speed;
     float effects_Duration = 1.5f;
     float timer;
@@ -56,7 +67,15 @@ public class EnemyHealth : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         enemyAudio = GetComponent<AudioSource>();
-        hitParticles = GetComponentInChildren<ParticleSystem>();
+        //backwards compatibility, will fix. Different weapons should have different HitParticle effects
+        if (GetParticleByName("MainHitParticle") == null)
+        {
+            hitParticles = GetComponentInChildren<ParticleSystem>();
+        }
+        else
+        {
+            hitParticles = GetParticleByName("MainHitParticle");
+        }
         capsuleCollider = GetComponent<CapsuleCollider>();
         navMeshAgent = gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>();
         currentHealth = startingHealth;
@@ -81,10 +100,13 @@ public class EnemyHealth : MonoBehaviour
     private void Start()
     {
         Camera = GameObject.Find("MainCamera");
-        if (DeathParticle != null)
+        foreach (EnemyParticle DeathParticle in enemyParticles)
         {
-            DeathParticle.Pause();
-            deathParticle.SetActive(false);
+            if (DeathParticle.tag == "onDeath" && DeathParticle.particleEffect != null)
+            {
+                DeathParticle.particleEffect.Pause();
+                DeathParticle.particleEffect.gameObject.SetActive(false);
+            }
         }
         if (EnemyBar != null)
         {
@@ -188,16 +210,20 @@ public class EnemyHealth : MonoBehaviour
         enemyAudio.clip = deathClip;
         enemyAudio.Play();
         // Monster kill will be handled by GameEvents when StartSinking is called
-        if (DeathParticle != null)
-        {
-            Invoke("deathparticles", 0.2f);
-        }
+        Invoke("deathParticles", 0.2f);
+        
         // Counter updates are handled centrally via GameEvents and EnemyManager
     }
-    void deathparticles()
+    void deathParticles()
     {
-        deathParticle.SetActive(true);
-        DeathParticle.Play();
+        foreach (EnemyParticle DeathParticle in enemyParticles)
+        {
+            if (DeathParticle.tag == "onDeath" && DeathParticle.particleEffect != null)
+            {
+                DeathParticle.particleEffect.gameObject.SetActive(true);
+                DeathParticle.particleEffect.Play();
+            }
+        }
     }
 
     public void StartSinking()
@@ -225,6 +251,18 @@ public class EnemyHealth : MonoBehaviour
     public List<EnemyAttributeEntry> GetEnemyAttributesList()
     {
         return enemyAttributes;
+    }
+    public List<EnemyParticle> GetEnemyParticlesList()
+    {
+        return enemyParticles;
+    }
+    public ParticleSystem[] GetParticlesByTag(string tag)
+    {
+        return enemyParticles.Where(p => p.tag == tag).Select(p => p.particleEffect).ToArray();
+    }
+    public ParticleSystem GetParticleByName(string name)
+    {
+        return enemyParticles.FirstOrDefault(p => p.name == name).particleEffect;
     }
     //HasAttribute(blastImmunity)
     public bool GetAttribute(string key)

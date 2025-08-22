@@ -1,0 +1,48 @@
+@startuml
+title Core Architecture Overview
+skinparam packageStyle rectangle
+skinparam backgroundColor #FAFAFA
+left to right direction
+
+package "Core" as CorePkg {
+  class ComponentCache  #F3E5F5
+  class GameStateManager <<Singleton>> #E1F5FE
+  GameStateManager : +Instance
+  class GameEvents  #F3E5F5
+  GameEvents : +static events
+  GameEvents : +static triggers
+  class GameStarter  #F3E5F5
+  class Singleton  #F3E5F5
+}
+
+package "Managers" as MgrPkg {
+  class SFXManager  #FFF3E0
+  class MusicManager <<Singleton>> #E8F5E8
+  MusicManager : +Instance
+  class EnemyManager <<Singleton>> #E8F5E8
+  EnemyManager : +Instance
+  class GameOverManager  #FFF3E0
+  class ScoreManager <<Singleton>> #E8F5E8
+  ScoreManager : +Instance
+  class ItemManager  #FFF3E0
+  class WeaponManager  #FFF3E0
+  class ScoreManagerDebugger  #FFF3E0
+  class PlayerInputManager  #FFF3E0
+}
+
+GameStateManager --> GameEvents : uses
+MusicManager --> GameEvents : uses
+EnemyManager --> GameEvents : uses
+GameOverManager --> GameEvents : uses
+ScoreManager --> GameEvents : uses
+WeaponManager --> GameEvents : uses
+
+note top
+Legend:
+Blue = Core Singleton
+Purple = Core Component
+Green = Manager Singleton
+Orange = Manager Component
+end note
+
+@enduml

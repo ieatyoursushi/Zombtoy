@@ -17,26 +17,44 @@ class OnPlayerHealthChanged << (E,#FFCC00) Event >>
 class OnPlayerRevive << (E,#FFCC00) Event >>
 class OnPlayerStaminaChanged << (E,#FFCC00) Event >>
 class OnScoreChanged << (E,#FFCC00) Event >>
-OnGamePaused --> PlayerHealthRefactored : notifies
-OnGamePaused --> EnemyManager : notifies
-OnGamePaused --> GameStateManager : notifies
-OnGamePaused --> WeaponManager : notifies
+GameStateManager --> OnGameOver : raises
+GameStateManager --> OnGamePaused : raises
+GameStateManager --> OnGameResumed : raises
+EnemyManager --> OnEnemyCountChanged : raises
+EnemyManager --> OnEnemySpawned : raises
+EnemyHealth --> OnEnemySpawned : raises
+ScoreManager --> OnScoreChanged : raises
+ScoreManager --> OnGameStarted : raises
+ScoreManager --> OnHighScoreChanged : raises
+RaycastWeapon --> OnEnemyDamaged : raises
+WeaponData --> OnWeaponFired : raises
+EnemyHealth --> OnEnemyKilled : raises
+EnemyHealth --> OnEnemyDestroyed : raises
+PlayerHealthRefactored --> PlayerHealthChanged : raises
+PlayerHealth --> PlayerHealthChanged : raises
+PlayerHealthRefactored --> OnPlayerDeath : raises
+PlayerHealth --> OnPlayerDeath : raises
+PlayerHealthRefactored --> OnPlayerRevive : raises
 OnGamePaused --> MusicManager : notifies
-OnGameResumed --> GameStateManager : notifies
+OnGamePaused --> GameStateManager : notifies
+OnGamePaused --> EnemyManager : notifies
+OnGamePaused --> WeaponManager : notifies
+OnGamePaused --> PlayerHealthRefactored : notifies
 OnGameResumed --> EnemyManager : notifies
 OnGameResumed --> PlayerHealthRefactored : notifies
 OnGameResumed --> MusicManager : notifies
+OnGameResumed --> GameStateManager : notifies
 OnScoreChanged --> ScoreTextBinder : notifies
 OnEnemyCountChanged --> ZombieCountBinder : notifies
-OnPlayerDeath --> GameStateManager : notifies
-OnPlayerDeath --> GameOverManager : notifies
-OnPlayerDeath --> WeaponManager : notifies
 OnPlayerDeath --> EnemyManager : notifies
+OnPlayerDeath --> WeaponManager : notifies
+OnPlayerDeath --> GameOverManager : notifies
+OnPlayerDeath --> GameStateManager : notifies
 OnEnemySpawned --> EnemyManager : notifies
 OnEnemyDestroyed --> EnemyManager : notifies
 OnGameStarted --> EnemyManager : notifies
 OnPlayerRevive --> EnemyManager : notifies
-OnGameOver --> GameOverManager : notifies
 OnGameOver --> ScoreManager : notifies
+OnGameOver --> GameOverManager : notifies
 OnEnemyKilled --> ScoreManager : notifies
 @enduml

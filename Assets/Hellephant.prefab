@@ -14721,7 +14721,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 84
   m_CollisionDetection: 0
 --- !u!82 &82953152406792910
 AudioSource:
@@ -14913,19 +14913,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9b9d14572410594cb85d40eedfb150c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyTypes: []
+  enemyAttributes:
+  - keyAttribute: blast_immunity
+    isActive: 0
   startingHealth: 200
   currentHealth: 0
   sinkSpeed: 2.5
   scoreValue: 20
   deathClip: {fileID: 8300000, guid: 8c615fd0429f34edf85539d70279360d, type: 3}
-  deathParticle: {fileID: 1183884344351768}
   EnemyBar: {fileID: 114730229503588528}
   isDead: 0
-  Rocket_Resistant: 0
   Camera: {fileID: 0}
-  DeathParticle: {fileID: 198152836108773450}
-  snowParticle: {fileID: 0}
+  hitParticles: {fileID: 0}
+  enemyParticles:
+  - name: Ghost
+    tag: onDeath
+    particleEffect: {fileID: 198152836108773450}
   HealthImage: {fileID: 1636044866797542}
   NavAgent_Speed: 0
   HPSlider: {fileID: 1922161631803084}

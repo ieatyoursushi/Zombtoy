@@ -5,7 +5,7 @@ import re
 from collections import defaultdict
 from common import read_cs_files, load_and_strip, rel
 
-ROOT = Path(__file__).resolve().parents[1] / 'Assets' / 'Scripts'
+ROOT = Path(__file__).resolve().parents[2] / 'Assets' / 'Scripts'
 OUT_DIR = Path(__file__).resolve().parent / 'out'
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -58,6 +58,7 @@ def emit_puml(classes, interfaces, extends, implements):
 
 def main():
     classes, interfaces, extends, implements = parse()
+    print(f'DEBUG: parsed {len(classes)} classes, {len(interfaces)} interfaces, {sum(len(v) for v in extends.values())} extends, {sum(len(v) for v in implements.values())} implements')
     puml = emit_puml(classes, interfaces, extends, implements)
     p = OUT_DIR / 'class_dependency.puml'
     p.write_text(puml, encoding='utf-8')

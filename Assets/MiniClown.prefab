@@ -226,7 +226,7 @@ GameObject:
   - component: {fileID: 95920087571890466}
   m_Layer: 9
   m_Name: MiniClown
-  m_TagString: Anti_Rocket
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -456,12 +456,14 @@ MonoBehaviour:
   sinkSpeed: 2.5
   scoreValue: 5
   deathClip: {fileID: 8300000, guid: 62366b8d2c37a49dca550841c741317f, type: 3}
-  deathParticle: {fileID: 1916209207674768}
   EnemyBar: {fileID: 114821871885500886}
   isDead: 0
   Camera: {fileID: 0}
-  DeathParticle: {fileID: 198501574174892434}
-  snowParticle: {fileID: 0}
+  hitParticles: {fileID: 0}
+  enemyParticles:
+  - name: Ghost
+    tag: onDeath
+    particleEffect: {fileID: 198501574174892434}
   HealthImage: {fileID: 1499445563680236}
   NavAgent_Speed: 0
   HPSlider: {fileID: 1337776348532666}

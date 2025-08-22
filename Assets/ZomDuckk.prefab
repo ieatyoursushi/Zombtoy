@@ -25171,19 +25171,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9b9d14572410594cb85d40eedfb150c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyTypes: []
+  enemyAttributes:
+  - keyAttribute: blast_immunity
+    isActive: 0
   startingHealth: 100
   currentHealth: 0
   sinkSpeed: 2.5
   scoreValue: 15
   deathClip: {fileID: 8300000, guid: 1d3bfb9269f136947bf8ac164cace1ff, type: 3}
-  deathParticle: {fileID: 1040586856191052}
   EnemyBar: {fileID: 114399255272371536}
   isDead: 0
-  Rocket_Resistant: 0
   Camera: {fileID: 0}
-  DeathParticle: {fileID: 198260283807874050}
-  snowParticle: {fileID: 0}
+  hitParticles: {fileID: 0}
+  enemyParticles:
+  - name: Ghost
+    tag: onDeath
+    particleEffect: {fileID: 198260283807874050}
   HealthImage: {fileID: 1853903563363336}
   NavAgent_Speed: 0
   HPSlider: {fileID: 1873165066699996}

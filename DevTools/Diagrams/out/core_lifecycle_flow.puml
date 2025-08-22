@@ -1,0 +1,48 @@
+@startuml
+title Core Component Lifecycle Flow
+skinparam backgroundColor #FAFAFA
+
+participant ComponentCache
+participant GameStateManager
+participant GameStarter
+participant Singleton
+participant SFXManager
+participant MusicManager
+participant EnemyManager
+
+== Initialization Phase ==
+
+activate ComponentCache
+ComponentCache -> ComponentCache : Awake()
+activate GameStateManager
+GameStateManager -> GameStateManager : Awake()
+GameStateManager -> GameStateManager : Initialize Singleton
+GameStateManager -> GameEvents : Subscribe to events
+activate Singleton
+Singleton -> Singleton : Awake()
+activate MusicManager
+MusicManager -> MusicManager : Awake()
+MusicManager -> MusicManager : Initialize Singleton
+MusicManager -> GameEvents : Subscribe to events
+activate EnemyManager
+EnemyManager -> EnemyManager : Awake()
+EnemyManager -> EnemyManager : Initialize Singleton
+EnemyManager -> GameEvents : Subscribe to events
+
+== Runtime Phase ==
+
+EnemyManager -> GameEvents : EnemySpawned(enemy)
+GameEvents -> EnemyManager : OnEnemySpawned callback
+GameEvents -> ScoreManager : OnEnemySpawned callback (if subscribed)
+
+== Cleanup Phase ==
+
+deactivate ComponentCache
+GameStateManager -> GameEvents : Unsubscribe from events
+deactivate GameStateManager
+deactivate Singleton
+MusicManager -> GameEvents : Unsubscribe from events
+deactivate MusicManager
+EnemyManager -> GameEvents : Unsubscribe from events
+deactivate EnemyManager
+@enduml

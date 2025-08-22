@@ -1,7 +1,11 @@
 @startuml
 title Class Inheritance & Interface Implementation
 skinparam classAttributeIconSize 0
+interface IBlast
+interface IFirearm
+interface IPlayerWeapon
 interface IProjectile
+interface ISpell
 interface IWeapon
 class Ammo
 class AmmoItem
@@ -78,6 +82,7 @@ MonoBehaviour <|-- Keybinds
 MonoBehaviour <|-- FirstPersonMovement
 MonoBehaviour <|-- AmmoItem
 MonoBehaviour <|-- CamerPOV
+IBlast <|-- SelfDestruct
 MonoBehaviour <|-- SelfDestruct
 MonoBehaviour <|-- KeybindText
 MonoBehaviour <|-- CamerFollow
@@ -92,6 +97,7 @@ MonoBehaviour <|-- EnemyShooting
 MonoBehaviour <|-- Pistol
 MonoBehaviour <|-- vectorTest
 MonoBehaviour <|-- EnemyRegen
+IBlast <|-- Rocket
 MonoBehaviour <|-- Rocket
 MonoBehaviour <|-- RocketLauncher
 MonoBehaviour <|-- Inventory
