@@ -8,7 +8,7 @@ public class SelfDestruct : MonoBehaviour, IBlast {
     public EnemyHealth enemyHealth;
     bool exploded;
     public int BlaseDamage;
-    public int MaxBlastDamage;
+    private int MaxBlastDamage;
     public AudioSource BlastAudio;
     float timer;
     bool isIgniting;
@@ -61,7 +61,7 @@ public class SelfDestruct : MonoBehaviour, IBlast {
             }
             if (eenemyHealth != null && !eenemyHealth.GetAttribute("blast_immunity"))
             {
-                eenemyHealth.TakeDamage(BlaseDamage / 4, transform.position, this);
+                eenemyHealth.TakeDamage((int)(BlaseDamage/6), transform.position, this);
             }
         }
         /*

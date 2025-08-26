@@ -25426,8 +25426,7 @@ MonoBehaviour:
   explodeParticles: {fileID: 198165563587799394}
   explosionParticles: {fileID: 1793443004564992}
   enemyHealth: {fileID: 0}
-  BlaseDamage: 61
-  MaxBlastDamage: 50
+  BlaseDamage: 99
   BlastAudio: {fileID: 0}
   ignite: 1.8
 --- !u!1 &1650976719697744
