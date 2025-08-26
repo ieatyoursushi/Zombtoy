@@ -8,15 +8,16 @@
 
 ## 📖 Overview
 
-Zombtoy is a zombie survival game built in Unity featuring multiple game modes, weapon systems, and enemy types. Originally created during high school as a learning project, it now serves as a comprehensive example of Unity game development with modern architectural patterns and backend integration.
+Zombtoy is a zombie survival game built in Unity featuring multiple game modes, weapon systems, and enemy types. Originally created during my high school years as a learning project, it now serves as a comprehensive example of Unity game development with modern architectural patterns and backend integration.
 
-### 🎮 Key Features
+### 🎮 Key / Planned Features
 
-- **Multiple Camera Perspectives**: Switch between isometric and first-person views
-- **Diverse Enemy Types**: Fight zombies, clowns, hellephants, zombears, and more
-- **Weapon Arsenal**: Pistols, rocket launchers, flamethrowers with different ammunition types
+- **Multiple and or Dynamic/Scenic Camera Perspectives**: Switch between isometric and first-person views
+- **Diverse Enemy Types**: Fight zom-soldiers, giant/mutant zombtoys, bosses, zomtoys with varying spells / ranged attacks, ect.
+- **Weapon Arsenal**: Firearms, rocket launchers, flamethrowers with different ammunition types
 - **Health & Stamina System**: Complete player vitals management
-- **Scoring & Leaderboards**: Local and online high score tracking
+- **Backend (current)**: Local and online high score tracking
+- **Backend (future)**: full implementation of a multiplayer / CO-OP system wth user-profiles and a basic anticheat.
 - **Visual Effects**: Particle systems for combat, explosions, and environmental effects
 - **Sound Design**: Comprehensive audio system with SFX and environmental sounds
 
@@ -83,6 +84,7 @@ The game includes a .NET Minimal API for score tracking and multiplayer preparat
    dotnet restore
    dotnet run --urls "http://localhost:3000"
    ```
+-so far is just a primitive highscore rest minimal API (will likely keep using .NET minimal for the context of this project).
 
 3. **API Endpoints**
    - `GET /` - Health check
@@ -97,11 +99,12 @@ The game includes a .NET Minimal API for score tracking and multiplayer preparat
    # Get all scores
    curl http://localhost:3000/getAllScores
    ```
+-Websockets coming soon
 
 ## 🎯 Game Modes & Scenes
 
 - **Main Menu** (`Menu.unity`) - Primary navigation hub
-- **Level 1-3** (`Level1.unity`, `Level2.unity`, `Level3.unity`) - Core gameplay levels
+- **Level 1-2** (`Level1.unity`, `Level2.unity`, `Level3.unity`) -  Game scenes that represent differing versions (will likely transition to a single-scene full manager-dictated system).
 - **Isometric View** - Top-down perspective gameplay
 - **First Person** - Immersive FPS experience
 - **Settings Menu** - Game configuration
@@ -114,7 +117,7 @@ The game includes a .NET Minimal API for score tracking and multiplayer preparat
 - **GameEvents**: Event-driven architecture for decoupled communication
 - **Managers**: Centralized system management (Enemy, Score, GameState, etc.)
 - **Player Systems**: Modular player functionality (Health, Movement, Shooting)
-- **UI Management**: Scene navigation and user interface handling
+- **UI Management**: Scene navigation and user interface handling (most WIP, seamless cross compatibility between legacy code needed)
 
 ### Key Components
 
@@ -122,7 +125,8 @@ The game includes a .NET Minimal API for score tracking and multiplayer preparat
 - **EnemyManager**: Centralized enemy spawning and lifecycle management
 - **ScoreManager**: Score tracking and high score persistence
 - **WeaponSystem**: Comprehensive weapon handling and ammunition management
-
+- **ItemManager**: Centralized item spawn-manaement in the game scene.
+  
 ## 🔧 Development Status
 
 This project is actively being refactored to improve code quality and prepare for multiplayer features.
@@ -147,6 +151,7 @@ See [`REFACTOR_PLAN.md`](REFACTOR_PLAN.md) for detailed architectural improvemen
 - **Space** - Jump (first-person mode)
 - **F** - Flashlight toggle
 - **1-9** - Weapon selection
+! Inventory and Keying system needs refactoring asap !
 
 ### Menu Navigation
 - **Mouse** - Navigate menus
@@ -160,7 +165,8 @@ This project includes several third-party Unity assets:
 - **Cartoon FX**: Additional visual effects  
 - **Sci-Fi Styled Modular Pack**: Environmental models and textures
 - **AllSkyFree**: Skybox collection for various environments
-
+--Later conversion to custom made or commercially liscenced assets--
+  
 ## 📈 Performance Considerations
 
 - **Event System**: Optimized for minimal garbage collection
@@ -192,7 +198,7 @@ This project welcomes contributions! Areas of focus:
 1. **Code Refactoring**: Help implement the architectural improvements outlined in `REFACTOR_PLAN.md`
 2. **New Features**: Add new enemy types, weapons, or game modes
 3. **Performance**: Optimize systems for better performance
-4. **Multiplayer**: Implement networking features using the prepared backend
+4. **Multiplayer/CO-OP**: Implement networking features using the prepared backend
 5. **Documentation**: Improve code documentation and guides
 
 ### Development Workflow
@@ -201,11 +207,11 @@ This project welcomes contributions! Areas of focus:
 2. Create a feature branch
 3. Follow the existing code patterns and architecture
 4. Test your changes thoroughly
-5. Submit a pull request with detailed description
+5. Submit a pull request with a detailed description
 
 ## 📝 Version History
 
-- **Current**: Refactoring phase - Improving architecture and preparing for multiplayer
+- **Current**: Refactoring phase - Improving architecture and preparing for multiplayer/complete backend system.
 - **Original**: High school project - Basic zombie survival gameplay implemented
 
 ## 📞 Support
@@ -218,12 +224,12 @@ For questions, issues, or contributions:
 
 ## 🎓 Educational Value
 
-This project serves as an excellent learning resource for:
+This project serves as an excellent resource for:
 
 - **Unity Game Development**: Complete game project structure
 - **C# Programming**: Game programming patterns and practices  
 - **Software Architecture**: Event-driven design and refactoring principles
-- **Backend Integration**: Unity-to-API communication
+- **Backend Integration**: Unity-to-API communication and the .NET ecosystem specifically in context to backend-development.
 - **Performance Optimization**: Unity-specific optimization techniques
 
 ## 📄 License
