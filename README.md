@@ -1,4 +1,4 @@
-# 🧟 Zombtoy
+# Zombtoy
 
 **A Unity 3D zombie survival game with multiple perspectives and a .NET backend API**
 
@@ -235,7 +235,11 @@ This project serves as an excellent resource for:
 ## 📄 License
 
 This project is available for educational and development purposes. Third-party assets retain their original licenses.
-
 ---
 
 **Built with Unity 2022.3.37f1 • .NET 8.0 • Love for Game Development 🎮**
+
+**Some project images:**
+<img width="800" height="497" alt="Screenshot 2025-08-13 at 3 46 55 PM" src="https://github.com/user-attachments/assets/60dc21bf-20c1-4f6e-b901-d4203cd2dd4e" />
+<img width="1728" height="1117" alt="Screenshot 2025-08-13 at 3 46 42 PM" src="https://github.com/user-attachments/assets/04979d56-d7bf-45fc-8c13-d9d2155180d4" />
+<img width="1279" height="720" alt="Screenshot 2024-11-07 at 9 02 08 PM" src="https://github.com/user-attachments/assets/8ed9b845-a0d7-4542-a9af-3702eeb067f1" />
