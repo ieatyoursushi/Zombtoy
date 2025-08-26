@@ -4,6 +4,7 @@ using UnityEngine.AI;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
+using System;
 /// <summary>
 /// Enemy health system with event integration
 /// Now properly integrated with the centralized systems
@@ -16,14 +17,13 @@ public class EnemyHealth : MonoBehaviour
     public struct EnemyAttributeEntry
     {
         public string keyAttribute;
-        public bool isActive;
+        public bool isActive; 
     }
     [SerializeField]
     private List<EnemyAttributeEntry> enemyAttributes = new List<EnemyAttributeEntry>() {
         new EnemyAttributeEntry { keyAttribute = "blast_immunity", isActive = false }
 
     };
-
     public int startingHealth = 100;
     public int currentHealth;
     public float sinkSpeed = 2.5f;

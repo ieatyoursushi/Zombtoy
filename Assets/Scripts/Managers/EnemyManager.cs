@@ -22,7 +22,11 @@ public class EnemyManager : Singleton<EnemyManager>
         public float maxSpawnTime = 5f;
         public int maxConcurrent = 10;
         public bool canSpawnInGroups = false;
-        [Range(1, 5)] public int groupSizeMax = 1;
+        public int groupSizeMin = 1;
+        public int groupSizeMax = 1;
+    // Delay (seconds) after GameStarted before this enemy type can begin spawning
+        public float startBufferTime = 0f;
+
     }
     
     [Header("Spawn Configuration")]
@@ -40,8 +44,11 @@ public class EnemyManager : Singleton<EnemyManager>
     // Runtime data
     private List<GameObject> activeEnemies = new List<GameObject>();
     private Dictionary<GameObject, EnemySpawnData> enemyTypeMap = new Dictionary<GameObject, EnemySpawnData>();
+    // per-prefab next available time (cooldown) to enforce min/max per-type spawn spacing
+    private Dictionary<GameObject, float> nextAvailableTime = new Dictionary<GameObject, float>();
     private float currentSpawnTime;
-    private bool spawningEnabled = true;
+    private bool spawningEnabled = true; 
+    private float gameStartTimestamp = -1f; // set when GameStarted event fires
 
     // Properties
     public int ActiveEnemyCount => activeEnemies.Count;
@@ -220,11 +227,17 @@ public class EnemyManager : Singleton<EnemyManager>
     private void InitializeEnemyTypes()
     {
         enemyTypeMap.Clear();
+    nextAvailableTime.Clear();
         foreach (var enemyData in enemyTypes)
         {
             if (enemyData.enemyPrefab != null)
             {
                 enemyTypeMap[enemyData.enemyPrefab] = enemyData;
+                // initialize availability: immediately if no per-type buffer; otherwise mark as not-yet-available
+                if (enemyData.startBufferTime <= 0f)
+                    nextAvailableTime[enemyData.enemyPrefab] = 0f;
+                else
+                    nextAvailableTime[enemyData.enemyPrefab] = float.MaxValue;
             }
         }
     }
@@ -274,6 +287,15 @@ public class EnemyManager : Singleton<EnemyManager>
         }
         
         // Start spawning
+        gameStartTimestamp = Time.time;
+        // set per-type availability based on their configured startBufferTime
+        foreach (var enemyData in enemyTypes)
+        {
+            if (enemyData?.enemyPrefab == null) continue;
+            float buf = Mathf.Max(0f, enemyData.startBufferTime);
+            nextAvailableTime[enemyData.enemyPrefab] = Time.time + buf;
+        }
+
         StartSpawning();
     }
     
@@ -301,6 +323,13 @@ public class EnemyManager : Singleton<EnemyManager>
         }
         
         // Start spawning
+        gameStartTimestamp = Time.time;
+        foreach (var enemyData in enemyTypes)
+        {
+            if (enemyData?.enemyPrefab == null) continue;
+            float buf = Mathf.Max(0f, enemyData.startBufferTime);
+            nextAvailableTime[enemyData.enemyPrefab] = Time.time + buf;
+        }
         StartSpawning();
     }
     
@@ -309,6 +338,22 @@ public class EnemyManager : Singleton<EnemyManager>
         spawningEnabled = true;
         if (IsInvoking(nameof(SpawnEnemy)))
             CancelInvoke(nameof(SpawnEnemy));
+        // If game start timestamp not set (no GameStarted event), treat this as start
+        if (gameStartTimestamp < 0f)
+        {
+            gameStartTimestamp = Time.time;
+            // initialize per-type availability based on startBufferTime if they were left as MaxValue
+            foreach (var enemyData in enemyTypes)
+            {
+                if (enemyData?.enemyPrefab == null) continue;
+                if (!nextAvailableTime.ContainsKey(enemyData.enemyPrefab) || nextAvailableTime[enemyData.enemyPrefab] == float.MaxValue)
+                {
+                    float buf = Mathf.Max(0f, enemyData.startBufferTime);
+                    nextAvailableTime[enemyData.enemyPrefab] = Time.time + buf;
+                }
+            }
+        }
+
         InvokeRepeating(nameof(SpawnEnemy), currentSpawnTime, currentSpawnTime);
     }
     
@@ -335,15 +380,28 @@ public class EnemyManager : Singleton<EnemyManager>
             return;
         }
             
-        // Select enemy type based on weighted probability
-        var enemyData = SelectRandomEnemyType();
-        if (enemyData?.enemyPrefab == null)
+        // Select an available enemy type based on weighted probability among currently-ready types
+        var enemyData = SelectRandomAvailableEnemyType();
+        if (enemyData == null || enemyData.enemyPrefab == null)
+        {
+            // No available types this tick
             return;
+        }
             
         // Check concurrent limit for this enemy type
         int currentCount = GetActiveEnemyCount(enemyData.enemyPrefab);
         if (currentCount >= enemyData.maxConcurrent)
             return;
+
+        // Check per-type cooldown availability
+        if (nextAvailableTime.TryGetValue(enemyData.enemyPrefab, out float availableAt))
+        {
+            if (Time.time < availableAt)
+            {
+                // not ready yet for this type, skip this tick
+                return;
+            }
+        }
             
         // Validate spawn points are still valid before using them
         if (!AreSpawnPointsValid())
@@ -374,26 +432,33 @@ public class EnemyManager : Singleton<EnemyManager>
             return;
         }
         
-        // Spawn enemy
+        // Spawn enemy (and possibly group)
         List<GameObject> spawned = new List<GameObject>();
-        GameObject newEnemy = Instantiate(enemyData.enemyPrefab, spawnPoint.position, spawnPoint.rotation);
-        spawned.Add(newEnemy);
-        // Publish spawn so RegisterEnemy tracks it
-        GameEvents.EnemySpawned(newEnemy);
-        
-        // Handle group spawning
-        if (enemyData.canSpawnInGroups && Random.value < 0.3f)
+        // Determine group size: if grouping enabled, always spawn between min and max inclusive; otherwise single
+        int groupSize = 1;
+        if (enemyData.canSpawnInGroups)
         {
-            int groupSize = Random.Range(2, enemyData.groupSizeMax + 1);
-            for (int i = 1; i < groupSize && ActiveEnemyCount + spawned.Count < maxTotalEnemies; i++)
-            {
-                Vector3 groupPosition = spawnPoint.position + Random.insideUnitSphere * 3f;
-                groupPosition.y = spawnPoint.position.y;
-                var e = Instantiate(enemyData.enemyPrefab, groupPosition, spawnPoint.rotation);
-                spawned.Add(e);
-                GameEvents.EnemySpawned(e);
-            }
+            groupSize = Random.Range(enemyData.groupSizeMin, enemyData.groupSizeMax + 1);
         }
+
+        for (int i = 0; i < groupSize && ActiveEnemyCount + spawned.Count < maxTotalEnemies; i++)
+        {
+            Vector3 pos = spawnPoint.position;
+            if (i > 0) // jitter group members
+            {
+                pos += Random.insideUnitSphere * 3f;
+                pos.y = spawnPoint.position.y;
+            }
+            var e = Instantiate(enemyData.enemyPrefab, pos, spawnPoint.rotation);
+            spawned.Add(e);
+            GameEvents.EnemySpawned(e);
+        }
+
+        // Schedule next available time for this enemy type using its min/max spawn time
+        float minT = Mathf.Max(0f, enemyData.minSpawnTime);
+        float maxT = Mathf.Max(minT, enemyData.maxSpawnTime);
+        float wait = Random.Range(minT, maxT);
+        nextAvailableTime[enemyData.enemyPrefab] = Time.time + wait;
         
         // Update spawn timing
         UpdateSpawnTiming();
@@ -421,6 +486,45 @@ public class EnemyManager : Singleton<EnemyManager>
         }
         
         return enemyTypes[0]; // Fallback
+    }
+
+    /// <summary>
+    /// Selects a random enemy type weighted by spawnWeight but only from those types whose nextAvailableTime <= Time.time
+    /// Returns null if no types are currently available.
+    /// </summary>
+    private EnemySpawnData SelectRandomAvailableEnemyType()
+    {
+        var available = new List<EnemySpawnData>();
+        foreach (var e in enemyTypes)
+        {
+            if (e?.enemyPrefab == null) continue;
+            if (nextAvailableTime.TryGetValue(e.enemyPrefab, out float t))
+            {
+                if (Time.time >= t)
+                    available.Add(e);
+            }
+            else
+            {
+                // If no entry, consider available
+                available.Add(e);
+            }
+        }
+
+        if (available.Count == 0) return null;
+
+        int totalWeight = 0;
+        foreach (var e in available) totalWeight += Mathf.Max(0, e.spawnWeight);
+        if (totalWeight <= 0) return available[0];
+
+        int rv = Random.Range(0, totalWeight);
+        int cw = 0;
+        foreach (var e in available)
+        {
+            cw += e.spawnWeight;
+            if (rv < cw) return e;
+        }
+
+        return available[0];
     }
     
     private int GetActiveEnemyCount(GameObject prefab)
@@ -457,6 +561,7 @@ public class EnemyManager : Singleton<EnemyManager>
             {
                 zombieCounter.entityCount++;
             }
+            Debug.Log($"[EnemyManager] Registered enemy: {enemy.name} (total={activeEnemies.Count})");
         }
     }
     
@@ -464,13 +569,21 @@ public class EnemyManager : Singleton<EnemyManager>
     {
         if (enemy != null)
         {
-            activeEnemies.Remove(enemy);
-            GameEvents.EnemyCountChanged(activeEnemies.Count);
-            
-            // Update zombie counter (backwards compatibility)
-            if (zombieCounter != null && zombieCounter.entityCount > 0)
+            bool removed = activeEnemies.Remove(enemy);
+            if (removed)
             {
-                zombieCounter.entityCount--;
+                GameEvents.EnemyCountChanged(activeEnemies.Count);
+                // Update zombie counter (backwards compatibility)
+                if (zombieCounter != null && zombieCounter.entityCount > 0)
+                {
+                    zombieCounter.entityCount--;
+                }
+                Debug.Log($"[EnemyManager] Unregistered enemy: {enemy.name} (remaining={activeEnemies.Count})");
+            }
+            else
+            {
+                // If we didn't have it in our list, log for investigation
+                Debug.LogWarning($"[EnemyManager] Unregister called for unknown enemy: {enemy.name}");
             }
         }
     }

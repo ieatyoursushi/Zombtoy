@@ -9,7 +9,6 @@ public class SpawnClown : MonoBehaviour {
     public GameObject MiniClown;
     public bool spawned;
     public AudioSource SpawnSound;
-    public zombieCount ZombieCount;
     [SerializeField]
     private int clownsSpawned = 1;
     private float spawnProbabillity;
@@ -20,7 +19,6 @@ public class SpawnClown : MonoBehaviour {
          if(GameObject.Find("PoofSound") != null)
         {
             SpawnSound = GameObject.Find("PoofSound").GetComponent<AudioSource>();
-            ZombieCount = GameObject.Find("ZombieCount").GetComponent<zombieCount>();
         }
         spawnProbabillity = Random.Range(0, 100);
         if(spawnProbabillity <= 15)
@@ -46,7 +44,15 @@ public class SpawnClown : MonoBehaviour {
             {
                 GameObject miniClown = Instantiate(MiniClown, ClownSpawnPoint) as GameObject;
                 miniClown.transform.parent = null;
-                ZombieCount.entityCount += 1;
+                // Ensure newly-created enemies are registered with the central system.
+                // Normally the enemy prefab's EnemyHealth.Awake will call GameEvents.EnemySpawned(gameObject).
+                // If the prefab lacks EnemyHealth for some reason, register it here as a fallback.
+                var eh = miniClown.GetComponent<EnemyHealth>();
+                if (eh == null)
+                {
+                    // Attach transient registration so the spawned object is tracked and cleaned up properly
+                    miniClown.AddComponent<TransientEnemyRegistration>();
+                }
             }
             spawned = true;
             SpawnSound.Play();
