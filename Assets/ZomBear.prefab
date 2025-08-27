@@ -25115,7 +25115,7 @@ MonoBehaviour:
   startingHealth: 60
   currentHealth: 0
   sinkSpeed: 5
-  scoreValue: 12
+  scoreValue: 10
   deathClip: {fileID: 8300000, guid: 62366b8d2c37a49dca550841c741317f, type: 3}
   EnemyBar: {fileID: 114141747068001280}
   isDead: 0
