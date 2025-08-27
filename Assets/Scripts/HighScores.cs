@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+// legacy tutorial-code for reference 
 public class HighScores : MonoBehaviour {
     const string privateCode = "28pLBGexQkO4JU3gIMeCFA4TBtyDlkmUKO8ENc_Ae-0A";
     const string publicCode = "623ccd6b8f40bc123c38c9dc";

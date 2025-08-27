@@ -17,7 +17,9 @@ public class MusicManager : Singleton<MusicManager>
     protected override bool LogCreation => false;
     [Header("Audio Configuration")]
     [SerializeField] private AudioMixer masterMixer;
-    [SerializeField] private AudioSource backgroundMusic;
+    [SerializeField] private AudioSource[] backgroundMusicSources;
+    [SerializeField] private AudioSource menuMusic; // optional menu music (can be empty)
+    private AudioSource activeBackgroundMusic;
     [SerializeField] private AudioSource sfxSource;
     
     [Header("UI References")]
@@ -75,12 +77,20 @@ public class MusicManager : Singleton<MusicManager>
     private void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode mode)
     {
         Debug.Log($"[MusicManager] Scene loaded: {scene.name}, refreshing audio sources");
-        // Reset references so they get re-found in the new scene
-        backgroundMusic = null;
+    // Stop any background music immediately to avoid playOnAwake races
+    StopAllBackgroundMusic();
+    // Reset references so they get re-found in the new scene
+    backgroundMusicSources = null;
         volumeSlider = null;
         muteToggle = null;
         InitializeAudio();
         InitializeUI();
+        // If this is not a gameplay scene, ensure music is stopped
+        if (!IsGameplayScene(scene.name))
+        {
+            StopAllBackgroundMusic();
+            StopMenuMusic();
+        }
     }
     
     protected override void OnDestroy()
@@ -92,13 +102,46 @@ public class MusicManager : Singleton<MusicManager>
     
     private void InitializeAudio()
     {
-        // Find background music if not assigned
-        if (backgroundMusic == null)
+        // Find background music sources if not assigned
+    if (backgroundMusicSources == null || backgroundMusicSources.Length == 0)
         {
-            var bgMusicGO = GameObject.Find("BackgroundMusic");
-            if (bgMusicGO != null)
-                backgroundMusic = bgMusicGO.GetComponent<AudioSource>();
+            var holder = GameObject.Find("BackgroundMusicSources") ?? GameObject.Find("BackgroundMusic");
+            if (holder != null)
+            {
+                backgroundMusicSources = holder.GetComponentsInChildren<AudioSource>(true);
+            }
+            else
+            {
+                // Fallback: find AudioSources with names starting with BackgroundMusic
+                var all = GameObject.FindObjectsOfType<AudioSource>();
+                var list = new System.Collections.Generic.List<AudioSource>();
+                foreach (var a in all)
+                {
+                    if (a.gameObject.name.ToLower().StartsWith("backgroundmusic"))
+                        list.Add(a);
+                }
+                if (list.Count > 0)
+                    backgroundMusicSources = list.ToArray();
+            }
         }
+
+        // Immediately deactivate background music GameObjects to avoid PlayOnAwake races
+        if (backgroundMusicSources != null)
+        {
+            foreach (var src in backgroundMusicSources)
+            {
+                if (src == null || src.gameObject == null) continue;
+                try
+                {
+                    // prefer manager control over GameObject active state
+                    src.playOnAwake = false;
+                    src.Stop();
+                }
+                catch { }
+            }
+        }
+    // Dump what we discovered so we can debug why nothing is playing
+    DumpDiscoveredAudioSources();
         
         // Create SFX source if needed
         if (sfxSource == null)
@@ -112,10 +155,18 @@ public class MusicManager : Singleton<MusicManager>
         // Apply initial settings
         UpdateAudioSettings();
         
-        // Start background music
-        if (backgroundMusic != null && !IsMuted)
+        // Do not auto-play here for all scenes. Music should start when a game run begins
+        // or when we detect a gameplay scene. If we're in a gameplay scene and sources exist,
+        // pick one randomly for this game instance.
+        var sceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+        if (IsGameplayScene(sceneName))
         {
-            backgroundMusic.Play();
+            PickAndPlayBackgroundMusic();
+        }
+        else
+        {
+            if (menuMusic != null && !IsMuted)
+                menuMusic.Play();
         }
     }
     
@@ -156,24 +207,56 @@ public class MusicManager : Singleton<MusicManager>
     {
         GameEvents.OnGamePaused += HandleGamePaused;
         GameEvents.OnGameResumed += HandleGameResumed;
+    GameEvents.OnGameStarted += HandleGameStarted;
+    GameEvents.OnPlayerDeath += HandleGameEnded;
+    GameEvents.OnGameOver += HandleGameEnded;
     }
     
     private void UnsubscribeFromEvents()
     {
         GameEvents.OnGamePaused -= HandleGamePaused;
         GameEvents.OnGameResumed -= HandleGameResumed;
+    GameEvents.OnGameStarted -= HandleGameStarted;
+    GameEvents.OnPlayerDeath -= HandleGameEnded;
+    GameEvents.OnGameOver -= HandleGameEnded;
     }
     
     private void HandleGamePaused()
     {
-        if (backgroundMusic != null)
-            backgroundMusic.Pause();
+        if (activeBackgroundMusic != null)
+            activeBackgroundMusic.Pause();
+        if (menuMusic != null && menuMusic.isPlaying)
+            menuMusic.Pause();
     }
     
     private void HandleGameResumed()
     {
-        if (backgroundMusic != null && !IsMuted)
-            backgroundMusic.UnPause();
+        if (activeBackgroundMusic != null && !IsMuted)
+            activeBackgroundMusic.UnPause();
+        if (menuMusic != null && !IsMuted && menuMusic.isPlaying)
+            menuMusic.UnPause();
+    }
+
+    private void HandleGameStarted()
+    {
+        if (backgroundMusicSources == null || backgroundMusicSources.Length == 0)
+            InitializeAudio();
+
+        PickAndPlayBackgroundMusic();
+    }
+
+    private void HandleGameEnded()
+    {
+        // Stop music when the player dies or the game ends
+        StopAllBackgroundMusic();
+        StopMenuMusic();
+    }
+
+    private bool IsGameplayScene(string sceneName)
+    {
+        if (string.IsNullOrEmpty(sceneName)) return false;
+        sceneName = sceneName.ToLowerInvariant();
+        return sceneName.Contains("level") || sceneName.Contains("game") || sceneName.Contains("play");
     }
     
     private void Update()
@@ -189,9 +272,14 @@ public class MusicManager : Singleton<MusicManager>
     
     private void UpdateAudioSettings()
     {
-        if (backgroundMusic != null)
+        if (activeBackgroundMusic != null)
         {
-            backgroundMusic.volume = IsMuted ? 0f : musicVolume * masterVolume;
+            activeBackgroundMusic.volume = IsMuted ? 0f : musicVolume * masterVolume;
+        }
+        // Ensure menu music respects mute
+        if (menuMusic != null)
+        {
+            menuMusic.volume = IsMuted ? 0f : musicVolume * masterVolume;
         }
         
         if (sfxSource != null)
@@ -274,6 +362,85 @@ public class MusicManager : Singleton<MusicManager>
         PlayerPrefs.SetFloat("SFXVolume", sfxVolume);
         PlayerPrefs.SetInt("AudioMuted", IsMuted ? 1 : 0);
         PlayerPrefs.Save();
+    }
+
+    private void PickAndPlayBackgroundMusic()
+    {
+        StopMenuMusic();
+
+        if (backgroundMusicSources == null || backgroundMusicSources.Length == 0)
+            return;
+        // If we already have an active background music playing for this run, keep it
+        if (activeBackgroundMusic != null && activeBackgroundMusic.isPlaying)
+        {
+            Debug.Log($"[MusicManager] Background music already playing: {activeBackgroundMusic.gameObject.name}");
+            return;
+        }
+
+        // Stop all first
+        foreach (var src in backgroundMusicSources)
+        {
+            if (src == null) continue;
+            src.Stop();
+        }
+
+        // Choose a random source for this game instance
+        var valid = new System.Collections.Generic.List<AudioSource>();
+        foreach (var s in backgroundMusicSources) if (s != null) valid.Add(s);
+        if (valid.Count == 0) return;
+
+        int idx = Random.Range(0, valid.Count);
+        activeBackgroundMusic = valid[idx];
+
+        Debug.Log($"[MusicManager] Picked background music index={idx} name={(activeBackgroundMusic != null ? activeBackgroundMusic.gameObject.name : "<null>")}");
+
+        if (activeBackgroundMusic != null)
+        {
+            if (!IsMuted)
+                activeBackgroundMusic.Play();
+        }
+    }
+
+    private void StopAllBackgroundMusic()
+    {
+        if (backgroundMusicSources != null)
+        {
+            foreach (var src in backgroundMusicSources)
+            {
+                if (src == null) continue;
+                src.Stop();
+            }
+        }
+        activeBackgroundMusic = null;
+    }
+
+    private void StopMenuMusic()
+    {
+        if (menuMusic != null)
+        {
+            menuMusic.Stop();
+        }
+    }
+
+    private void DumpDiscoveredAudioSources()
+    {
+        if (backgroundMusicSources == null)
+        {
+            Debug.Log("[MusicManager] No backgroundMusicSources discovered");
+            return;
+        }
+
+        Debug.Log($"[MusicManager] Discovered {backgroundMusicSources.Length} backgroundMusicSources:");
+        for (int i = 0; i < backgroundMusicSources.Length; i++)
+        {
+            var s = backgroundMusicSources[i];
+            if (s == null)
+            {
+                Debug.Log($"  [{i}] <null>");
+                continue;
+            }
+            Debug.Log($"  [{i}] name={s.gameObject.name} clip={(s.clip!=null? s.clip.name : "<null>")} playOnAwake={s.playOnAwake} isPlaying={s.isPlaying} volume={s.volume}");
+        }
     }
     
     // Static methods for backwards compatibility
