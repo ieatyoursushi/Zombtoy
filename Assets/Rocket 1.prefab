@@ -19269,7 +19269,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1732632420970544467}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.42262298, z: -0, w: 0.9063056}
+  m_LocalRotation: {x: 0, y: 0.4226261, z: 0, w: 0.9063042}
   m_LocalPosition: {x: 1.2982063, y: -0.009999514, z: 2.4929326}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 0
@@ -19345,7 +19345,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 912e2d946970f194dadf00e8a95faf9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3.5
+  speed: 4
   playerTransform: {fileID: 0}
   Rockets: {fileID: 1732632420970544467}
   rocketLauncher: {fileID: 0}
@@ -19355,12 +19355,14 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   ExplosionSound: {fileID: 0}
-  DamagePerShot: 39
-  ExplosionDamage: 39
+  directHitDMG: 50
+  radiusDMG: 99
+  outerRadiusDMG: 50
+  outerRadius: 4.5
   ExplideLight: {fileID: 8135395024502524462}
   block: {fileID: 0}
   DestroyTime: 0.8
-  explodeRadius: 4.5
+  explodeRadius: 2.6
 --- !u!54 &5743639985256795214
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -38739,8 +38741,8 @@ Transform:
   m_GameObject: {fileID: 4011474556980046859}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalPosition: {x: 0, y: 4.23, z: 0}
+  m_LocalScale: {x: 4, y: 4, z: 4}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3541169335595716310}
