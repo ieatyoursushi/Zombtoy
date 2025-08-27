@@ -16,8 +16,11 @@ public class Rocket : MonoBehaviour, IBlast {
     bool exploded = false;
     bool absorbed;
     public AudioSource ExplosionSound;
-    public int DamagePerShot;
-    public int ExplosionDamage;
+    public int directHitDMG;
+    public int radiusDMG;
+    // Outer blast: lower damage but larger radius
+    public int outerRadiusDMG;
+    public float outerRadius = 0f;
     bool stopMovement = false;
     bool hit;
     bool ExplosiveHit;
@@ -53,7 +56,7 @@ public class Rocket : MonoBehaviour, IBlast {
     }
     private void Update()
     {
-        RocketCollision();
+        RocketCollisionMonitor();
 
         if (collided)
         {
@@ -98,7 +101,7 @@ public class Rocket : MonoBehaviour, IBlast {
             lighting = true;
         }
     }
-    void RocketCollision()
+    void RocketCollisionMonitor()
     {
         //for raycast
         ray.origin = transform.position;
@@ -115,7 +118,7 @@ public class Rocket : MonoBehaviour, IBlast {
             //checks if there is an enemyhealth script
             if (enemyHealth != null && !enemyHealth.GetAttribute("blast_immunity"))
             {
-                enemyHealth.TakeDamage(DamagePerShot, shootHit.point, this);
+                enemyHealth.TakeDamage(directHitDMG, shootHit.point, this);
             }
             else if (enemyHealth != null)
             {
@@ -140,21 +143,67 @@ public class Rocket : MonoBehaviour, IBlast {
         LayerMask mask = LayerMask.GetMask("Shootable");
         PlayerHealth playerHealth = GameObject.Find("Player").GetComponent<PlayerHealth>();
         ExplosionPosition = gameObject.transform.position;
-        Collider[] explosionRadius = Physics.OverlapSphere(transform.position, explodeRadius, mask);
- 
-        foreach (Collider col in explosionRadius)
+        // Inner blast (full damage)
+        Collider[] innerHits = Physics.OverlapSphere(transform.position, explodeRadius, mask);
+        var damagedEnemies = new System.Collections.Generic.HashSet<int>();
+        foreach (Collider col in innerHits)
         {
             if (absorbed)
                 return;
-            EnemyHealth enemyHealth = col.GetComponent<EnemyHealth>();
-            if (enemyHealth != null && ExplosiveHit == false && !enemyHealth.GetAttribute("blast_immunity"))
+            if (col == null) continue;
+
+            // Use GetComponentInParent to handle multi-collider enemies (child colliders)
+            EnemyHealth enemyHealth = col.GetComponentInParent<EnemyHealth>();
+            if (enemyHealth == null) continue;
+
+            int eid = enemyHealth.GetInstanceID();
+            if (damagedEnemies.Contains(eid))
+                continue; // already damaged by another collider on same enemy
+
+            damagedEnemies.Add(eid);
+
+            if (ExplosiveHit == false && !enemyHealth.GetAttribute("blast_immunity"))
             {
-                enemyHealth.TakeDamage(ExplosionDamage, ExplosionPosition, this);
-            } else if(enemyHealth != null)
+                enemyHealth.TakeDamage(radiusDMG, ExplosionPosition, this);
+            }
+            else
             {
                 if (enemyHealth.GetAttribute("blast_immunity"))
                 {
                     block.Play();
+                }
+            }
+        }
+
+        // Outer blast (reduced damage) - apply only to targets not already hit by inner blast
+        if (outerRadius > explodeRadius && outerRadiusDMG > 0)
+        {
+            Collider[] outerHits = Physics.OverlapSphere(transform.position, outerRadius, mask);
+            foreach (Collider col in outerHits)
+            {
+                if (absorbed)
+                    return;
+                if (col == null) continue;
+
+                EnemyHealth enemyHealth = col.GetComponentInParent<EnemyHealth>();
+                if (enemyHealth == null) continue;
+
+                int eid = enemyHealth.GetInstanceID();
+                if (damagedEnemies.Contains(eid))
+                    continue; // already damaged by inner blast
+
+                damagedEnemies.Add(eid);
+
+                if (!enemyHealth.GetAttribute("blast_immunity"))
+                {
+                    enemyHealth.TakeDamage(outerRadiusDMG, ExplosionPosition, this);
+                }
+                else
+                {
+                    if (enemyHealth.GetAttribute("blast_immunity"))
+                    {
+                        block.Play();
+                    }
                 }
             }
         }
@@ -167,6 +216,11 @@ public class Rocket : MonoBehaviour, IBlast {
     private void OnDrawGizmos()
     {
         Gizmos.color = new Color(0f, 1f, 0f, 0.1f);
-        Gizmos.DrawSphere(transform.position, 3f);
+        Gizmos.DrawSphere(transform.position, explodeRadius);
+        if (outerRadius > 0f)
+        {
+            Gizmos.color = new Color(1f, 0.5f, 0f, 0.08f);
+            Gizmos.DrawSphere(transform.position, outerRadius);
+        }
     }
 }
