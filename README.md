@@ -248,3 +248,5 @@ This project is available for educational and development purposes. Third-party 
 <img width="1299" height="812" alt="Screenshot 2025-08-26 at 4 07 42 PM" src="https://github.com/user-attachments/assets/c0257546-4686-428d-a5f0-6db3a69c8a61" />
 <img width="1303" height="817" alt="Screenshot 2025-08-26 at 4 07 28 PM" src="https://github.com/user-attachments/assets/5bee784a-c730-4fbd-ace6-d94d3323645b" />
 <img width="1310" height="821" alt="Screenshot 2025-08-26 at 4 11 51 PM" src="https://github.com/user-attachments/assets/f731f814-2bd6-4003-bfea-ca953758d06e" />
+<img width="1916" height="1197" alt="Screenshot 2025-08-28 at 6 50 48 PM" src="https://github.com/user-attachments/assets/099a7c31-1c2f-46b8-9959-f2252984573b" />
+
