@@ -65,6 +65,34 @@ open -a "Unity" ../MusicFix
 open -a "Unity" ../MainTest
 ```
 
+#### Opening Unity Directly
+Use the provided scripts to open Unity without Unity Hub:
+```fish
+# Fish script (recommended for fish shell)
+./open-unity.fish
+
+# Bash script (works in any shell)
+./open-unity.sh
+```
+
+These scripts:
+- Detect the current project directory automatically
+- Use the direct Unity executable path
+- Include safety checks for Unity installation and project structure
+- Can be run from VS Code terminal or command line
+- Show "Unity is currently running" message (Unity blocks until closed; use Ctrl+C to exit terminal)
+
+#### Project Statistics
+Get a quick overview of your codebase:
+```bash
+./DevTools/shell_scripts/project-stats.sh
+```
+
+This script shows:
+- Count of C# files in the project
+- Total lines of code in Assets/Scripts and Backend
+- Useful for tracking project growth and code metrics
+
 **Do you need to close Unity with worktrees?** No! Since worktrees are isolated, you can keep Unity open in one worktree while working on others. Only close Unity if switching branches *within the same worktree* (rare).
 
 ## Common Scenarios
