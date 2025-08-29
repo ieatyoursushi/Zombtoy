@@ -26,7 +26,7 @@ public class RocketLauncher : MonoBehaviour {
             reloadTimer = 0;
         }
         timer += Time.deltaTime;
-		if(Input.GetButton("Fire1") && cooldown <= timer && timer != 0 && !ammoScript.ReloadCheck.reload && !playerHealth.isDead)
+		if(Input.GetButton("Fire1") && (ammoScript.ammo == ammoScript.maxAmmo || cooldown <= timer) && timer != 0 && !ammoScript.ReloadCheck.reload && !playerHealth.isDead)
         {
             if (ammoScript.ammo > 0 && ammoScript.reloadTimer == 0 )
             {

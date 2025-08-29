@@ -15,7 +15,7 @@ public class Pistol : MonoBehaviour {
     // Update is called once per frame
     void Update () {
         timer += Time.deltaTime;
-        if(Input.GetButton("Fire1") && cooldown <= timer && timer != 0)
+        if(Input.GetButton("Fire1") && (ammoScript.ammo == ammoScript.maxAmmo || cooldown <= timer) && timer != 0)
         {
             if (ammoScript.ammo > 0 && ammoScript.reloadTimer == 0 && !ammoScript.ReloadCheck.reload && !playerHealth.isDead)
             {

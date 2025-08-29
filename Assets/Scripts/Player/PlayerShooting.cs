@@ -49,7 +49,7 @@ public class PlayerShooting : MonoBehaviour
     {
  
         timer += Time.deltaTime;
-		if(Input.GetButton ("Fire1") && timer >= timeBetweenBullets && Time.timeScale != 0)
+		if(Input.GetButton ("Fire1") && (ammoScript.ammo == ammoScript.maxAmmo || timer >= timeBetweenBullets) && Time.timeScale != 0)
         {
             Shoot ();
         }
