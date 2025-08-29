@@ -60,15 +60,19 @@ public class Inventory : MonoBehaviour {
             weapons.Add(new WeaponEntry { displayName = "Cryo Pistol", weaponObject = CryoPistol, equipAudio = CryoPistolAU, reloadChecker = pistolCheck, uiFontSize = 69 });
         }
 
-        // Initialize all weapons to inactive, then equip startIndex
+        // Initialize all weapons to inactive
         for (int i = 0; i < weapons.Count; i++)
         {
             if (weapons[i].weaponObject != null)
                 weapons[i].weaponObject.SetActive(false);
         }
 
+        // Equip and activate the default weapon at start
         currentIndex = Mathf.Clamp(startIndex, 0, weapons.Count - 1);
         Equip(currentIndex);
+        // Ensure the equipped weapon is active and ready to fire
+        if (weapons[currentIndex].weaponObject != null)
+            weapons[currentIndex].weaponObject.SetActive(true);
     }
 
     public void EquipIfValid(int index)

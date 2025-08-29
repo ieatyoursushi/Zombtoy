@@ -19890,7 +19890,6 @@ MonoBehaviour:
   MiniClown: {fileID: 1254951700228524, guid: 09cb57dfe3bda974391a15c830a1773e, type: 3}
   spawned: 0
   SpawnSound: {fileID: 0}
-  ZombieCount: {fileID: 0}
   clownsSpawned: 1
   animationCurve:
     serializedVersion: 2
@@ -19947,7 +19946,6 @@ MonoBehaviour:
   MiniClown: {fileID: 1254951700228524, guid: 09cb57dfe3bda974391a15c830a1773e, type: 3}
   spawned: 0
   SpawnSound: {fileID: 0}
-  ZombieCount: {fileID: 0}
   clownsSpawned: 1
   animationCurve:
     serializedVersion: 2
@@ -50509,7 +50507,7 @@ MonoBehaviour:
   startingHealth: 151
   currentHealth: 5
   sinkSpeed: 2.5
-  scoreValue: 25
+  scoreValue: 50
   deathClip: {fileID: 8300000, guid: 1d3bfb9269f136947bf8ac164cace1ff, type: 3}
   EnemyBar: {fileID: 114049850828262076}
   isDead: 0
