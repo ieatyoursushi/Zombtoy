@@ -313,6 +313,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114889168027043690, guid: d95020bb9f8b3564f82eccd779a6bdeb,
         type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114889168027043690, guid: d95020bb9f8b3564f82eccd779a6bdeb,
+        type: 3}
       propertyPath: scoreValue
       value: 0
       objectReference: {fileID: 0}
@@ -376,10 +381,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   masterMixer: {fileID: 0}
-  backgroundMusicSources:
-  - {fileID: 127540389}
-  - {fileID: 2067975672}
-  - {fileID: 160168747}
+  backgroundMusicSources: []
   menuMusic: {fileID: 0}
   sfxSource: {fileID: 0}
   volumeSlider: {fileID: 0}
@@ -815,7 +817,7 @@ GameObject:
   - component: {fileID: 127540390}
   - component: {fileID: 127540389}
   m_Layer: 0
-  m_Name: BackgroundMusic
+  m_Name: BackgroundMusic1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -831,7 +833,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: d0de254dff5360540901afffc1c17e3e, type: 3}
+  m_audioClip: {fileID: 8300000, guid: b31253bd31ba9a34583e70b982c3ade0, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.518
   m_Pitch: 1
@@ -1020,11 +1022,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: b31253bd31ba9a34583e70b982c3ade0, type: 3}
+  m_audioClip: {fileID: 8300000, guid: d0de254dff5360540901afffc1c17e3e, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -7350,6 +7352,8 @@ MonoBehaviour:
   rocketLauncherCheck: {fileID: 1575569163}
   playerHealth: {fileID: 1559539635}
   GunText: {fileID: 1305007152}
+  weapons: []
+  startIndex: 0
 --- !u!1 &1118755080
 GameObject:
   m_ObjectHideFlags: 0
@@ -11099,6 +11103,16 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 199475210524781420, guid: cc461484bcafc664fb68be84c1fc6860,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 199761440681089244, guid: cc461484bcafc664fb68be84c1fc6860,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13164,7 +13178,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -13811,6 +13825,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6294608417682565264, guid: f3d05f7d03db7422fbfbbf3bb45832d6,
         type: 3}
+      propertyPath: cooldown
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6294608417682565264, guid: f3d05f7d03db7422fbfbbf3bb45832d6,
+        type: 3}
       propertyPath: playerHealth
       value: 
       objectReference: {fileID: 1559539635}
@@ -13849,7 +13868,6 @@ SceneRoots:
   - {fileID: 28114525}
   - {fileID: 690729101}
   - {fileID: 1825628666}
-  - {fileID: 127540390}
   - {fileID: 1559539633}
   - {fileID: 2113930284}
   - {fileID: 807335917}
@@ -13872,3 +13890,4 @@ SceneRoots:
   - {fileID: 32701477}
   - {fileID: 2067975673}
   - {fileID: 160168748}
+  - {fileID: 127540390}
