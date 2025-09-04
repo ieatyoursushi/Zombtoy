@@ -86,3 +86,5 @@ app.MapGet("/getAllScores", async (GameDbContext db) =>
 app.Run();
 
 public record ScoreJson([property: JsonPropertyName("score")] string score);
+
+
