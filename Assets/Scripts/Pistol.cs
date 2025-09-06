@@ -17,9 +17,8 @@ public class Pistol : MonoBehaviour {
         timer += Time.deltaTime;
         if(Input.GetButton("Fire1") && (ammoScript.ammo == ammoScript.maxAmmo || cooldown <= timer) && timer != 0)
         {
-            if (ammoScript.ammo > 0 && ammoScript.reloadTimer == 0 && !ammoScript.ReloadCheck.reload && !playerHealth.isDead)
+            if (ammoScript.TryShoot() && ammoScript.reloadTimer == 0 && !playerHealth.isDead)
             {
-                ammoScript.ammo--;
                 Instantiate(IceBullet, transform.position, transform.rotation);
                 Shoot.Play();
                 timer = 0f;

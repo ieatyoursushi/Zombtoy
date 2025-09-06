@@ -94,10 +94,8 @@ public class PlayerShooting : MonoBehaviour
 
     void Shoot ()
     {
-    if (ammoScript != null && ammoScript.ammo > 0 && ammoScript.ammoText != null && ammoScript.ReloadCheck != null && !ammoScript.ReloadCheck.reload && playerHealth != null && !playerHealth.isDead)
+        if (ammoScript != null && ammoScript.TryShoot() && playerHealth != null && !playerHealth.isDead)
         {
-            ammoScript.ammo--;
-
             timer = 0f;
             gunAudio.Play();
 
