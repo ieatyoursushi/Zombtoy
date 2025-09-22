@@ -70,7 +70,7 @@ public class PlayerShooting : MonoBehaviour
 
                 }
                 else if (enemyHealth == null)
-                {
+                { 
                     inRange = false;
                 }
             }

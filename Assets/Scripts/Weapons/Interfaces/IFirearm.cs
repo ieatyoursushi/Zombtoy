@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public interface IFirearm : IPlayerWeapon
+public interface IRaycastWeapon : IPlayerWeapon
 {
     string FirearmName { get; }
     int MagazineSize { get; }
