@@ -1,5 +1,12 @@
 # Zombtoy Project - .NET Minimal API Backend Integration Guide
 
+> **⚠️ Scope note (added 2026-07-12):** This is a **target-design / reference document, not a description
+> of the current backend.** The implemented backend (`Backend/ZombtoyBackend/`) is a ~100-line minimal API
+> with exactly three endpoints (`GET /`, `POST /addScore`, `GET /getAllScores`) backed by SQLite, running on
+> port **3000** — see its [README](../../Backend/ZombtoyBackend/README.md), which is accurate. The services
+> layer, SignalR hubs, JWT auth, Docker setup, and the `localhost:5000` Unity client described below are
+> **not implemented**. Use this guide as a menu of future build-out steps, not as documentation.
+
 ## Overview
 This guide outlines the complete integration of a .NET Minimal API backend with the Zombtoy Unity game project. This will replace the current Node.js backend and provide a more robust, scalable, and type-safe solution for multiplayer gaming, high scores, user authentication, and real-time features.
 

@@ -1,6 +1,28 @@
-# Zombtoy Project - Core Architecture Refactor
+# Zombtoy Project - Core Architecture Refactor (HISTORICAL DOCUMENT)
 
-## ✅ **REFACTOR COMPLETED** - January 2025
+> ## ⚠️ Status correction — audited 2026-07-12
+>
+> This document's original header claimed the refactor was **completed**. A full code/scene audit
+> (see [`docs/reexploration/CURRENT_STATE.md`](../reexploration/CURRENT_STATE.md)) found that the refactor
+> **landed as code but was only partially wired into the game**:
+>
+> - **Genuinely live:** `GameEvents` (static hub), `Singleton<T>`, `ScoreManager`, `EnemyManager`, `ItemManager`, `MusicManager`.
+> - **Written but dormant (zero scene/prefab references):** `GameStateManager`, `GameStarter`, `GameOverManager`,
+>   the entire `WeaponManager`/`WeaponSystem`/`RaycastWeapon`/`ProjectileWeapon` framework, `PlayerInputManager`,
+>   `PlayerHealthRefactored`, `PlayerHealthProxy`. `PlayerMovementRefactored` is attached to the Level1 Player but disabled.
+> - **What actually runs gameplay:** the legacy stack — `PlayerMovement`, `PlayerHealth`, `Inventory` (refactored in place),
+>   and the per-weapon scripts (`Pistol`, `RocketLauncher`, etc.).
+> - "Remove all GameObject.Find() calls" is checked off below, but **55 Find() calls remain** in `Assets/Scripts`.
+> - "100% backward compatibility maintained" is true only because the legacy code is still what executes.
+>
+> GitHub issue #16 ("Full migration to the new core and manager-based scripts") is the accurate statement of
+> remaining work. Everything below is kept **unmodified as a historical record** of the original analysis
+> (which was accurate) and the original completion claims (which were premature).
+> For a current file-by-file map of what runs vs. what is dormant, see [`docs/CODE_MAP.md`](../CODE_MAP.md).
+
+---
+
+## ✅ **REFACTOR COMPLETED** - January 2025 *(original claim — see status correction above)*
 
 **Branch:** `feature/core-architecture-refactor`  
 **Commit:** 58d2d99b  

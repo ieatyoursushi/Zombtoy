@@ -37,11 +37,33 @@ The owner authorized continuing, and the M1 rotation-freeze fix was implemented 
 - `Rocket.cs`: `using UnityEditor;` removed → file back to committed state.
 - Validation: Unity 2022.3.37f1 batchmode open (exit 0, zero CS errors, all changed assets imported, no broken refs). **In-editor play-test still pending (owner).**
 
+## UPDATE 2 (2026-07-12, later session): commits pushed + documentation pass DONE
+
+**Git:** Fix + audit docs committed (`b993e60a` fix, `e2fb5e1c` docs) and pushed to
+`origin/feature/Titan-Zombunny`. No conflicts (branch is 2+ ahead of master, master not diverged).
+Owner's in-editor play-test of the boss fight still pending but owner confirmed the crosshair renders.
+
+**Documentation audit/rewrite (Part II) — complete.** All tracked markdowns read and cross-verified,
+including the previously excluded `Backend/ZombtoyBackend-C/*.md` (markdown-only; C sources still excluded).
+Actions recorded in DOCUMENT_AUDIT.md §"Actions taken". Summary: docs reorganized under `docs/`
+(REFACTOR_PLAN → history/ with correction banner; DOTNET guide → backend/ with scope note; workflow.md moved
++ path fixes), README structure diagram + false claims fixed (object pooling, WeaponSystem, stamina "complete"),
+DevTools README stale venv paths fixed, and two new docs: **`docs/CODE_MAP.md`** (per-file status of all 75
+scripts — the C# contextualization doc) and **`docs/README.md`** (docs index).
+
 ## Exact next steps for the next session (in order)
-1. Read this directory (5 docs) — do NOT re-explore the repo.
-2. Owner play-tests Level1: walk in/out of boss range; rotation must never freeze; red crosshair (not the floor) tracks the player; boss fires rockets.
-3. Commit the working tree (Titan prefab migration + fix + these docs), then merge PR #28.
+1. Read `docs/README.md` + this file — do NOT re-explore the repo.
+2. **Queued by owner (do first if budget allows): baseline comparison review.** Compare current HEAD against
+   the first GitHub commit `071291f5` ("old baseline") and write a review of the refactoring journey:
+   what was done well/mindfully, what was done badly, whether any part warrants a restart. Suggested method:
+   `git diff --stat 071291f5..HEAD -- Assets/Scripts` + `git log --oneline 071291f5..HEAD | wc -l` for scale,
+   then per-domain judgment using CODE_MAP/CURRENT_STATE facts (live GameEvents hub = success; dormant
+   framework = incomplete; in-place Inventory refactor = good pattern; tracked node_modules = hygiene fail).
+   Deliverable: `docs/reexploration/BASELINE_COMPARISON.md`.
+3. Owner play-tests Level1 boss fight (rotation freeze gone, crosshair tracks, rockets fire), then merge PR #28.
 4. Then M2 (PR #25 reconciliation) — push local `39e7efe6` first; it exists only on this machine.
+5. Later: M4 hygiene (delete tracked Node backend `node_modules` — source of GitHub's 4 dependabot alerts —
+   and C-backend build artifacts `mongoose.o`/`obj/`/binary/`zombtoy_c.db`), M5 DevTools parser check + regen.
 
 ## Files/symbols a continuation will touch first
 - `Assets/Scripts/EnemyTargetShooting.cs` (Start/Update, groundTarget)

@@ -17,9 +17,33 @@ Every tracked `*.md` outside `node_modules`. Claims were checked against source 
 | `DevTools/picking_cherries.md` | Personal git cherry-pick tutorial | **Tutorial/reference only** | n/a (process notes) | — | Keep | low |
 | `DevTools/stashing_gold.md` | Personal git stash tutorial | **Tutorial/reference only** | n/a | — | Keep | low |
 | `Backend/ZombtoyBackend/`… (no other md) | — | — | — | — | — | — |
-| `Backend/ZombtoyBackend-C/README.md` | C backend docs | **Excluded from analysis per owner instruction** | not audited | not audited | — | n/a |
-| `Backend/ZombtoyBackend-C/C-Mem-Management-Refresher.md` | C notes | **Excluded per owner instruction** | not audited | not audited | — | n/a |
+| `Backend/ZombtoyBackend-C/README.md` | C backend docs (educational) | **Mostly current** (md-only audit per owner; C sources not read) | Project structure matches disk (`src/{main,database,http_handlers}.c`, `include/models.h`, Makefile); endpoints mirror the .NET trio; honest about being a learning project | Calls mongoose a "single-header library" but repo also carries `mongoose.c` **and tracked build artifacts** (`mongoose.o`, `obj/`, compiled binary, `zombtoy_c.db`); port 8080 + `make test` unverified (code excluded from analysis) | Keep. Untrack build artifacts during M4 hygiene | medium |
+| `Backend/ZombtoyBackend-C/C-Mem-Management-Refresher.md` | Generic C memory/pointers study notes | **Tutorial/reference only** | Educational content, no project-state claims to verify | — | Keep | low |
 | `Assets/Scripts/Server/zombtoy-backend/node_modules/**/*.md` (~120 files) | Vendor docs | **Generated/vendor** | n/a | n/a | Removed automatically when the tracked Node backend is deleted (M4) | high |
+
+## Actions taken (2026-07-12, follow-up session — supersedes the "recommended action" column where they overlap)
+
+The owner authorized the doc-correction pass. What changed:
+
+1. **Reorganized into `docs/`** (git mv, history preserved): `REFACTOR_PLAN.md` → `docs/history/`,
+   `DOTNET_BACKEND_INTEGRATION_GUIDE.md` → `docs/backend/`, `workflow.md` → `docs/`. Root now has only `README.md`.
+2. **`docs/history/REFACTOR_PLAN.md`**: prominent status-correction banner prepended (completion claims marked
+   premature, live-vs-dormant list, pointer to CURRENT_STATE + issue #16). Body kept verbatim as history.
+3. **`docs/backend/DOTNET_BACKEND_INTEGRATION_GUIDE.md`**: scope note prepended — target design, not documentation;
+   real backend = 3 endpoints on port 3000.
+4. **`README.md`**: structure diagram rewritten to match disk (no `Assets/Scenes/`/`Audio/`; docs/ tree added);
+   WeaponSystem marked dormant; "Health & Stamina: Complete" softened; false "Object Pooling: Implemented" fixed
+   (zero pooling code exists — verified by grep); Level2 not-in-build noted; links updated to new paths.
+5. **`docs/workflow.md`**: broken `./open-unity.fish` paths corrected to `DevTools/shell_scripts/`.
+6. **`DevTools/Diagrams/README.md`**: stale absolute venv paths (`~/Desktop/Zombtoy-Project/.venv` — a previous
+   copy of the repo that still exists as a sibling dir) replaced with plain `python3`; out/ staleness warning added.
+7. **New: [`docs/CODE_MAP.md`](../CODE_MAP.md)** — per-file map of all 75 scripts under `Assets/Scripts`
+   (purpose + active/transitional/dormant/legacy status from GUID wiring evidence). This is the doc that
+   contextualizes the C# codebase for future contributors/sessions.
+8. **New: [`docs/README.md`](../README.md)** — documentation index ordered by trustworthiness.
+
+Not done (deliberately): editing C-backend docs beyond audit (code excluded by owner); deleting any document;
+regenerating DevTools `out/` reports (queued behind parser verification, M5).
 
 ## Cross-cutting conclusions
 
