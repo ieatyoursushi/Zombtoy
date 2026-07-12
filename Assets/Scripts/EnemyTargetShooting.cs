@@ -23,15 +23,39 @@ public class EnemyTargetShooting : MonoBehaviour
     }
     void Start()
     {
-        InvokeRepeating("shoot", 1f, cooldown);
-        playerHealth = GameObject.Find("Player").GetComponent<PlayerHealth>();
-        Player = GameObject.Find("Player");
+        if (Player == null)
+        {
+            Player = GameObject.Find("Player");
+        }
+        if (Player != null)
+        {
+            playerHealth = Player.GetComponent<PlayerHealth>();
+        }
+        if (groundTarget == null)
+        {
+            Debug.LogError("[EnemyTargetShooting] " + name + ": groundTarget is not assigned; ground-target attack disabled.");
+            enabled = false;
+            return;
+        }
+        //groundTarget must be a dedicated crosshair visual: a collidable object on the Floor layer here
+        //hijacks PlayerMovement's mouse-turning raycast, and SetActive(false) below would hide the level floor
+        if (groundTarget.GetComponent<Collider>() != null && groundTarget.layer == LayerMask.NameToLayer("Floor"))
+        {
+            Debug.LogError("[EnemyTargetShooting] " + name + ": groundTarget is a collidable Floor-layer object (likely the floor itself); ground-target attack disabled.");
+            enabled = false;
+            return;
+        }
         groundTarget.SetActive(false);
+        InvokeRepeating("shoot", 1f, cooldown);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Player == null)
+        {
+            return;
+        }
         if (Range.inRange && !targetActive)
         {
             targetActive = true;
@@ -50,6 +74,10 @@ public class EnemyTargetShooting : MonoBehaviour
     }
     void shoot()
     {
+        if (playerHealth == null)
+        {
+            return;
+        }
         if (Range.inRange && enemyHealth.currentHealth > 0 && playerHealth.currentHealth > 0)
         {
             Vector3 AimLine = groundTarget.transform.position - shootPoint.position;
