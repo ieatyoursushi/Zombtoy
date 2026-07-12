@@ -53,13 +53,9 @@ scripts — the C# contextualization doc) and **`docs/README.md`** (docs index).
 
 ## Exact next steps for the next session (in order)
 1. Read `docs/README.md` + this file — do NOT re-explore the repo.
-2. **Queued by owner (do first if budget allows): baseline comparison review.** Compare current HEAD against
-   the first GitHub commit `071291f5` ("old baseline") and write a review of the refactoring journey:
-   what was done well/mindfully, what was done badly, whether any part warrants a restart. Suggested method:
-   `git diff --stat 071291f5..HEAD -- Assets/Scripts` + `git log --oneline 071291f5..HEAD | wc -l` for scale,
-   then per-domain judgment using CODE_MAP/CURRENT_STATE facts (live GameEvents hub = success; dormant
-   framework = incomplete; in-place Inventory refactor = good pattern; tracked node_modules = hygiene fail).
-   Deliverable: `docs/reexploration/BASELINE_COMPARISON.md`.
+2. ~~Baseline comparison review~~ — **DONE same session**: `docs/reexploration/BASELINE_COMPARISON.md`
+   (verdict: grade B, no restart; Find() calls grew 43→65 vs baseline; managers/GameEvents/Inventory = wins;
+   dormant parallel layer + hygiene = defects).
 3. Owner play-tests Level1 boss fight (rotation freeze gone, crosshair tracks, rockets fire), then merge PR #28.
 4. Then M2 (PR #25 reconciliation) — push local `39e7efe6` first; it exists only on this machine.
 5. Later: M4 hygiene (delete tracked Node backend `node_modules` — source of GitHub's 4 dependabot alerts —

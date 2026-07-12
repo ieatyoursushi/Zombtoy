@@ -19,6 +19,7 @@ All project documentation, ordered by how much you should trust it. Docs that li
 |---|---|
 | [`reexploration/DOCUMENT_AUDIT.md`](reexploration/DOCUMENT_AUDIT.md) | Which markdown claims were verified, stale, or misleading — and what was done about them. |
 | [`reexploration/BRANCH_AND_WORK_AUDIT.md`](reexploration/BRANCH_AND_WORK_AUDIT.md) | Branches, PRs, stashes: what work exists where and the safest integration order. |
+| [`reexploration/BASELINE_COMPARISON.md`](reexploration/BASELINE_COMPARISON.md) | Review of the whole journey vs the first commit: what was refactored well, badly, and why no restart is needed. |
 
 ## Reference / design (aspirational, not descriptive)
 
