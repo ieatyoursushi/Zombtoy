@@ -7,6 +7,8 @@ All project documentation, ordered by how much you should trust it. Docs that li
 
 | Doc | What it answers |
 |---|---|
+| [`architecture/ZOMBTOY_PRINCIPAL_ENGINEER_PLAN.md`](architecture/ZOMBTOY_PRINCIPAL_ENGINEER_PLAN.md) | The architecture decision document (2026-07-12): product identity, keep/delete verdicts, pattern rulings, governance rules. **Supersedes NEXT_MILESTONES M3** (now "The Cull"). |
+| [`architecture/EXECUTION_LOG.md`](architecture/EXECUTION_LOG.md) | **Live execution checklist** for that plan — milestone checkboxes, owner gates, branch strategy, and where execution currently stands. Read this to resume work. |
 | [`CODE_MAP.md`](CODE_MAP.md) | Every C# script: what it does and whether it actually runs (active vs dormant vs legacy). |
 | [`reexploration/CURRENT_STATE.md`](reexploration/CURRENT_STATE.md) | Deep architecture audit: timeline, wiring evidence, blockers, uncertainties (2026-07-12). |
 | [`reexploration/NEXT_MILESTONES.md`](reexploration/NEXT_MILESTONES.md) | Dependency-ordered plan (M1 boss fix ✅ done → M2 inventory/weapons → M3 migration decision → …). |
@@ -20,6 +22,7 @@ All project documentation, ordered by how much you should trust it. Docs that li
 | [`reexploration/DOCUMENT_AUDIT.md`](reexploration/DOCUMENT_AUDIT.md) | Which markdown claims were verified, stale, or misleading — and what was done about them. |
 | [`reexploration/BRANCH_AND_WORK_AUDIT.md`](reexploration/BRANCH_AND_WORK_AUDIT.md) | Branches, PRs, stashes: what work exists where and the safest integration order. |
 | [`reexploration/BASELINE_COMPARISON.md`](reexploration/BASELINE_COMPARISON.md) | Review of the whole journey vs the first commit: what was refactored well, badly, and why no restart is needed. |
+| [`reexploration/INSPECTOR_DEPENDENCY_AUDIT.md`](reexploration/INSPECTOR_DEPENDENCY_AUDIT.md) | How much behavior lives in editor-serialized data (scenes/prefabs/inspector/settings) vs code: ~412 knobs, per-scene config drift, string-coupling counts, silent-vs-loud failure map. |
 
 ## Reference / design (aspirational, not descriptive)
 

@@ -1,5 +1,21 @@
 # Zombtoy — Branch & Work Audit (2026-07-12)
 
+> ## Update — 2026-07-12 (post-M1, same day, re-verified against a fresh `git fetch --prune`)
+>
+> Everything below remains accurate except:
+> - **`feature/Titan-Zombunny` is now `441cae5b`** (= origin), **6 ahead of master**: the original 2 boss commits
+>   + `b993e60a` (M1 rotation-freeze fix, batchmode-validated) + 3 docs commits (audit corpus, CODE_MAP, baseline
+>   review). Working tree holds only uncommitted **docs** (principal-engineer plan, inspector-dependency audit,
+>   index/checkpoint edits) — zero code/scene changes pending. §1's "finish M1" is done; **PR #28 now only awaits
+>   the owner's play-test → merge.**
+> - `origin/copilot/fix-ada1382c…` was deleted on the remote (pruned; PR #23 was merged long ago). Row now historical.
+> - Re-verified unchanged: PR #25 still open; local-only commit `39e7efe6` still exists **nowhere but this machine**
+>   (push before anything else in M2); all 3 stashes intact; core-arch branch still fully integrated (safe to delete);
+>   `git cherry` still shows only ~3 genuinely unmerged inventory-branch commits.
+> - §6 strategy unchanged, one addition from the newer docs: M3 is now **The Cull** (see
+>   `docs/architecture/ZOMBTOY_PRINCIPAL_ENGINEER_PLAN.md` §8), and the inspector audit adds a Cull checklist item
+>   (remove the disabled `PlayerMovementRefactored` component from Level1's Player in the scene, not just the file).
+
 ## 1. Branch / PR map
 
 | Branch | Tip | PR | Status | Verdict |

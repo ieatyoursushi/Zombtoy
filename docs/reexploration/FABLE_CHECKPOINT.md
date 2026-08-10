@@ -51,7 +51,56 @@ Actions recorded in DOCUMENT_AUDIT.md §"Actions taken". Summary: docs reorganiz
 DevTools README stale venv paths fixed, and two new docs: **`docs/CODE_MAP.md`** (per-file status of all 75
 scripts — the C# contextualization doc) and **`docs/README.md`** (docs index).
 
+## UPDATE 3 (2026-07-12, principal-engineer planning session): architecture decision document created
+
+**New doc: [`docs/architecture/ZOMBTOY_PRINCIPAL_ENGINEER_PLAN.md`](../architecture/ZOMBTOY_PRINCIPAL_ENGINEER_PLAN.md)** — read it before any
+architecture-touching work. Produced by a read-only first-principles review that independently re-verified the audit corpus
+(all 7 dormant-script GUID checks re-traced: 0 refs each; pub/sub census re-derived; no WeaponData assets exist).
+
+Key rulings (details + evidence in the plan):
+- **No restart; no new architecture.** Target = the live architecture, completed and cleaned.
+- **M1/M2 unchanged.** **M3 is redefined as "The Cull"**: delete the dormant layer (weapons framework, `Player*Refactored`+Proxy,
+  PlayerInputManager, ComponentCache, **and the GameStateManager/GameStarter/GameOverManager trio**) instead of wiring it.
+  New evidence: `ScoreManager.cs:168-186` shows the GameStateManager integration was already attempted and reverted after it
+  broke scoring. Rebuild a small `GameFlow` only when issue #19 actually starts.
+- Weapon fork decided: live `Inventory` + PR #25 `AmmoSystem` path wins; dormant framework goes in the Cull (after #25 lands).
+- Governance adopted (plan §9): wired-in-same-PR, rule-of-three, feature-first budget, CODE_MAP updated per PR.
+- Owner confirmations wanted (plan §13): Titan spawn strategy; dreamlo client deletion; Level2 fate; multiplayer horizon.
+
+Session changed docs only: the plan doc, one index row in `docs/README.md`, this note. No code/scene/prefab/config changes; nothing committed.
+
+## UPDATE 4 (2026-07-12, same-day follow-up): inspector-dependency audit added
+
+**New doc: [`INSPECTOR_DEPENDENCY_AUDIT.md`](INSPECTOR_DEPENDENCY_AUDIT.md)** — quantifies how much behavior
+lives in editor-serialized data vs code (owner-requested extension of the audit corpus; deep-dive behind
+plan §7 coupling items #2/#3). Headlines: ~412 inspector knobs; 307 scene MonoBehaviours; ~500 scene-level
+prefab overrides; zero ScriptableObjects in the live game; 50 `GameObject.Find` + 12 layer-name + 9 hardcoded
+`LoadScene(int)` string/index couplings; **concrete drift found: Level2's EnemyManager spawn table is
+serialized empty (Level1 has 9 entries) — Level2 spawns nothing.** Cull note: the disabled
+`PlayerMovementRefactored` on Level1's Player must be removed from the scene, not just deleted as a file.
+Session changed docs only (audit doc + index row + this note); nothing committed — owner to commit together
+with the UPDATE 3 plan doc.
+
+## UPDATE 5 (2026-07-12): plan execution STARTED — tracker is now the live status doc
+
+**Day-to-day execution status has moved to [`docs/architecture/EXECUTION_LOG.md`](../architecture/EXECUTION_LOG.md)**
+(checkbox milestones + owner gates + branch strategy). Read that first when resuming; this checkpoint stays
+the archaeology/session narrative.
+
+M0 done: docs committed; `39e7efe6` pushed to origin (no longer local-only); branch strategy decided
+(trunk = master, short-lived features).
+
+**Two corrections to the plan discovered while starting execution:**
+1. **PR #25's base is `feature/core-architecture-refactor`, not master.** Plan §4/M4 says that branch is safe
+   to delete — it is NOT until #25 is retargeted, because deleting a base branch auto-closes its PR.
+   Corrected order is in the execution log's branch-strategy section.
+2. PR #28's `BLOCKED` state is only `REVIEW_REQUIRED`; `master` has no branch protection, so the owner can
+   merge it directly once the play-test passes.
+
+**Execution paused at OWNER GATE 1** (Level1 boss play-test; checklist in the execution log §A).
+
 ## Exact next steps for the next session (in order)
+0. **Read `docs/architecture/EXECUTION_LOG.md` first** — it holds the live checkboxes and the resume point.
 1. Read `docs/README.md` + this file — do NOT re-explore the repo.
 2. ~~Baseline comparison review~~ — **DONE same session**: `docs/reexploration/BASELINE_COMPARISON.md`
    (verdict: grade B, no restart; Find() calls grew 43→65 vs baseline; managers/GameEvents/Inventory = wins;
