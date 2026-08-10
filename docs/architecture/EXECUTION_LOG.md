@@ -146,11 +146,11 @@ Delete files (plan §8-M3): `Core/GameStateManager.cs`, `Core/GameStarter.cs`, `
 - [x] 🤖 Deleted `feature/core-architecture-refactor` (local + remote)
 - [x] 🤖 Deleted `origin/highscore_backend`
 - [x] 🤖 **Repo is now a single `master` branch, local and remote** — the "what work exists where" question is closed
-- [ ] 🧑 **OWNER GATE 6 — confirm dreamlo deletion** (`HighScores.cs` + its `Menu 3` scene ref; .NET client becomes canonical). Plan recommends yes
-- [ ] 🧑 **OWNER GATE 7 — confirm `Level2.unity` fate** (not in build; plan default = delete)
-- [ ] 🤖 Fold or drop `stash@{2}` (workflow.md +23 lines)
-- [ ] 🧑 **OWNER GATE 8 — confirm Titan spawn strategy** (scene-placed vs EnemyManager spawn table; plan recommends scene-placed for a scripted boss)
-- [ ] 🧑 **OWNER GATE 9 — state multiplayer horizon** (informs ADR-008; plan assumes "not near-term")
+- [x] 🧑 **GATE 6 — dreamlo: KEEP BOTH clients for now.** `HighScores.cs` (dreamlo) stays wired in `Menu 3` alongside `Leaderboard.cs`; it works without a local server, which is convenient mid-development. **Revisit trigger:** when the leaderboard UI gets real work, or before any public release — two clients writing to different stores is a known, accepted wart until then
+- [x] 🧑 **GATE 7 — `Level2.unity`: DELETED.** Not in Build Settings, no code references, and its EnemyManager spawn table was serialized empty (would spawn nothing). Build indices unaffected — it was never in the list. Recoverable from git history
+- [x] 🧑 **GATE 8 — Titan: SCENE-PLACED** (confirms current setup; no change needed). Bosses are scripted set-pieces, not spawn-table entries. Trigger-gated activation deferred to M6 boss polish
+- [x] 🧑 **GATE 9 — multiplayer: NOT NEAR-TERM.** Confirms **ADR-008** as written: no networking provisions in client code; finish the single-player loop first. Revisit only via a dedicated ADR
+- [ ] 🤖 Stashes: all 3 still parked (owner deferred). `stash@{0}`/`stash@{1}` are pre-Cull inventory experiments whose surrounding code has since changed substantially — expect them to be dropped rather than applied; `stash@{2}` is a small `workflow.md` addition
 
 ## M5 — Tooling refresh
 
