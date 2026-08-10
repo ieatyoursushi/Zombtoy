@@ -130,27 +130,7 @@ public class EnemyManager : Singleton<EnemyManager>
         
         if (playerHealth == null)
         {
-            // Try legacy first, then refactored
             playerHealth = FindObjectOfType<PlayerHealth>();
-            if (playerHealth == null)
-            {
-                var phr = FindObjectOfType<PlayerHealthRefactored>();
-                if (phr != null)
-                {
-                    // Adapter: create a lightweight proxy to expose currentHealth without hard type ref
-                    var proxyType = System.Type.GetType("PlayerHealthProxy");
-                    if (proxyType != null)
-                    {
-                        var mb = gameObject.AddComponent(proxyType) as MonoBehaviour;
-                        var proxy = mb as PlayerHealth;
-                        if (proxy != null)
-                        {
-                            gameObject.SendMessage("Bind", phr, SendMessageOptions.DontRequireReceiver);
-                            playerHealth = proxy;
-                        }
-                    }
-                }
-            }
         }
             
         if (zombieCounter == null)

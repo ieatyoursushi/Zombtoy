@@ -19,24 +19,6 @@ public class AmmoItem : MonoBehaviour {
         if (playerGO != null)
         {
             playerHealth = playerGO.GetComponent<PlayerHealth>();
-            if (playerHealth == null)
-            {
-                var phr = playerGO.GetComponent<PlayerHealthRefactored>();
-                if (phr != null)
-                {
-                    var proxyType = System.Type.GetType("PlayerHealthProxy");
-                    if (proxyType != null)
-                    {
-                        var mb = playerGO.AddComponent(proxyType) as MonoBehaviour;
-                        var proxy = mb as PlayerHealth;
-                        if (proxy != null)
-                        {
-                            playerGO.SendMessage("Bind", phr, SendMessageOptions.DontRequireReceiver);
-                            playerHealth = proxy;
-                        }
-                    }
-                }
-            }
         }
 
         var im1 = GameObject.Find("ItemManager (1)");

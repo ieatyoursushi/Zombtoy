@@ -2,8 +2,9 @@ using UnityEngine;
 using System;
 
 /// <summary>
-/// Core game events for decoupled communication between systems
-/// Ready for multiplayer event synchronization
+/// Core game events for decoupled communication between systems.
+/// Scope (ADR-004): gameplay state-change notifications with 1-to-N fan-out.
+/// Not for request/response, per-frame data, or UI-to-gameplay commands - call methods directly for those.
 /// </summary>
 public static class GameEvents
 {
@@ -37,9 +38,6 @@ public static class GameEvents
     // Item Events
     public static event Action<int> OnAmmoPickup;
     public static event Action<int> OnHealthPickup;
-    
-    // Multiplayer Events (future)
-    public static event Action<string, object> OnNetworkEvent;
     
     // Debug helpers
     public static int GetSubscriberCount<T>(System.Action<T> eventDelegate) 
@@ -150,6 +148,4 @@ public static class GameEvents
     
     public static void AmmoPickup(int amount) => OnAmmoPickup?.Invoke(amount);
     public static void HealthPickup(int amount) => OnHealthPickup?.Invoke(amount);
-    
-    public static void NetworkEvent(string eventType, object data) => OnNetworkEvent?.Invoke(eventType, data);
 }
