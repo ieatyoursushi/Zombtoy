@@ -36,14 +36,15 @@ Execution order (order matters — see the PR #25 trap):
 - [x] Create this execution log
 - [x] Commit pending docs (principal-engineer plan, inspector audit, index rows, checkpoint/branch-audit updates)
 - [x] Back up local-only commit `39e7efe6` to `origin` (it existed on one machine only)
+- [x] 🧑 Merge-policy decision: repo ruleset "Build" requires 1 approving review (unsatisfiable solo) → **owner chose per-PR `--admin` merges**, ruleset kept for its no-deletion / no-force-push protections
 
-## M1 (tail) — Validate & merge PR #28
+## M1 (tail) — Validate & merge PR #28 ✅ COMPLETE
 
 - [x] Rotation-freeze fix implemented + batchmode-validated (`b993e60a`)
-- [ ] 🧑 **OWNER GATE 1 — play-test Level1 boss fight.** Checklist in §A below. **Execution is paused here.**
-- [ ] 🤖 Merge PR #28 into `master` (after owner reports pass)
-- [ ] 🤖 Delete `feature/Titan-Zombunny` local+remote after merge
-- [ ] 🤖 Update CODE_MAP/checkpoint status rows
+- [x] 🧑 **OWNER GATE 1 — play-test PASSED** (2026-07-12): rotation never freezes, crosshair tracks, boss fires, console clean
+- [x] 🤖 Merged PR #28 into `master` (`2fb46f2a`, admin-merge)
+- [x] 🤖 Deleted `feature/Titan-Zombunny` local + remote
+- [ ] 🤖 Update CODE_MAP/checkpoint status rows *(do with M2 commit)*
 
 **Rollback:** revert the merge commit; branch content survives in git.
 
@@ -52,13 +53,34 @@ Execution order (order matters — see the PR #25 trap):
 *Prereq: M1 merged.*
 
 - [x] 🤖 Push local-only `39e7efe6` to origin (data-loss protection — done early, out of order, deliberately)
-- [ ] 🤖 Retarget PR #25 base → `master` (`gh pr edit 25 --base master`)
-- [ ] 🤖 Rebase branch onto new `master`; resolve `EnemyProjectile.cs` **in master's favor** (Titan rewrite wins), then re-apply interface changes; camera scripts also master's favor
+- [x] 🤖 Retarget PR #25 base → `master`
+- [x] 🤖 **Rebase abandoned in favour of cherry-pick** — see finding below. Branch reset to `master` + 2 cherry-picks (`4eb3bc5d`, `e95508ea`); safety branch `backup/inventory-pre-rebase` holds the original
+- [x] 🤖 Batchmode compile after cherry-picks: **exit 0, zero CS errors**; Titan boss files + crosshair verified intact
+- [x] 🧑 **OWNER GATE 2b — AmmoSystem disposition: DROP the unwired half** (owner decision 2026-07-12). Removed in `ab3db9c9` with rationale in the commit message; recoverable from history + `backup/inventory-pre-rebase`
+- [x] 🤖 Re-verified compile after removal (exit 0, 0 errors; a transient `CS2001` was a stale gitignored `.csproj` reference, self-healed on regeneration)
+- [x] 🤖 Force-pushed rebuilt branch (`--force-with-lease`); PR #25 title/body rewritten to the reduced scope
+- [ ] 🧑 **OWNER GATE 3 — play-test weapons** (checklist §C) ← **PAUSED HERE**
+- [ ] 🤖 Admin-merge PR #25, delete branch + `backup/inventory-pre-rebase`
+- [x] 🧑 **OWNER GATE 2 — stashes: LEAVE ALONE for now** (owner decision); revisit all three during M4
+
+### 🔍 M2 findings (2026-07-12) — these change M2's stated scope
+
+**1. Rebase was the wrong tool.** `git rebase --onto master d40b4eb2` tried to replay the entire Aug-2025
+core-refactor commit (`58d2d99b`), conflicting in MusicManager/TagManager/REFACTOR_PLAN — because most of the
+branch's history is patch-*similar* but not patch-*identical* to master's cherry-picked copies.
+**Cherry-picking the 2 real commits onto master produced zero conflicts.** The feared `EnemyProjectile`/camera
+conflicts never materialized: those files were merely *stale tree state* on the old branch, not changes the
+commits made. `dca3ac3c` "Initial plan" is an empty Copilot placeholder — dropped.
+
+**2. PR #25 is two different things, and only one of them is wired:**
+
+| Part | Wired? | Verdict |
+|---|---|---|
+| `Ammo.cs` gains `CanShoot()` / `TryShoot()` / `CanReload()`; `Pistol`, `RocketLauncher`, `PlayerShooting` refactored to call them instead of poking `ammoScript.ammo` directly | **YES** — modifies the live `Ammo.cs` (27 live instances) and live weapon scripts | **Keep.** This is the in-place house pattern (same as `Inventory.cs`) and is the real value of the PR |
+| `IProjectile.cs` | **YES** — `Rocket` and `IceBullet` both implement it (2 live implementors) | **Keep** — earned per plan §4's "interface with a wired implementor stays" |
+| `AmmoSystem.cs` (123 l) + `AMMO_REFACTOR_SUMMARY.md` | **NO** — zero scene/prefab refs, zero code refs; its own header says "works alongside existing Ammo.cs" | **Recommend drop** — it is a *new* dormant parallel class, precisely what standing rule #1 (wired-in-same-PR) and ADR-002 forbid. Merging it would repeat the 2025 mistake the Cull exists to undo |
 - [ ] 🤖 Review `stash@{0}` (interface WIP — apply if still meaningful)
-- [ ] 🧑 **OWNER GATE 2 — review `stash@{1}`** ("ammo experimental changes (likely dump)" — owner's own label; confirm drop)
-- [ ] 🧑 **OWNER GATE 3 — play-test all 4 weapon slots**, reloads, ammo pickups, weapon switching
-- [ ] 🤖 Merge PR #25; delete branch; clear applied/dropped stashes
-- [ ] 🤖 Update CODE_MAP rows (`AmmoSystem` live; `Ammo.cs` copies retired)
+- [ ] 🤖 Update CODE_MAP rows (`Ammo.cs` gains the shoot API; `IProjectile` now earned/live)
 
 **Constraint:** `AmmoSystem` stays a per-weapon **component**, never promoted to a manager (ADR-006).
 **Rollback:** revert merge commit.
@@ -129,6 +151,26 @@ Open `Assets/Level1.unity`, press Play, and check:
 
 **Report back:** pass, or the symptom + any console text. Merging PR #28 is blocked on this.
 
+## §C — Owner Gate 3 play-test checklist (weapons — do this next)
+
+PR #25 changed how **every weapon decides whether it can fire**. `Pistol`, `RocketLauncher`, and
+`PlayerShooting` now call `Ammo.TryShoot()` / `CanShoot()` instead of checking and decrementing `ammo`
+themselves. Behavior should be identical — this checklist is looking for off-by-one or reload-state bugs.
+
+Open `Assets/Level1.unity`, press Play, and for **each of the 4 weapon slots** (number keys):
+
+1. **Fires and consumes ammo** — the counter decrements by exactly 1 per shot (not 0, not 2).
+2. **Stops at empty** — firing halts at 0; no shots "for free" at zero ammo.
+3. **Reload works** (R): counter refills, and you **cannot fire mid-reload**.
+4. **Rocket launcher specifically** — rockets still spawn, fly, explode, and damage (its call site changed most).
+5. **Ammo pickups** still increase totals correctly.
+6. **Console clean** — no NREs from `Ammo`/`Pistol`/`RocketLauncher`/`PlayerShooting`.
+
+Also confirm the **boss still works** (regression check on the Titan merge): crosshair tracks, rockets fire,
+rotation never freezes.
+
+**Report:** pass, or which weapon + what went wrong. Merging PR #25 is blocked on this.
+
 ## §B — Branch strategy reasoning
 
 | Branch | State (verified 2026-07-12) | Action |
@@ -148,11 +190,23 @@ short-lived branches removes that question permanently. After the rebase in M2, 
 
 ## Where execution stopped
 
-**2026-07-12 — paused at OWNER GATE 1 (§A play-test).**
+**2026-07-12 — M0 ✅, M1 ✅, M2 in progress; paused at OWNER GATE 2b (AmmoSystem disposition).**
 
-- Done this session: M0 complete (docs committed, tracker created, PR-25 trap found, `39e7efe6` backed up to origin).
-- Everything downstream (merge #28 → M2 → Cull) is blocked on the play-test result. Nothing else in the plan
-  can proceed safely without it: the Cull's own validation strategy depends on knowing the live game is healthy.
-- **Next agent action after owner reports pass:** `gh pr merge 28` (merge or FF), delete the branch, then
-  start M2 at "retarget PR #25 base".
-- No code/scene/prefab changes are pending in the working tree.
+Done this session:
+- M0 complete; **M1 complete** — boss play-test passed, PR #28 admin-merged (`2fb46f2a`), Titan branch deleted.
+- `master` is now the trunk and holds the boss fix + the full docs corpus.
+- M2: PR #25 retargeted to `master`; branch rebuilt as `master` + 2 clean cherry-picks; compile verified
+  (exit 0); Titan work confirmed un-regressed. Original branch preserved at `backup/inventory-pre-rebase`
+  (local) and on `origin` at the pre-rewrite SHA until the force-push happens.
+
+**Current branch state:** `feature/player-inventory-&-weapon-system-refactor` = `master` + 3 commits
+(`4eb3bc5d` ammo API, `e95508ea` IProjectile, `ab3db9c9` drop unwired AmmoSystem). Force-pushed; PR #25
+updated and ready. Compile verified clean (exit 0). Owner decisions taken: drop AmmoSystem, leave stashes.
+
+**Next agent actions once the owner reports gate 3 (§C weapons play-test):**
+1. `gh pr merge 25 --merge --admin`; `git checkout master && git pull`.
+2. Delete `feature/player-inventory-&-weapon-system-refactor` (local+remote) and `backup/inventory-pre-rebase`.
+3. Update `docs/CODE_MAP.md`: `Ammo.cs` gains the shoot API; `IProjectile` is live/earned (Rocket + IceBullet).
+4. **Then M3 (The Cull)** — start with the pre-flight greps; note `IProjectile` now **stays** (it has live
+   implementors), while `IFirearm`/`ISpell`/`IPlayerWeapon` remain on the delete list.
+5. All 3 stashes still parked — revisit in M4 per owner decision.
