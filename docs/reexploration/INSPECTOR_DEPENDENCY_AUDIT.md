@@ -9,6 +9,12 @@ the quantified deep-dive behind coupling items #2 (string coupling) and #3 (scen
 prefabs, inspector values, project settings) rather than in code — and what that means for refactoring
 with autonomous tooling.
 
+> **Post-Cull note (2026-07-12, later same day):** the counts below were measured *before* M3/M4.
+> Since then `Level2.unity` was **deleted** (its serialized-empty spawn table — cited here as the flagship
+> example of scene-config drift — was a factor in that decision), 4 dormant components/objects were removed
+> from the remaining level scenes, and `Assets/Prefabs/Player.prefab` is gone. The **conclusions are
+> unchanged and the drift finding was acted on**; only the absolute numbers are now slightly high.
+
 **Method:** grep/GUID census over `Assets/Scripts` (excluding `node_modules`), all 8 scenes, and the
 gameplay prefabs. Counts are reproducible (commands in the appendix). Approximate counts are labeled.
 
