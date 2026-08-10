@@ -107,3 +107,9 @@ UserSettings/
 /Assets/Scripts/Server/zombtoy-backend/
 # Node
 node_modules/
+
+# C backend build artifacts (source is tracked; binaries and local DB are not)
+Backend/ZombtoyBackend-C/*.o
+Backend/ZombtoyBackend-C/obj/
+Backend/ZombtoyBackend-C/zombtoy_backend_c
+Backend/ZombtoyBackend-C/*.db
