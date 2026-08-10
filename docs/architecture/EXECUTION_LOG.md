@@ -123,11 +123,13 @@ Delete files (plan §8-M3): `Core/GameStateManager.cs`, `Core/GameStarter.cs`, `
 - [x] 🤖 Delete `ScoreManager` dead GameStateManager log-block + GameStarter comment
 - [x] 🤖 Remove `OnNetworkEvent`/`NetworkEvent` from `GameEvents.cs` (ADR-008) + rescope its doc-comment to ADR-004
 - [x] 🤖 Write `Assets/Editor/CullSceneCleanup.cs` — does both scene edits via the **Unity API** (safer than hand-editing YAML across 3 scenes); deleted again at the end of the Cull
-- [ ] 🧑 **BLOCKER: close the Unity editor** so batchmode can run *(Unity holds a project lock)* ← **PAUSED HERE**
-- [ ] 🤖 Run `CullSceneCleanup.Run` → removes `vectorTest` objects (×3 scenes) + `PlayerMovementRefactored` component (Level1)
-- [ ] 🤖 Delete the file list above **(must happen after the script runs — it references those types)**
-- [ ] 🤖 Delete `Assets/Editor/CullSceneCleanup.cs` itself
-- [ ] 🤖 Batchmode compile → exit 0
+- [x] 🧑 Owner closed the Unity editor
+- [x] 🤖 Ran `CullSceneCleanup.Run` → removed 3 `vectorTest` objects (Level1/2/3) + 1 `PlayerMovementRefactored` component (Level1 Player); 3 scenes re-saved by Unity itself
+- [x] 🤖 Deleted the full file list (17 scripts + `Player.prefab`, all with `.meta`)
+- [x] 🤖 Deleted `Assets/Editor/CullSceneCleanup.cs` + its folder
+- [x] 🤖 Batchmode compile → **exit 0, 0 CS errors, no missing-script warnings** (a first pass showed 17 transient `CS2001` stale-`.csproj` entries; the gitignored project file regenerated clean, same self-healing pattern as M2)
+- [x] 🤖 **Result: 73 → 56 scripts, 7,369 lines deleted, zero remaining references to any culled class**
+- [x] 🤖 CODE_MAP updated — the 🔴 Dormant tier is gone; every listed script is wired
 - [ ] 🧑 **OWNER GATE 4 — open all 7 build scenes + enemy prefabs; confirm ZERO missing-script warnings** (only the editor can surface these reliably)
 - [ ] 🧑 **OWNER GATE 5 — full playthrough**: menu → Level1 → all weapons → death → results → leaderboard. *If anything NREs: HALT and re-audit, do not patch.*
 - [ ] 🤖 Standalone player build compiles
@@ -219,25 +221,24 @@ Done this session:
   (exit 0); Titan work confirmed un-regressed. Original branch preserved at `backup/inventory-pre-rebase`
   (local) and on `origin` at the pre-rewrite SHA until the force-push happens.
 
-**M0 ✅ · M1 ✅ · M2 ✅ · M3 (The Cull) in progress — blocked on the Unity editor being open.**
+**M0 ✅ · M1 ✅ · M2 ✅ · M3 (The Cull) BUILT — paused at OWNER GATES 4 & 5 (editor verification).**
 
-`master` = `2087409a` (both PRs merged). Working branch: **`feature/the-cull`** (created off master).
+`master` = `2087409a`. Working branch **`feature/the-cull`**, 2 commits, everything committed & pushed.
 
-Already done on `feature/the-cull` (uncommitted working tree):
-- All reflection probes stripped from `HealthPotion.cs`, `AmmoItem.cs`, `EnemyManager.cs`
-- `ScoreManager` dead GameStateManager log-block removed; `GameEvents.OnNetworkEvent` removed
-- `Assets/Editor/CullSceneCleanup.cs` written (not yet run)
-- Full pre-flight census complete; 3 scope corrections recorded above
+The Cull is mechanically complete and machine-verified:
+- 17 scripts + `Assets/Prefabs/Player.prefab` deleted; live-code shims stripped; 4 dormant scene objects/components removed via the Unity API
+- Batchmode: exit 0, 0 CS errors, no missing-script warnings
+- 73 → 56 scripts; 7,369 lines removed; zero references to any culled class remain
+- CODE_MAP updated in the same PR (rule #5)
 
-**Resume steps (in this exact order — order is load-bearing):**
-1. Confirm Unity is closed: `pgrep -fl "Unity.app/Contents/MacOS/Unity"` returns nothing.
-2. Run the scene cleanup:
-   `/Applications/Unity/Hub/Editor/2022.3.37f1/Unity.app/Contents/MacOS/Unity -batchmode -quit -projectPath . -executeMethod CullSceneCleanup.Run -logFile -`
-   Expect: 3 vectorTest objects + 1 PlayerMovementRefactored component removed, 3 scenes saved.
-3. **Only then** `git rm` the delete list (the Editor script references `vectorTest`/`PlayerMovementRefactored`,
-   so deleting those files first would break its compile), plus `Assets/Editor/CullSceneCleanup.cs{,.meta}`.
-4. Batchmode compile → expect exit 0, 0 errors.
-5. Update `docs/CODE_MAP.md` (drop culled rows; `Ammo.cs` shoot API; `IProjectile` live) and commit.
-6. 🧑 OWNER GATE 4 (missing-script sweep) + GATE 5 (full playthrough), then admin-merge.
+**What only the owner can confirm:** gates 4 (missing-script sweep across all 7 build scenes + enemy
+prefabs) and 5 (full playthrough). Batchmode proves it *compiles and imports*; only the editor proves
+nothing lost a serialized reference. **If the playthrough NREs: HALT and re-audit — do not patch** (plan §13).
 
-All 3 stashes still parked (owner deferred to M4). `feature/core-architecture-refactor` deletion now unblocked.
+**Next agent actions after gates 4+5 pass:**
+1. Open a PR for `feature/the-cull` and admin-merge it; delete the branch.
+2. Start **M4 hygiene** — now fully unblocked: delete tracked Node backend (`Assets/Scripts/Server/zombtoy-backend/`,
+   kills the dependabot alerts), untrack C build artifacts, delete `feature/core-architecture-refactor`
+   (no longer any PR's base) and `origin/highscore_backend`.
+3. M4 owner gates still open: dreamlo deletion (6), Level2 fate (7), Titan spawn strategy (8), multiplayer horizon (9).
+4. All 3 stashes still parked — revisit in M4 per owner decision.
