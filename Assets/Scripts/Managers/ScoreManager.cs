@@ -69,7 +69,7 @@ public class ScoreManager : Singleton<ScoreManager>
         InitializeUI();
         
         // Always start with a clean score when ScoreManager is first created
-        // GameStarter will handle subsequent resets when entering game scenes
+        // Scene-entry resets are handled by StartNewGame() callers
         var currentScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
         Debug.Log($"[ScoreManager] Awake in scene: {currentScene}");
         
@@ -167,20 +167,6 @@ public class ScoreManager : Singleton<ScoreManager>
     
     private void HandleEnemyKilled(int scoreValue, Vector3 position)
     {
-        // Temporarily disable game state checking to restore functionality
-        // TODO: Re-enable once GameStateManager integration is properly tested
-        
-        Debug.Log($"[ScoreManager] Enemy killed for {scoreValue} points (game state check temporarily disabled)");
-        
-        if (GameStateManager.Instance != null)
-        {
-            Debug.Log($"[ScoreManager] GameStateManager found - State: {GameStateManager.Instance.CurrentState}");
-        }
-        else
-        {
-            Debug.Log("[ScoreManager] No GameStateManager found");
-        }
-        
         AddScore(scoreValue);
         MonsterKills++;
     }

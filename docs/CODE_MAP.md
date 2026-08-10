@@ -7,13 +7,18 @@ these labels see [`docs/reexploration/CURRENT_STATE.md`](reexploration/CURRENT_S
 **Status legend**
 - 🟢 **Active** — wired into a shipped scene/prefab, or a static/runtime path that provably executes
 - 🟡 **Transitional** — partially wired, mid-migration, or toggled per-scene
-- 🔴 **Dormant** — compiles but zero scene/prefab/code references reach it at runtime
 - ⚪ **Legacy support** — old-style code that is still what actually runs the game
 - 🧪 **Debug/experimental** — scratch or diagnostic code
 
-The big picture: the Aug-2025 "core architecture refactor" produced a new event/manager layer, but only
-part of it was wired in. **Gameplay still runs on the legacy player/weapon stack**, which publishes into
-the new `GameEvents` hub. Full migration is GitHub issue #16.
+> **The Cull (M3) completed 2026-07-12.** The dormant parallel layer from the Aug-2025 refactor —
+> 17 scripts, ~2,300 lines of C# plus a stale prefab — has been **deleted**, along with the reflection
+> shims that live code carried for it. There is no 🔴 Dormant tier in this map any more: **every script
+> listed here is wired and runs.** Deleted code lives in git history (see ADR-003); rebuild triggers are
+> in the plan's §10. Script count: 73 → 56.
+
+The big picture: gameplay runs on the legacy player/weapon stack, which publishes into the `GameEvents`
+hub; four scene-placed singleton managers own global state. That *is* the architecture now — one live
+path per concern, no parallel versions.
 
 ---
 
@@ -23,9 +28,9 @@ the new `GameEvents` hub. Full migration is GitHub issue #16.
 |---|---|---|
 | `GameEvents.cs` (155 l) | 🟢 | Static event hub (~20 events: health, score, enemy lifecycle, game state). The one piece of the refactor that is fully live — legacy and new code both publish/subscribe through it. Includes `SafeInvoke` + subscriber-count debug helpers. |
 | `Singleton.cs` (107 l) | 🟢 | Generic `Singleton<T>` base for managers. **Deliberately does not auto-create instances** — a manager that isn't placed in a scene stays dormant. This single design choice explains most of the "written but never ran" refactor code. |
-| `ComponentCache.cs` (140 l) | 🔴 | Per-GameObject component caching utility. Only referenced by the dormant refactored scripts (WeaponSystem/WeaponManager/Player*Refactored). |
-| `GameStateManager.cs` (194 l) | 🔴 | Centralized game-state machine (`Playing/Paused/GameOver`). Never placed in any scene → `Instance` is null at runtime. Referenced by GameStarter/ScoreManager/GameOverManager/WeaponManager, all of which either null-check it or are dormant themselves. |
-| `GameStarter.cs` (46 l) | 🔴 | Scene bootstrap: resets ScoreManager + sets state to Playing. Header says "Place this on any GameObject in gameplay scenes" — it never was. |
+
+*Culled 2026-07-12: `ComponentCache.cs`, `GameStateManager.cs`, `GameStarter.cs`. A minimal scene-placed
+`GameFlow` gets written when issue #19 (single-scene game flow) actually starts — see plan §10.*
 
 ## Assets/Scripts/Player
 
@@ -33,18 +38,19 @@ the new `GameEvents` hub. Full migration is GitHub issue #16.
 |---|---|---|
 | `PlayerMovement.cs` (60 l) | 🟢⚪ | **The movement/rotation owner in Level1.** Survival-Shooter-style: WASD via rigidbody + mouse-ray turning against the Floor layer (`Turning()` — the raycast at the heart of the 2025 rotation-freeze bug, fixed 2026-07-12). |
 | `PlayerHealth.cs` (234 l) | 🟢⚪ | **The live health system** (Level1/2/3): health + stamina + sprint + death, publishes `GameEvents.PlayerHealthChanged/PlayerDeath`. Still the god-object the refactor plan complained about, but it's what runs. |
-| `PlayerShooting.cs` (130 l) | 🟢⚪ | Raycast gun logic. Lives on the gun prefabs (`Assets/Guns/Machine Gun`, `MultiShot`, `Shotgun 1`) and `Assets/Prefabs/Player.prefab` — not scene-level, so a scene GUID grep misses it. |
-| `PlayerMovementRefactored.cs` (346 l) | 🔴 | Modular movement replacement (walk/sprint/stamina via events). **Attached to the Level1 Player but disabled** (`m_Enabled: 0`). If you re-enable it, re-test rotation: it must not fight `PlayerMovement`. |
-| `PlayerHealthRefactored.cs` (491 l) | 🔴 | Component-split health system (the refactor plan's centerpiece). Zero scene/prefab references; only reached by fallback probes in HealthPotion/AmmoItem/EnemyManager. |
-| `PlayerHealthProxy.cs` (45 l) | 🔴 | Adapter exposing the legacy `PlayerHealth` API backed by `PlayerHealthRefactored`. Never attached anywhere; probed via `Type.GetType` reflection. |
-| `PlayerInputManager.cs` (225 l) | 🔴 | Centralized input abstraction ("multiplayer-ready"). Zero references of any kind. |
+| `PlayerShooting.cs` (130 l) | 🟢⚪ | Raycast gun logic. Lives on the gun prefabs (`Assets/Guns/Machine Gun`, `MultiShot`, `Shotgun 1`) — not scene-level, so a scene GUID grep misses it. Now gates firing through `Ammo.TryShoot()`. |
+
+*Culled 2026-07-12: `PlayerMovementRefactored.cs` (also removed as a disabled component from Level1),
+`PlayerHealthRefactored.cs`, `PlayerHealthProxy.cs`, `PlayerInputManager.cs`. `PlayerHealth` is now the
+sole health system — evolve it **in place** (extract `PlayerStamina`, move UI writes to a binder) when a
+feature next touches it; never as a parallel rewrite (ADR-002).*
 
 ## Assets/Scripts (root) — legacy gameplay + camera + items
 
 | File | Status | What it is |
 |---|---|---|
 | `Inventory.cs` (135 l) | 🟢⚪ | Weapon switching on the Player. **Refactored in place** (Sep 2025, issue #1): data-driven `WeaponEntry` list with legacy-field fallback. The better version (`AmmoSystem.cs`, `IProjectile`) lives only on PR #25 / the inventory branch. |
-| `Ammo.cs` (88 l) | 🟢⚪ | Per-weapon ammo counter + UI (9 instances across Level1). PR #25 centralizes this. |
+| `Ammo.cs` (~115 l) | 🟢 | Per-weapon ammo counter + UI (9 instances per level scene). **Owns the shoot rules** via `CanShoot()` / `TryShoot(int)` / `CanReload()` (PR #25) — weapon scripts call these instead of manipulating `ammo` directly. |
 | `AmmoItem.cs` (104 l) | 🟢 | Ammo pickup; notifies `ItemManager`, probes both health systems. |
 | `HealthPotion.cs` (90 l) | 🟢 | Heal pickup; same dual-health-system probing pattern. |
 | `Pistol.cs` (29 l), `RocketLauncher.cs` (41 l), `TornadoLaunch.cs` (53 l), `IceBullet.cs` (131 l), `flashlight.cs` (36 l), `reloadCheck.cs` (17 l) | 🟢⚪ | The legacy per-weapon scripts the `Weapons/` framework was meant to replace. Wired in Level1 + gun prefabs; still the real weapon system. |
@@ -62,7 +68,6 @@ the new `GameEvents` hub. Full migration is GitHub issue #16.
 | `SFXManager.cs` (28 l) | 🟢 | Simple SFX playback helper. |
 | `HighScores.cs` (67 l) | 🟡⚪ | **Old** leaderboard client (dreamlo.com third-party service). Still wired in `Menu 3.unity` *alongside* the new `Leaderboard.cs` — one of them should eventually be retired. |
 | `zombieCount.cs` (18 l) | 🟢⚪ | Legacy zombie-count UI text (new equivalent: `UI/ZombieCountBinder`). |
-| `vectorTest.cs` (31 l) | 🧪 | Scratch experiment, but live in Level1 — harmless; delete when convenient. |
 
 ## Assets/Scripts/Managers
 
@@ -71,7 +76,8 @@ the new `GameEvents` hub. Full migration is GitHub issue #16.
 | `ScoreManager.cs` (352 l) | 🟢 | `Singleton<ScoreManager>`, persistent, event-driven score + high-score persistence. Scene-placed in Level1/2/3 → genuinely live. |
 | `EnemyManager.cs` (622 l) | 🟢🟡 | `Singleton<EnemyManager>`, weighted-table enemy spawner and **the only spawner in Level1**. Was toggled off in the committed scene during boss testing; re-enabled 2026-07-12. The Titan is *not* in its spawn table (scene-placed instead). |
 | `ItemManager.cs` (61 l) | 🟢 | Item spawn management (Level1 ×2). |
-| `GameOverManager.cs` (96 l) | 🔴 | Event-driven game-over UI handler. Depends on the dormant `GameStateManager`; zero scene references. The game-over flow players actually see runs through legacy paths. |
+
+*Culled 2026-07-12: `GameOverManager.cs` — the game-over flow players actually see runs through legacy paths.*
 
 ## Assets/Scripts/Enemy
 
@@ -85,11 +91,12 @@ the new `GameEvents` hub. Full migration is GitHub issue #16.
 
 | File | Status | What it is |
 |---|---|---|
-| `WeaponSystem.cs` (261 l) | 🔴 | `IWeapon` + `WeaponData` ScriptableObject + `BaseWeapon` base class. Zero references. |
-| `WeaponManager.cs` (317 l) | 🔴 | Centralized weapon switching/inventory with network-state serialization. Zero references. |
-| `RaycastWeapon.cs` (110 l), `ProjectileWeapon.cs` (108 l) | 🔴 | Hitscan/projectile `BaseWeapon` implementations. Zero references. |
-| `Interfaces/IBlast.cs` | 🟢 | The one live interface — implemented by `Rocket` and `SelfDestruct`, consumed by `EnemyHealth.TakeDamage`. |
-| `Interfaces/IFirearm.cs`, `IPlayerWeapon.cs`, `ISpell.cs` | 🔴 | Contracts with no wired implementors. (`IProjectile` exists only on the PR #25 branch.) |
+| `Interfaces/IBlast.cs` | 🟢 | Earned interface — implemented by `Rocket` and `SelfDestruct`, consumed by `EnemyHealth.TakeDamage`. |
+| `Interfaces/IProjectile.cs` | 🟢 | Earned interface (landed with PR #25) — implemented by `Rocket` and `IceBullet`. |
+
+*Culled 2026-07-12: `WeaponSystem.cs`, `WeaponManager.cs`, `RaycastWeapon.cs`, `ProjectileWeapon.cs`,
+`IFirearm.cs`, `IPlayerWeapon.cs`, `ISpell.cs`. Weapons stay **concrete components**; a `WeaponConfig`
+ScriptableObject arrives only at the rule-of-three / first-balancing-pass trigger (ADR-006).*
 
 ## Assets/Scripts/UI
 
@@ -106,7 +113,7 @@ the new `GameEvents` hub. Full migration is GitHub issue #16.
 | File | Status | What it is |
 |---|---|---|
 | `Utility/TransientEnemyRegistration.cs` (19 l) | 🟢 | Registers spawned objects without `EnemyHealth` into the enemy-count events (added by `SpawnClown` at runtime). |
-| `Debug/ScoreDebugger.cs` (125 l), `Debug/ScoreManagerDebugger.cs` (90 l) | 🧪 | Score-persistence diagnostics from the refactor era. |
+| `Debug/ScoreManagerDebugger.cs` (90 l) | 🧪🟢 | Score-persistence diagnostic — **wired in `Menu 1.unity`**, so it survived the Cull. (`ScoreDebugger.cs` was unwired and was deleted.) |
 | `Server/Leaderboard.cs` (225 l) | 🟢 | **Current** backend client (HttpClient → .NET backend on `localhost:3000`; wired in `Menu 3.unity`). Also defines `RequestPacket`. |
 | `Server/zombtoy-backend/` (Node/Express + committed `node_modules`) | 🔴⚪ | **Obsolete** original backend, superseded by `Backend/ZombtoyBackend` — but still tracked in git (~120 vendor files; source of the GitHub dependabot alerts). Deletion is planned milestone M4. |
 
@@ -124,7 +131,10 @@ the new `GameEvents` hub. Full migration is GitHub issue #16.
 ## Reading this map when you add features
 
 - **New gameplay code today** should follow the *live* patterns: publish/subscribe via `GameEvents`,
-  scene-place any `Singleton<T>` manager you add, and expect the legacy player/weapon stack.
-- **Don't extend the dormant framework** (`Weapons/`, `Player*Refactored`, `GameStateManager`) without
-  first deciding issue #16 (wire it in properly) — otherwise you deepen the two-architecture split.
-- **Trust wiring over names**: `*Refactored` ≠ running, and lowercase legacy names (`range`, `flashlight`) ≠ dead.
+  scene-place any `Singleton<T>` manager you add, and evolve the existing player/weapon components in place.
+- **Wired-in-same-PR (standing rule #1).** A script not referenced by a scene, prefab, or live code path
+  in the PR that adds it does not merge. No parallel versions, no `*Refactored` twins. This rule is what
+  the Cull existed to enforce — don't rebuild what it removed.
+- **Keep this map honest:** update the relevant row in the same PR that adds, deletes, or re-statuses a
+  script. A doc that contradicts runtime is a bug (plan §9 rule #5).
+- **Trust wiring over names**: lowercase legacy names (`range`, `flashlight`) are live and load-bearing.

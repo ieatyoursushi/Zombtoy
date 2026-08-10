@@ -16,26 +16,6 @@ public class HealthPotion : MonoBehaviour {
             if (playerGO != null)
             {
                 playerHealth = playerGO.GetComponent<PlayerHealth>();
-                if (playerHealth == null)
-                {
-                    var phr = playerGO.GetComponent<PlayerHealthRefactored>();
-                    if (phr != null)
-                    {
-                        var proxyType = System.Type.GetType("PlayerHealthProxy");
-                        PlayerHealth proxy = null;
-                        if (proxyType != null)
-                        {
-                            var mb = playerGO.AddComponent(proxyType) as MonoBehaviour;
-                            proxy = mb as PlayerHealth;
-                        }
-                        if (proxy != null)
-                        {
-                            // Try to bind via SendMessage to avoid direct type ref
-                            playerGO.SendMessage("Bind", phr, SendMessageOptions.DontRequireReceiver);
-                            playerHealth = proxy;
-                        }
-                    }
-                }
             }
         }
 

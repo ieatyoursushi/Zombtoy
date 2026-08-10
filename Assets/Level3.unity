@@ -178,58 +178,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!1 &25504897
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 25504899}
-  - component: {fileID: 25504898}
-  m_Layer: 0
-  m_Name: coordnate spawner test
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &25504898
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 25504897}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69683c7a338c2544885b87ea098b67fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnPositions:
-  - {fileID: 799146522}
-  - {fileID: 1300950164}
-  dot: {fileID: 1907874210931316, guid: 4bc891fedf5d5ff4b96cb2cb31365814, type: 3}
-  playerHealth: {fileID: 0}
-  enemyHealth: {fileID: 0}
---- !u!4 &25504899
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 25504897}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0.37904438, z: 0, w: 0.9253785}
-  m_LocalPosition: {x: 10.416621, y: 0.67, z: -25.22002}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 799146522}
-  - {fileID: 1300950164}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: -44.549, z: 0}
 --- !u!1001 &28114525
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4656,37 +4604,6 @@ Transform:
   - {fileID: 1529364962}
   m_Father: {fileID: 1655250242}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &799146521
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 799146522}
-  m_Layer: 0
-  m_Name: coordinate
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &799146522
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 799146521}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.76, y: -1.5, z: 2.112}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 25504899}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &800319280
 GameObject:
   m_ObjectHideFlags: 0
@@ -7660,6 +7577,8 @@ MonoBehaviour:
   rocketLauncherCheck: {fileID: 1575569163}
   playerHealth: {fileID: 1559539635}
   GunText: {fileID: 1305007152}
+  weapons: []
+  startIndex: 0
 --- !u!1 &1118755080
 GameObject:
   m_ObjectHideFlags: 0
@@ -9241,37 +9160,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.08406, y: 2.6781116, z: 4.657943}
   m_Center: {x: -1.4101409, y: 1.1443888, z: 0.40630388}
---- !u!1 &1300950163
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1300950164}
-  m_Layer: 0
-  m_Name: coordinate (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1300950164
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1300950163}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.011238029, y: 0.00019125534, z: 0.01701505, w: 0.99979204}
-  m_LocalPosition: {x: 10.83, y: -1.54, z: 48.43}
-  m_LocalScale: {x: 1.0000002, y: 1, z: 1.0000002}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 25504899}
-  m_LocalEulerAnglesHint: {x: -1.2880001, y: 0, z: 1.95}
 --- !u!1 &1305007150
 GameObject:
   m_ObjectHideFlags: 0
@@ -12526,7 +12414,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   masterMixer: {fileID: 0}
-  backgroundMusic: {fileID: 0}
+  backgroundMusicSources: []
+  menuMusic: {fileID: 0}
   sfxSource: {fileID: 0}
   volumeSlider: {fileID: 0}
   muteToggle: {fileID: 0}
@@ -15285,7 +15174,6 @@ SceneRoots:
   - {fileID: 367661793}
   - {fileID: 863980585}
   - {fileID: 907449108}
-  - {fileID: 25504899}
   - {fileID: 1188036799}
   - {fileID: 1799863939}
   - {fileID: 903077565}

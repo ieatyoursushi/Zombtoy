@@ -80,7 +80,12 @@ commits made. `dca3ac3c` "Initial plan" is an empty Copilot placeholder — drop
 | `IProjectile.cs` | **YES** — `Rocket` and `IceBullet` both implement it (2 live implementors) | **Keep** — earned per plan §4's "interface with a wired implementor stays" |
 | `AmmoSystem.cs` (123 l) + `AMMO_REFACTOR_SUMMARY.md` | **NO** — zero scene/prefab refs, zero code refs; its own header says "works alongside existing Ammo.cs" | **Recommend drop** — it is a *new* dormant parallel class, precisely what standing rule #1 (wired-in-same-PR) and ADR-002 forbid. Merging it would repeat the 2025 mistake the Cull exists to undo |
 - [ ] 🤖 Review `stash@{0}` (interface WIP — apply if still meaningful)
-- [ ] 🤖 Update CODE_MAP rows (`Ammo.cs` gains the shoot API; `IProjectile` now earned/live)
+- [x] 🧑 **OWNER GATE 3 — weapons play-test PASSED** (2026-07-12)
+- [x] 🤖 Admin-merged PR #25 (`2087409a`); deleted feature branch + `backup/inventory-pre-rebase`
+- [ ] 🤖 Update CODE_MAP rows (`Ammo.cs` gains the shoot API; `IProjectile` now earned/live) *(do with Cull commit)*
+
+**M2 COMPLETE.** Note: with #25 merged, `feature/core-architecture-refactor` is no longer any PR's base —
+the M4 deletion is now unblocked.
 
 **Constraint:** `AmmoSystem` stays a per-weapon **component**, never promoted to a manager (ADR-006).
 **Rollback:** revert merge commit.
@@ -90,9 +95,22 @@ commits made. `dca3ac3c` "Initial plan" is an empty Copilot placeholder — drop
 *Prereq: M1 + M2 merged (#25 touches `ProjectileWeapon`/`IFirearm`).*
 
 Pre-flight (must all pass before any deletion):
-- [ ] 🤖 Re-run GUID census for every file on the delete list → expect 0 scene/prefab refs each
-- [ ] 🤖 Grep every deleted **class name as a string** (`Type.GetType`, `SendMessage`, `AddComponent("…")`) → expect only self-references
-- [ ] 🤖 GUID-check `Debug/ScoreDebugger` + `ScoreManagerDebugger`; include in deletion only if unwired
+- [x] 🤖 GUID census run → all delete-targets **0 scene/prefab refs**, except the two known scene-edit cases
+- [x] 🤖 String-form reference grep (`Type.GetType`, `SendMessage`, `AddComponent("…")`) → all located and stripped
+- [x] 🤖 GUID-checked both debuggers
+
+### 🔍 Cull pre-flight findings — 3 corrections to plan §8-M3 scope
+
+1. **`vectorTest` is in THREE scenes, not one.** Plan said "remove from Level1"; census found it in
+   `Level1`, `Level2`, **and** `Level3` (identical fileIDs — the scenes were copied). It sits on a dedicated,
+   already-inactive object named **"coordnate spawner test"** (Transform + vectorTest only), so the whole
+   GameObject is removed rather than just the component.
+2. **`ScoreManagerDebugger` IS WIRED** (`Menu 1.unity`) → **KEEP**, per the plan's own conditional
+   ("keep if wired for debugging"). Only `ScoreDebugger` (0 refs) gets deleted.
+3. **`IProjectile`'s `IWeapon`/`ISpell` mention is in a COMMENT only** — no code dependency, so deleting
+   `ISpell`/`IPlayerWeapon`/`IFirearm` cannot break the interface we're keeping.
+
+Also confirmed: `Assets/Prefabs/Player.prefab` still 0 scene refs → safe to delete.
 
 Delete files (plan §8-M3): `Core/GameStateManager.cs`, `Core/GameStarter.cs`, `Core/ComponentCache.cs`,
 `Managers/GameOverManager.cs`, `Player/PlayerHealthRefactored.cs`, `Player/PlayerHealthProxy.cs`,
@@ -101,13 +119,17 @@ Delete files (plan §8-M3): `Core/GameStateManager.cs`, `Core/GameStarter.cs`, `
 (`IFirearm`, `ISpell`, `IPlayerWeapon`, + `IProjectile` if no live implementors), `vectorTest.cs`,
 `Assets/Prefabs/Player.prefab` — **all with their `.meta` files**.
 
-- [ ] 🤖 Delete the file list above
-- [ ] 🤖 Strip reflection probes from `HealthPotion.cs`, `AmmoItem.cs`, `EnemyManager.cs:~141`
-- [ ] 🤖 Delete `ScoreManager.cs:168-186` dead GameStateManager log-block + GameStarter comment
-- [ ] 🤖 Remove `OnNetworkEvent`/`NetworkEvent` from `GameEvents.cs`
-- [ ] 🤖 **Scene edit 1:** remove disabled `PlayerMovementRefactored` component from Level1 Player *(else missing-script warning — from inspector audit)*
-- [ ] 🤖 **Scene edit 2:** remove `vectorTest` object/component from Level1
-- [ ] 🤖 Batchmode compile → exit 0
+- [x] 🤖 Strip reflection probes from `HealthPotion.cs`, `AmmoItem.cs`, `EnemyManager.cs` (all 3 done — live code is now simpler)
+- [x] 🤖 Delete `ScoreManager` dead GameStateManager log-block + GameStarter comment
+- [x] 🤖 Remove `OnNetworkEvent`/`NetworkEvent` from `GameEvents.cs` (ADR-008) + rescope its doc-comment to ADR-004
+- [x] 🤖 Write `Assets/Editor/CullSceneCleanup.cs` — does both scene edits via the **Unity API** (safer than hand-editing YAML across 3 scenes); deleted again at the end of the Cull
+- [x] 🧑 Owner closed the Unity editor
+- [x] 🤖 Ran `CullSceneCleanup.Run` → removed 3 `vectorTest` objects (Level1/2/3) + 1 `PlayerMovementRefactored` component (Level1 Player); 3 scenes re-saved by Unity itself
+- [x] 🤖 Deleted the full file list (17 scripts + `Player.prefab`, all with `.meta`)
+- [x] 🤖 Deleted `Assets/Editor/CullSceneCleanup.cs` + its folder
+- [x] 🤖 Batchmode compile → **exit 0, 0 CS errors, no missing-script warnings** (a first pass showed 17 transient `CS2001` stale-`.csproj` entries; the gitignored project file regenerated clean, same self-healing pattern as M2)
+- [x] 🤖 **Result: 73 → 56 scripts, 7,369 lines deleted, zero remaining references to any culled class**
+- [x] 🤖 CODE_MAP updated — the 🔴 Dormant tier is gone; every listed script is wired
 - [ ] 🧑 **OWNER GATE 4 — open all 7 build scenes + enemy prefabs; confirm ZERO missing-script warnings** (only the editor can surface these reliably)
 - [ ] 🧑 **OWNER GATE 5 — full playthrough**: menu → Level1 → all weapons → death → results → leaderboard. *If anything NREs: HALT and re-audit, do not patch.*
 - [ ] 🤖 Standalone player build compiles
@@ -199,14 +221,24 @@ Done this session:
   (exit 0); Titan work confirmed un-regressed. Original branch preserved at `backup/inventory-pre-rebase`
   (local) and on `origin` at the pre-rewrite SHA until the force-push happens.
 
-**Current branch state:** `feature/player-inventory-&-weapon-system-refactor` = `master` + 3 commits
-(`4eb3bc5d` ammo API, `e95508ea` IProjectile, `ab3db9c9` drop unwired AmmoSystem). Force-pushed; PR #25
-updated and ready. Compile verified clean (exit 0). Owner decisions taken: drop AmmoSystem, leave stashes.
+**M0 ✅ · M1 ✅ · M2 ✅ · M3 (The Cull) BUILT — paused at OWNER GATES 4 & 5 (editor verification).**
 
-**Next agent actions once the owner reports gate 3 (§C weapons play-test):**
-1. `gh pr merge 25 --merge --admin`; `git checkout master && git pull`.
-2. Delete `feature/player-inventory-&-weapon-system-refactor` (local+remote) and `backup/inventory-pre-rebase`.
-3. Update `docs/CODE_MAP.md`: `Ammo.cs` gains the shoot API; `IProjectile` is live/earned (Rocket + IceBullet).
-4. **Then M3 (The Cull)** — start with the pre-flight greps; note `IProjectile` now **stays** (it has live
-   implementors), while `IFirearm`/`ISpell`/`IPlayerWeapon` remain on the delete list.
-5. All 3 stashes still parked — revisit in M4 per owner decision.
+`master` = `2087409a`. Working branch **`feature/the-cull`**, 2 commits, everything committed & pushed.
+
+The Cull is mechanically complete and machine-verified:
+- 17 scripts + `Assets/Prefabs/Player.prefab` deleted; live-code shims stripped; 4 dormant scene objects/components removed via the Unity API
+- Batchmode: exit 0, 0 CS errors, no missing-script warnings
+- 73 → 56 scripts; 7,369 lines removed; zero references to any culled class remain
+- CODE_MAP updated in the same PR (rule #5)
+
+**What only the owner can confirm:** gates 4 (missing-script sweep across all 7 build scenes + enemy
+prefabs) and 5 (full playthrough). Batchmode proves it *compiles and imports*; only the editor proves
+nothing lost a serialized reference. **If the playthrough NREs: HALT and re-audit — do not patch** (plan §13).
+
+**Next agent actions after gates 4+5 pass:**
+1. Open a PR for `feature/the-cull` and admin-merge it; delete the branch.
+2. Start **M4 hygiene** — now fully unblocked: delete tracked Node backend (`Assets/Scripts/Server/zombtoy-backend/`,
+   kills the dependabot alerts), untrack C build artifacts, delete `feature/core-architecture-refactor`
+   (no longer any PR's base) and `origin/highscore_backend`.
+3. M4 owner gates still open: dreamlo deletion (6), Level2 fate (7), Titan spawn strategy (8), multiplayer horizon (9).
+4. All 3 stashes still parked — revisit in M4 per owner decision.
