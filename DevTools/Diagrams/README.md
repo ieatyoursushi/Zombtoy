@@ -171,14 +171,14 @@ Example debug output from enhanced GameEvents:
 
 For issues, check the console output when running generators.
 
-Run the automated test suite to verify diagram generation:
+Run the automated test suite to verify diagram generation (from `DevTools/Diagrams/`):
 
 ```bash
 # Run comprehensive test suite (unit + functional tests)
-/Users/gabewkung/Desktop/Zombtoy-Project/.venv/bin/python Diagrams/run_tests.py
+python3 run_tests.py
 
 # Or run just unit tests
-/Users/gabewkung/Desktop/Zombtoy-Project/.venv/bin/python Diagrams/test_diagrams.py
+python3 test_diagrams.py
 ```
 
 **Test Coverage:**
@@ -217,7 +217,13 @@ ScoreManager --> GameEvents : invokes ScoreChanged
 ```
 
 ## Regeneration
-Re-run `/Users/gabewkung/Desktop/Zombtoy-Project/.venv/bin/python Diagrams/generate_all.py` after code changes.
+Re-run `python3 generate_all.py` (from `DevTools/Diagrams/`) after code changes.
+
+> **⚠️ Staleness note:** everything in `out/` is a snapshot of the codebase at generation time — the
+> committed artifacts date from **Oct 14 2025** and predate the Titan Zombunny / rocket work. Treat
+> `out/*_report.md` as evidence only after regenerating. (Old docs referenced a
+> `~/Desktop/Zombtoy-Project/.venv` interpreter from a previous copy of this repo; plain `python3 3.9+`
+> works — the scripts have no external dependencies.)
 
 ## Future Ideas
 - Per-method call subgraphs.

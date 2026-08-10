@@ -15,7 +15,7 @@ Zombtoy is a zombie survival game built in Unity featuring multiple game modes, 
 - **Multiple and or Dynamic/Scenic Camera Perspectives**: Switch between isometric and first-person views
 - **Diverse Enemy Types**: Fight zom-soldiers, giant/mutant zombtoys, bosses, zomtoys with varying spells / ranged attacks, ect.
 - **Weapon Arsenal**: Firearms, rocket launchers, flamethrowers with different ammunition types
-- **Health & Stamina System**: Complete player vitals management
+- **Health & Stamina System**: Player vitals management (live legacy implementation; refactored component-split version awaiting migration)
 - **Backend (current)**: Local and online high score tracking
 - **Backend (future)**: full implementation of a multiplayer / CO-OP system wth user-profiles and a basic anticheat.
 - **Visual Effects**: Particle systems for combat, explosions, and environmental effects
@@ -25,26 +25,30 @@ Zombtoy is a zombie survival game built in Unity featuring multiple game modes, 
 
 ```
 Zombtoy/
-├── Assets/                          # Unity project assets
-│   ├── Scripts/                     # C# game scripts
-│   │   ├── Core/                   # Core architecture (GameEvents, Managers)
-│   │   ├── Player/                 # Player systems (Health, Movement, Shooting)
-│   │   ├── Enemy/                  # Enemy AI and behavior
-│   │   ├── Managers/               # Game state and system managers
-│   │   ├── UI/                     # User interface scripts
-│   │   ├── Weapons/                # Weapon systems
-│   │   └── Server/                 # Backend integration
-│   ├── Scenes/                     # Game scenes (menus, levels)
-│   ├── Prefabs/                    # Reusable game objects
-│   ├── Materials/                  # Visual materials
-│   └── Audio/                      # Sound effects and music
-├── Backend/                        # .NET Minimal API backend
-│   └── ZombtoyBackend/            # Score tracking and multiplayer prep
-├── DevTools/                       # Development utilities
-│   ├── Diagrams/                   # Architecture diagrams
-│   └── GAMEEVENTS_DEBUG_GUIDE.md  # Event system debugging
-├── REFACTOR_PLAN.md               # Detailed architectural improvements
-└── DOTNET_BACKEND_INTEGRATION_GUIDE.md  # Backend setup guide
+├── Assets/                          # Unity project assets (scenes live at this root: Level1-3, Menu 1-4)
+│   ├── Scripts/                     # C# game scripts — see docs/CODE_MAP.md for a per-file guide
+│   │   ├── Core/                   # New architecture layer (GameEvents hub, Singleton, state mgmt)
+│   │   ├── Player/                 # Player systems (legacy stack active; *Refactored variants dormant)
+│   │   ├── Enemy/                  # Enemy health/movement/attack
+│   │   ├── Managers/               # Score/Enemy/Item managers (scene-placed singletons)
+│   │   ├── UI/                     # Music, menus, score/zombie-count binders
+│   │   ├── Weapons/                # New weapon framework (written, not yet wired) + interfaces
+│   │   ├── Server/                 # Leaderboard client (+ obsolete Node backend pending removal)
+│   │   └── (root .cs files)        # Legacy gameplay: per-weapon scripts, projectiles, camera, items
+│   ├── Prefabs/, Guns/, Materials/ # Reusable game objects, weapons, materials
+│   └── (enemy/projectile prefabs at Assets/ root: Zombunny, Titan Zombunny, Rocket, …)
+├── Backend/
+│   ├── ZombtoyBackend/             # .NET 8 Minimal API + SQLite (the real backend — see its README)
+│   └── ZombtoyBackend-C/           # Educational C re-implementation (mongoose + SQLite)
+├── DevTools/
+│   ├── Diagrams/                   # Python static-analysis → PlantUML diagrams & event reports
+│   └── shell_scripts/              # open-unity, project-stats, lint helpers
+└── docs/                           # Project documentation — start at docs/README.md
+    ├── CODE_MAP.md                 # Every script: purpose + active/dormant status
+    ├── reexploration/              # 2026 architecture audit (source of truth)
+    ├── history/REFACTOR_PLAN.md    # 2025 refactor plan (historical, header corrected)
+    ├── backend/DOTNET_BACKEND_INTEGRATION_GUIDE.md  # Target backend design (not implemented)
+    └── workflow.md                 # Git + Unity worktree workflow
 ```
 
 ## 🚀 Quick Start
@@ -104,7 +108,7 @@ The game includes a .NET Minimal API for score tracking and multiplayer preparat
 ## 🎯 Game Modes & Scenes
 
 - **Main Menu** (`Menu.unity`) - Primary navigation hub
-- **Level 1-2** (`Level1.unity`, `Level2.unity`, `Level3.unity`) -  Game scenes that represent differing versions (will likely transition to a single-scene full manager-dictated system).
+- **Levels** (`Level1.unity`, `Level2.unity`, `Level3.unity`) - Game scenes representing differing versions; `Level2` is currently **not** in Build Settings (will likely transition to a single-scene full manager-dictated system).
 - **Isometric View** - Top-down perspective gameplay
 - **First Person** - Immersive FPS experience
 - **Settings Menu** - Game configuration
@@ -121,11 +125,13 @@ The game includes a .NET Minimal API for score tracking and multiplayer preparat
 
 ### Key Components
 
-- **PlayerHealth**: Health and stamina management with event integration
+- **PlayerHealth**: Health and stamina management with event integration (legacy version is what runs; refactored split exists but is not yet wired in)
 - **EnemyManager**: Centralized enemy spawning and lifecycle management
 - **ScoreManager**: Score tracking and high score persistence
-- **WeaponSystem**: Comprehensive weapon handling and ammunition management
-- **ItemManager**: Centralized item spawn-manaement in the game scene.
+- **WeaponSystem**: New weapon framework (WeaponManager/BaseWeapon/interfaces) — written but **dormant**; gameplay still uses the per-weapon legacy scripts + Inventory
+- **ItemManager**: Centralized item spawn-management in the game scene.
+
+> 📌 For the honest per-file breakdown of what is active vs dormant, see [`docs/CODE_MAP.md`](docs/CODE_MAP.md).
   
 ## 🔧 Development Status
 
@@ -138,7 +144,7 @@ This project is actively being refactored to improve code quality and prepare fo
 - **Memory Management**: Fixing potential memory leaks in event subscriptions
 - **Backend Integration**: Preparing for multiplayer and cloud score synchronization
 
-See [`REFACTOR_PLAN.md`](REFACTOR_PLAN.md) for detailed architectural improvements and [`DOTNET_BACKEND_INTEGRATION_GUIDE.md`](DOTNET_BACKEND_INTEGRATION_GUIDE.md) for backend setup details.
+See [`docs/README.md`](docs/README.md) for the documentation index: [`docs/CODE_MAP.md`](docs/CODE_MAP.md) (what actually runs), [`docs/reexploration/`](docs/reexploration/) (architecture audit + milestones), [`docs/history/REFACTOR_PLAN.md`](docs/history/REFACTOR_PLAN.md) (historical refactor plan), and [`docs/backend/DOTNET_BACKEND_INTEGRATION_GUIDE.md`](docs/backend/DOTNET_BACKEND_INTEGRATION_GUIDE.md) (target backend design).
 
 ## 📋 Controls
 
@@ -169,10 +175,9 @@ This project includes several third-party Unity assets:
   
 ## 📈 Performance Considerations
 
-- **Event System**: Optimized for minimal garbage collection
-- **Object Pooling**: Implemented for projectiles and effects
-- **LOD System**: Level-of-detail for complex models
-- **Texture Compression**: Optimized for various platforms
+- **Event System**: Static C# events; minimal per-frame allocation
+- **Object Pooling**: *Planned* — projectiles/effects currently use Instantiate/Destroy
+- **Known hot spots**: remaining `GameObject.Find()` calls (~55) and per-frame polling in legacy `Update()` methods — tracked in the migration issue (#16)
 
 ## 🧪 Testing & Debugging
 
@@ -195,7 +200,7 @@ This generates detailed reports about event system health and potential issues.
 
 This project welcomes contributions! Areas of focus:
 
-1. **Code Refactoring**: Help implement the architectural improvements outlined in `REFACTOR_PLAN.md`
+1. **Code Refactoring**: Help finish the legacy→new migration (issue #16; background in `docs/history/REFACTOR_PLAN.md`)
 2. **New Features**: Add new enemy types, weapons, or game modes
 3. **Performance**: Optimize systems for better performance
 4. **Multiplayer/CO-OP**: Implement networking features using the prepared backend

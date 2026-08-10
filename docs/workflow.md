@@ -66,13 +66,13 @@ open -a "Unity" ../MainTest
 ```
 
 #### Opening Unity Directly
-Use the provided scripts to open Unity without Unity Hub:
+Use the provided scripts to open Unity without Unity Hub (they live in `DevTools/shell_scripts/`):
 ```fish
 # Fish script (recommended for fish shell)
-./open-unity.fish
+./DevTools/shell_scripts/open-unity.fish
 
 # Bash script (works in any shell)
-./open-unity.sh
+./DevTools/shell_scripts/open-unity.sh
 ```
 
 These scripts:
