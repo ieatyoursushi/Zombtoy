@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Dynamic;
 using UnityEngine;
+using UnityEngine.Purchasing;
+using UnityEngine.Video;
 
-public class Rocket : MonoBehaviour, IBlast {
-    Vector3 rocketMovement;
+public class Rocket : MonoBehaviour, IBlast, IProjectile {
     Vector3 ExplosionPosition;
     public float speed;
     public GameObject playerTransform;
@@ -12,7 +14,7 @@ public class Rocket : MonoBehaviour, IBlast {
     public ParticleSystem explosion;
     public ParticleSystem Trail;
     public LayerMask shootable;
-    bool collided = false;
+    public bool collided { get; set; }
     bool exploded = false;
     bool absorbed;
     public AudioSource ExplosionSound;
@@ -25,7 +27,6 @@ public class Rocket : MonoBehaviour, IBlast {
     bool hit;
     bool ExplosiveHit;
     RaycastHit shootHit;
-    RaycastHit rayHit;
     Ray ray = new Ray();
     EnemyHealth enemyHealth;
     public GameObject ExplideLight;
@@ -41,18 +42,22 @@ public class Rocket : MonoBehaviour, IBlast {
         explosion.Pause();
         ExplosionSound = GameObject.Find("ExplosionSound").GetComponent<AudioSource>();
         hit = false;
+        collided = false;
         Trail = GetComponentInChildren<ParticleSystem>();
         block = GameObject.Find("block").GetComponent<AudioSource>();
         Destroy(gameObject, 30f);
     }
- 
-	// Update is called once per frame
-	void FixedUpdate() {
-        rocketMovement.Set(0f, 0f, speed);
+    public void velocity()
+    {
+        Vector3 rocketMovement = new Vector3(0f, 0f, speed);
         if (!stopMovement)
         {
             gameObject.transform.Translate(rocketMovement * speed * Time.deltaTime);
         }
+    }
+	// Update is called once per frame
+	void FixedUpdate() {
+        velocity();
     }
     private void Update()
     {
@@ -60,13 +65,13 @@ public class Rocket : MonoBehaviour, IBlast {
 
         if (collided)
         {
- 
+
             if (!exploded)
             {
                 Explode();
                 exploded = true;
             }
- 
+
             this.gameObject.GetComponent<MeshRenderer>().enabled = false;
             explosion.Play();
             if (absorbed)
@@ -207,11 +212,6 @@ public class Rocket : MonoBehaviour, IBlast {
                 }
             }
         }
-    }
-
-    void notActive()
-    {
-        gameObject.SetActive(false);
     }
     private void OnDrawGizmos()
     {

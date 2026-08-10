@@ -22,11 +22,34 @@ public class Ammo : MonoBehaviour {
         reloaded = false;
 	}
 	
+    // Simple method to check if shooting is allowed
+    public bool CanShoot()
+    {
+        return ammo > 0 && !ReloadCheck.reload;
+    }
+
+    // Safe method to consume ammo
+    public bool TryShoot(int ammoToUse = 1)
+    {
+        if (CanShoot() && ammo >= ammoToUse)
+        {
+            ammo -= ammoToUse;
+            return true;
+        }
+        return false;
+    }
+
+    // Centralized reload check
+    public bool CanReload()
+    {
+        return !ReloadCheck.reload && ammo < maxAmmo && Capacity > 0;
+    }
+
 	// Update is called once per frame
 	void Update () {
         ammoText.text = ammo.ToString() + "/" + Capacity.ToString();
         
-        if (Input.GetKeyDown(Keybinds.reloadBind) && !this.ReloadCheck.reload && ammo < maxAmmo && Capacity > 0)
+        if (Input.GetKeyDown(Keybinds.reloadBind) && CanReload())
         {
             StartCoroutine(reload());
             
@@ -37,7 +60,7 @@ public class Ammo : MonoBehaviour {
  
         }
         // reload if ammo is zero
-        if (ammo == 0 && !this.ReloadCheck.reload && ammo < maxAmmo && Capacity > 0)
+        if (ammo == 0 && CanReload())
         {
             StartCoroutine(reload());
 

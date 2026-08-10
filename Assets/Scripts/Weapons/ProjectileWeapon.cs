@@ -51,7 +51,7 @@ public class ProjectileWeapon : BaseWeapon
         }
         
         // Set damage on projectile
-        IProjectile projectileComponent = projectile.GetComponent<IProjectile>();
+        IProjectiles projectileComponent = projectile.GetComponent<IProjectiles>();
         if (projectileComponent != null)
         {
             projectileComponent.SetDamage(Damage);
@@ -100,7 +100,7 @@ public class ProjectileWeapon : BaseWeapon
 /// <summary>
 /// Interface for projectiles to receive configuration
 /// </summary>
-public interface IProjectile
+public interface IProjectiles
 {
     void SetDamage(int damage);
     void SetOwner(GameObject owner);

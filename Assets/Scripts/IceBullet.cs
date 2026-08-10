@@ -2,15 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-public class IceBullet : MonoBehaviour {
+using UnityEngine.Purchasing;
+/// <summary>
+/// base player shooting fireArm interface-implementation script to choose from out of playershooting and projectile-launcher (dev name)
+/// </summary>
+public class IceBullet : MonoBehaviour, IProjectile {
     public GameObject pistolTransform;
-    Vector3 bulletMovement;
     public float speed;
     public int DamagePerShot;
     RaycastHit shot;
-    RaycastHit shootHit;
     public bool hit = false;
-    bool collided = false;
+    public bool collided { get; set; }
     bool found_Target = false;
     bool effected = false;
     private GameObject firstperson;
@@ -20,23 +22,30 @@ public class IceBullet : MonoBehaviour {
     public float NavAgent_Speed;
     float timer;
     LayerMask mask;
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         pistolTransform = GameObject.Find("Pistol");
         firstperson = GameObject.Find("FirstPerson");
         this.target = null;
+        collided = false;
     } 
 	void Trail()
     {
         gameObject.GetComponent<TrailRenderer>().enabled = true;
     }
 	// Update is called once per frame
-	void FixedUpdate () {
-        bulletMovement.Set(0f, 0f, speed);
+    public void velocity()
+    {
+        Vector3 bulletMovement = new Vector3(0f, 0f, speed);
         if (!collided)
         {
+            //equivalency
             this.transform.Translate(bulletMovement * speed * Time.deltaTime);
         }
+    }
+	void FixedUpdate () {
+        velocity();
         attack();
         if(rotating && target != null)
         {

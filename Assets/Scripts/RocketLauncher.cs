@@ -26,11 +26,10 @@ public class RocketLauncher : MonoBehaviour {
             reloadTimer = 0;
         }
         timer += Time.deltaTime;
-		if(Input.GetButton("Fire1") && (ammoScript.ammo == ammoScript.maxAmmo || cooldown <= timer) && timer != 0 && !ammoScript.ReloadCheck.reload && !playerHealth.isDead)
+		if(Input.GetButton("Fire1") && (ammoScript.ammo == ammoScript.maxAmmo || cooldown <= timer) && timer != 0 && ammoScript.CanShoot() && !playerHealth.isDead)
         {
-            if (ammoScript.ammo > 0 && ammoScript.reloadTimer == 0 )
+            if (ammoScript.TryShoot() && ammoScript.reloadTimer == 0 )
             {
-                ammoScript.ammo--;
                 RocketLaunch.Play();
                 Instantiate(Rocket, transform.position, transform.rotation);
                 timer = 0f;
