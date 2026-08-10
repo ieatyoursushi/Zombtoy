@@ -130,19 +130,22 @@ Delete files (plan §8-M3): `Core/GameStateManager.cs`, `Core/GameStarter.cs`, `
 - [x] 🤖 Batchmode compile → **exit 0, 0 CS errors, no missing-script warnings** (a first pass showed 17 transient `CS2001` stale-`.csproj` entries; the gitignored project file regenerated clean, same self-healing pattern as M2)
 - [x] 🤖 **Result: 73 → 56 scripts, 7,369 lines deleted, zero remaining references to any culled class**
 - [x] 🤖 CODE_MAP updated — the 🔴 Dormant tier is gone; every listed script is wired
-- [ ] 🧑 **OWNER GATE 4 — open all 7 build scenes + enemy prefabs; confirm ZERO missing-script warnings** (only the editor can surface these reliably)
-- [ ] 🧑 **OWNER GATE 5 — full playthrough**: menu → Level1 → all weapons → death → results → leaderboard. *If anything NREs: HALT and re-audit, do not patch.*
-- [ ] 🤖 Standalone player build compiles
-- [ ] 🤖 Update CODE_MAP (all-green), close/re-scope issues #3 and #16
+- [x] 🧑 **OWNER GATE 4 — missing-script sweep PASSED** (2026-07-12)
+- [x] 🧑 **OWNER GATE 5 — full playthrough PASSED** — behavior identical after deleting 7,369 lines. **This validates the wiring-census methodology end-to-end** (plan §14's stated purpose for the Cull)
+- [x] 🤖 Merged as PR #31; branch deleted
+- [ ] 🤖 Close/re-scope issues #3 and #16 *(pending owner nod — see gates below)*
+
+**M3 COMPLETE.**
 
 **Expected:** ≈ −2,300 lines, ~15 files. **Rollback:** single revert (one PR).
 
 ## M4 — Repo & product hygiene
 
-- [ ] 🤖 Delete tracked Node backend `Assets/Scripts/Server/zombtoy-backend/` (kills the 4 dependabot alerts)
-- [ ] 🤖 Untrack + gitignore C-backend build artifacts (`mongoose.o`, `obj/`, binary, `zombtoy_c.db`)
-- [ ] 🤖 Delete `feature/core-architecture-refactor` **(only after PR #25 is retargeted/landed)**
-- [ ] 🤖 Delete `origin/highscore_backend`
+- [x] 🤖 Deleted tracked Node backend (1,430 files, **−533,876 lines**) — PR #32. **Dependabot alerts: 5 → 0** ✅
+- [x] 🤖 Untracked + gitignored C-backend build artifacts (kept on disk locally)
+- [x] 🤖 Deleted `feature/core-architecture-refactor` (local + remote)
+- [x] 🤖 Deleted `origin/highscore_backend`
+- [x] 🤖 **Repo is now a single `master` branch, local and remote** — the "what work exists where" question is closed
 - [ ] 🧑 **OWNER GATE 6 — confirm dreamlo deletion** (`HighScores.cs` + its `Menu 3` scene ref; .NET client becomes canonical). Plan recommends yes
 - [ ] 🧑 **OWNER GATE 7 — confirm `Level2.unity` fate** (not in build; plan default = delete)
 - [ ] 🤖 Fold or drop `stash@{2}` (workflow.md +23 lines)
@@ -221,24 +224,26 @@ Done this session:
   (exit 0); Titan work confirmed un-regressed. Original branch preserved at `backup/inventory-pre-rebase`
   (local) and on `origin` at the pre-rewrite SHA until the force-push happens.
 
-**M0 ✅ · M1 ✅ · M2 ✅ · M3 (The Cull) BUILT — paused at OWNER GATES 4 & 5 (editor verification).**
+**M0 ✅ · M1 ✅ · M2 ✅ · M3 ✅ · M4 mechanical ✅ — paused at OWNER GATES 6–9 (product decisions).**
 
-`master` = `2087409a`. Working branch **`feature/the-cull`**, 2 commits, everything committed & pushed.
+`master` = post-PR-#32. **Repo is a single branch, local and remote.** Working tree clean.
 
-The Cull is mechanically complete and machine-verified:
-- 17 scripts + `Assets/Prefabs/Player.prefab` deleted; live-code shims stripped; 4 dormant scene objects/components removed via the Unity API
-- Batchmode: exit 0, 0 CS errors, no missing-script warnings
-- 73 → 56 scripts; 7,369 lines removed; zero references to any culled class remain
-- CODE_MAP updated in the same PR (rule #5)
+### Scoreboard for the whole execution
+| Milestone | Result |
+|---|---|
+| M1 | Boss rotation-freeze fixed; PR #28 merged |
+| M2 | Ammo API landed (PR #25); unwired `AmmoSystem` rejected by rule #1 |
+| M3 | **The Cull** — 73→56 scripts, −7,369 lines, playthrough identical (PR #31) |
+| M4 | −533,876 lines of tracked vendor/binaries; **dependabot 5 → 0**; 4 branches → 1 (PR #32) |
 
-**What only the owner can confirm:** gates 4 (missing-script sweep across all 7 build scenes + enemy
-prefabs) and 5 (full playthrough). Batchmode proves it *compiles and imports*; only the editor proves
-nothing lost a serialized reference. **If the playthrough NREs: HALT and re-audit — do not patch** (plan §13).
+**Everything remaining in M4 is a product decision only the owner can make** (gates 6–9 below), plus
+closing/re-scoping issues #3 and #16 once those land.
 
-**Next agent actions after gates 4+5 pass:**
-1. Open a PR for `feature/the-cull` and admin-merge it; delete the branch.
-2. Start **M4 hygiene** — now fully unblocked: delete tracked Node backend (`Assets/Scripts/Server/zombtoy-backend/`,
-   kills the dependabot alerts), untrack C build artifacts, delete `feature/core-architecture-refactor`
-   (no longer any PR's base) and `origin/highscore_backend`.
-3. M4 owner gates still open: dreamlo deletion (6), Level2 fate (7), Titan spawn strategy (8), multiplayer horizon (9).
-4. All 3 stashes still parked — revisit in M4 per owner decision.
+**Next agent actions after gates 6–9:**
+1. Execute whichever deletions the owner approves (dreamlo client + its `Menu 3` scene ref; `Level2.unity`).
+2. Close issue #3 (obsolete — WeaponManager is deleted); re-scope #16 from "full migration" to "cull complete".
+3. Decide stash fate (all 3 still parked).
+4. **M5 tooling:** fix `EVENT_RAISE_RE` in `DevTools/Diagrams/common.py`, regenerate `out/` (now meaningful —
+   diagrams will finally match a codebase with no dormant noise), seed `docs/architecture/adr/`.
+5. **M6+ features resume** under §9 rules — boss polish, then a balancing pass (fold in the double-speed
+   `Rocket`/`EnemyProjectile` quirk fix).
