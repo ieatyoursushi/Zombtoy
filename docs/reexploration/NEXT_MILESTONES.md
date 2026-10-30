@@ -1,5 +1,7 @@
 # Zombtoy — Next Milestones (dependency-ordered, 2026-07-12)
 
+> **Historical audit snapshot.** Counts, branches, blockers and recommendations below describe the audit date. For the executed decisions and present status see [EXECUTION_LOG](../architecture/EXECUTION_LOG.md), [CODE_MAP](../CODE_MAP.md) and the [ADRs](../architecture/adr/).
+
 Ordering rationale: stabilize the branch that is half-committed (lowest risk, unblocks everything), land the one PR with real unmerged gameplay work, and only then take the big architectural fork (wire-or-cut the dormant layer). Documentation and tooling ride behind the code decisions they describe.
 
 ---

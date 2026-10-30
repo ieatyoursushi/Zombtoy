@@ -6,7 +6,7 @@ Core components, Managers, and their integration patterns.
 import re
 from pathlib import Path
 from collections import defaultdict
-from common import read_cs_files, load_and_strip, rel
+from common import read_cs_files, load_and_strip, rel, STATIC_ANALYSIS_NOTE
 
 ROOT = Path(__file__).resolve().parents[2] / 'Assets' / 'Scripts'
 OUT_DIR = Path(__file__).resolve().parent / 'out'
@@ -50,7 +50,7 @@ class CoreAnalysis:
             'file': rel(file_path, ROOT),
             'category': 'Core' if is_core else ('Manager' if is_manager else 'Other'),
             'is_singleton': False,
-            'is_monobehaviour': bool(MONOBEHAVIOUR_RE.search(code)),
+            'is_monobehaviour': bool(MONOBEHAVIOUR_RE.search(code) or SINGLETON_INHERIT_RE.search(code)),
             'dependencies': [],
             'lifecycle_methods': [],
             'patterns': []
@@ -85,7 +85,7 @@ class CoreAnalysis:
         # Detect patterns
         if 'GameEvents.' in code:
             class_info['patterns'].append('Uses GameEvents')
-        if 'DontDestroyOnLoad' in code:
+        if 'DontDestroyOnLoad' in code or re.search(r'Persistent\s*=>\s*true', code):
             class_info['patterns'].append('Persistent')
         if '.Instance' in code:
             class_info['patterns'].append('Uses Singletons')
@@ -100,7 +100,7 @@ def generate_core_architecture_diagram(analysis):
     """Generate PlantUML diagram showing Core architecture."""
     lines = [
         "@startuml",
-        "title Core Architecture Overview",
+        "title Core Architecture Overview (static source)",
         "skinparam packageStyle rectangle",
         "skinparam backgroundColor #FAFAFA",
         "left to right direction",
@@ -112,7 +112,7 @@ def generate_core_architecture_diagram(analysis):
         "package \"Core\" as CorePkg {",
     ])
     
-    for comp_name, comp_info in analysis.core_components.items():
+    for comp_name, comp_info in sorted(analysis.core_components.items()):
         color = "#E1F5FE" if comp_info['is_singleton'] else "#F3E5F5"
         stereotype = "<<Singleton>>" if comp_info['is_singleton'] else ""
         lines.append(f'  class {comp_name} {stereotype} {color}')
@@ -135,7 +135,7 @@ def generate_core_architecture_diagram(analysis):
             "package \"Managers\" as MgrPkg {",
         ])
         
-        for mgr_name, mgr_info in analysis.managers.items():
+        for mgr_name, mgr_info in sorted(analysis.managers.items()):
             color = "#E8F5E8" if mgr_info['is_singleton'] else "#FFF3E0"
             stereotype = "<<Singleton>>" if mgr_info['is_singleton'] else ""
             lines.append(f'  class {mgr_name} {stereotype} {color}')
@@ -149,7 +149,7 @@ def generate_core_architecture_diagram(analysis):
         ])
     
     # Show key relationships
-    for comp_name, comp_info in {**analysis.core_components, **analysis.managers}.items():
+    for comp_name, comp_info in sorted({**analysis.core_components, **analysis.managers}.items()):
         if 'Uses GameEvents' in comp_info['patterns']:
             lines.append(f"{comp_name} --> GameEvents : uses")
         
@@ -162,7 +162,7 @@ def generate_core_architecture_diagram(analysis):
     lines.extend([
         "",
         "note top",
-        "Legend:",
+        STATIC_ANALYSIS_NOTE, "Legend:",
         "Blue = Core Singleton",
         "Purple = Core Component", 
         "Green = Manager Singleton",
@@ -178,82 +178,27 @@ def generate_core_architecture_diagram(analysis):
     return '\n'.join(lines)
 
 def generate_lifecycle_flow_diagram(analysis):
-    """Generate sequence diagram showing typical lifecycle flow."""
-    lines = [
-        "@startuml",
-        "title Core Component Lifecycle Flow",
-        "skinparam backgroundColor #FAFAFA",
-        ""
-    ]
-    
-    # Participants
-    participants = []
-    for comp_name in analysis.core_components.keys():
-        if comp_name != 'GameEvents':  # GameEvents is static
-            participants.append(comp_name)
-    
-    for mgr_name in list(analysis.managers.keys())[:3]:  # Limit to first 3 managers
-        participants.append(mgr_name)
-    
-    for participant in participants:
-        lines.append(f"participant {participant}")
-    
-    lines.extend([
-        "",
-        "== Initialization Phase ==",
-        ""
-    ])
-    
-    # Show typical lifecycle flow
-    for participant in participants:
-        info = analysis.core_components.get(participant) or analysis.managers.get(participant)
-        if info and 'Awake' in info['lifecycle_methods']:
-            lines.append(f"activate {participant}")
-            lines.append(f"{participant} -> {participant} : Awake()")
-            
-            if info['is_singleton']:
-                lines.append(f"{participant} -> {participant} : Initialize Singleton")
-            
-            if 'Uses GameEvents' in info['patterns']:
-                lines.append(f"{participant} -> GameEvents : Subscribe to events")
-    
-    lines.extend([
-        "",
-        "== Runtime Phase ==",
-        ""
-    ])
-    
-    # Show event flow example
-    lines.extend([
-        "EnemyManager -> GameEvents : EnemySpawned(enemy)",
-        "GameEvents -> EnemyManager : OnEnemySpawned callback",
-        "GameEvents -> ScoreManager : OnEnemySpawned callback (if subscribed)",
-        ""
-    ])
-    
-    lines.extend([
-        "== Cleanup Phase ==",
-        ""
-    ])
-    
-    for participant in participants:
-        info = analysis.core_components.get(participant) or analysis.managers.get(participant)
-        if info and 'OnDestroy' in info['lifecycle_methods']:
-            if 'Uses GameEvents' in info['patterns']:
-                lines.append(f"{participant} -> GameEvents : Unsubscribe from events")
-            lines.append(f"deactivate {participant}")
-    
-    lines.extend([
-        "@enduml"
-    ])
-    
+    """Show declared callbacks, never invent cross-object execution order."""
+    lines = ['@startuml', 'title Declared Unity Lifecycle Methods (static source)',
+             'skinparam classAttributeIconSize 0', 'left to right direction']
+    for name, info in sorted({**analysis.core_components, **analysis.managers}.items()):
+        lines.append(f'class {name} {{')
+        for method in sorted(set(info['lifecycle_methods'])):
+            lines.append(f'  {method}()')
+        lines.append('}')
+        if info['is_singleton']:
+            lines.append(f'Singleton <|-- {name}')
+    lines.extend(['legend bottom', STATIC_ANALYSIS_NOTE,
+                  'Methods shown are declared in each file; inherited callbacks may also run.',
+                  'endlegend', '@enduml'])
     return '\n'.join(lines)
+
 
 def generate_core_report(analysis):
     """Generate detailed Core architecture report."""
     lines = [
         "# Core Architecture Report",
-        f"Generated: {Path(__file__).name}",
+        f"Generated: {Path(__file__).name}", STATIC_ANALYSIS_NOTE,
         "",
         "## Overview",
         f"- Core Components: {len(analysis.core_components)}",
@@ -318,7 +263,7 @@ def generate_core_report(analysis):
     ])
     
     event_users = []
-    for comp_name, comp_info in {**analysis.core_components, **analysis.managers}.items():
+    for comp_name, comp_info in sorted({**analysis.core_components, **analysis.managers}.items()):
         if 'Uses GameEvents' in comp_info['patterns']:
             event_users.append(comp_name)
     
@@ -340,6 +285,7 @@ def main():
     report = generate_core_report(analysis)
     
     # Write files
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
     (OUT_DIR / 'core_architecture.puml').write_text(arch_diagram, encoding='utf-8')
     (OUT_DIR / 'core_lifecycle_flow.puml').write_text(lifecycle_diagram, encoding='utf-8')
     (OUT_DIR / 'core_architecture_report.md').write_text(report, encoding='utf-8')

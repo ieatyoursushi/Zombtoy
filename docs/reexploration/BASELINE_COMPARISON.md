@@ -1,5 +1,7 @@
 # Baseline Comparison — first GitHub commit vs today
 
+> **Historical audit snapshot.** Counts, branches, blockers and recommendations below describe the audit date. For the executed decisions and present status see [EXECUTION_LOG](../architecture/EXECUTION_LOG.md), [CODE_MAP](../CODE_MAP.md) and the [ADRs](../architecture/adr/).
+
 **Baseline:** `071291f5` "Entire project commit - 1st." (the original high-school-era upload)
 **Compared against:** `feature/Titan-Zombunny` @ `46636c52` (2026-07-12)
 **Method:** git archaeology (`ls-tree`, `diff --stat`, `git grep` at both endpoints) + the wiring evidence

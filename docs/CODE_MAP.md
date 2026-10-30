@@ -1,6 +1,6 @@
 # Zombtoy Code Map — every C# script, what it does, and whether it actually runs
 
-Last verified: **2026-07-12**, branch `feature/Titan-Zombunny`. Wiring status comes from GUID tracing
+Current-status corrections: **2026-10-30**, branch `codex/m5-tooling-and-validation`. Original wiring census: 2026-07-12. Wiring status comes from GUID tracing
 across every `.unity` scene and `.prefab` (not from filenames or comments). For the deep audit behind
 these labels see [`docs/reexploration/CURRENT_STATE.md`](reexploration/CURRENT_STATE.md).
 
@@ -12,12 +12,12 @@ these labels see [`docs/reexploration/CURRENT_STATE.md`](reexploration/CURRENT_S
 
 > **The Cull (M3) completed 2026-07-12.** The dormant parallel layer from the Aug-2025 refactor —
 > 17 scripts, ~2,300 lines of C# plus a stale prefab — has been **deleted**, along with the reflection
-> shims that live code carried for it. There is no 🔴 Dormant tier in this map any more: **every script
-> listed here is wired and runs.** Deleted code lives in git history (see ADR-003); rebuild triggers are
+> shims that live code carried for it. There is no 🔴 Dormant tier in this map any more: the deleted replacement layer no longer compiles into the game.
+> Individual activity labels below retain their original wiring evidence; source presence alone does not prove execution. Deleted code lives in git history (see ADR-003); rebuild triggers are
 > in the plan's §10. Script count: 73 → 56.
 
 The big picture: gameplay runs on the legacy player/weapon stack, which publishes into the `GameEvents`
-hub; four scene-placed singleton managers own global state. That *is* the architecture now — one live
+hub; three scene-placed singleton managers own global state. That *is* the architecture now — one live
 path per concern, no parallel versions.
 
 ---
@@ -26,7 +26,7 @@ path per concern, no parallel versions.
 
 | File | Status | What it is |
 |---|---|---|
-| `GameEvents.cs` (155 l) | 🟢 | Static event hub (~20 events: health, score, enemy lifecycle, game state). The one piece of the refactor that is fully live — legacy and new code both publish/subscribe through it. Includes `SafeInvoke` + subscriber-count debug helpers. |
+| `GameEvents.cs` (155 l) | 🟢 | Static event hub (19 declared events: health, score, enemy lifecycle, game state). The one piece of the refactor that is fully live — legacy and new code both publish/subscribe through it. Includes `SafeInvoke` + subscriber-count debug helpers. |
 | `Singleton.cs` (107 l) | 🟢 | Generic `Singleton<T>` base for managers. **Deliberately does not auto-create instances** — a manager that isn't placed in a scene stays dormant. This single design choice explains most of the "written but never ran" refactor code. |
 
 *Culled 2026-07-12: `ComponentCache.cs`, `GameStateManager.cs`, `GameStarter.cs`. A minimal scene-placed
@@ -49,7 +49,7 @@ feature next touches it; never as a parallel rewrite (ADR-002).*
 
 | File | Status | What it is |
 |---|---|---|
-| `Inventory.cs` (135 l) | 🟢⚪ | Weapon switching on the Player. **Refactored in place** (Sep 2025, issue #1): data-driven `WeaponEntry` list with legacy-field fallback. The better version (`AmmoSystem.cs`, `IProjectile`) lives only on PR #25 / the inventory branch. |
+| `Inventory.cs` (135 l) | 🟢⚪ | Weapon switching on the Player. **Refactored in place** (Sep 2025, issue #1): data-driven `WeaponEntry` list with legacy-field fallback. PR #25 landed the existing Ammo API and IProjectile; the unwired AmmoSystem was dropped. |
 | `Ammo.cs` (~115 l) | 🟢 | Per-weapon ammo counter + UI (9 instances per level scene). **Owns the shoot rules** via `CanShoot()` / `TryShoot(int)` / `CanReload()` (PR #25) — weapon scripts call these instead of manipulating `ammo` directly. |
 | `AmmoItem.cs` (104 l) | 🟢 | Ammo pickup; notifies `ItemManager`, probes both health systems. |
 | `HealthPotion.cs` (90 l) | 🟢 | Heal pickup; same dual-health-system probing pattern. |
@@ -73,7 +73,7 @@ feature next touches it; never as a parallel rewrite (ADR-002).*
 
 | File | Status | What it is |
 |---|---|---|
-| `ScoreManager.cs` (352 l) | 🟢 | `Singleton<ScoreManager>`, persistent, event-driven score + high-score persistence. Scene-placed in Level1/2/3 → genuinely live. |
+| `ScoreManager.cs` (352 l) | 🟢 | `Singleton<ScoreManager>`, persistent, event-driven score + high-score persistence. Scene-placed in Level1/3 → genuinely live. |
 | `EnemyManager.cs` (622 l) | 🟢🟡 | `Singleton<EnemyManager>`, weighted-table enemy spawner and **the only spawner in Level1**. Was toggled off in the committed scene during boss testing; re-enabled 2026-07-12. The Titan is *not* in its spawn table (scene-placed instead). |
 | `ItemManager.cs` (61 l) | 🟢 | Item spawn management (Level1 ×2). |
 
@@ -115,15 +115,14 @@ ScriptableObject arrives only at the rule-of-three / first-balancing-pass trigge
 | `Utility/TransientEnemyRegistration.cs` (19 l) | 🟢 | Registers spawned objects without `EnemyHealth` into the enemy-count events (added by `SpawnClown` at runtime). |
 | `Debug/ScoreManagerDebugger.cs` (90 l) | 🧪🟢 | Score-persistence diagnostic — **wired in `Menu 1.unity`**, so it survived the Cull. (`ScoreDebugger.cs` was unwired and was deleted.) |
 | `Server/Leaderboard.cs` (225 l) | 🟢 | **Current** backend client (HttpClient → .NET backend on `localhost:3000`; wired in `Menu 3.unity`). Also defines `RequestPacket`. |
-| `Server/zombtoy-backend/` (Node/Express + committed `node_modules`) | 🔴⚪ | **Obsolete** original backend, superseded by `Backend/ZombtoyBackend` — but still tracked in git (~120 vendor files; source of the GitHub dependabot alerts). Deletion is planned milestone M4. |
 
 ## Outside Assets/ (for orientation)
 
 | Path | Status | What it is |
 |---|---|---|
 | `Backend/ZombtoyBackend/` (.NET 8) | 🟢 | The real backend: ~100-line Minimal API + SQLite/EF Core, 3 endpoints. Its README is accurate. |
-| `Backend/ZombtoyBackend-C/` | 🧪 | Educational C re-implementation (mongoose + SQLite). Self-contained; not analyzed in depth by owner instruction. Note: build artifacts (`mongoose.o`, `obj/`, binary, `zombtoy_c.db`) are tracked in git. |
-| `DevTools/Diagrams/` (Python) | 🟢🧪 | Regex-based C# static analysis → PlantUML diagrams + event-health reports. Independent of the game; `out/` snapshots are from Oct 2025 (stale until regenerated). |
+| `Backend/ZombtoyBackend-C/` | 🧪 | Educational C re-implementation (mongoose + SQLite). Self-contained; not analyzed in depth by owner instruction. Build artifacts and the local database are ignored; sources and docs remain tracked (M4). |
+| `DevTools/Diagrams/` (Python) | 🟢🧪 | Regex-based C# static analysis → PlantUML diagrams + event-health reports. Independent of the game; M5 refreshed the generators and snapshots; diagrams describe source references only. |
 | `DevTools/shell_scripts/` | 🟢 | `open-unity.{sh,fish}`, `project-stats.sh`, `lint-code.sh`. |
 
 ---
@@ -138,3 +137,7 @@ ScriptableObject arrives only at the rule-of-three / first-balancing-pass trigge
 - **Keep this map honest:** update the relevant row in the same PR that adds, deletes, or re-statuses a
   script. A doc that contradicts runtime is a bug (plan §9 rule #5).
 - **Trust wiring over names**: lowercase legacy names (`range`, `flashlight`) are live and load-bearing.
+
+## Editor verification
+
+`Assets/Editor/ZombtoyValidation.cs` is an Editor-only, menu/batchmode-invoked tool for asset inspection, play snapshots, preference preservation and macOS builds. See [UNITY_VALIDATION](architecture/UNITY_VALIDATION.md). The legacy Node backend was deleted in M4.

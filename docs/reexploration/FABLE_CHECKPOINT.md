@@ -1,5 +1,7 @@
 # FABLE_CHECKPOINT — Re-Exploration Session Log (2026-07-12)
 
+> **Historical session narrative.** For current status and the exact resume step read [EXECUTION_LOG](../architecture/EXECUTION_LOG.md). M1–M4 are merged; M5 is in progress on 2026-10-30. Older “paused” notes below describe prior points in time.
+
 Session: Claude (Fable 5), autonomous read-only re-exploration of `feature/Titan-Zombunny`. All investigation completed in one window; the four sibling documents in this directory are finished and mutually consistent. **This checkpoint exists so a future session can continue without re-deriving anything.**
 
 ## Repository state at session end

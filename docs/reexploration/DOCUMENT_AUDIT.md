@@ -1,5 +1,7 @@
 # Zombtoy — Markdown Document Audit (2026-07-12)
 
+> **Historical audit snapshot.** Counts, branches, blockers and recommendations below describe the audit date. For the executed decisions and present status see [EXECUTION_LOG](../architecture/EXECUTION_LOG.md), [CODE_MAP](../CODE_MAP.md) and the [ADRs](../architecture/adr/).
+
 Every tracked `*.md` outside `node_modules`. Claims were checked against source code, scene/prefab GUID wiring, git history, and the running backend code. Confidence: **high** = claims individually verified; **medium** = structure verified, spot-checked claims; **low** = skimmed.
 
 | Document | Purpose | Classification | Verified claims | Stale / unsupported claims | Recommended action | Confidence |

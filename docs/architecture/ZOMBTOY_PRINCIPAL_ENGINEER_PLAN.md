@@ -2,6 +2,12 @@
 
 **Date:** 2026-07-12 · **Branch:** `feature/Titan-Zombunny` @ `441cae5b` (clean tree) · **Author:** principal-engineer review session (Claude Fable 5, read-only)
 
+> **Execution amendment — 2026-10-30:** M1–M4 are merged; M5 status lives in [EXECUTION_LOG](EXECUTION_LOG.md).
+> The original review/evidence and migration prescriptions below are historical where execution superseded them.
+> Accepted decisions are now captured in [ADR-001…008](adr/). Corrections: live weapons use `Ammo` (the unwired
+> `AmmoSystem` was dropped); there are three singleton managers (Score/Enemy/Music), all requesting persistence;
+> ItemManager is a regular component; both leaderboard clients remain by owner decision; Level2 is deleted.
+
 This is a decision document. It re-evaluates the entire architecture from first principles, treats every prior plan and audit as a hypothesis, and records what was independently re-verified. It supersedes the *architectural* content of `docs/reexploration/NEXT_MILESTONES.md` where the two conflict (specifically M3); the milestone mechanics of M1/M2 remain valid as written.
 
 ## 0. Evidence base — what this session verified independently
@@ -29,7 +35,7 @@ Everything below rests on these verifications, not on documentation claims.
 
 ## 1. Executive Verdict
 
-**The current architecture is a healthy, small, Unity-native live core wearing a ~2,300-line dead exoskeleton.** The live game — legacy player/weapon/enemy components, the static `GameEvents` hub, four scene-placed singleton managers, event-driven UI binders, one HTTP client against a 3-endpoint .NET API — is coherent, traceable, and appropriately sized. In parallel sits a compiled-but-never-wired replacement framework (weapons, health, input, game-state) written in Aug 2025 for a multiplayer future that has no concrete requirements, plus repo hygiene debt (a "deleted" Node backend still tracked with `node_modules`, tracked C build artifacts, two leaderboard clients wired simultaneously).
+**The current architecture is a healthy, small, Unity-native live core wearing a ~2,300-line dead exoskeleton.** The live game — legacy player/weapon/enemy components, the static `GameEvents` hub, three scene-placed singleton managers plus regular ItemManager, event-driven UI binders, one HTTP client against a 3-endpoint .NET API — is coherent, traceable, and appropriately sized. In parallel sits a compiled-but-never-wired replacement framework (weapons, health, input, game-state) written in Aug 2025 for a multiplayer future that has no concrete requirements, plus repo hygiene debt (a "deleted" Node backend still tracked with `node_modules`, tracked C build artifacts, two leaderboard clients wired simultaneously).
 
 - **Restart: No.** The live core works and is understandable; the problems are subtraction problems, which are the cheapest kind. A restart discards the verified-good parts (managers, event hub, boss content, backend) to escape code that can simply be deleted.
 - **Existing modernization direction: sound in sequence, wrong in one destination.** The dependency order (finish Titan → land inventory → then decide the dormant layer → hygiene → tooling) survives adversarial review. What does not survive is M3's "likely wire in" verdict for the game-state trio — see §4. This plan redefines M3 as **The Cull**: deletion, not completion.
@@ -68,7 +74,7 @@ This standard is what "supports five years of development" actually means for th
 
 - Managers rewritten from near-empty stubs into real, wired systems (ScoreManager 35→352 l, EnemyManager 41→622 l).
 - `GameEvents` — the single highest-leverage addition; legacy and new code both publish through it, so the event architecture is real.
-- `Inventory.cs` — refactored **in place**, data-driven with legacy fallback, zero parallel version. **This is the house pattern.** PR #25's `AmmoSystem` follows it (a reusable component, not a manager).
+- `Inventory.cs` — refactored **in place**, data-driven with legacy fallback, zero parallel version. **This is the house pattern.** PR #25 followed it by adding the shoot/reload API to live `Ammo`; its unwired `AmmoSystem` was dropped.
 - Backend Node→.NET executed completely, kept minimal, documented accurately.
 - The 2026-07-12 audit pass itself: docs now distinguish "exists" from "runs", and the M1 boss fix encoded its lesson as a runtime guard.
 
@@ -167,7 +173,7 @@ The target is the **live architecture, completed and cleaned** — not a new one
 ```mermaid
 graph TD
     subgraph SceneLevel["Level scene (composition root: objects placed in scene)"]
-        Player["Player object<br/>PlayerMovement · PlayerHealth · Inventory<br/>(guns as child prefabs: PlayerShooting + AmmoSystem)"]
+        Player["Player object<br/>PlayerMovement · PlayerHealth · Inventory<br/>(guns as child prefabs: PlayerShooting + Ammo)"]
         EMgr["EnemyManagerInstance<br/>EnemyManager (spawn table)"]
         SMgr["ScoreManager"]
         IMgr["ItemManager"]
@@ -197,7 +203,7 @@ graph TD
 - Tooling (`DevTools/`) reads game code; game code never references tooling.
 
 **Runtime composition & scene lifecycle:**
-- The scene **is** the composition root. Managers exist because they are placed (Singleton no-auto-create stays). Persistent-singleton whitelist: `ScoreManager`, `MusicManager` (anything else persisting is a bug).
+- The scene **is** the composition root. Managers exist because they are placed (Singleton no-auto-create stays). Existing singleton owners: `ScoreManager`, `EnemyManager`, `MusicManager`; all three currently request persistence. `ItemManager` is a regular component. Lifetime changes require a feature/bug and validation (ADR-005).
 - Rule from the Titan lesson, generalized: **prefabs must be self-sufficient** — no required serialized field left `{fileID: 0}` to be filled by scene overrides; runtime guards refuse invalid bindings loudly (as `EnemyTargetShooting` now does).
 - Scene transitions by **name**, not build index (retire `LoadScene(2)` when next touching `PlayerHealth`).
 - Subscription hygiene: subscribe in `OnEnable`, unsubscribe in `OnDisable`, symmetric — static events + scene reloads make asymmetry a leak.
@@ -217,7 +223,7 @@ graph TD
 | **Typed message bus / command system** | **Reject** | Indirection without a demonstrated need; GameEvents already covers fan-out. Reconsider only if event count triples with real subscribers |
 | **Dependency injection (containers)** | **Reject** | Scene placement + serialized refs + `Singleton<T>.Instance` **is** the injection story at this scale. No composition-root framework, no service locator beyond the existing singletons |
 | **Singletons** | **Recommended selectively** | Exactly the 4 that represent genuinely global, long-lived ownership. Bar for a new one: state that must outlive or span scenes AND has multiple unrelated consumers. Everything else is a component |
-| **MonoBehaviour composition** | **Recommended now (default)** | `AmmoSystem`-style reusable components over base-class hierarchies. `BaseWeapon`-style inheritance: rejected (it died unwired once already) |
+| **MonoBehaviour composition** | **Recommended now (default)** | Existing `Ammo`-style reusable components over base-class hierarchies. `BaseWeapon`-style inheritance: rejected (it died unwired once already) |
 | **ScriptableObjects** | **Defer, with triggers** | Adopt for **config data only** when: (a) the same tuning values get edited across 3+ prefabs/scenes, or (b) a balancing pass starts (weapon stats, enemy spawn tables are the natural first two). Reject SO-based event channels and SO runtime state — hidden global state, worse traceability than the static hub |
 | **ECS / DoTS** | **Reject** | `maxTotalEnemies = 50`. No profiler evidence of entity-count pressure. Revisit only with a profiled bottleneck a pool can't fix |
 | **State machines** | **Recommended selectively** | (a) Inside the boss script when the Titan grows phases — a plain enum + switch, local to the script. (b) A minimal `GameFlow` (Playing/Paused/GameOver) **when issue #19 starts**, scene-placed, wired same-PR. No FSM framework, no library |
@@ -230,7 +236,7 @@ graph TD
 1. **Parallel-architecture coupling (worst, fixable now):** live files probing dead classes via reflection; `ScoreManager` carrying a reverted integration; filenames lying about what runs. This already caused one shipped regression-and-revert and the multi-month disorientation. **Removed wholesale by the Cull.**
 2. **String coupling — `GameObject.Find` (54) + `SendMessage` + `Type.GetType`:** silent breakage on rename; several sit in `Awake`/spawn paths. Policy: opportunistic removal in every touched file; the probes/SendMessage go with the Cull.
 3. **Scene-serialization drift:** manager fields and 9 ammo instances hand-wired per scene ×3 level scenes; Level2 already drifted out of the build. Mitigation: prefab self-sufficiency rule now; real fix arrives with single-scene consolidation (#19).
-4. **Global-state coupling (accepted, bounded):** 4 singletons + static events. Acceptable because ownership is genuinely global and the no-auto-create rule keeps composition explicit. Enforce the OnEnable/OnDisable symmetry rule; keep an eye on `MusicManager`+`ScoreManager` persistence across scene loads (duplicate-instance warnings in `Singleton.Awake` are the tripwire).
+4. **Global-state coupling (accepted, bounded):** 3 singleton managers + static events. Acceptable because ownership is genuinely global and the no-auto-create rule keeps composition explicit. Enforce the OnEnable/OnDisable symmetry rule; keep an eye on `MusicManager`+`ScoreManager` persistence across scene loads (duplicate-instance warnings in `Singleton.Awake` are the tripwire).
 5. **Temporal coupling:** `Instance` access during `Awake` ordering races — mitigated by `FindObjectOfType` fallback; rule: managers self-initialize in `Awake`, consumers touch them from `Start`/`OnEnable` onward.
 6. **Gameplay→UI pokes:** `PlayerHealth` writes sliders/images directly and `Find`s UI objects; `Death()` grabs `Find("Fill")`. Contained; migrate to binder pattern when `PlayerHealth` is next touched.
 7. **Hardcoded scene index** (`LoadScene(2)`): breaks silently when the build list changes. Fix with names at next touch.
@@ -296,7 +302,7 @@ First candidates, in rough order of value: finish boss fight polish (spawn strat
 | Growth area | What exists now suffices until… | Then build | Migration shape |
 |---|---|---|---|
 | Game flow / single scene (#19) | pause/death/restart via legacy paths | minimal scene-placed `GameFlow` (enum FSM), UI binders subscribe | vertical slice: one scene converted end-to-end, wired same-PR |
-| More weapons | 4 concrete scripts + AmmoSystem | `WeaponConfig` SO at the 3rd copy-paste or first balancing pass | new SO consumed by existing components; no base-class hierarchy |
+| More weapons | 4 concrete scripts + Ammo | `WeaponConfig` SO at the 3rd copy-paste or first balancing pass | new SO consumed by existing components; no base-class hierarchy |
 | More enemies/bosses | spawn table + prefab composition | enemy-def SO at spawn-table drift across scenes; boss-local FSM at phase 2 | additive |
 | Progression/saving | PlayerPrefs high score | JSON save file when any cross-run state ships | one `SaveData` DTO + one writer/reader class |
 | Leaderboard v2 | string scores, 2 endpoints | named scores (name/score/timestamp) when the UI wants names | additive endpoints, client migrates, old endpoints retired after |
@@ -314,8 +320,8 @@ Seed `docs/architecture/adr/` with these (one page each; contexts/alternatives/r
 2. **ADR-002 Evolve the live stack in place; parallel replacement architectures are banned** (wired-in-same-PR rule). *Reconsider:* never — this is the core lesson; individual exceptions require an ADR.
 3. **ADR-003 Delete the dormant 2025 layer; git history is the archive** (the Cull, exact list in §8-M3). *Reconsider:* n/a after execution; resurrect pieces only via §10 triggers.
 4. **ADR-004 `GameEvents` static hub is the cross-cutting notification mechanism** — scoped to state-change fan-out; no `OnNetworkEvent`; no bus/SO-event replacement. *Reconsider:* event count triples with real subscribers, or traceability demonstrably fails twice.
-5. **ADR-005 Scene-placed no-auto-create singletons, whitelist of four** (Score/Enemy/Item/Music; persistent: Score+Music). *Reconsider:* a fifth genuinely global owner emerges (e.g. `GameFlow` under #19 — amend, don't break).
-6. **ADR-006 Weapons are concrete components + per-weapon `AmmoSystem`;** config→SO only at rule-of-three/balancing trigger. *Reconsider:* weapon count > ~8 or a designer-tuning workflow appears.
+5. **ADR-005 Scene-placed no-auto-create singletons, three existing owners** (Score/Enemy/Music, all currently requesting persistence; ItemManager is a regular component). *Reconsider:* another genuinely global owner emerges (e.g. `GameFlow` under #19 — amend, don't break).
+6. **ADR-006 Weapons are concrete components + the existing per-weapon `Ammo` API;** config→SO only at rule-of-three/balancing trigger. *Reconsider:* weapon count > ~8 or a designer-tuning workflow appears.
 7. **ADR-007 Backend stays a minimal score API behind one client class;** growth is feature-pulled (named scores next), never tech-pushed. *Reconsider:* accounts/multiplayer ADR supersedes.
 8. **ADR-008 No multiplayer provisions in client code** until a dedicated ADR commits to it. *Reconsider:* trigger in §10.
 

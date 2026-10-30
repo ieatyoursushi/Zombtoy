@@ -113,3 +113,7 @@ Backend/ZombtoyBackend-C/*.o
 Backend/ZombtoyBackend-C/obj/
 Backend/ZombtoyBackend-C/zombtoy_backend_c
 Backend/ZombtoyBackend-C/*.db
+
+# Python tooling caches
+__pycache__/
+*.py[cod]

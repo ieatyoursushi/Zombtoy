@@ -44,7 +44,7 @@ Execution order (order matters — see the PR #25 trap):
 - [x] 🧑 **OWNER GATE 1 — play-test PASSED** (2026-07-12): rotation never freezes, crosshair tracks, boss fires, console clean
 - [x] 🤖 Merged PR #28 into `master` (`2fb46f2a`, admin-merge)
 - [x] 🤖 Deleted `feature/Titan-Zombunny` local + remote
-- [ ] 🤖 Update CODE_MAP/checkpoint status rows *(do with M2 commit)*
+- [x] 🤖 CODE_MAP/checkpoint status reconciled in M5 (2026-10-30)
 
 **Rollback:** revert the merge commit; branch content survives in git.
 
@@ -59,8 +59,8 @@ Execution order (order matters — see the PR #25 trap):
 - [x] 🧑 **OWNER GATE 2b — AmmoSystem disposition: DROP the unwired half** (owner decision 2026-07-12). Removed in `ab3db9c9` with rationale in the commit message; recoverable from history + `backup/inventory-pre-rebase`
 - [x] 🤖 Re-verified compile after removal (exit 0, 0 errors; a transient `CS2001` was a stale gitignored `.csproj` reference, self-healed on regeneration)
 - [x] 🤖 Force-pushed rebuilt branch (`--force-with-lease`); PR #25 title/body rewritten to the reduced scope
-- [ ] 🧑 **OWNER GATE 3 — play-test weapons** (checklist §C) ← **PAUSED HERE**
-- [ ] 🤖 Admin-merge PR #25, delete branch + `backup/inventory-pre-rebase`
+- [x] 🧑 **OWNER GATE 3 — play-test weapons PASSED** (see recorded result below)
+- [x] 🤖 PR #25 merged and both branches deleted (`2087409a`)
 - [x] 🧑 **OWNER GATE 2 — stashes: LEAVE ALONE for now** (owner decision); revisit all three during M4
 
 ### 🔍 M2 findings (2026-07-12) — these change M2's stated scope
@@ -82,12 +82,12 @@ commits made. `dca3ac3c` "Initial plan" is an empty Copilot placeholder — drop
 - [ ] 🤖 Review `stash@{0}` (interface WIP — apply if still meaningful)
 - [x] 🧑 **OWNER GATE 3 — weapons play-test PASSED** (2026-07-12)
 - [x] 🤖 Admin-merged PR #25 (`2087409a`); deleted feature branch + `backup/inventory-pre-rebase`
-- [ ] 🤖 Update CODE_MAP rows (`Ammo.cs` gains the shoot API; `IProjectile` now earned/live) *(do with Cull commit)*
+- [x] 🤖 CODE_MAP rows updated in Cull, stale surrounding claims corrected in M5
 
 **M2 COMPLETE.** Note: with #25 merged, `feature/core-architecture-refactor` is no longer any PR's base —
 the M4 deletion is now unblocked.
 
-**Constraint:** `AmmoSystem` stays a per-weapon **component**, never promoted to a manager (ADR-006).
+**Final decision:** keep the existing `Ammo` component; the unwired `AmmoSystem` was dropped (ADR-006).
 **Rollback:** revert merge commit.
 
 ## M3 — The Cull (one deletion PR, zero behavior change)
@@ -133,7 +133,7 @@ Delete files (plan §8-M3): `Core/GameStateManager.cs`, `Core/GameStarter.cs`, `
 - [x] 🧑 **OWNER GATE 4 — missing-script sweep PASSED** (2026-07-12)
 - [x] 🧑 **OWNER GATE 5 — full playthrough PASSED** — behavior identical after deleting 7,369 lines. **This validates the wiring-census methodology end-to-end** (plan §14's stated purpose for the Cull)
 - [x] 🤖 Merged as PR #31; branch deleted
-- [ ] 🤖 Close/re-scope issues #3 and #16 *(pending owner nod — see gates below)*
+- [x] 🤖 Issue #3 closed; #16 received the Cull resolution comment during M4
 
 **M3 COMPLETE.**
 
@@ -152,11 +152,25 @@ Delete files (plan §8-M3): `Core/GameStateManager.cs`, `Core/GameStarter.cs`, `
 - [x] 🧑 **GATE 9 — multiplayer: NOT NEAR-TERM.** Confirms **ADR-008** as written: no networking provisions in client code; finish the single-player loop first. Revisit only via a dedicated ADR
 - [ ] 🤖 Stashes: all 3 still parked (owner deferred). `stash@{0}`/`stash@{1}` are pre-Cull inventory experiments whose surrounding code has since changed substantially — expect them to be dropped rather than applied; `stash@{2}` is a small `workflow.md` addition
 
-## M5 — Tooling refresh
+## M5 — Tooling refresh and Unity verification (2026-10-30)
 
-- [ ] 🤖 Fix `EVENT_RAISE_RE` in `DevTools/Diagrams/common.py` to match trigger-method style (`GameEvents.PlayerDeath()`)
-- [ ] 🤖 Regenerate `DevTools/Diagrams/out/`; confirm against plan §0 pub/sub census
-- [ ] 🤖 Seed `docs/architecture/adr/` with ADR-001…008 one-pagers (plan §11)
+- [x] Shared two-pass event scanner: 19 events; real method bodies; no file-order dependency
+- [x] Two-pass interface classification; deterministic output; failures propagate
+- [x] Remove invented lifecycle callbacks/order; label source-analysis limits
+- [x] 19 scanner/regression tests passing
+- [x] Regenerate six diagrams (PlantUML, SVG, PNG) and two reports; rendered core/event-health diagrams inspected
+- [x] Seed ADR-001…008, correct Ammo/singleton facts, reconcile current status docs
+- [x] Add editor-only validation/build/snapshot/prefs commands and shell runner
+- [x] Untrack four old Python bytecode files and ignore future caches
+- [x] Unity asset validation/compile: 33 scenes/prefabs, 0 errors; 57 legacy lighting warnings retained
+- [ ] macOS standalone development build
+- [ ] GUI smoke: movement/turning and Titan range/crosshair/projectiles
+- [ ] GUI smoke: four weapons, reload/empty/pickups; spawns and score
+- [ ] GUI smoke: pause/resume, death/results/leaderboard with temporary backend
+- [ ] Restore original PlayerPrefs and stop test backend
+- [ ] Inspect final diff; publish PR; merge only with required checks passing
+
+See [UNITY_VALIDATION.md](UNITY_VALIDATION.md) for commands, evidence and limits.
 
 ## M6+ — Features resume (§9 rules apply)
 
@@ -164,7 +178,7 @@ Boss polish → balancing pass (fix the double-speed quirk inside it) → one of
 
 ---
 
-## §A — Owner Gate 1 play-test checklist (do this next)
+## §A — Historical Gate 1 checklist (passed)
 
 Open `Assets/Level1.unity`, press Play, and check:
 
@@ -174,9 +188,9 @@ Open `Assets/Level1.unity`, press Play, and check:
 4. **Console is clean.** No NullReferenceExceptions; specifically no `[EnemyTargetShooting]` error about groundTarget.
 5. **Rest of the level still works** — regular enemies spawn (EnemyManager was re-enabled), score counts, player can die.
 
-**Report back:** pass, or the symptom + any console text. Merging PR #28 is blocked on this.
+**Result:** owner passed this checklist; PR #28 was merged.
 
-## §C — Owner Gate 3 play-test checklist (weapons — do this next)
+## §C — Historical Gate 3 checklist (passed)
 
 PR #25 changed how **every weapon decides whether it can fire**. `Pistol`, `RocketLauncher`, and
 `PlayerShooting` now call `Ammo.TryShoot()` / `CanShoot()` instead of checking and decrementing `ammo`
@@ -194,7 +208,7 @@ Open `Assets/Level1.unity`, press Play, and for **each of the 4 weapon slots** (
 Also confirm the **boss still works** (regression check on the Titan merge): crosshair tracks, rockets fire,
 rotation never freezes.
 
-**Report:** pass, or which weapon + what went wrong. Merging PR #25 is blocked on this.
+**Result:** owner passed this checklist; PR #25 was merged.
 
 ## §B — Branch strategy reasoning
 
@@ -215,35 +229,18 @@ short-lived branches removes that question permanently. After the rebase in M2, 
 
 ## Where execution stopped
 
-**2026-07-12 — M0 ✅, M1 ✅, M2 in progress; paused at OWNER GATE 2b (AmmoSystem disposition).**
+**2026-10-30 — M0–M4 complete; M5 implemented, Unity verification in progress.**
 
-Done this session:
-- M0 complete; **M1 complete** — boss play-test passed, PR #28 admin-merged (`2fb46f2a`), Titan branch deleted.
-- `master` is now the trunk and holds the boss fix + the full docs corpus.
-- M2: PR #25 retargeted to `master`; branch rebuilt as `master` + 2 clean cherry-picks; compile verified
-  (exit 0); Titan work confirmed un-regressed. Original branch preserved at `backup/inventory-pre-rebase`
-  (local) and on `origin` at the pre-rewrite SHA until the force-push happens.
+Branch: `codex/m5-tooling-and-validation`, based on `master` `a98be89a`.
+The three deferred stashes remain untouched. Owner decisions remain: both leaderboard clients kept,
+Level2 deleted, Titan scene-placed, multiplayer not near-term. M6 gameplay changes are out of this PR.
 
-**M0 ✅ · M1 ✅ · M2 ✅ · M3 ✅ · M4 mechanical ✅ — paused at OWNER GATES 6–9 (product decisions).**
+Current evidence: 19 Python tests pass; six diagrams rendered successfully; source census agrees across
+both event reports. Unity asset validation passed: 33 scenes/prefabs, 0 errors, 57 unresolved legacy lightmap-parameter references retained as warnings. The macOS standalone build is running.
+Unity needed execution outside the agent sandbox to access its existing licensing database.
+Evidence directory: `/private/tmp/zombtoy-validation/`.
 
-`master` = post-PR-#32. **Repo is a single branch, local and remote.** Working tree clean.
+**Exact next step:** inspect `build.log`/`build.txt`; if build succeeds, launch the editor and begin the GUI smoke session through Tools > Zombtoy > Begin Smoke Session.
 
-### Scoreboard for the whole execution
-| Milestone | Result |
-|---|---|
-| M1 | Boss rotation-freeze fixed; PR #28 merged |
-| M2 | Ammo API landed (PR #25); unwired `AmmoSystem` rejected by rule #1 |
-| M3 | **The Cull** — 73→56 scripts, −7,369 lines, playthrough identical (PR #31) |
-| M4 | −533,876 lines of tracked vendor/binaries; **dependabot 5 → 0**; 4 branches → 1 (PR #32) |
-
-**Everything remaining in M4 is a product decision only the owner can make** (gates 6–9 below), plus
-closing/re-scoping issues #3 and #16 once those land.
-
-**Next agent actions after gates 6–9:**
-1. Execute whichever deletions the owner approves (dreamlo client + its `Menu 3` scene ref; `Level2.unity`).
-2. Close issue #3 (obsolete — WeaponManager is deleted); re-scope #16 from "full migration" to "cull complete".
-3. Decide stash fate (all 3 still parked).
-4. **M5 tooling:** fix `EVENT_RAISE_RE` in `DevTools/Diagrams/common.py`, regenerate `out/` (now meaningful —
-   diagrams will finally match a codebase with no dormant noise), seed `docs/architecture/adr/`.
-5. **M6+ features resume** under §9 rules — boss polish, then a balancing pass (fold in the double-speed
-   `Rocket`/`EnemyProjectile` quirk fix).
+Unfinished checks above must stay unchecked on interruption. Record runtime defects with logs and
+snapshots; do not change gameplay to make a check pass. Implementation checkpoint is the M5 tooling/validation commit on this branch; use `git log -1` for its SHA.

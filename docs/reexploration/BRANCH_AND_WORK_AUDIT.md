@@ -1,5 +1,7 @@
 # Zombtoy — Branch & Work Audit (2026-07-12)
 
+> **Historical audit snapshot.** Counts, branches, blockers and recommendations below describe the audit date. For the executed decisions and present status see [EXECUTION_LOG](../architecture/EXECUTION_LOG.md), [CODE_MAP](../CODE_MAP.md) and the [ADRs](../architecture/adr/).
+
 > ## Update — 2026-07-12 (post-M1, same day, re-verified against a fresh `git fetch --prune`)
 >
 > Everything below remains accurate except:
