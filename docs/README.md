@@ -14,8 +14,8 @@ Current navigation and historical audit records. Start with EXECUTION_LOG for st
 | [`workflow.md`](workflow.md) | Git + Unity branch/worktree practices for this repo. |
 
 Current decisions: [ADR-001…008](architecture/adr/). Agent/editor checks: [Unity validation](architecture/UNITY_VALIDATION.md).
-M1–M4 are merged. M5 tooling, asset/build checks and the owner-assisted gameplay check are complete;
-publication status is in EXECUTION_LOG. New gameplay features begin separately in M6.
+M1–M5 are complete ([M5 PR #34](https://github.com/ieatyoursushi/Zombtoy/pull/34)), including tooling,
+asset/build checks and the owner-assisted gameplay check. New gameplay features begin separately in M6.
 
 ## Historical audits
 

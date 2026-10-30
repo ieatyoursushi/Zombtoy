@@ -168,7 +168,9 @@ Delete files (plan §8-M3): `Core/GameStateManager.cs`, `Core/GameStarter.cs`, `
 - [x] GUI smoke: four weapons, reload/empty/pickups; spawns and score — owner-assisted pass
 - [x] GUI smoke: pause/resume, death/results/leaderboard with temporary backend — owner-assisted pass
 - [x] Restore original PlayerPrefs (all ten keys independently verified) and stop test backend; Unity closed
-- [ ] Inspect final diff; publish PR; merge only with required checks passing
+- [x] Inspect final diff; publish [PR #34](https://github.com/ieatyoursushi/Zombtoy/pull/34); use the authorized admin merge after all milestone checks pass (GitHub has no CI checks configured)
+
+**M5 COMPLETE.** Gameplay verification was owner-assisted; the computer-use input limitation is recorded below.
 
 See [UNITY_VALIDATION.md](UNITY_VALIDATION.md) for commands, evidence and limits.
 
@@ -229,10 +231,14 @@ short-lived branches removes that question permanently. After the rebase in M2, 
 
 ## Where execution stopped
 
-**2026-10-30 — M0–M4 complete; M5 implementation, tests and Unity verification complete; publishing next.**
+**2026-10-30 — M0–M5 complete. M6 has not started.**
 
-Branch: `codex/m5-tooling-and-validation`, based on `master` `a98be89a`.
-Implementation checkpoints: `705309c1` and `12d9399c` (generic-MonoBehaviour regression and build evidence).
+Publication: [PR #34](https://github.com/ieatyoursushi/Zombtoy/pull/34), from
+`codex/m5-tooling-and-validation` onto `master` `a98be89a`; return to `master` after merge and remove the
+short-lived branch. Implementation checkpoints: `705309c1`, `12d9399c` (generic-MonoBehaviour regression
+and build evidence), and `e117a569` (completed owner-assisted smoke evidence). The PR contains the final
+documentation closure; GitHub records its merge commit. No conflicts or failing remote checks were
+reported; the one-review rule uses the owner's existing per-PR admin-merge decision.
 The three stashes remain untouched. Owner decisions remain: both leaderboard clients kept,
 Level2 deleted, Titan scene-placed, multiplayer not near-term. M6 is out of scope.
 
@@ -278,5 +284,7 @@ not durable repository artifacts; the findings above preserve their useful concl
 12 build warnings and the runtime synthetic-input limitation above. No gameplay source, scene,
 prefab or serialized gameplay setting was changed by M5.
 
-**Exact next step:** inspect the final diff, publish this branch's PR, then use the already-authorized
-admin merge after checking its head/checks. Return to clean `master`; M6 starts separately.
+**Exact next command:** `git status --short --branch`, then `git log -1 --oneline` and `git stash list`.
+Confirm clean `master` contains PR #34 and the three deferred stashes are still parked. M5 has no
+remaining implementation or owner gate. For the next session, choose one M6 gameplay feature with the
+owner, then create a fresh short-lived branch from updated `master`; do not restart architecture cleanup.
