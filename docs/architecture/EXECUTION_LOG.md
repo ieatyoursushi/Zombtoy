@@ -4,7 +4,7 @@
 Designed to survive session breaks: every item is a checkbox, every owner-gate is explicit, and
 "Where execution stopped" at the bottom is always current.
 
-**Legend:** `[ ]` todo · `[x]` done · `[~]` in progress · 🧑 **owner-only gate** (Claude must pause here) · 🤖 agent-executable
+**Legend:** `[ ]` todo · `[x]` done · `[~]` in progress · 🧑 **owner gate** (confirmation required) · 🤖 agent-executable
 
 **Started:** 2026-07-12 · **Branch at start:** `feature/Titan-Zombunny` @ `441cae5b` (6 ahead of `master`, 0 behind)
 
@@ -14,7 +14,7 @@ Designed to survive session breaks: every item is a checkbox, every owner-gate i
 
 Target end-state: **`master` is the trunk; feature branches are short-lived and deleted after merge.**
 
-Execution order (order matters — see the PR #25 trap):
+Historical integration order (completed in M1–M4; see the PR #25 trap):
 
 1. `feature/Titan-Zombunny` → merge into `master` (clean fast-forward, PR #28)
 2. **Retarget PR #25 base → `master`** *(must happen before any branch deletion)*
@@ -44,7 +44,7 @@ Execution order (order matters — see the PR #25 trap):
 - [x] 🧑 **OWNER GATE 1 — play-test PASSED** (2026-07-12): rotation never freezes, crosshair tracks, boss fires, console clean
 - [x] 🤖 Merged PR #28 into `master` (`2fb46f2a`, admin-merge)
 - [x] 🤖 Deleted `feature/Titan-Zombunny` local + remote
-- [ ] 🤖 Update CODE_MAP/checkpoint status rows *(do with M2 commit)*
+- [x] 🤖 CODE_MAP/checkpoint status reconciled in M5 (2026-10-30)
 
 **Rollback:** revert the merge commit; branch content survives in git.
 
@@ -59,8 +59,8 @@ Execution order (order matters — see the PR #25 trap):
 - [x] 🧑 **OWNER GATE 2b — AmmoSystem disposition: DROP the unwired half** (owner decision 2026-07-12). Removed in `ab3db9c9` with rationale in the commit message; recoverable from history + `backup/inventory-pre-rebase`
 - [x] 🤖 Re-verified compile after removal (exit 0, 0 errors; a transient `CS2001` was a stale gitignored `.csproj` reference, self-healed on regeneration)
 - [x] 🤖 Force-pushed rebuilt branch (`--force-with-lease`); PR #25 title/body rewritten to the reduced scope
-- [ ] 🧑 **OWNER GATE 3 — play-test weapons** (checklist §C) ← **PAUSED HERE**
-- [ ] 🤖 Admin-merge PR #25, delete branch + `backup/inventory-pre-rebase`
+- [x] 🧑 **OWNER GATE 3 — play-test weapons PASSED** (see recorded result below)
+- [x] 🤖 PR #25 merged and both branches deleted (`2087409a`)
 - [x] 🧑 **OWNER GATE 2 — stashes: LEAVE ALONE for now** (owner decision); revisit all three during M4
 
 ### 🔍 M2 findings (2026-07-12) — these change M2's stated scope
@@ -79,15 +79,15 @@ commits made. `dca3ac3c` "Initial plan" is an empty Copilot placeholder — drop
 | `Ammo.cs` gains `CanShoot()` / `TryShoot()` / `CanReload()`; `Pistol`, `RocketLauncher`, `PlayerShooting` refactored to call them instead of poking `ammoScript.ammo` directly | **YES** — modifies the live `Ammo.cs` (27 live instances) and live weapon scripts | **Keep.** This is the in-place house pattern (same as `Inventory.cs`) and is the real value of the PR |
 | `IProjectile.cs` | **YES** — `Rocket` and `IceBullet` both implement it (2 live implementors) | **Keep** — earned per plan §4's "interface with a wired implementor stays" |
 | `AmmoSystem.cs` (123 l) + `AMMO_REFACTOR_SUMMARY.md` | **NO** — zero scene/prefab refs, zero code refs; its own header says "works alongside existing Ammo.cs" | **Recommend drop** — it is a *new* dormant parallel class, precisely what standing rule #1 (wired-in-same-PR) and ADR-002 forbid. Merging it would repeat the 2025 mistake the Cull exists to undo |
-- [ ] 🤖 Review `stash@{0}` (interface WIP — apply if still meaningful)
+- [x] 🧑 Stash review explicitly deferred; preserve all three without applying them (see M4)
 - [x] 🧑 **OWNER GATE 3 — weapons play-test PASSED** (2026-07-12)
 - [x] 🤖 Admin-merged PR #25 (`2087409a`); deleted feature branch + `backup/inventory-pre-rebase`
-- [ ] 🤖 Update CODE_MAP rows (`Ammo.cs` gains the shoot API; `IProjectile` now earned/live) *(do with Cull commit)*
+- [x] 🤖 CODE_MAP rows updated in Cull, stale surrounding claims corrected in M5
 
 **M2 COMPLETE.** Note: with #25 merged, `feature/core-architecture-refactor` is no longer any PR's base —
 the M4 deletion is now unblocked.
 
-**Constraint:** `AmmoSystem` stays a per-weapon **component**, never promoted to a manager (ADR-006).
+**Final decision:** keep the existing `Ammo` component; the unwired `AmmoSystem` was dropped (ADR-006).
 **Rollback:** revert merge commit.
 
 ## M3 — The Cull (one deletion PR, zero behavior change)
@@ -133,7 +133,7 @@ Delete files (plan §8-M3): `Core/GameStateManager.cs`, `Core/GameStarter.cs`, `
 - [x] 🧑 **OWNER GATE 4 — missing-script sweep PASSED** (2026-07-12)
 - [x] 🧑 **OWNER GATE 5 — full playthrough PASSED** — behavior identical after deleting 7,369 lines. **This validates the wiring-census methodology end-to-end** (plan §14's stated purpose for the Cull)
 - [x] 🤖 Merged as PR #31; branch deleted
-- [ ] 🤖 Close/re-scope issues #3 and #16 *(pending owner nod — see gates below)*
+- [x] 🤖 Issue #3 closed; #16 received the Cull resolution comment during M4
 
 **M3 COMPLETE.**
 
@@ -152,11 +152,27 @@ Delete files (plan §8-M3): `Core/GameStateManager.cs`, `Core/GameStarter.cs`, `
 - [x] 🧑 **GATE 9 — multiplayer: NOT NEAR-TERM.** Confirms **ADR-008** as written: no networking provisions in client code; finish the single-player loop first. Revisit only via a dedicated ADR
 - [ ] 🤖 Stashes: all 3 still parked (owner deferred). `stash@{0}`/`stash@{1}` are pre-Cull inventory experiments whose surrounding code has since changed substantially — expect them to be dropped rather than applied; `stash@{2}` is a small `workflow.md` addition
 
-## M5 — Tooling refresh
+## M5 — Tooling refresh and Unity verification (2026-10-30)
 
-- [ ] 🤖 Fix `EVENT_RAISE_RE` in `DevTools/Diagrams/common.py` to match trigger-method style (`GameEvents.PlayerDeath()`)
-- [ ] 🤖 Regenerate `DevTools/Diagrams/out/`; confirm against plan §0 pub/sub census
-- [ ] 🤖 Seed `docs/architecture/adr/` with ADR-001…008 one-pagers (plan §11)
+- [x] Shared two-pass event scanner: 19 events; real method bodies; no file-order dependency
+- [x] Two-pass interface classification; deterministic output; failures propagate
+- [x] Remove invented lifecycle callbacks/order; label source-analysis limits
+- [x] 20 scanner/regression tests passing
+- [x] Regenerate six diagrams (PlantUML, SVG, PNG) and two reports; rendered core/event-health diagrams inspected
+- [x] Seed ADR-001…008, correct Ammo/singleton facts, reconcile current status docs
+- [x] Add editor-only validation/build/snapshot/prefs commands and shell runner
+- [x] Untrack four old Python bytecode files and ignore future caches
+- [x] Unity asset validation/compile: 33 scenes/prefabs, 0 errors; 57 legacy lighting warnings retained
+- [x] macOS standalone development build: Succeeded, 0 errors, 12 legacy warnings
+- [x] GUI smoke: movement/turning and Titan range/crosshair/projectiles — owner-assisted pass
+- [x] GUI smoke: four weapons, reload/empty/pickups; spawns and score — owner-assisted pass
+- [x] GUI smoke: pause/resume, death/results/leaderboard with temporary backend — owner-assisted pass
+- [x] Restore original PlayerPrefs (all ten keys independently verified) and stop test backend; Unity closed
+- [x] Inspect final diff; publish [PR #34](https://github.com/ieatyoursushi/Zombtoy/pull/34); use the authorized admin merge after all milestone checks pass (GitHub has no CI checks configured)
+
+**M5 COMPLETE.** Gameplay verification was owner-assisted; the computer-use input limitation is recorded below.
+
+See [UNITY_VALIDATION.md](UNITY_VALIDATION.md) for commands, evidence and limits.
 
 ## M6+ — Features resume (§9 rules apply)
 
@@ -164,7 +180,7 @@ Boss polish → balancing pass (fix the double-speed quirk inside it) → one of
 
 ---
 
-## §A — Owner Gate 1 play-test checklist (do this next)
+## §A — Historical Gate 1 checklist (passed)
 
 Open `Assets/Level1.unity`, press Play, and check:
 
@@ -174,9 +190,9 @@ Open `Assets/Level1.unity`, press Play, and check:
 4. **Console is clean.** No NullReferenceExceptions; specifically no `[EnemyTargetShooting]` error about groundTarget.
 5. **Rest of the level still works** — regular enemies spawn (EnemyManager was re-enabled), score counts, player can die.
 
-**Report back:** pass, or the symptom + any console text. Merging PR #28 is blocked on this.
+**Result:** owner passed this checklist; PR #28 was merged.
 
-## §C — Owner Gate 3 play-test checklist (weapons — do this next)
+## §C — Historical Gate 3 checklist (passed)
 
 PR #25 changed how **every weapon decides whether it can fire**. `Pistol`, `RocketLauncher`, and
 `PlayerShooting` now call `Ammo.TryShoot()` / `CanShoot()` instead of checking and decrementing `ammo`
@@ -194,7 +210,7 @@ Open `Assets/Level1.unity`, press Play, and for **each of the 4 weapon slots** (
 Also confirm the **boss still works** (regression check on the Titan merge): crosshair tracks, rockets fire,
 rotation never freezes.
 
-**Report:** pass, or which weapon + what went wrong. Merging PR #25 is blocked on this.
+**Result:** owner passed this checklist; PR #25 was merged.
 
 ## §B — Branch strategy reasoning
 
@@ -215,35 +231,60 @@ short-lived branches removes that question permanently. After the rebase in M2, 
 
 ## Where execution stopped
 
-**2026-07-12 — M0 ✅, M1 ✅, M2 in progress; paused at OWNER GATE 2b (AmmoSystem disposition).**
+**2026-10-30 — M0–M5 complete. M6 has not started.**
 
-Done this session:
-- M0 complete; **M1 complete** — boss play-test passed, PR #28 admin-merged (`2fb46f2a`), Titan branch deleted.
-- `master` is now the trunk and holds the boss fix + the full docs corpus.
-- M2: PR #25 retargeted to `master`; branch rebuilt as `master` + 2 clean cherry-picks; compile verified
-  (exit 0); Titan work confirmed un-regressed. Original branch preserved at `backup/inventory-pre-rebase`
-  (local) and on `origin` at the pre-rewrite SHA until the force-push happens.
+Publication: [PR #34](https://github.com/ieatyoursushi/Zombtoy/pull/34), from
+`codex/m5-tooling-and-validation` onto `master` `a98be89a`; return to `master` after merge and remove the
+short-lived branch. Implementation checkpoints: `705309c1`, `12d9399c` (generic-MonoBehaviour regression
+and build evidence), and `e117a569` (completed owner-assisted smoke evidence). The PR contains the final
+documentation closure; GitHub records its merge commit. No conflicts or failing remote checks were
+reported; the one-review rule uses the owner's existing per-PR admin-merge decision.
+The three stashes remain untouched. Owner decisions remain: both leaderboard clients kept,
+Level2 deleted, Titan scene-placed, multiplayer not near-term. M6 is out of scope.
 
-**M0 ✅ · M1 ✅ · M2 ✅ · M3 ✅ · M4 mechanical ✅ — paused at OWNER GATES 6–9 (product decisions).**
+### Verified evidence
+- 20 Python tests pass; 19 events agree across both reports; repeated source generation is byte-identical.
+- Six diagrams rendered; core/event-flow/event-health images inspected in the session.
+- Unity compiled the editor utility and inspected 33 scenes/prefabs: 0 validation errors, 57 unresolved
+  legacy lightmap-parameter references retained as lighting warnings (`assets.json`).
+- macOS player build succeeded: 0 errors, 12 warnings (`build.txt`, `build.log`).
+- Temporary .NET backend used `/private/tmp/zombtoy-validation/backend/zombtoy.db`;
+  root/POST/GET verified with seed score 123. The completed run submitted 190; Menu 3 visibly displayed
+  both 190 and 123. Real backend database is untouched. The temporary listener has been stopped.
+- Computer Use opened Unity, invoked Tools > Zombtoy > Begin Smoke Session, opened Menu via the
+  native picker and entered Play mode. Snapshots recorded the running scene twice per second.
+- Owner reply: **“Pass — completed that run”** for the requested movement/aim/Titan, four-slot weapon,
+  reload, pause/resume, death/results/leaderboard checklist. This is a **human-assisted pass**.
+- 115 Level1 samples contain 115 distinct player positions and rotations; Titan range/marker states
+  agree in all samples (83 true/true, 32 false/false). Floor remained active at `(3.59, -0.01, -9.69)`.
+  Reload states and player/enemy projectiles were observed; the run ended at 14 kills and 190 points.
+  Results and the separately opened leaderboard were inspected visually. Targeted GUI-log inspection
+  found no NullReferenceException, MissingReferenceException, ArgumentException, IndexOutOfRangeException
+  or C# compile errors. This does not establish an exhaustive absence of runtime faults.
+- After exiting Play, End Smoke Session restored prefs. An independent plist comparison verified the
+  original existence and values of all ten project score/audio keys (`prefs-verification.json`).
+  Unity is closed; all three deferred stashes remain unchanged.
 
-`master` = post-PR-#32. **Repo is a single branch, local and remote.** Working tree clean.
+### Concrete GUI limitation
+Computer-use clicks on the running game's PLAY button did not advance Menu after repeated attempts.
+The owner's physical click DID advance it to Menu 4 (confirmed in chat and snapshots), distinguishing
+this from a broken PLAY button. Automated ISOMETRIC click likewise did not advance Menu 4.
+Editor menus/shortcuts work; owner input supplied the gameplay portion. No direct weapon/menu methods
+were invoked to simulate a pass. Half-second snapshots missed a distinct fourth active ammo path and
+a paused frame; those brief actions, pickup behavior and the full input checklist rely on the owner's
+confirmation. Unattended gameplay-input verification remains unsupported in this setup.
 
-### Scoreboard for the whole execution
-| Milestone | Result |
-|---|---|
-| M1 | Boss rotation-freeze fixed; PR #28 merged |
-| M2 | Ammo API landed (PR #25); unwired `AmmoSystem` rejected by rule #1 |
-| M3 | **The Cull** — 73→56 scripts, −7,369 lines, playthrough identical (PR #31) |
-| M4 | −533,876 lines of tracked vendor/binaries; **dependabot 5 → 0**; 4 branches → 1 (PR #32) |
+Evidence directory: `/private/tmp/zombtoy-validation/`: `assets.json`, `assets.log`, `build.txt`,
+`build.log`, `gui-editor.log`, `play.jsonl`, `latest-play.json`, `smoke-summary.json`,
+`prefs-verification.json`, `prefs-restored-20261030-220850365.json` and `Build/Zombtoy.app`.
+Screenshot evidence is in this chat's computer-use tool results. Temporary files are local evidence,
+not durable repository artifacts; the findings above preserve their useful conclusions.
 
-**Everything remaining in M4 is a product decision only the owner can make** (gates 6–9 below), plus
-closing/re-scoping issues #3 and #16 once those land.
+**Outstanding failures:** none in the required checks. Known limits: 57 legacy lighting warnings,
+12 build warnings and the runtime synthetic-input limitation above. No gameplay source, scene,
+prefab or serialized gameplay setting was changed by M5.
 
-**Next agent actions after gates 6–9:**
-1. Execute whichever deletions the owner approves (dreamlo client + its `Menu 3` scene ref; `Level2.unity`).
-2. Close issue #3 (obsolete — WeaponManager is deleted); re-scope #16 from "full migration" to "cull complete".
-3. Decide stash fate (all 3 still parked).
-4. **M5 tooling:** fix `EVENT_RAISE_RE` in `DevTools/Diagrams/common.py`, regenerate `out/` (now meaningful —
-   diagrams will finally match a codebase with no dormant noise), seed `docs/architecture/adr/`.
-5. **M6+ features resume** under §9 rules — boss polish, then a balancing pass (fold in the double-speed
-   `Rocket`/`EnemyProjectile` quirk fix).
+**Exact next command:** `git status --short --branch`, then `git log -1 --oneline` and `git stash list`.
+Confirm clean `master` contains PR #34 and the three deferred stashes are still parked. M5 has no
+remaining implementation or owner gate. For the next session, choose one M6 gameplay feature with the
+owner, then create a fresh short-lived branch from updated `master`; do not restart architecture cleanup.

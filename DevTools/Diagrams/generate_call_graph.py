@@ -31,10 +31,10 @@ def collect():
 
 
 def emit_puml(classes, edges):
-    out = ['@startuml', 'title High-Level Class Call Graph', 'skinparam linetype ortho']
+    out = ['@startuml', 'title Approximate Class Calls (static source)' , 'skinparam linetype ortho']
     for c in sorted(classes):
         out.append(f'class {c}')
-    for (src, dst), weight in edges.items():
+    for (src, dst), weight in sorted(edges.items()):
         label = '' if weight < 2 else f' : {weight}'
         out.append(f'{src} --> {dst}{label}')
     out.append('@enduml')
@@ -45,6 +45,7 @@ def main():
     classes, edges = collect()
     print(f'DEBUG: found {len(classes)} classes and {len(edges)} inter-class edges')
     puml = emit_puml(classes, edges)
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
     p = OUT_DIR / 'call_graph.puml'
     p.write_text(puml, encoding='utf-8')
     print(f'Wrote {p}')

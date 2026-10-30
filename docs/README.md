@@ -1,6 +1,6 @@
 # Zombtoy Documentation Index
 
-All project documentation, ordered by how much you should trust it. Docs that live next to code
+Current navigation and historical audit records. Start with EXECUTION_LOG for status; older audits retain their original evidence. Docs that live next to code
 (backend READMEs, DevTools docs) stay with their code; everything project-wide lives here.
 
 ## Start here (current source of truth)
@@ -10,12 +10,16 @@ All project documentation, ordered by how much you should trust it. Docs that li
 | [`architecture/ZOMBTOY_PRINCIPAL_ENGINEER_PLAN.md`](architecture/ZOMBTOY_PRINCIPAL_ENGINEER_PLAN.md) | The architecture decision document (2026-07-12): product identity, keep/delete verdicts, pattern rulings, governance rules. **Supersedes NEXT_MILESTONES M3** (now "The Cull"). |
 | [`architecture/EXECUTION_LOG.md`](architecture/EXECUTION_LOG.md) | **Live execution checklist** for that plan — milestone checkboxes, owner gates, branch strategy, and where execution currently stands. Read this to resume work. |
 | [`CODE_MAP.md`](CODE_MAP.md) | Every C# script: what it does and whether it actually runs (active vs dormant vs legacy). |
-| [`reexploration/CURRENT_STATE.md`](reexploration/CURRENT_STATE.md) | Deep architecture audit: timeline, wiring evidence, blockers, uncertainties (2026-07-12). |
-| [`reexploration/NEXT_MILESTONES.md`](reexploration/NEXT_MILESTONES.md) | Dependency-ordered plan (M1 boss fix ✅ done → M2 inventory/weapons → M3 migration decision → …). |
-| [`reexploration/FABLE_CHECKPOINT.md`](reexploration/FABLE_CHECKPOINT.md) | Session-to-session working log; read first when resuming AI-assisted work. |
+| [`reexploration/FABLE_CHECKPOINT.md`](reexploration/FABLE_CHECKPOINT.md) | Historical session narrative; use EXECUTION_LOG for the current resume step. |
 | [`workflow.md`](workflow.md) | Git + Unity branch/worktree practices for this repo. |
 
-## Audits
+Current decisions: [ADR-001…008](architecture/adr/). Agent/editor checks: [Unity validation](architecture/UNITY_VALIDATION.md).
+M1–M5 are complete ([M5 PR #34](https://github.com/ieatyoursushi/Zombtoy/pull/34)), including tooling,
+asset/build checks and the owner-assisted gameplay check. New gameplay features begin separately in M6.
+
+## Historical audits
+
+[Original state snapshot](reexploration/CURRENT_STATE.md) and [original milestone proposal](reexploration/NEXT_MILESTONES.md) are preserved as historical records; executed decisions supersede them.
 
 | Doc | What it answers |
 |---|---|

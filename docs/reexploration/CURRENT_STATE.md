@@ -1,5 +1,7 @@
 # Zombtoy — Current State (Re-Exploration, 2026-07-12)
 
+> **Historical audit snapshot.** Counts, branches, blockers and recommendations below describe the audit date. For the executed decisions and present status see [EXECUTION_LOG](../architecture/EXECUTION_LOG.md), [CODE_MAP](../CODE_MAP.md) and the [ADRs](../architecture/adr/).
+
 Produced by an autonomous read-only audit of the local repository at branch `feature/Titan-Zombunny`.
 Evidence labels: **[confirmed]** = directly verified against code/serialized assets/git; **[strongly inferred]** = multiple converging signals; **[uncertain]** = needs a decision or runtime test.
 

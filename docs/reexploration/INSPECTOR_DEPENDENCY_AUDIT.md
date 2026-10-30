@@ -1,5 +1,7 @@
 # Inspector / Editor-Serialized-State Dependency Audit
 
+> **Historical audit snapshot.** Counts, branches, blockers and recommendations below describe the audit date. For the executed decisions and present status see [EXECUTION_LOG](../architecture/EXECUTION_LOG.md), [CODE_MAP](../CODE_MAP.md) and the [ADRs](../architecture/adr/).
+
 **Date:** 2026-07-12 · **Branch:** `feature/Titan-Zombunny` · Companion to
 [`CURRENT_STATE.md`](CURRENT_STATE.md) and the plan's coupling ranking
 ([`ZOMBTOY_PRINCIPAL_ENGINEER_PLAN.md §7`](../architecture/ZOMBTOY_PRINCIPAL_ENGINEER_PLAN.md)) — this is

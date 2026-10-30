@@ -286,6 +286,143 @@ class TestIntegration(unittest.TestCase):
                                     self.assertTrue((out_dir / 'call_graph.puml').exists())
 
 
+class TestScannerRegressions(unittest.TestCase):
+    def fixture(self):
+        return {
+            Path('GameEvents.cs'): strip_code('''public static class GameEvents {
+                public static event Action<int, Vector3> OnHit;
+                public static event Action OnDeath;
+                public static void NonMatchingName(int n) {
+                    if (n > 0) { var nested = new object(); }
+                    ''' + 'var padding = 1; ' * 50 + '''OnHit?.Invoke(n, Vector3.zero);
+                }
+                public static void Death() => OnDeath?.Invoke();
+                public static void Helper() { }
+            }'''),
+            Path('Caller.cs'): strip_code('''class Caller {
+                void Start() {
+                    GameEvents.NonMatchingName(1); GameEvents.Death();
+                    GameEvents.Helper(); GameEvents.GetSubscriberCount(null);
+                    GameEvents.OnHit += Handle;
+                    // GameEvents.OnDeath += Fake;
+                    var url = "https://example.com"; GameEvents.OnHit -= Handle;
+                    var quoted = @"GameEvents.Helper() and ""quotes""";
+                    var escaped = "\\\"GameEvents.OnDeath += Fake;";
+                }
+            }''')}
+
+    def test_event_wrappers_and_scan_order(self):
+        from common import scan_events
+        sources = self.fixture()
+        expected, classes = scan_events(sources, Path('.'))
+        reverse, reverse_classes = scan_events(dict(reversed(list(sources.items()))), Path('.'))
+        self.assertEqual(expected, reverse)
+        self.assertEqual(classes, reverse_classes)
+        self.assertEqual(set(expected), {'OnHit', 'OnDeath'})
+        self.assertEqual(expected['OnHit']['publishers'], ['Caller'])
+        self.assertEqual(expected['OnHit']['trigger_method'], 'NonMatchingName')
+        self.assertEqual(expected['OnHit']['subscribers'], [('Caller', 'Handle')])
+        self.assertEqual(classes['Caller']['unsubscribes_from'], [('OnHit', 'Handle')])
+        self.assertEqual(expected['OnDeath']['subscribers'], [])
+        self.assertEqual(classes['Caller']['publishes'], ['OnDeath', 'OnHit'])
+
+    def test_strings_do_not_swallow_code_after_urls(self):
+        code = 'var url = "http://x"; GameEvents.Death(); /* GameEvents.Fake(); */'
+        result = strip_code(code)
+        self.assertIn('GameEvents.Death()', result)
+        self.assertNotIn('GameEvents.Fake()', result)
+        self.assertNotIn('http:', result)
+
+    def test_reports_agree_on_real_project(self):
+        from generate_gameevents_debug import EventAnalysis
+        from common import scan_events
+        import generate_event_flow as flow
+        paths = read_cs_files(flow.ROOT)
+        analysis = EventAnalysis()
+        for path in reversed(paths):
+            analysis.analyze_file(path)
+        analysis.detect_issues()
+        declared, producers, consumers = collect_events()
+        self.assertEqual(len(declared), 19)
+        self.assertEqual(declared, set(analysis.events))
+        for event, data in analysis.events.items():
+            self.assertEqual(producers[event], set(data['publishers']))
+            self.assertEqual(consumers[event], {c for c, _ in data['subscribers']})
+        self.assertIn('ScoreTextBinder', consumers['OnScoreChanged'])
+        self.assertIn('PlayerHealth', producers['OnPlayerHealthChanged'])
+        self.assertIn('EnemyHealth', producers['OnEnemyKilled'])
+        self.assertNotIn('PlayerHealthChanged', producers)
+
+    def test_interfaces_found_after_implementors(self):
+        from unittest.mock import patch
+        source = {Path('Rocket.cs'): 'class Rocket : MonoBehaviour, IProjectile { }',
+                  Path('Z.cs'): 'interface IProjectile { }'}
+        with patch('generate_class_dependency.read_cs_files', return_value=list(source)), \
+             patch('generate_class_dependency.load_and_strip', side_effect=source.get):
+            _, _, extends, implements = parse_classes()
+        self.assertEqual(implements['Rocket'], {'IProjectile'})
+        self.assertEqual(extends['Rocket'], {'MonoBehaviour'})
+
+    def test_generic_singleton_class_and_constraint(self):
+        source = {Path('Singleton.cs'): 'abstract class Singleton<T> : MonoBehaviour where T : MonoBehaviour { }'}
+        with patch('generate_class_dependency.read_cs_files', return_value=list(source)), \
+             patch('generate_class_dependency.load_and_strip', side_effect=source.get):
+            classes, _, extends, _ = parse_classes()
+        self.assertIn('Singleton', classes)
+        self.assertEqual(extends['Singleton'], {'MonoBehaviour'})
+
+    def test_event_emission_is_deterministic(self):
+        a = emit_event_puml({'OnZ', 'OnA'}, {'OnZ': {'B', 'A'}, 'OnA': {'Z'}}, {'OnZ': {'C', 'B'}})
+        b = emit_event_puml({'OnA', 'OnZ'}, {'OnA': {'Z'}, 'OnZ': {'A', 'B'}}, {'OnZ': {'B', 'C'}})
+        self.assertEqual(a, b)
+
+    def test_missing_unsubscribe_is_handler_specific(self):
+        from generate_gameevents_debug import EventAnalysis
+        a = EventAnalysis()
+        a.sources = {Path('GameEvents.cs'): 'public static event Action OnDeath;',
+                     Path('X.cs'): 'class X { void Start() { GameEvents.OnDeath += A; GameEvents.OnDeath -= B; } }'}
+        a.detect_issues()
+        self.assertTrue(any('OnDeath(A)' in issue for issue in a.issues))
+        self.assertTrue(any('OnDeath(B)' in issue for issue in a.issues))
+
+    def test_generator_failure_stops_render_and_returns_failure(self):
+        import generate_all
+        import subprocess
+        with patch.object(sys, 'argv', ['generate_all.py']), \
+             patch('generate_all.run_generators', side_effect=subprocess.CalledProcessError(1, 'generator')), \
+             patch('generate_all.render') as render:
+            self.assertEqual(generate_all.main(), 1)
+            render.assert_not_called()
+
+    def test_renderer_failure_is_not_ignored(self):
+        import generate_all
+        import subprocess
+        with tempfile.TemporaryDirectory() as directory, \
+             patch('generate_all.OUT', Path(directory)), \
+             patch('generate_all.DIAGRAMS', ['event_flow']), \
+             patch('generate_all.shutil.which', return_value='/bin/plantuml'), \
+             patch('generate_all.run', side_effect=subprocess.CalledProcessError(1, 'plantuml')):
+            stale = Path(directory) / 'event_flow.svg'
+            stale.write_text('stale')
+            with self.assertRaises(subprocess.CalledProcessError):
+                generate_all.render()
+            self.assertFalse(stale.exists())
+
+    def test_lifecycle_diagram_does_not_invent_callbacks(self):
+        from generate_core_architecture import CoreAnalysis, generate_lifecycle_flow_diagram
+        a = CoreAnalysis()
+        a.managers = {'Example': {'lifecycle_methods': ['Start'], 'is_singleton': False}}
+        diagram = generate_lifecycle_flow_diagram(a)
+        self.assertIn('Start()', diagram)
+        self.assertNotIn('ScoreManager', diagram)
+        self.assertNotIn('OnEnemySpawned callback', diagram)
+
+    def test_generic_singleton_is_a_monobehaviour(self):
+        from generate_core_architecture import CoreAnalysis, ROOT
+        analysis = CoreAnalysis()
+        analysis.analyze_file(ROOT / 'Core' / 'Singleton.cs')
+        self.assertTrue(analysis.core_components['Singleton']['is_monobehaviour'])
+
+
 if __name__ == '__main__':
-    # Run the test suite
     unittest.main(verbosity=2)

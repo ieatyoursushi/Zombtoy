@@ -1,48 +1,53 @@
 #!/usr/bin/env python3
-"""Run all diagram generators and optionally render PNG/SVG if plantuml is available."""
-from subprocess import run, PIPE
+"""Generate current source reports, failing on any generator/render error."""
+from subprocess import run, CalledProcessError
 from pathlib import Path
+import argparse
 import shutil
 import sys
 
 ROOT = Path(__file__).resolve().parent
 OUT = ROOT / 'out'
-OUT.mkdir(exist_ok=True)
+SCRIPTS = ['generate_event_flow.py', 'generate_class_dependency.py',
+           'generate_call_graph.py', 'generate_gameevents_debug.py',
+           'generate_core_architecture.py']
+DIAGRAMS = ['event_flow', 'class_dependency', 'call_graph', 'gameevents_health',
+            'core_architecture', 'core_lifecycle_flow']
 
-SCRIPTS = [
-    'generate_event_flow.py',
-    'generate_class_dependency.py', 
-    'generate_call_graph.py',
-    'generate_gameevents_debug.py',
-    'generate_core_architecture.py',
-]
 
 def run_generators():
-    for s in SCRIPTS:
-        print(f'-- Running {s}')
-        r = run([sys.executable, str(ROOT / s)], capture_output=True, text=True)
-        if r.returncode != 0:
-            print(r.stderr)
-        else:
-            print(r.stdout.strip())
+    for script in SCRIPTS:
+        run([sys.executable, '-B', str(ROOT / script)], check=True)
 
-def plantuml_available():
-    return shutil.which('plantuml') is not None
 
 def render():
-    if not plantuml_available():
-        print('PlantUML not found in PATH; skipping render (install with: brew install plantuml graphviz)')
-        return
-    puml_files = list(OUT.glob('*.puml'))
-    if not puml_files:
-        print('No .puml files to render')
-        return
-    print(f'Rendering {len(puml_files)} diagrams...')
-    for f in puml_files:
-        run(['plantuml', '-tsvg', str(f)], check=False)
-        run(['plantuml', '-tpng', str(f)], check=False)
+    if not shutil.which('plantuml'):
+        raise RuntimeError('PlantUML missing; install it or explicitly use --no-render')
+    for name in DIAGRAMS:
+        source = OUT / (name + '.puml')
+        for kind in ('svg', 'png'):
+            destination = OUT / (name + '.' + kind)
+            # Never leave a stale rendered image behind after a rendering failure.
+            destination.unlink(missing_ok=True)
+            run(['plantuml', '-failfast2', '-t' + kind, str(source)], check=True)
+            if not destination.is_file() or destination.stat().st_size == 0:
+                raise RuntimeError(f'Render did not create {destination}')
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--no-render', action='store_true')
+    args = parser.parse_args()
+    OUT.mkdir(exist_ok=True)
+    try:
+        run_generators()
+        if not args.no_render:
+            render()
+    except (CalledProcessError, OSError, RuntimeError) as error:
+        print(f'Generation failed: {error}', file=sys.stderr)
+        return 1
+    return 0
+
 
 if __name__ == '__main__':
-    run_generators()
-    render()
-    print('Done.')
+    sys.exit(main())
