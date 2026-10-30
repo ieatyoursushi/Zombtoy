@@ -4,7 +4,7 @@
 Designed to survive session breaks: every item is a checkbox, every owner-gate is explicit, and
 "Where execution stopped" at the bottom is always current.
 
-**Legend:** `[ ]` todo · `[x]` done · `[~]` in progress · 🧑 **owner-only gate** (Claude must pause here) · 🤖 agent-executable
+**Legend:** `[ ]` todo · `[x]` done · `[~]` in progress · 🧑 **owner gate** (confirmation required) · 🤖 agent-executable
 
 **Started:** 2026-07-12 · **Branch at start:** `feature/Titan-Zombunny` @ `441cae5b` (6 ahead of `master`, 0 behind)
 
@@ -14,7 +14,7 @@ Designed to survive session breaks: every item is a checkbox, every owner-gate i
 
 Target end-state: **`master` is the trunk; feature branches are short-lived and deleted after merge.**
 
-Execution order (order matters — see the PR #25 trap):
+Historical integration order (completed in M1–M4; see the PR #25 trap):
 
 1. `feature/Titan-Zombunny` → merge into `master` (clean fast-forward, PR #28)
 2. **Retarget PR #25 base → `master`** *(must happen before any branch deletion)*
@@ -79,7 +79,7 @@ commits made. `dca3ac3c` "Initial plan" is an empty Copilot placeholder — drop
 | `Ammo.cs` gains `CanShoot()` / `TryShoot()` / `CanReload()`; `Pistol`, `RocketLauncher`, `PlayerShooting` refactored to call them instead of poking `ammoScript.ammo` directly | **YES** — modifies the live `Ammo.cs` (27 live instances) and live weapon scripts | **Keep.** This is the in-place house pattern (same as `Inventory.cs`) and is the real value of the PR |
 | `IProjectile.cs` | **YES** — `Rocket` and `IceBullet` both implement it (2 live implementors) | **Keep** — earned per plan §4's "interface with a wired implementor stays" |
 | `AmmoSystem.cs` (123 l) + `AMMO_REFACTOR_SUMMARY.md` | **NO** — zero scene/prefab refs, zero code refs; its own header says "works alongside existing Ammo.cs" | **Recommend drop** — it is a *new* dormant parallel class, precisely what standing rule #1 (wired-in-same-PR) and ADR-002 forbid. Merging it would repeat the 2025 mistake the Cull exists to undo |
-- [ ] 🤖 Review `stash@{0}` (interface WIP — apply if still meaningful)
+- [x] 🧑 Stash review explicitly deferred; preserve all three without applying them (see M4)
 - [x] 🧑 **OWNER GATE 3 — weapons play-test PASSED** (2026-07-12)
 - [x] 🤖 Admin-merged PR #25 (`2087409a`); deleted feature branch + `backup/inventory-pre-rebase`
 - [x] 🤖 CODE_MAP rows updated in Cull, stale surrounding claims corrected in M5
@@ -164,10 +164,10 @@ Delete files (plan §8-M3): `Core/GameStateManager.cs`, `Core/GameStarter.cs`, `
 - [x] Untrack four old Python bytecode files and ignore future caches
 - [x] Unity asset validation/compile: 33 scenes/prefabs, 0 errors; 57 legacy lighting warnings retained
 - [x] macOS standalone development build: Succeeded, 0 errors, 12 legacy warnings
-- [ ] GUI smoke: movement/turning and Titan range/crosshair/projectiles
-- [ ] GUI smoke: four weapons, reload/empty/pickups; spawns and score
-- [ ] GUI smoke: pause/resume, death/results/leaderboard with temporary backend
-- [ ] Restore original PlayerPrefs and stop test backend
+- [x] GUI smoke: movement/turning and Titan range/crosshair/projectiles — owner-assisted pass
+- [x] GUI smoke: four weapons, reload/empty/pickups; spawns and score — owner-assisted pass
+- [x] GUI smoke: pause/resume, death/results/leaderboard with temporary backend — owner-assisted pass
+- [x] Restore original PlayerPrefs (all ten keys independently verified) and stop test backend; Unity closed
 - [ ] Inspect final diff; publish PR; merge only with required checks passing
 
 See [UNITY_VALIDATION.md](UNITY_VALIDATION.md) for commands, evidence and limits.
@@ -229,39 +229,54 @@ short-lived branches removes that question permanently. After the rebase in M2, 
 
 ## Where execution stopped
 
-**2026-10-30 — M0–M4 complete; M5 implementation/tests/build complete, GUI checks in progress.**
+**2026-10-30 — M0–M4 complete; M5 implementation, tests and Unity verification complete; publishing next.**
 
 Branch: `codex/m5-tooling-and-validation`, based on `master` `a98be89a`.
-Implementation checkpoint: `705309c1` plus the generic-MonoBehaviour scanner correction following it.
+Implementation checkpoints: `705309c1` and `12d9399c` (generic-MonoBehaviour regression and build evidence).
 The three stashes remain untouched. Owner decisions remain: both leaderboard clients kept,
 Level2 deleted, Titan scene-placed, multiplayer not near-term. M6 is out of scope.
 
 ### Verified evidence
 - 20 Python tests pass; 19 events agree across both reports; repeated source generation is byte-identical.
 - Six diagrams rendered; core/event-flow/event-health images inspected in the session.
-- Unity compiled the editor utility and inspected 33 scenes/prefabs: 0 gameplay errors, 57 unresolved
+- Unity compiled the editor utility and inspected 33 scenes/prefabs: 0 validation errors, 57 unresolved
   legacy lightmap-parameter references retained as lighting warnings (`assets.json`).
 - macOS player build succeeded: 0 errors, 12 warnings (`build.txt`, `build.log`).
-- Temporary .NET backend on localhost:3000 uses `/private/tmp/zombtoy-validation/backend/zombtoy.db`;
-  root/POST/GET verified with seed score 123. Real backend database is untouched.
+- Temporary .NET backend used `/private/tmp/zombtoy-validation/backend/zombtoy.db`;
+  root/POST/GET verified with seed score 123. The completed run submitted 190; Menu 3 visibly displayed
+  both 190 and 123. Real backend database is untouched. The temporary listener has been stopped.
 - Computer Use opened Unity, invoked Tools > Zombtoy > Begin Smoke Session, opened Menu via the
-  native picker and entered Play mode. Snapshots record the running scene twice per second.
+  native picker and entered Play mode. Snapshots recorded the running scene twice per second.
+- Owner reply: **“Pass — completed that run”** for the requested movement/aim/Titan, four-slot weapon,
+  reload, pause/resume, death/results/leaderboard checklist. This is a **human-assisted pass**.
+- 115 Level1 samples contain 115 distinct player positions and rotations; Titan range/marker states
+  agree in all samples (83 true/true, 32 false/false). Floor remained active at `(3.59, -0.01, -9.69)`.
+  Reload states and player/enemy projectiles were observed; the run ended at 14 kills and 190 points.
+  Results and the separately opened leaderboard were inspected visually. Targeted GUI-log inspection
+  found no NullReferenceException, MissingReferenceException, ArgumentException, IndexOutOfRangeException
+  or C# compile errors. This does not establish an exhaustive absence of runtime faults.
+- After exiting Play, End Smoke Session restored prefs. An independent plist comparison verified the
+  original existence and values of all ten project score/audio keys (`prefs-verification.json`).
+  Unity is closed; all three deferred stashes remain unchanged.
 
 ### Concrete GUI limitation
 Computer-use clicks on the running game's PLAY button did not advance Menu after repeated attempts.
 The owner's physical click DID advance it to Menu 4 (confirmed in chat and snapshots), distinguishing
 this from a broken PLAY button. Automated ISOMETRIC click likewise did not advance Menu 4.
-Editor menus/shortcuts work, but gameplay input must remain unverified until observed. Do not bypass
-input with direct gameplay method calls and label the input test passed.
+Editor menus/shortcuts work; owner input supplied the gameplay portion. No direct weapon/menu methods
+were invoked to simulate a pass. Half-second snapshots missed a distinct fourth active ammo path and
+a paused frame; those brief actions, pickup behavior and the full input checklist rely on the owner's
+confirmation. Unattended gameplay-input verification remains unsupported in this setup.
 
-The owner was asked to select ISOMETRIC and exercise movement/aim/Titan, four weapons/reload,
-pause/resume, then death/results/leaderboard. Keep those checkboxes pending until evidence/confirmation.
+Evidence directory: `/private/tmp/zombtoy-validation/`: `assets.json`, `assets.log`, `build.txt`,
+`build.log`, `gui-editor.log`, `play.jsonl`, `latest-play.json`, `smoke-summary.json`,
+`prefs-verification.json`, `prefs-restored-20261030-220850365.json` and `Build/Zombtoy.app`.
+Screenshot evidence is in this chat's computer-use tool results. Temporary files are local evidence,
+not durable repository artifacts; the findings above preserve their useful conclusions.
 
-Evidence directory: `/private/tmp/zombtoy-validation/`; Unity live log:
-`~/Library/Logs/Unity/Editor.log`. Screenshot evidence is in this chat's computer-use tool results.
-The preference backup at `prefs-backup.json` must be restored after Play mode ends; the test backend
-must be stopped. `latest-play.json`/`play.jsonl` contain observations, not injected gameplay state.
+**Outstanding failures:** none in the required checks. Known limits: 57 legacy lighting warnings,
+12 build warnings and the runtime synthetic-input limitation above. No gameplay source, scene,
+prefab or serialized gameplay setting was changed by M5.
 
-**Exact next step:** inspect the owner's reply plus `play.jsonl`. After the run, exit Play mode and invoke
-Tools > Zombtoy > End Smoke Session, verify restoration, stop the temporary backend, update checkboxes,
-and publish/finish the PR. Leave the PR draft if required GUI checks remain unresolved.
+**Exact next step:** inspect the final diff, publish this branch's PR, then use the already-authorized
+admin merge after checking its head/checks. Return to clean `master`; M6 starts separately.

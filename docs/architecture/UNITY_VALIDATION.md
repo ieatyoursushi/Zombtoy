@@ -58,3 +58,10 @@ Editor menus, scene loading and Play-mode toggling work. Synthetic clicks on run
 did not navigate, while the owner's physical PLAY click did. Until that limitation is resolved, use
 owner input for the gameplay checklist and the observer/logs for evidence; do not claim unattended
 input coverage. The utility intentionally does not bypass input by invoking weapon/menu methods.
+
+The M5 run completed with owner input and an explicit pass. Snapshots corroborated player movement and
+rotation, Titan range/marker transitions, reloads, projectiles and a 14-kill/190-point result. A separate
+Menu 3 check displayed 190 and the temporary seed score 123. Four-slot completeness, brief pause/resume
+and pickup behavior also rely on the owner checklist because half-second sampling can miss them.
+Afterward, all ten saved preference keys were independently verified restored and the temporary backend
+was stopped. See the execution log for artifact names, warning counts and the current resume step.

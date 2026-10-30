@@ -14,7 +14,8 @@ Current navigation and historical audit records. Start with EXECUTION_LOG for st
 | [`workflow.md`](workflow.md) | Git + Unity branch/worktree practices for this repo. |
 
 Current decisions: [ADR-001…008](architecture/adr/). Agent/editor checks: [Unity validation](architecture/UNITY_VALIDATION.md).
-M1–M4 are merged; M5 implements the remaining tooling and verification work. No new gameplay feature is included.
+M1–M4 are merged. M5 tooling, asset/build checks and the owner-assisted gameplay check are complete;
+publication status is in EXECUTION_LOG. New gameplay features begin separately in M6.
 
 ## Historical audits
 
