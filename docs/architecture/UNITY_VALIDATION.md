@@ -51,3 +51,10 @@ Use a temporary .NET backend content root/database for the results/leaderboard f
 
 Record pass/fail and evidence in [EXECUTION_LOG](EXECUTION_LOG.md). A compile-only success does not
 complete the GUI checklist. On a runtime failure, preserve logs/state and pause unrelated changes.
+
+## Computer-use result on this Mac (2026-10-30)
+
+Editor menus, scene loading and Play-mode toggling work. Synthetic clicks on runtime uGUI buttons
+did not navigate, while the owner's physical PLAY click did. Until that limitation is resolved, use
+owner input for the gameplay checklist and the observer/logs for evidence; do not claim unattended
+input coverage. The utility intentionally does not bypass input by invoking weapon/menu methods.

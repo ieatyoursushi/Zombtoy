@@ -18,7 +18,7 @@ Static source analysis only; scene/prefab wiring, dynamic dispatch and runtime e
 ### Singleton
 - **File**: `Core/Singleton.cs`
 - **Type**: Component
-- **MonoBehaviour**: No
+- **MonoBehaviour**: Yes
 - **Lifecycle Methods**: Awake, OnDestroy
 - **Patterns**: Persistent
 

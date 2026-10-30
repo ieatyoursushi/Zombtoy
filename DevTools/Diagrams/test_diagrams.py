@@ -417,6 +417,12 @@ class TestScannerRegressions(unittest.TestCase):
         self.assertNotIn('ScoreManager', diagram)
         self.assertNotIn('OnEnemySpawned callback', diagram)
 
+    def test_generic_singleton_is_a_monobehaviour(self):
+        from generate_core_architecture import CoreAnalysis, ROOT
+        analysis = CoreAnalysis()
+        analysis.analyze_file(ROOT / 'Core' / 'Singleton.cs')
+        self.assertTrue(analysis.core_components['Singleton']['is_monobehaviour'])
+
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)

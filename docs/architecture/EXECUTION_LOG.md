@@ -157,13 +157,13 @@ Delete files (plan §8-M3): `Core/GameStateManager.cs`, `Core/GameStarter.cs`, `
 - [x] Shared two-pass event scanner: 19 events; real method bodies; no file-order dependency
 - [x] Two-pass interface classification; deterministic output; failures propagate
 - [x] Remove invented lifecycle callbacks/order; label source-analysis limits
-- [x] 19 scanner/regression tests passing
+- [x] 20 scanner/regression tests passing
 - [x] Regenerate six diagrams (PlantUML, SVG, PNG) and two reports; rendered core/event-health diagrams inspected
 - [x] Seed ADR-001…008, correct Ammo/singleton facts, reconcile current status docs
 - [x] Add editor-only validation/build/snapshot/prefs commands and shell runner
 - [x] Untrack four old Python bytecode files and ignore future caches
 - [x] Unity asset validation/compile: 33 scenes/prefabs, 0 errors; 57 legacy lighting warnings retained
-- [ ] macOS standalone development build
+- [x] macOS standalone development build: Succeeded, 0 errors, 12 legacy warnings
 - [ ] GUI smoke: movement/turning and Titan range/crosshair/projectiles
 - [ ] GUI smoke: four weapons, reload/empty/pickups; spawns and score
 - [ ] GUI smoke: pause/resume, death/results/leaderboard with temporary backend
@@ -229,18 +229,39 @@ short-lived branches removes that question permanently. After the rebase in M2, 
 
 ## Where execution stopped
 
-**2026-10-30 — M0–M4 complete; M5 implemented, Unity verification in progress.**
+**2026-10-30 — M0–M4 complete; M5 implementation/tests/build complete, GUI checks in progress.**
 
 Branch: `codex/m5-tooling-and-validation`, based on `master` `a98be89a`.
-The three deferred stashes remain untouched. Owner decisions remain: both leaderboard clients kept,
-Level2 deleted, Titan scene-placed, multiplayer not near-term. M6 gameplay changes are out of this PR.
+Implementation checkpoint: `705309c1` plus the generic-MonoBehaviour scanner correction following it.
+The three stashes remain untouched. Owner decisions remain: both leaderboard clients kept,
+Level2 deleted, Titan scene-placed, multiplayer not near-term. M6 is out of scope.
 
-Current evidence: 19 Python tests pass; six diagrams rendered successfully; source census agrees across
-both event reports. Unity asset validation passed: 33 scenes/prefabs, 0 errors, 57 unresolved legacy lightmap-parameter references retained as warnings. The macOS standalone build is running.
-Unity needed execution outside the agent sandbox to access its existing licensing database.
-Evidence directory: `/private/tmp/zombtoy-validation/`.
+### Verified evidence
+- 20 Python tests pass; 19 events agree across both reports; repeated source generation is byte-identical.
+- Six diagrams rendered; core/event-flow/event-health images inspected in the session.
+- Unity compiled the editor utility and inspected 33 scenes/prefabs: 0 gameplay errors, 57 unresolved
+  legacy lightmap-parameter references retained as lighting warnings (`assets.json`).
+- macOS player build succeeded: 0 errors, 12 warnings (`build.txt`, `build.log`).
+- Temporary .NET backend on localhost:3000 uses `/private/tmp/zombtoy-validation/backend/zombtoy.db`;
+  root/POST/GET verified with seed score 123. Real backend database is untouched.
+- Computer Use opened Unity, invoked Tools > Zombtoy > Begin Smoke Session, opened Menu via the
+  native picker and entered Play mode. Snapshots record the running scene twice per second.
 
-**Exact next step:** inspect `build.log`/`build.txt`; if build succeeds, launch the editor and begin the GUI smoke session through Tools > Zombtoy > Begin Smoke Session.
+### Concrete GUI limitation
+Computer-use clicks on the running game's PLAY button did not advance Menu after repeated attempts.
+The owner's physical click DID advance it to Menu 4 (confirmed in chat and snapshots), distinguishing
+this from a broken PLAY button. Automated ISOMETRIC click likewise did not advance Menu 4.
+Editor menus/shortcuts work, but gameplay input must remain unverified until observed. Do not bypass
+input with direct gameplay method calls and label the input test passed.
 
-Unfinished checks above must stay unchecked on interruption. Record runtime defects with logs and
-snapshots; do not change gameplay to make a check pass. Implementation checkpoint is the M5 tooling/validation commit on this branch; use `git log -1` for its SHA.
+The owner was asked to select ISOMETRIC and exercise movement/aim/Titan, four weapons/reload,
+pause/resume, then death/results/leaderboard. Keep those checkboxes pending until evidence/confirmation.
+
+Evidence directory: `/private/tmp/zombtoy-validation/`; Unity live log:
+`~/Library/Logs/Unity/Editor.log`. Screenshot evidence is in this chat's computer-use tool results.
+The preference backup at `prefs-backup.json` must be restored after Play mode ends; the test backend
+must be stopped. `latest-play.json`/`play.jsonl` contain observations, not injected gameplay state.
+
+**Exact next step:** inspect the owner's reply plus `play.jsonl`. After the run, exit Play mode and invoke
+Tools > Zombtoy > End Smoke Session, verify restoration, stop the temporary backend, update checkboxes,
+and publish/finish the PR. Leave the PR draft if required GUI checks remain unresolved.
